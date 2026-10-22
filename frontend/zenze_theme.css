@@ -1,0 +1,1071 @@
+/* ==========================================================================
+   KrishiMitra AI - Zenze Agri Solutions Inspired Theme
+   Aesthetic: Ultra-premium dark forest-green, atmospheric mountain sunrise,
+   glowing lime green accents (#a3e635), dark glassmorphism cards,
+   and integrated farm overview tablet mockup.
+   ========================================================================== */
+
+:root {
+    --zenze-bg: #05140b;
+    --zenze-bg-elevated: #091e11;
+    --zenze-card: rgba(11, 28, 18, 0.78);
+    --zenze-card-hover: rgba(16, 39, 25, 0.92);
+    --zenze-card-border: rgba(74, 222, 128, 0.14);
+    --zenze-card-border-hover: rgba(163, 230, 53, 0.35);
+
+    --zenze-lime: #a3e635;
+    --zenze-lime-hover: #bef264;
+    --zenze-lime-dark: #65a30d;
+    --zenze-green-glow: rgba(163, 230, 53, 0.22);
+
+    --zenze-white: #ffffff;
+    --zenze-text-muted: #94a3b8;
+    --zenze-text-dim: #64748b;
+    --zenze-text-emerald: #86efac;
+
+    --font-heading: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, sans-serif;
+    --font-body: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, sans-serif;
+
+    --radius-pill: 9999px;
+    --radius-card: 20px;
+    --radius-card-sm: 14px;
+}
+
+/* Base resets & dark body canvas */
+body.zenze-body {
+    background-color: var(--zenze-bg);
+    color: var(--zenze-white);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   1. Zenze Navigation Bar
+   ========================================================================== */
+.zenze-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(5, 20, 11, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 0;
+}
+
+.zenze-nav-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.zenze-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--zenze-white);
+}
+
+.zenze-brand-logo {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--zenze-lime);
+    font-size: 1.5rem;
+}
+
+.zenze-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.zenze-brand-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--zenze-white);
+    line-height: 1;
+}
+
+.zenze-brand-sub {
+    font-size: 0.65rem;
+    color: var(--zenze-text-muted);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+}
+
+.zenze-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.zenze-nav-link {
+    color: var(--zenze-text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 6px 0;
+}
+
+.zenze-nav-link:hover {
+    color: var(--zenze-white);
+}
+
+.zenze-nav-link.active {
+    color: var(--zenze-lime);
+    font-weight: 600;
+}
+
+.zenze-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--zenze-lime);
+    border-radius: 2px;
+}
+
+.zenze-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Universal Language Button */
+.zenze-lang-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--zenze-white);
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.zenze-lang-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--zenze-lime);
+}
+
+.zenze-btn-get-started {
+    background: var(--zenze-lime);
+    color: #05140b;
+    text-decoration: none;
+    padding: 9px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 16px rgba(163, 230, 53, 0.3);
+    transition: all 0.2s ease;
+}
+
+.zenze-btn-get-started:hover {
+    background: var(--zenze-lime-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(163, 230, 53, 0.45);
+}
+
+.zenze-btn-circle-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--zenze-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.zenze-btn-circle-icon:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--zenze-lime);
+}
+
+/* ==========================================================================
+   2. Hero Section
+   ========================================================================== */
+.zenze-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 70px;
+    background-color: var(--zenze-bg);
+    overflow: hidden;
+}
+
+/* High-res Atmospheric Farming Background */
+.zenze-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2000&q=85');
+    background-size: cover;
+    background-position: center right;
+}
+
+/* Dark Gradient Vignette for clear typography read */
+.zenze-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+        90deg,
+        rgba(5, 20, 11, 0.96) 0%,
+        rgba(5, 20, 11, 0.88) 45%,
+        rgba(5, 20, 11, 0.45) 75%,
+        rgba(5, 20, 11, 0.25) 100%
+    );
+}
+
+.zenze-hero-overlay-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    z-index: 2;
+    background: linear-gradient(to top, var(--zenze-bg) 0%, transparent 100%);
+}
+
+.zenze-hero-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.zenze-hero-content {
+    max-width: 720px;
+    margin-bottom: 48px;
+}
+
+.zenze-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(13, 31, 20, 0.7);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: var(--zenze-lime);
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    backdrop-filter: blur(8px);
+}
+
+.zenze-hero-title {
+    font-size: 4.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: var(--zenze-white);
+}
+
+.zenze-hero-title .zenze-highlight-lime {
+    color: var(--zenze-lime);
+    display: block;
+}
+
+.zenze-hero-desc {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+    margin-bottom: 34px;
+    max-width: 620px;
+}
+
+.zenze-hero-btn-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.zenze-btn-primary {
+    background: var(--zenze-lime);
+    color: #05140b;
+    text-decoration: none;
+    padding: 13px 28px;
+    border-radius: var(--radius-pill);
+    font-size: 1rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 20px rgba(163, 230, 53, 0.35);
+    transition: all 0.25s ease;
+}
+
+.zenze-btn-primary:hover {
+    background: var(--zenze-lime-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(163, 230, 53, 0.5);
+}
+
+.zenze-btn-secondary {
+    background: rgba(13, 31, 20, 0.65);
+    backdrop-filter: blur(8px);
+    color: var(--zenze-white);
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    transition: all 0.25s ease;
+}
+
+.zenze-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--zenze-lime);
+    color: var(--zenze-lime);
+    transform: translateY(-2px);
+}
+
+.zenze-btn-play-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* Hero Bottom Floating Cards Row */
+.zenze-hero-floating-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Left Stats Card */
+.zenze-stats-card {
+    background: var(--zenze-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--zenze-card-border);
+    border-radius: var(--radius-card);
+    padding: 20px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    max-width: 680px;
+    flex: 1;
+}
+
+.zenze-stat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.zenze-stat-icon {
+    font-size: 1.25rem;
+    color: var(--zenze-lime);
+    margin-top: 2px;
+}
+
+.zenze-stat-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--zenze-white);
+    line-height: 1.1;
+}
+
+.zenze-stat-label {
+    font-size: 0.74rem;
+    color: var(--zenze-text-muted);
+    margin-top: 4px;
+    line-height: 1.3;
+}
+
+/* Right Live Farm Insights Card */
+.zenze-insights-card {
+    background: var(--zenze-card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--zenze-card-border);
+    border-radius: var(--radius-card);
+    padding: 20px 22px;
+    width: 320px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.zenze-insights-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zenze-insights-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--zenze-white);
+}
+
+.zenze-pulsing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--zenze-lime);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.3);
+    animation: zenze-pulse 2s infinite;
+}
+
+@keyframes zenze-pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(163, 230, 53, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(163, 230, 53, 0); }
+}
+
+.zenze-insights-view-all {
+    color: var(--zenze-lime);
+    text-decoration: none;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+.zenze-insight-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.zenze-insight-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.zenze-insight-name {
+    color: var(--zenze-text-muted);
+}
+
+.zenze-insight-sub {
+    font-size: 0.72rem;
+    color: var(--zenze-text-emerald);
+    font-weight: 600;
+}
+
+.zenze-insight-val {
+    color: var(--zenze-white);
+    font-weight: 700;
+}
+
+.zenze-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.zenze-progress-fill {
+    height: 100%;
+    background: var(--zenze-lime);
+    border-radius: 4px;
+}
+
+/* Scroll indicator */
+.zenze-scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 36px;
+    color: var(--zenze-text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+}
+
+.zenze-scroll-mouse {
+    width: 20px;
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+
+.zenze-scroll-dot {
+    width: 4px;
+    height: 6px;
+    background: var(--zenze-lime);
+    border-radius: 2px;
+    animation: zenze-scroll-down 1.6s infinite ease-in-out;
+}
+
+@keyframes zenze-scroll-down {
+    0% { transform: translateY(0); opacity: 1; }
+    80% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+
+/* ==========================================================================
+   3. "WHAT WE DO" - Intelligent Solutions for Every Farm
+   ========================================================================== */
+.zenze-solutions-section {
+    padding: 100px 0 80px;
+    background: var(--zenze-bg);
+    position: relative;
+    background-image: radial-gradient(circle at 90% 20%, rgba(74, 222, 128, 0.06) 0%, transparent 40%);
+}
+
+.zenze-section-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+.zenze-section-tag {
+    color: var(--zenze-lime);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.zenze-split-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+.zenze-split-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--zenze-white);
+    letter-spacing: -0.02em;
+    max-width: 580px;
+}
+
+.zenze-split-desc {
+    font-size: 1.05rem;
+    color: var(--zenze-text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+/* 4 Feature Cards Grid */
+.zenze-solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.zenze-sol-card {
+    background: var(--zenze-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--zenze-card-border);
+    border-radius: var(--radius-card);
+    padding: 28px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.zenze-sol-card:hover {
+    background: var(--zenze-card-hover);
+    border-color: var(--zenze-card-border-hover);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.zenze-sol-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 22px;
+}
+
+.icon-green { background: rgba(34, 197, 94, 0.18); color: #4ade80; }
+.icon-cyan  { background: rgba(6, 182, 212, 0.18); color: #22d3ee; }
+.icon-amber { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+.icon-purple { background: rgba(168, 85, 247, 0.18); color: #c084fc; }
+
+.zenze-sol-card h3 {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--zenze-white);
+    margin-bottom: 10px;
+}
+
+.zenze-sol-card p {
+    font-size: 0.88rem;
+    color: var(--zenze-text-muted);
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.zenze-sol-arrow-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--zenze-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.zenze-sol-card:hover .zenze-sol-arrow-btn {
+    background: var(--zenze-lime);
+    color: #05140b;
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   4. "OUR TECHNOLOGY" - Data. AI. IoT. Better Together.
+   ========================================================================== */
+.zenze-tech-section {
+    padding: 80px 0 100px;
+    background: var(--zenze-bg);
+}
+
+.zenze-tech-split {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.zenze-tech-left h2 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--zenze-white);
+    letter-spacing: -0.02em;
+    margin: 8px 0 20px;
+}
+
+.zenze-tech-left p {
+    font-size: 1.05rem;
+    color: var(--zenze-text-muted);
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+.zenze-bullet-list {
+    list-style: none;
+    margin: 0 0 34px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.zenze-bullet-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--zenze-white);
+}
+
+.zenze-bullet-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--zenze-lime);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+/* Tablet Frame Mockup */
+.zenze-tablet-mockup {
+    background: #091a10;
+    border: 2px solid rgba(74, 222, 128, 0.22);
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(163, 230, 53, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.tablet-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 14px;
+}
+
+.tablet-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: var(--zenze-white);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tablet-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.tablet-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mockup 4 Grid Cards */
+.tablet-grid-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.tablet-metric-card {
+    background: rgba(14, 34, 22, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.tablet-metric-card small {
+    font-size: 0.68rem;
+    color: var(--zenze-text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.tablet-metric-card strong {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--zenze-white);
+}
+
+.metric-trend {
+    font-size: 0.68rem;
+    color: var(--zenze-lime);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+/* Tablet Bottom Half: Map + Weather */
+.tablet-visual-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+}
+
+.tablet-ndvi-map {
+    height: 190px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ndvi-overlay-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(234, 179, 8, 0.3) 50%, rgba(239, 68, 68, 0.25) 100%);
+    mix-blend-mode: overlay;
+}
+
+.map-pin {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--zenze-lime);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    color: #05140b;
+    font-size: 0.65rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px var(--zenze-lime);
+}
+
+.pin-1 { top: 35%; left: 30%; }
+.pin-2 { top: 60%; left: 65%; }
+
+.tablet-weather-card {
+    background: rgba(14, 34, 22, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tablet-weather-card .temp-val {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--zenze-white);
+    line-height: 1;
+}
+
+.tablet-weather-card .condition {
+    font-size: 0.78rem;
+    color: var(--zenze-text-muted);
+    margin-top: 4px;
+}
+
+.weather-stats {
+    font-size: 0.7rem;
+    color: var(--zenze-text-dim);
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   5. Bottom CTA Banner
+   ========================================================================== */
+.zenze-cta-section {
+    padding: 40px 0 90px;
+    background: var(--zenze-bg);
+}
+
+.zenze-banner-card {
+    background: linear-gradient(135deg, rgba(14, 36, 23, 0.95) 0%, rgba(8, 24, 15, 0.95) 100%);
+    border: 1px solid var(--zenze-card-border);
+    border-radius: var(--radius-card);
+    padding: 24px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.zenze-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.zenze-banner-thumb {
+    width: 88px;
+    height: 88px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 2px solid rgba(74, 222, 128, 0.25);
+    flex-shrink: 0;
+}
+
+.zenze-banner-text h3 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--zenze-white);
+    margin-bottom: 6px;
+}
+
+.zenze-banner-text p {
+    font-size: 0.9rem;
+    color: var(--zenze-text-muted);
+}
+
+.zenze-banner-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+}
+
+.zenze-avatar-stack-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.zenze-avatars {
+    display: flex;
+}
+
+.zenze-avatars img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid #091e11;
+    margin-left: -10px;
+    object-fit: cover;
+}
+
+.zenze-avatars img:first-child {
+    margin-left: 0;
+}
+
+.zenze-avatar-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--zenze-text-muted);
+    max-width: 120px;
+    line-height: 1.25;
+}
+
+.zenze-banner-btn {
+    background: var(--zenze-lime);
+    color: #05140b;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-size: 0.92rem;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(163, 230, 53, 0.3);
+}
+
+.zenze-banner-btn:hover {
+    background: var(--zenze-lime-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(163, 230, 53, 0.45);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .zenze-solutions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .zenze-tech-split {
+        grid-template-columns: 1fr;
+    }
+    .zenze-hero-title {
+        font-size: 3.4rem;
+    }
+    .zenze-hero-floating-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .zenze-stats-card {
+        max-width: 100%;
+    }
+    .zenze-insights-card {
+        width: 100%;
+    }
+    .zenze-banner-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .zenze-banner-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .zenze-nav-links {
+        display: none;
+    }
+    .zenze-hero-title {
+        font-size: 2.6rem;
+    }
+    .zenze-stats-card {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    .zenze-solutions-grid {
+        grid-template-columns: 1fr;
+    }
+    .zenze-split-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .zenze-banner-left {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .tablet-grid-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tablet-visual-row {
+        grid-template-columns: 1fr;
+    }
+}

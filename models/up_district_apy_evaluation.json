@@ -1,0 +1,50 @@
+{
+  "dataset": "Official Uttar Pradesh District APY (2012-13 to 2022-23)",
+  "total_records": 675,
+  "train_records": 525,
+  "test_records": 150,
+  "target": "yield_tonne_per_hectare",
+  "target_unit": "Tonne / Hectare",
+  "benchmarks": {
+    "Baseline_1_Global_Mean": {
+      "description": "Predicts constant training mean (2.78 t/ha)",
+      "test_mae_tonne_per_ha": 0.459,
+      "test_rmse_tonne_per_ha": 0.559,
+      "test_r2": -0.2413,
+      "equiv_mae_q_acre": 1.86
+    },
+    "Baseline_2_District_Historical_Mean": {
+      "description": "Predicts each district's own 8-year historical average yield",
+      "test_mae_tonne_per_ha": 0.268,
+      "test_rmse_tonne_per_ha": 0.324,
+      "test_r2": 0.5837,
+      "equiv_mae_q_acre": 1.08
+    },
+    "Baseline_3_Naive_Persistence": {
+      "description": "Predicts last year's observed yield directly (Yield_t = Yield_t-1)",
+      "test_mae_tonne_per_ha": 0.148,
+      "test_rmse_tonne_per_ha": 0.194,
+      "test_r2": 0.8499,
+      "equiv_mae_q_acre": 0.6
+    },
+    "Linear_Ridge": {
+      "test_mae_tonne_per_ha": 0.142,
+      "test_rmse_tonne_per_ha": 0.182,
+      "test_r2": 0.8685,
+      "equiv_mae_q_acre": 0.57
+    },
+    "XGBoost": {
+      "test_mae_tonne_per_ha": 0.166,
+      "test_rmse_tonne_per_ha": 0.218,
+      "test_r2": 0.8118,
+      "equiv_mae_q_acre": 0.67
+    }
+  },
+  "selected_model": "Linear_Ridge",
+  "strict_scope_limitations": [
+    "Dataset operates strictly at the DISTRICT LEVEL across 75 districts of UP.",
+    "Never claim certified plot-level accuracy from district aggregates.",
+    "Production (Tonnes) was strictly excluded from features to prevent deterministic division leakage (Yield = Production / Area).",
+    "Out-of-time evaluation split (2012-2020 train, 2021-2023 test) prevents temporal leakage."
+  ]
+}

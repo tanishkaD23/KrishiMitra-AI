@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KrishiMitra AI | Enterprise Agriculture Intelligence</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dash-body">
+
+    <!-- =========================================================================
+         TOP GLOBAL CONTROL STRIP: Switch View (PC / Mobile) + Theme + Language
+         ========================================================================= -->
+    <header class="global-control-strip" aria-label="Dashboard View Controls">
+        <div class="view-switcher-group" role="group" aria-label="Device View Selection">
+            <button type="button" class="btn-view-toggle active" id="btnViewPc" aria-pressed="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span>Desktop View</span>
+            </button>
+            <button type="button" class="btn-view-toggle" id="btnViewMobile" aria-pressed="false">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <span>Mobile View</span>
+            </button>
+        </div>
+
+        <div class="right-toggles-group">
+            <!-- Theme Toggle Button (Light / Dark) -->
+            <button type="button" class="theme-toggle-btn" id="globalThemeToggle" aria-label="Toggle Theme" title="Switch Theme">
+                <span class="theme-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+                <span class="theme-text">Dark</span>
+            </button>
+
+            <!-- Language Switcher Toggle -->
+            <button type="button" class="lang-toggle-btn" id="dashLangToggle" aria-label="Switch Language" title="Switch Language">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="lang-current">हिंदी</span>
+                <span>|</span>
+                <span class="lang-alt">EN</span>
+            </button>
+
+            <!-- Back to Home -->
+            <a href="index.html" class="btn-home-link" title="Main Website">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="home-text">Home</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+         LAYOUT A: PC DESKTOP DASHBOARD (Clean Professional Enterprise Layout)
+         ========================================================================= -->
+    <div class="pc-dashboard-container" id="pcDashboardView">
+
+        <!-- 1. Left Sidebar Navigation -->
+        <aside class="pc-sidebar" aria-label="Main Navigation">
+            <div>
+                <a href="index.html" class="pc-sidebar-brand" aria-label="KrishiMitra AI Home">
+                    <span class="pc-brand-sprout">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c0-4.5 2-8 6-10-4.5 0-8 2-10 6"/><path d="M12 20V10c0-3 1.5-5 4-7-3 0-5 1.5-6 4"/></svg>
+                    </span>
+                    <div class="pc-brand-text">KrishiMitra <span>AI</span></div>
+                </a>
+
+                <nav>
+                    <ul class="pc-nav-list">
+                        <li>
+                            <a href="#pc-dashboard" class="pc-nav-link active" id="pcNavDashboard">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                                </span>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-fields-section" class="pc-nav-link" id="pcNavFields">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                </span>
+                                <span>My Fields</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-forecast-section" class="pc-nav-link" id="pcNavForecast">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                </span>
+                                <span>Yield Forecast</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-advisory-section" class="pc-nav-link" id="pcNavAdvisory">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12l2 2 4-4"/></svg>
+                                </span>
+                                <span>Advisory</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-schemes-section" class="pc-nav-link" id="pcNavSchemes">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"/></svg>
+                                </span>
+                                <span>Schemes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-sathi-section" class="pc-nav-link" id="pcNavSathi">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </span>
+                                <span>KrishiSathi AI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pc-weather-section" class="pc-nav-link" id="pcNavWeather">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+                                </span>
+                                <span>Weather</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="model-summary.html" class="pc-nav-link" id="pcNavModelSummary">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </span>
+                                <span>Model Summary</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html#features" class="pc-nav-link">
+                                <span class="nav-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                </span>
+                                <span>Knowledge Hub</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Bottom KrishiSathi Help Box -->
+            <div>
+                <div class="pc-help-card">
+                    <div class="help-icon-circle">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h4>Agronomic AI Support</h4>
+                    <p>Consult KrishiSathi in Hindi or English</p>
+                    <button type="button" class="btn-help-speak" id="btnSidebarSpeak">
+                        <span>Speak Now</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </button>
+                </div>
+
+                <!-- Farmer Profile Mini Bar -->
+                <div class="pc-user-profile" style="margin-top: 14px;">
+                    <div class="scheme-icon-circle" style="width: 34px; height: 34px; font-weight: 700;">T</div>
+                    <div class="pc-user-info">
+                        <span class="pc-user-name">Tanishka (तनिष्का)</span>
+                        <span class="pc-user-role">Lead Producer • Meerut, UP</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. PC Main Content Area -->
+        <main class="pc-main-content" id="pc-dashboard">
+
+            <!-- Top Header Action Row -->
+            <header class="pc-topbar">
+                <div class="pc-location-pill" title="Change Location" id="pcLocationBtn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <strong id="pcCurrentLocation">Meerut, Uttar Pradesh</strong>
+                    <span style="font-size: 0.75rem; opacity: 0.7;">▾</span>
+                </div>
+
+                <div class="pc-search-box">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="pcSearchInput" placeholder="Search crops, agronomic advisories, schemes, or weather metrics..." aria-label="Search">
+                </div>
+
+                <div class="pc-topbar-right">
+                    <button type="button" class="pc-bell-btn" title="Notifications">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="pc-bell-dot"></span>
+                    </button>
+                    <div class="pc-user-profile">
+                        <div class="scheme-icon-circle" style="width: 28px; height: 28px; font-weight: 700; font-size: 0.8rem;">T</div>
+                        <div class="pc-user-info">
+                            <span class="pc-user-name">Tanishka</span>
+                            <span class="pc-user-role">Agriculturalist</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dynamic Notification Banner (Unsupported Crop / Region / Error) -->
+            <div id="pcNotificationBanner" class="dash-notice-banner" role="alert">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span id="pcNoticeText">Scope Notice</span>
+                </div>
+                <button type="button" class="dash-notice-btn" id="pcNoticeBtn">Switch to Wheat</button>
+            </div>
+
+            <!-- 3. Panoramic Hero Banner -->
+            <section class="pc-hero-banner" aria-label="Producer Briefing">
+                <div class="pc-banner-left">
+                    <div class="pc-banner-badges" style="margin-bottom: 8px;">
+                        <span class="pc-banner-badge" id="pcBannerRegionBadge">Western Uttar Pradesh • Rabi Season 2024–25</span>
+                    </div>
+                    <h2 id="pcBannerGreeting">Good Morning, Tanishka</h2>
+                    <p id="pcBannerDesc">Field conditions are optimal today. Wheat crop in Daurala is in tillering stage — scheduled irrigation recommended within 48 hours.</p>
+                    <div class="pc-banner-badges">
+                        <span class="pc-banner-badge" id="pcBannerDistrictBadge">Meerut District</span>
+                        <span class="pc-banner-badge" id="pcBannerFieldsBadge">3 Active Fields</span>
+                        <span class="pc-banner-badge" id="pcBannerAcresBadge">5.5 Acres Total Holdings</span>
+                    </div>
+                </div>
+
+                <div class="pc-banner-right-card">
+                    <div class="badge-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+                    <div>
+                        <h5>Recommended Field Action</h5>
+                        <p id="pcBannerActionText">First Irrigation for Wheat (Daurala Farm, 2.5 Ac) scheduled in 48 hours.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Five Stat Metric Cards Row -->
+            <section class="pc-five-stats-row" aria-label="Key Farm Metrics">
+                <!-- Stat 1: Total Land -->
+                <div class="pc-stat-card">
+                    <div class="pc-stat-icon-circle circle-green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="pc-stat-info">
+                        <small>Total Land Holdings</small>
+                        <div class="stat-number" id="pcStatTotalLandVal">5.5 <span style="font-size: 0.9rem; font-weight: 600;">Acres</span></div>
+                        <span class="stat-caption" id="pcStatTotalLandSub">3 Registered Plots</span>
+                    </div>
+                </div>
+
+                <!-- Stat 2: Active Crops -->
+                <div class="pc-stat-card">
+                    <div class="pc-stat-icon-circle circle-amber">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c0-4.5 2-8 6-10-4.5 0-8 2-10 6"/><path d="M12 20V10c0-3 1.5-5 4-7-3 0-5 1.5-6 4"/></svg>
+                    </div>
+                    <div class="pc-stat-info">
+                        <small>Active Plantings</small>
+                        <div class="stat-number" id="pcStatActiveCropsVal" style="font-size: 1.25rem;">Wheat, Mustard</div>
+                        <span class="stat-caption">Rabi Season 2024–25</span>
+                    </div>
+                </div>
+
+                <!-- Stat 3: Expected Yield -->
+                <div class="pc-stat-card">
+                    <div class="pc-stat-icon-circle circle-blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="pc-stat-info">
+                        <small>Yield Projection</small>
+                        <div class="stat-number" id="pcStatYieldVal">44 - 54 <span style="font-size: 0.85rem; font-weight: 600;">Q/Ha</span></div>
+                        <span class="stat-caption" id="pcStatYieldCrop">Wheat (Daurala Farm)</span>
+                    </div>
+                </div>
+
+                <!-- Stat 4: Est. Market Value -->
+                <div class="pc-stat-card">
+                    <div class="pc-stat-icon-circle circle-red">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    </div>
+                    <div class="pc-stat-info">
+                        <small>Est. Market Value</small>
+                        <div class="stat-number" id="pcStatMarketVal">₹1,13,500</div>
+                        <span class="stat-caption" id="pcStatMarketSub">Benchmark MSP ₹2,275/Q (Projection)</span>
+                    </div>
+                </div>
+
+                <!-- Stat 5: Soil Health -->
+                <div class="pc-stat-card">
+                    <div class="pc-stat-icon-circle circle-shield">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="pc-stat-info">
+                        <small>Soil Health Index</small>
+                        <div class="stat-number" style="font-size: 1.25rem; color: #16a34a;">Optimal</div>
+                        <span class="stat-caption">NPK: 140:40:220 • pH 7.2 (नमूना डेटा / Demo Baseline)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Middle Grid (3 Columns: My Fields, Yield Forecast, Weather & Field Conditions) -->
+            <section class="pc-middle-grid" aria-label="Field Grid and Forecasts">
+
+                <!-- Col 1: My Fields -->
+                <div class="pc-card-box" id="pc-fields-section">
+                    <div>
+                        <div class="pc-card-header">
+                            <h3>My Fields (मेरे खेत)</h3>
+                            <a href="#add-field" class="pc-view-all-link" id="btnPcAddField">+ Add Field</a>
+                        </div>
+                        <div class="pc-fields-list" id="pcFieldsListContainer">
+                            <!-- Field 1: Daurala -->
+                            <div class="pc-field-item">
+                                <img src="images/field_wheat.jpg" alt="Daurala Farm Wheat" class="pc-field-thumb">
+                                <div class="pc-field-details">
+                                    <div class="field-title-row">
+                                        <strong>Daurala Farm</strong>
+                                        <span class="badge-active">Active</span>
+                                    </div>
+                                    <div class="field-meta-sub">Wheat • 2.5 Acres • Day 28 (Tillering)</div>
+                                </div>
+                                <span class="pc-field-arrow">→</span>
+                            </div>
+
+                            <!-- Field 2: Hastinapur -->
+                            <div class="pc-field-item">
+                                <img src="images/field_mustard.jpg" alt="Hastinapur Farm Mustard" class="pc-field-thumb">
+                                <div class="pc-field-details">
+                                    <div class="field-title-row">
+                                        <strong>Hastinapur Plot</strong>
+                                        <span class="badge-active">Active</span>
+                                    </div>
+                                    <div class="field-meta-sub">Mustard • 1.8 Acres • Flowering Stage</div>
+                                </div>
+                                <span class="pc-field-arrow">→</span>
+                            </div>
+
+                            <!-- Field 3: Sardhana -->
+                            <div class="pc-field-item">
+                                <img src="images/field_fallow.jpg" alt="Sardhana Area Soil" class="pc-field-thumb">
+                                <div class="pc-field-details">
+                                    <div class="field-title-row">
+                                        <strong>Sardhana Area</strong>
+                                        <span class="badge-planned">Planned</span>
+                                    </div>
+                                    <div class="field-meta-sub">1.2 Acres • Soil Preparation for Sowing</div>
+                                </div>
+                                <span class="pc-field-arrow">→</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 14px; text-align: center;">
+                        <small style="color: var(--km-text-muted);" id="pcVerifiedPlotsCount">Total 3 verified plots registered under Meerut district</small>
+                    </div>
+                </div>
+
+                <!-- Col 2: Yield Forecast (Interactive Trend Chart) -->
+                <div class="pc-card-box" id="pc-forecast-section">
+                    <div>
+                        <div class="pc-card-header">
+                            <h3>Yield Forecast (पैदावार पूर्वानुमान)</h3>
+                            <div class="crop-toggle-row" style="margin-bottom: 0;">
+                                <button type="button" class="btn-crop-pill active" id="pcCropWheat" data-crop="Wheat">Wheat</button>
+                                <button type="button" class="btn-crop-pill" id="pcCropMustard" data-crop="Mustard">Mustard</button>
+                                <button type="button" class="btn-crop-pill" id="pcCropRice" data-crop="Rice" title="Test unsupported crop">Rice (Kharif • Limit)</button>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px;">
+                            <span style="font-size: 2.2rem; font-weight: 800; color: var(--km-brand-green);" id="pcYieldHeroVal">44 - 54</span>
+                            <span style="font-size: 0.95rem; font-weight: 700; color: var(--km-text-muted);" id="pcYieldUnitText">Q/Ha (Expected)</span>
+                        </div>
+                        <small style="color: var(--km-text-muted); display: block; margin-bottom: 8px;" id="pcForecastSubText">
+                            Season: <strong>Rabi 2024–25</strong> • District Baseline: <strong>Meerut (39.2 Q/Ha)</strong>
+                        </small>
+
+                        <!-- SVG Interactive Yield Chart -->
+                        <div class="chart-svg-wrap">
+                            <svg viewBox="0 0 460 170" width="100%" height="100%" id="pcYieldSvgChart" aria-label="Yield Forecast Chart">
+                                <line x1="40" y1="20" x2="440" y2="20" stroke="var(--km-border)" stroke-dasharray="3,3" />
+                                <line x1="40" y1="60" x2="440" y2="60" stroke="var(--km-border)" stroke-dasharray="3,3" />
+                                <line x1="40" y1="100" x2="440" y2="100" stroke="var(--km-border)" stroke-dasharray="3,3" />
+                                <line x1="40" y1="140" x2="440" y2="140" stroke="var(--km-border)" />
+
+                                <text x="10" y="24" fill="var(--km-text-muted)" font-size="11">45</text>
+                                <text x="10" y="64" fill="var(--km-text-muted)" font-size="11">40</text>
+                                <text x="10" y="104" fill="var(--km-text-muted)" font-size="11">35</text>
+                                <text x="10" y="144" fill="var(--km-text-muted)" font-size="11">30</text>
+
+                                <text x="50" y="158" fill="var(--km-text-muted)" font-size="11">2018</text>
+                                <text x="105" y="158" fill="var(--km-text-muted)" font-size="11">2019</text>
+                                <text x="160" y="158" fill="var(--km-text-muted)" font-size="11">2020</text>
+                                <text x="215" y="158" fill="var(--km-text-muted)" font-size="11">2021</text>
+                                <text x="270" y="158" fill="var(--km-text-muted)" font-size="11">2022</text>
+                                <text x="325" y="158" fill="var(--km-text-muted)" font-size="11">2023</text>
+                                <text x="380" y="158" fill="var(--km-brand-green)" font-weight="700" font-size="11">2024 (P)</text>
+                                <text x="430" y="158" fill="var(--km-brand-green)" font-weight="700" font-size="11">2025 (P)</text>
+
+                                <path id="pcHistoricalPath" d="M 50 80 L 105 88 L 160 84 L 215 110 L 270 108 L 325 106" fill="none" stroke="#15803d" stroke-width="3" stroke-linecap="round" />
+                                <path id="pcForecastPath" d="M 325 106 L 380 96 L 430 90" fill="none" stroke="#15803d" stroke-width="3" stroke-dasharray="5,5" stroke-linecap="round" />
+
+                                <circle cx="50" cy="80" r="4" fill="#15803d" />
+                                <circle cx="105" cy="88" r="4" fill="#15803d" />
+                                <circle cx="160" cy="84" r="4" fill="#15803d" />
+                                <circle cx="215" cy="110" r="4" fill="#15803d" />
+                                <circle cx="270" cy="108" r="4" fill="#15803d" />
+                                <circle cx="325" cy="106" r="4" fill="#15803d" />
+                                <circle cx="380" cy="96" r="5" fill="#22c55e" stroke="#ffffff" stroke-width="2" />
+                                <circle cx="430" cy="90" r="5" fill="#22c55e" stroke="#ffffff" stroke-width="2" />
+                            </svg>
+                        </div>
+
+                        <div class="chart-legend-row">
+                            <div class="legend-item">
+                                <span class="legend-line-solid"></span>
+                                <span>Official UP APY Records (2018–2023)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-line-dashed"></span>
+                                <span>Evaluated XGBoost Forecast (2024–2025)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 10px; padding: 10px 14px; background: var(--km-card-subtle); border-radius: var(--km-radius-sm); border: 1px solid var(--km-border-subtle); font-size: 0.76rem; color: var(--km-text-muted); line-height: 1.45;">
+                        <strong>मॉडल एवं डेटा सीमाएं (Model &amp; Data Limitations):</strong> Plot forecasts generated by evaluated XGBoost Pipeline (R² = 0.9621, MAE = 0.827 Q/Acre). Historical district baseline achieves R² = 0.7364, MAE = 0.1892 t/ha on 2021-22 out-of-time test. Actual plot yield may vary with micro-soil and weather anomalies.
+                        <div style="margin-top: 6px;">
+                            <a href="model-summary.html" style="color: var(--km-brand-green); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                                <span>View Full Model Evaluation &amp; Benchmark Report</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 3: Compact Live Weather Widget (Smartphone Home-Screen Style) -->
+                <div class="pc-card-box compact-weather-card" id="pc-weather-section">
+                    <div class="cw-header-row">
+                        <div class="cw-title-group">
+                            <span class="cw-live-indicator" id="cwLiveDot" title="Live Open-Meteo connection"></span>
+                            <span class="cw-location-name" id="cwLocationName">Meerut, UP</span>
+                            <button type="button" class="cw-btn-geo" id="btnWeatherGeo" title="Use my GPS location (optional)">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Use GPS</span>
+                            </button>
+                        </div>
+                        <div class="cw-actions-group">
+                            <span class="cw-updated-text" id="cwUpdatedTime">Updated --:--</span>
+                            <button type="button" class="cw-btn-refresh" id="btnWeatherRefresh" title="Refresh Live Weather">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" id="cwRefreshIcon"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Main Status Row (Icon, Temp, Condition, Rain) -->
+                    <div class="cw-main-row" id="cwMainRow">
+                        <div class="cw-icon-temp">
+                            <div class="cw-icon-box" id="cwIconBox">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                            </div>
+                            <span class="cw-temp-val" id="cwTemp">--°C</span>
+                        </div>
+                        <div class="cw-condition-meta">
+                            <span class="cw-condition-val" id="cwCondition">Loading...</span>
+                            <span class="cw-rain-val" id="cwRain">Rain 0.0 mm</span>
+                        </div>
+                    </div>
+
+                    <!-- Single Compact Line: Feels-like, Humidity, Wind speed -->
+                    <div class="cw-compact-metrics" id="cwMetricsLine">
+                        <span id="cwFeelsLike">Feels --°C</span>
+                        <span class="cw-dot">•</span>
+                        <span id="cwHumidity">Humidity --%</span>
+                        <span class="cw-dot">•</span>
+                        <span id="cwWind">Wind -- km/h</span>
+                    </div>
+
+                    <!-- Fallback unavailable message -->
+                    <div class="cw-unavailable-box" id="cwUnavailableBox" style="display: none;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <span>Weather unavailable</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Bottom Grid (3 Columns: Recommended Advisory, Government Schemes, Chat with KrishiSathi) -->
+            <section class="pc-bottom-grid" aria-label="Advisories and Programs">
+
+                <!-- Col 1: Recommended Advisory -->
+                <div class="pc-card-box" id="pc-advisory-section">
+                    <div class="pc-card-header" style="flex-wrap: wrap; gap: 8px;">
+                        <div>
+                            <h3 id="pcAdvisoryHeading">Personalised Agronomic Advisory</h3>
+                            <small style="color: var(--km-text-muted); display: block;" id="pcAdvisorySubheading">Grounded in ICAR &amp; IMD Agromet Protocols</small>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <button type="button" class="btn-help-speak" id="btnAudioReadAdvisory" style="padding: 4px 10px; font-size: 0.74rem;">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                                <span>Voice Readout</span>
+                            </button>
+                            <button type="button" class="btn-help-speak" id="btnToggleSymptomChecker" style="padding: 4px 10px; font-size: 0.74rem; background: var(--km-card-subtle); color: var(--km-text-main); border: 1px solid var(--km-border);">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span>Pest / Symptom Check</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stage Selector Strip -->
+                    <div class="adv-stage-strip" id="pcStagePillsStrip">
+                        <button type="button" class="adv-stage-btn" data-stage="Pre-Sowing">Pre-Sowing</button>
+                        <button type="button" class="adv-stage-btn" data-stage="Crown Root Initiation (CRI)">CRI Stage (20-25 DAS)</button>
+                        <button type="button" class="adv-stage-btn active" data-stage="Tillering">Tillering (25-45 DAS)</button>
+                        <button type="button" class="adv-stage-btn" data-stage="Jointing">Jointing (45-65 DAS)</button>
+                        <button type="button" class="adv-stage-btn" data-stage="Flowering">Flowering (65-85 DAS)</button>
+                        <button type="button" class="adv-stage-btn" data-stage="Grain Filling">Grain Filling (85-110 DAS)</button>
+                    </div>
+
+                    <!-- Collapsible Symptom / Pest Inquiry Drawer -->
+                    <div class="adv-symptom-drawer" id="pcSymptomDrawer">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <strong style="font-size: 0.82rem;">Crop Symptom &amp; Field Vigilance Protocol</strong>
+                            <small style="color: var(--km-text-muted); font-size: 0.72rem;">Evidence-based steps (Not certified lab diagnosis)</small>
+                        </div>
+                        <p style="font-size: 0.74rem; color: var(--km-text-muted); margin-bottom: 8px;">Select visual symptoms observed in your field to generate verified management next steps:</p>
+                        
+                        <div class="adv-symptom-grid" id="pcSymptomGrid">
+                            <div class="adv-symptom-chip selected" data-symptom="healthy">
+                                <span class="custom-checkbox"></span>
+                                <span>No symptoms / Healthy crop</span>
+                            </div>
+                            <div class="adv-symptom-chip" data-symptom="rust">
+                                <span class="custom-checkbox"></span>
+                                <span>Yellow powder / stripe rust signs</span>
+                            </div>
+                            <div class="adv-symptom-chip" data-symptom="aphid">
+                                <span class="custom-checkbox"></span>
+                                <span>Aphids / Chepa insects on shoots</span>
+                            </div>
+                            <div class="adv-symptom-chip" data-symptom="chlorosis">
+                                <span class="custom-checkbox"></span>
+                                <span>Leaf yellowing / tip necrosis</span>
+                            </div>
+                        </div>
+
+                        <div class="adv-form-row">
+                            <label style="font-size: 0.74rem; font-weight: 600;">Irrigation Availability:</label>
+                            <select id="pcAdvIrrigationSelect" class="adv-form-select">
+                                <option value="Tube well / Borewell">Tube well / Borewell (Assured)</option>
+                                <option value="Canal">Canal System</option>
+                                <option value="Rainfed (No assured water)">Rainfed (Moisture stress)</option>
+                            </select>
+
+                            <button type="button" class="btn-crop-pill active" id="pcBtnApplySymptoms" style="margin-left: auto; padding: 4px 14px; font-size: 0.75rem;">
+                                Apply &amp; Update
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Structured Advisory Cards Dynamic Container -->
+                    <div class="adv-cards-container" id="pcAdvisoryCardsList">
+                        <!-- Populated dynamically by renderAdvisoryCards() in dashboard.js -->
+                    </div>
+
+                    <!-- Responsible Soil Disclaimer -->
+                    <div class="adv-soil-disclaimer-box" id="pcAdvisorySoilDisclaimer">
+                        <strong>Soil Baseline Notice:</strong> District soil parameters are regional aggregates for Meerut (Alluvial Sandy Loam, medium organic carbon). They do not represent farm-specific lab measurements. For precise fertilizer dosages, test your soil via the <a href="https://soilhealth.dac.gov.in" target="_blank" rel="noopener noreferrer" style="color: var(--km-brand-green); font-weight: 700;">Soil Health Card Scheme</a>.
+                    </div>
+                </div>
+
+                <!-- Col 2: Government Schemes -->
+                <div class="pc-card-box" id="pc-schemes-section">
+                    <div class="pc-card-header">
+                        <h3>Institutional Programs & Schemes</h3>
+                        <a href="index.html#schemes" class="pc-view-all-link">Directory →</a>
+                    </div>
+
+                    <div class="schemes-mini-list">
+                        <!-- Scheme 1 -->
+                        <a href="https://pmkisan.gov.in" target="_blank" rel="noopener noreferrer" class="scheme-mini-item">
+                            <div class="scheme-icon-circle">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"/></svg>
+                            </div>
+                            <div class="scheme-mini-info">
+                                <strong>PM-KISAN Samman Nidhi</strong>
+                                <small>Direct benefit transfer installment verified and linked</small>
+                            </div>
+                            <span class="pc-field-arrow">→</span>
+                        </a>
+
+                        <!-- Scheme 2 -->
+                        <a href="https://pmfby.gov.in" target="_blank" rel="noopener noreferrer" class="scheme-mini-item">
+                            <div class="scheme-icon-circle" style="background: var(--km-blue-light); color: var(--km-blue);">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div class="scheme-mini-info">
+                                <strong>PM Fasal Bima Yojana (PMFBY)</strong>
+                                <small>Rabi season coverage active with 72-hour claim notification window</small>
+                            </div>
+                            <span class="pc-field-arrow">→</span>
+                        </a>
+
+                        <!-- Scheme 3 -->
+                        <a href="https://soilhealth.dac.gov.in" target="_blank" rel="noopener noreferrer" class="scheme-mini-item">
+                            <div class="scheme-icon-circle" style="background: var(--km-amber-light); color: var(--km-amber);">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                            </div>
+                            <div class="scheme-mini-info">
+                                <strong>Soil Health Card Protocol</strong>
+                                <small>Laboratory test schedule due for renewal this agricultural cycle</small>
+                            </div>
+                            <span class="pc-field-arrow">→</span>
+                        </a>
+
+                        <!-- Scheme 4 -->
+                        <a href="https://www.myscheme.gov.in" target="_blank" rel="noopener noreferrer" class="scheme-mini-item">
+                            <div class="scheme-icon-circle" style="background: var(--km-purple-light); color: var(--km-purple);">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                            </div>
+                            <div class="scheme-mini-info">
+                                <strong>Kisan Credit Card (KCC)</strong>
+                                <small>Concessional 4% crop input working capital facility</small>
+                            </div>
+                            <span class="pc-field-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 3: Chat with KrishiSathi -->
+                <div class="krishisathi-chat-widget" id="pc-sathi-section">
+                    <div>
+                        <div class="sathi-header-row">
+                            <div class="sathi-avatar-circle">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <div>
+                                <strong style="font-size: 0.96rem;">KrishiSathi AI Assistant</strong>
+                                <small style="color: var(--km-text-muted); display: block;">Interactive Agronomic Advisor (कृषिसाथी)</small>
+                            </div>
+                        </div>
+
+                        <!-- Sathi Speech Bubble -->
+                        <div class="sathi-speech-bubble" id="pcSathiBubble">
+                            "नमस्ते तनिष्का जी! आज मैं आपकी फसल, सिंचाई या उर्वरक प्रबंधन में क्या सहायता कर सकता हूँ?"
+                        </div>
+
+                        <!-- Big Mic Center -->
+                        <div class="voice-mic-center">
+                            <button type="button" class="btn-big-mic" id="dashMicBtn" aria-label="Voice Query / बोलकर पूछें">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                            </button>
+                            <span class="mic-subtext" id="pcSathiStatusText">Click microphone to speak or choose a question below</span>
+                        </div>
+
+                        <!-- Prompt Chips -->
+                        <div class="prompt-chips-scroll" style="display: flex; flex-direction: column; gap: 6px; margin: 10px 0; text-align: left;">
+                            <button type="button" class="chip-bubble pc-prompt-chip" data-prompt="गेहूं में पहली सिंचाई कब करनी चाहिए?">
+                                गेहूं में पहली सिंचाई (CRI) का सही समय
+                            </button>
+                            <button type="button" class="chip-bubble pc-prompt-chip" data-prompt="सरसों में माहू कीट का उपचार क्या है?">
+                                सरसों में माहू (चेपा) कीट का नियंत्रण
+                            </button>
+                            <button type="button" class="chip-bubble pc-prompt-chip" data-prompt="यूरिया की सही मात्रा कितनी डालनी चाहिए?">
+                                पहली सिंचाई के बाद यूरिया की संतुलित मात्रा
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Input Bar -->
+                    <div style="display: flex; gap: 6px; margin-top: 10px;">
+                        <input type="text" id="pcSathiTextInput" placeholder="Ask question in Hindi or English..." style="flex: 1; padding: 8px 14px; border-radius: var(--km-radius-full); border: 1px solid var(--km-border); background: var(--km-card-bg); color: var(--km-text-main); font-size: 0.82rem; outline: none;">
+                        <button type="button" id="pcSathiSendBtn" style="background: var(--km-brand-green); color: #fff; border: none; border-radius: var(--km-radius-full); padding: 8px 16px; font-weight: 700; cursor: pointer; font-size: 0.82rem;">Submit</button>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- =========================================================================
+         LAYOUT B: MOBILE DASHBOARD SHELL (Clean Professional Mobile Interface)
+         ========================================================================= -->
+    <div class="mobile-dashboard-shell" id="mobileDashboardView">
+
+        <!-- Top Phone Status Bar (9:41, Cellular, Wi-Fi, Battery) -->
+        <div class="mobile-status-bar">
+            <span>09:41</span>
+            <div class="status-bar-icons">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M6 16v4"/><path d="M10 12v8"/><path d="M14 8v12"/><path d="M18 4v16"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                <svg width="16" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/></svg>
+            </div>
+        </div>
+
+        <!-- =====================================================================
+             SCREEN 1: HOME (Clean Header, Location, Hero, 3 Metrics, Quick Actions, Promos)
+             ===================================================================== -->
+        <section class="mobile-screen-content active" id="mScreenHome" aria-label="Home Screen">
+            <!-- Topbar -->
+            <div class="m-home-topbar">
+                <a href="index.html" class="m-brand-logo-text">
+                    <span class="sprout-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2"><path d="M7 20h10"/><path d="M10 20c0-4.5 2-8 6-10-4.5 0-8 2-10 6"/><path d="M12 20V10c0-3 1.5-5 4-7-3 0-5 1.5-6 4"/></svg>
+                    </span>
+                    <span>KrishiMitra AI</span>
+                </a>
+                <div class="m-home-topbar-right">
+                    <button type="button" class="m-icon-btn-circle" title="Notifications">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="pc-bell-dot" style="top: 6px; right: 6px;"></span>
+                    </button>
+                    <div class="m-user-avatar-circle" title="Farmer Profile">
+                        <span style="font-size: 0.82rem; font-weight: 800; color: #b45309;">T</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Mobile Notification Banner -->
+            <div id="mNotificationBanner" class="dash-notice-banner" role="alert" style="margin: 8px 12px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span id="mNoticeText">Scope Notice</span>
+                </div>
+                <button type="button" class="dash-notice-btn" id="mNoticeBtn">Switch</button>
+            </div>
+
+            <!-- Location Dropdown Pill -->
+            <button type="button" class="m-location-pill-btn" id="mLocationBtn">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span id="mLocationText">Western Uttar Pradesh (Meerut)</span>
+                </span>
+                <span style="font-size: 0.75rem; opacity: 0.7;">▾</span>
+            </button>
+
+            <!-- Sunrise Farmer Hero Card -->
+            <div class="m-home-hero-card">
+                <h2 id="mFarmerGreeting">Good Morning,<br>Tanishka</h2>
+                <p id="mFarmerSub">Planning for higher yields in Rabi season.</p>
+            </div>
+
+            <!-- Mobile Compact Live Weather Card (Smartphone Home-Screen Style) -->
+            <div class="m-compact-weather-card" id="mWeatherCard">
+                <div class="cw-header-row">
+                    <div class="cw-title-group">
+                        <span class="cw-live-indicator" id="mCwLiveDot"></span>
+                        <span class="cw-location-name" id="mCwLocationName">Meerut, UP</span>
+                        <button type="button" class="cw-btn-geo" id="mBtnWeatherGeo" title="Use my GPS location (optional)">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>GPS</span>
+                        </button>
+                    </div>
+                    <div class="cw-actions-group">
+                        <span class="cw-updated-text" id="mCwUpdatedTime">Updated --:--</span>
+                        <button type="button" class="cw-btn-refresh" id="mBtnWeatherRefresh" title="Refresh Live Weather">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" id="mCwRefreshIcon"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="cw-main-row" id="mCwMainRow">
+                    <div class="cw-icon-temp">
+                        <div class="cw-icon-box" id="mCwIconBox">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </div>
+                        <span class="cw-temp-val" id="mCwTemp">--°C</span>
+                    </div>
+                    <div class="cw-condition-meta">
+                        <span class="cw-condition-val" id="mCwCondition">Loading...</span>
+                        <span class="cw-rain-val" id="mCwRain">Rain 0.0 mm</span>
+                    </div>
+                </div>
+                <div class="cw-compact-metrics" id="mCwMetricsLine">
+                    <span id="mCwFeelsLike">Feels --°C</span>
+                    <span class="cw-dot">•</span>
+                    <span id="mCwHumidity">Humidity --%</span>
+                    <span class="cw-dot">•</span>
+                    <span id="mCwWind">Wind -- km/h</span>
+                </div>
+                <div class="cw-unavailable-box" id="mCwUnavailableBox" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>Weather unavailable</span>
+                </div>
+            </div>
+
+            <!-- Rabi Season & Supported Crops Card -->
+            <div class="m-season-crops-card">
+                <div class="m-sc-col">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <div>
+                        <strong>Rabi Season</strong>
+                        <span>Oct – Mar Cycle</span>
+                    </div>
+                </div>
+                <div class="m-sc-divider"></div>
+                <div class="m-sc-col">
+                    <div>
+                        <strong>Supported Crops</strong>
+                        <span id="mSupportedCropsText">Wheat &amp; Mustard</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Metrics Row -->
+            <div class="m-three-metrics-row">
+                <div class="m-metric-card">
+                    <span class="m-metric-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </span>
+                    <span class="m-metric-val" id="mMetricFieldsVal">3</span>
+                    <span class="m-metric-label">My Fields</span>
+                </div>
+                <div class="m-metric-card">
+                    <span class="m-metric-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M7 20h10"/><path d="M10 20c0-4.5 2-8 6-10-4.5 0-8 2-10 6"/><path d="M12 20V10c0-3 1.5-5 4-7-3 0-5 1.5-6 4"/></svg>
+                    </span>
+                    <span class="m-metric-val" id="mMetricCropsVal">2</span>
+                    <span class="m-metric-label">Crops</span>
+                </div>
+                <div class="m-metric-card">
+                    <span class="m-metric-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </span>
+                    <span class="m-metric-val" id="mMetricRegionVal" style="font-size: 0.82rem;">Western UP</span>
+                    <span class="m-metric-label">Region</span>
+                </div>
+            </div>
+
+            <!-- Quick Actions Section -->
+            <div class="m-section-label">Quick Actions</div>
+            <div class="m-quick-actions-row">
+                <button type="button" class="m-qa-box m-action-btn" data-target="mScreenForecast">
+                    <div class="qa-icon-wrap qa-bg-green">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <span class="m-qa-label">Yield<br>Forecast</span>
+                </button>
+                <button type="button" class="m-qa-box m-action-btn" data-target="mScreenAdvisory">
+                    <div class="qa-icon-wrap qa-bg-amber">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12l2 2 4-4"/></svg>
+                    </div>
+                    <span class="m-qa-label">Field<br>Advisory</span>
+                </button>
+                <button type="button" class="m-qa-box m-action-btn" data-target="mScreenSchemes">
+                    <div class="qa-icon-wrap qa-bg-purple">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"/></svg>
+                    </div>
+                    <span class="m-qa-label">Public<br>Schemes</span>
+                </button>
+                <button type="button" class="m-qa-box m-action-btn" data-target="mScreenKrishiSathi">
+                    <div class="qa-icon-wrap qa-bg-pink">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <span class="m-qa-label">KrishiSathi<br>Voice AI</span>
+                </button>
+            </div>
+
+            <!-- Two Promo Banners -->
+            <div class="m-banner-newhere m-action-btn" data-target="mScreenHome" style="cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qa-icon-wrap" style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); color: #fff;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    </div>
+                    <div style="font-size: 0.78rem;">
+                        <strong>New to the Platform?</strong><br>
+                        <span>Learn how KrishiMitra AI guides your crops</span>
+                    </div>
+                </div>
+                <div class="m-circle-arrow-btn">›</div>
+            </div>
+
+            <div class="m-banner-growbetter m-action-btn" data-target="mScreenForecast" style="cursor: pointer;">
+                <div>
+                    <strong style="font-size: 0.94rem; display: block;">Optimized Production</strong>
+                    <span style="font-size: 0.76rem;">Precision Agricultural Intelligence</span>
+                </div>
+                <div class="m-circle-arrow-btn">›</div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SCREEN 2: MY FARMS (Professional List & Clean Details)
+             ===================================================================== -->
+        <section class="mobile-screen-content" id="mScreenFields" aria-label="My Farms Screen">
+            <div class="m-screen-header-bar">
+                <div class="m-header-left">
+                    <button type="button" class="m-btn-back m-back-btn" aria-label="Back">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    </button>
+                    <h2 class="m-screen-title-text">My Farms</h2>
+                </div>
+                <button type="button" class="m-btn-header-cta" id="btnMAddFarmTop">+ Add Field</button>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="m-filter-pills-strip">
+                <button type="button" class="m-pill-btn active">All Fields (3)</button>
+                <button type="button" class="m-pill-btn">Wheat (2)</button>
+                <button type="button" class="m-pill-btn">Mustard (1)</button>
+            </div>
+
+            <!-- Farms List -->
+            <div class="m-farms-list" id="mFieldsListContainer">
+                <!-- Field 1 -->
+                <div class="m-farm-card">
+                    <img src="images/field_wheat.jpg" alt="Field 1 Wheat" class="m-farm-thumb-img">
+                    <div class="m-farm-info">
+                        <div class="m-farm-title-row">
+                            <strong>Field 1 (Daurala)</strong>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <span class="m-badge-active-pill">Active</span>
+                                <span style="color: var(--km-text-muted); font-size: 0.85rem;">›</span>
+                            </div>
+                        </div>
+                        <div class="m-farm-meta-line">Meerut District</div>
+                        <div class="m-farm-meta-line">Wheat • 2.5 Acres</div>
+                        <div class="m-farm-meta-line">Sown: 15 Nov 2024</div>
+                    </div>
+                </div>
+
+                <!-- Field 2 -->
+                <div class="m-farm-card">
+                    <img src="images/field_mustard.jpg" alt="Field 2 Mustard" class="m-farm-thumb-img">
+                    <div class="m-farm-info">
+                        <div class="m-farm-title-row">
+                            <strong>Field 2 (Hastinapur)</strong>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <span class="m-badge-active-pill">Active</span>
+                                <span style="color: var(--km-text-muted); font-size: 0.85rem;">›</span>
+                            </div>
+                        </div>
+                        <div class="m-farm-meta-line">Meerut District</div>
+                        <div class="m-farm-meta-line">Mustard • 1.8 Acres</div>
+                        <div class="m-farm-meta-line">Sown: 10 Nov 2024</div>
+                    </div>
+                </div>
+
+                <!-- Field 3 -->
+                <div class="m-farm-card">
+                    <img src="images/field_fallow.jpg" alt="Field 3 Wheat" class="m-farm-thumb-img">
+                    <div class="m-farm-info">
+                        <div class="m-farm-title-row">
+                            <strong>Field 3 (Sardhana)</strong>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <span class="m-badge-planned-pill">Planned</span>
+                                <span style="color: var(--km-text-muted); font-size: 0.85rem;">›</span>
+                            </div>
+                        </div>
+                        <div class="m-farm-meta-line">Meerut District</div>
+                        <div class="m-farm-meta-line">Wheat • 1.2 Acres</div>
+                        <div class="m-farm-meta-line">Target Sowing: 20 Nov 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add New Field Dashed Box -->
+            <div class="m-add-farm-card" id="btnMAddFarmBottom">
+                <div class="m-add-plus-circle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </div>
+                <div>
+                    <strong style="font-size: 0.92rem; color: var(--km-text-main); display: block;">Register New Farm</strong>
+                    <span style="font-size: 0.74rem; color: var(--km-text-muted);">Add parcel details to receive calibrated yield models and alerts.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SCREEN 3: YIELD FORECAST (Clean Controls, Metric Hero, Vector Line Graph)
+             ===================================================================== -->
+        <section class="mobile-screen-content" id="mScreenForecast" aria-label="Yield Forecast Screen">
+            <div class="m-screen-header-bar">
+                <div class="m-header-left">
+                    <button type="button" class="m-btn-back m-back-btn" aria-label="Back">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    </button>
+                    <h2 class="m-screen-title-text">Yield Forecast</h2>
+                </div>
+            </div>
+
+            <!-- Dropdowns Row -->
+            <div class="m-dropdowns-two-col">
+                <div class="m-dropdown-field">
+                    <label>Season</label>
+                    <select class="m-select-pill">
+                        <option>Rabi (Oct – Mar)</option>
+                        <option>Kharif (Jun – Oct)</option>
+                    </select>
+                </div>
+                <div class="m-dropdown-field">
+                    <label>Crop</label>
+                    <select class="m-select-pill" id="mCropDropdown">
+                        <option value="Wheat">Wheat (Rabi)</option>
+                        <option value="Mustard">Mustard (Rabi)</option>
+                        <option value="Rice">Rice (Kharif • Limit)</option>
+                        <option value="Sugarcane">Sugarcane (Limit)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Estimated Yield Hero Card -->
+            <div class="m-estimated-yield-card">
+                <div class="m-wheat-icon-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </div>
+                <div class="m-ey-info">
+                    <div class="m-ey-top-row">
+                        <span class="m-ey-label">Estimated Yield</span>
+                        <span class="m-ey-badge" id="mEyBadge">(XGBoost Model Prediction)</span>
+                    </div>
+                    <div class="m-ey-number" id="mYieldHeroVal">44 - 54</div>
+                    <div class="m-ey-unit" id="mYieldUnitText">Quintals per Hectare</div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Note -->
+            <div class="m-info-disclaimer-box">
+                <strong>मॉडल एवं डेटा सीमाएं (Model &amp; Data Limitations):</strong> Plot estimates generated by evaluated XGBoost Pipeline (R² = 0.9621, MAE = 0.827 Q/Acre). Historical baseline achieves R² = 0.7364. Actual micro-plot yield may vary with management practices.
+                <div style="margin-top: 4px;">
+                    <a href="model-summary.html" style="color: var(--km-brand-green); font-weight: 700; text-decoration: none;">View Model Evaluation Report →</a>
+                </div>
+            </div>
+
+            <!-- Yield Trend Chart -->
+            <div class="m-chart-box">
+                <div class="m-chart-header-row">
+                    <strong id="mChartTitle">Yield Trend (Wheat)</strong>
+                    <span class="m-unit-selector-pill" id="mUnitSelectorPill">Quintals/Ha</span>
+                </div>
+
+                <div class="m-chart-legend">
+                    <span><span style="color: #15803d; font-weight: 800;">—</span> Official UP APY Records (2018–2023)</span>
+                    <span><span style="color: #eab308; font-weight: 800;">- -</span> Evaluated XGBoost Forecast (2024–2025)</span>
+                </div>
+
+                <div class="chart-svg-wrap" style="height: 180px;">
+                    <svg viewBox="0 0 350 180" width="100%" height="100%" id="mYieldSvgChart" aria-label="Yield Trend Chart">
+                        <line x1="35" y1="20" x2="335" y2="20" stroke="var(--km-border)" stroke-dasharray="2,2" />
+                        <line x1="35" y1="55" x2="335" y2="55" stroke="var(--km-border)" stroke-dasharray="2,2" />
+                        <line x1="35" y1="90" x2="335" y2="90" stroke="var(--km-border)" stroke-dasharray="2,2" />
+                        <line x1="35" y1="125" x2="335" y2="125" stroke="var(--km-border)" stroke-dasharray="2,2" />
+                        <line x1="35" y1="155" x2="335" y2="155" stroke="var(--km-border)" />
+
+                        <text x="10" y="24" fill="var(--km-text-muted)" font-size="10">80</text>
+                        <text x="10" y="59" fill="var(--km-text-muted)" font-size="10">60</text>
+                        <text x="10" y="94" fill="var(--km-text-muted)" font-size="10">40</text>
+                        <text x="10" y="129" fill="var(--km-text-muted)" font-size="10">20</text>
+                        <text x="18" y="159" fill="var(--km-text-muted)" font-size="10">0</text>
+
+                        <text x="35" y="172" fill="var(--km-text-muted)" font-size="9.5">2019</text>
+                        <text x="80" y="172" fill="var(--km-text-muted)" font-size="9.5">2020</text>
+                        <text x="125" y="172" fill="var(--km-text-muted)" font-size="9.5">2021</text>
+                        <text x="170" y="172" fill="var(--km-text-muted)" font-size="9.5">2022</text>
+                        <text x="215" y="172" fill="var(--km-text-muted)" font-size="9.5">2023</text>
+                        <text x="260" y="172" fill="var(--km-text-muted)" font-size="9.5">2024</text>
+                        <text x="305" y="172" fill="var(--km-text-muted)" font-size="9.5">2025</text>
+
+                        <path id="mHistoricalPath" d="M 45 108 L 90 91 L 135 74 L 180 62 L 225 40" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" />
+                        <path id="mForecastPath" d="M 225 40 L 270 29 L 315 20" fill="none" stroke="#eab308" stroke-width="2.5" stroke-dasharray="5,4" stroke-linecap="round" />
+
+                        <circle cx="45" cy="108" r="3.5" fill="#15803d" />
+                        <circle cx="90" cy="91" r="3.5" fill="#15803d" />
+                        <circle cx="135" cy="74" r="3.5" fill="#15803d" />
+                        <circle cx="180" cy="62" r="3.5" fill="#15803d" />
+                        <circle cx="225" cy="40" r="3.5" fill="#15803d" />
+                        <circle cx="270" cy="29" r="4" fill="#eab308" stroke="#ffffff" stroke-width="1.5" />
+                        <circle cx="315" cy="20" r="4" fill="#eab308" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Factors Considered -->
+            <div class="m-factors-box">
+                <div class="m-factors-icon-circle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                </div>
+                <div style="font-size: 0.76rem; color: var(--km-text-sub); line-height: 1.35;">
+                    <strong style="color: var(--km-text-main); display: block;">Factors considered</strong>
+                    Historical yield, plot area, regional precipitation patterns and soil classification.
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SCREEN 4: ADVISORY (Stage Banner, 5-Stage Stepper, Action Checklist)
+             ===================================================================== -->
+        <section class="mobile-screen-content" id="mScreenAdvisory" aria-label="Advisory Screen">
+            <div class="m-screen-header-bar">
+                <div class="m-header-left">
+                    <button type="button" class="m-btn-back m-back-btn" aria-label="Back">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    </button>
+                    <h2 class="m-screen-title-text" id="mAdvisoryTitle">Personalised Advisory</h2>
+                </div>
+                <button type="button" class="btn-help-speak" id="mBtnAudioAdvisory" style="padding: 4px 10px; font-size: 0.72rem;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    <span>Listen</span>
+                </button>
+            </div>
+
+            <!-- Stage Hero Card -->
+            <div class="m-advisory-stage-card">
+                <img src="images/advisory_tillering.jpg" alt="Tillering Stage" class="m-advisory-thumb-img" id="mAdvisoryHeroThumb">
+                <div>
+                    <span class="m-stage-badge-small" id="mAdvisoryCropBadge">Wheat • Rabi Season</span>
+                    <h3 id="mAdvisoryHeroStage">Tillering Stage</h3>
+                    <p id="mAdvisoryHeroSummary">Vegetative tiller development in progress. Moisture &amp; nutrient balance critical.</p>
+                </div>
+            </div>
+
+            <!-- Crop Stage Selector Pills Strip -->
+            <div class="m-section-label">Select Growth Stage:</div>
+            <div class="adv-stage-strip" id="mStagePillsStrip">
+                <button type="button" class="adv-stage-btn" data-stage="Pre-Sowing">Sowing</button>
+                <button type="button" class="adv-stage-btn" data-stage="Crown Root Initiation (CRI)">CRI (20-25 DAS)</button>
+                <button type="button" class="adv-stage-btn active" data-stage="Tillering">Tillering</button>
+                <button type="button" class="adv-stage-btn" data-stage="Jointing">Jointing</button>
+                <button type="button" class="adv-stage-btn" data-stage="Flowering">Flowering</button>
+                <button type="button" class="adv-stage-btn" data-stage="Grain Filling">Grain Fill</button>
+            </div>
+
+            <!-- Symptom & Health Quick Inquiry -->
+            <div class="m-section-label" style="margin-top: 10px;">Field Symptoms &amp; Pest Check:</div>
+            <div class="adv-stage-strip" id="mSymptomChipsStrip">
+                <button type="button" class="adv-stage-btn active" data-symptom="healthy">Healthy Field</button>
+                <button type="button" class="adv-stage-btn" data-symptom="rust">Yellow Rust</button>
+                <button type="button" class="adv-stage-btn" data-symptom="aphid">Aphids / Chepa</button>
+                <button type="button" class="adv-stage-btn" data-symptom="chlorosis">Yellow Tips</button>
+            </div>
+
+            <!-- Dynamic Structured Cards List -->
+            <div class="m-section-label" style="margin-top: 12px;">Verified Field Advisories:</div>
+            <div class="adv-cards-container" id="mAdvisoryCardsList">
+                <!-- Populated dynamically by renderAdvisoryCards() in dashboard.js -->
+            </div>
+
+            <!-- Footer Meta -->
+            <div class="m-advisory-footer-meta" style="margin-top: 14px;">
+                <span>Verified Sources: ICAR | IIWBR | DRMR | IMD</span>
+                <span>Season: Rabi 2024–25</span>
+            </div>
+
+            <!-- Important Warning -->
+            <div class="m-important-warning-card">
+                <strong>Important Notice:</strong> Advisories synthesize ICAR protocols and district baselines. District soil estimates are regional aggregates; collect farm soil samples for lab-certified Soil Health Card recommendations.
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SCREEN 5: GOVERNMENT SCHEMES (Institutional Cards)
+             ===================================================================== -->
+        <section class="mobile-screen-content" id="mScreenSchemes" aria-label="Government Schemes Screen">
+            <div class="m-screen-header-bar">
+                <div class="m-header-left">
+                    <button type="button" class="m-btn-back m-back-btn" aria-label="Back">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    </button>
+                    <h2 class="m-screen-title-text">Government Schemes</h2>
+                </div>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="m-filter-pills-strip">
+                <button type="button" class="m-pill-btn active">For Farmers</button>
+                <button type="button" class="m-pill-btn">Crop-Specific</button>
+                <button type="button" class="m-pill-btn">All Schemes</button>
+            </div>
+
+            <!-- Schemes List -->
+            <div class="m-schemes-list">
+                <!-- Scheme 1: PM Kisan -->
+                <div class="m-scheme-card">
+                    <div class="m-scheme-top-row">
+                        <div class="m-scheme-icon-circle">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"/></svg>
+                        </div>
+                        <div class="m-scheme-header-text">
+                            <strong>PM-KISAN Samman Nidhi</strong>
+                        </div>
+                        <span class="m-scheme-badge">Income Support</span>
+                    </div>
+                    <p class="m-scheme-sub">Direct financial support for eligible farming households in three annual installments.</p>
+                    <ul class="m-scheme-bullets">
+                        <li>• <strong>Eligibility:</strong> Small and marginal landholder families</li>
+                        <li>• <strong>Benefit:</strong> ₹6,000 per year direct credit to verified bank account</li>
+                        <li>• <strong>Documents:</strong> Aadhaar identification, land record (Khatoni), bank passbook</li>
+                    </ul>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="https://pmkisan.gov.in" target="_blank" rel="noopener noreferrer" class="m-btn-verify-portal">
+                            Verify on Official Portal ↗
+                        </a>
+                        <span style="color: var(--km-text-muted); font-size: 0.95rem;">›</span>
+                    </div>
+                </div>
+
+                <!-- Scheme 2: PMFBY -->
+                <div class="m-scheme-card">
+                    <div class="m-scheme-top-row">
+                        <div class="m-scheme-icon-circle" style="background: #e0f2fe; color: #0284c7;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="m-scheme-header-text">
+                            <strong>PM Fasal Bima Yojana (PMFBY)</strong>
+                        </div>
+                        <span class="m-scheme-badge" style="background: #e0f2fe; color: #0284c7;">Crop Insurance</span>
+                    </div>
+                    <p class="m-scheme-sub">Comprehensive insurance protection against yield losses from non-preventable natural risks.</p>
+                    <ul class="m-scheme-bullets">
+                        <li>• <strong>Eligibility:</strong> Notified crops grown in notified areas</li>
+                        <li>• <strong>Benefit:</strong> 1.5% Rabi premium ceiling with actuarial sum insured coverage</li>
+                        <li>• <strong>Documents:</strong> Land possession certificate, sowing certificate, bank KYC</li>
+                    </ul>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="https://pmfby.gov.in" target="_blank" rel="noopener noreferrer" class="m-btn-verify-portal">
+                            Verify on Official Portal ↗
+                        </a>
+                        <span style="color: var(--km-text-muted); font-size: 0.95rem;">›</span>
+                    </div>
+                </div>
+
+                <!-- Scheme 3: Soil Health Card -->
+                <div class="m-scheme-card">
+                    <div class="m-scheme-top-row">
+                        <div class="m-scheme-icon-circle" style="background: #fef3c7; color: #d97706;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div class="m-scheme-header-text">
+                            <strong>Soil Health Card Scheme</strong>
+                        </div>
+                        <span class="m-scheme-badge" style="background: #fef3c7; color: #b45309;">Soil &amp; Fertiliser</span>
+                    </div>
+                    <p class="m-scheme-sub">Laboratory-grounded nutritional status of soil to rationalize fertilizer inputs and lower costs.</p>
+                    <ul class="m-scheme-bullets">
+                        <li>• <strong>Eligibility:</strong> All registered farmers nationwide</li>
+                        <li>• <strong>Benefit:</strong> 12-parameter soil test report with customized dosage charts</li>
+                        <li>• <strong>Documents:</strong> Farmer registration details and geo-referenced soil sample</li>
+                    </ul>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="https://soilhealth.dac.gov.in" target="_blank" rel="noopener noreferrer" class="m-btn-verify-portal">
+                            Verify on Official Portal ↗
+                        </a>
+                        <span style="color: var(--km-text-muted); font-size: 0.95rem;">›</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SCREEN 6: KRISHISATHI (Clean Enterprise Voice AI Interface)
+             ===================================================================== -->
+        <section class="mobile-screen-content" id="mScreenKrishiSathi" aria-label="KrishiSathi Screen">
+            <div class="m-screen-header-bar">
+                <div class="m-header-left">
+                    <button type="button" class="m-btn-back m-back-btn" aria-label="Back">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    </button>
+                    <h2 class="m-screen-title-text">KrishiSathi AI</h2>
+                </div>
+                <select class="m-select-pill" style="width: auto; padding: 4px 10px; font-size: 0.78rem;">
+                    <option>हिंदी ▾</option>
+                    <option>English</option>
+                </select>
+            </div>
+
+            <!-- Assistant Welcome Banner -->
+            <div class="m-sathi-welcome-banner">
+                <div class="m-sathi-banner-left">
+                    <div class="m-sathi-sprout-circle">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <div class="m-sathi-banner-text">
+                        <strong>नमस्ते! मैं कृषि साथी हूँ</strong>
+                        <p>खेती, उर्वरक, मौसम या योजनाओं से जुड़ा सवाल पूछें।</p>
+                    </div>
+                </div>
+                <img src="images/farmer_portrait.jpg" alt="Agricultural Expert Portrait" class="m-sathi-farmer-portrait">
+            </div>
+
+            <!-- Frequently Asked Questions -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 0.92rem; color: var(--km-text-main);">अनुशंसित प्रश्न (Suggested Queries):</strong>
+                <a href="#" style="font-size: 0.78rem; color: #15803d; font-weight: 700; text-decoration: none;">View All</a>
+            </div>
+
+            <div class="m-sathi-faq-list">
+                <div class="m-sathi-faq-item m-prompt-chip" data-prompt="गेहूं में पहली सिंचाई कब करें?">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span>गेहूं में पहली सिंचाई (CRI) का सही समय क्या है?</span>
+                    </span>
+                    <span>›</span>
+                </div>
+                <div class="m-sathi-faq-item m-prompt-chip" data-prompt="सरसों में माहू कीट का उपचार क्या है?">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span>सरसों में माहू कीट नियंत्रण की अनुशंसित दवा</span>
+                    </span>
+                    <span>›</span>
+                </div>
+                <div class="m-sathi-faq-item m-prompt-chip" data-prompt="मेरे जिले में कौन सी सरकारी योजनाएं उपलब्ध हैं?">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span>मेरठ जिले में रबी सीजन हेतु उपलब्ध सरकारी योजनाएं</span>
+                    </span>
+                    <span>›</span>
+                </div>
+                <div class="m-sathi-faq-item m-prompt-chip" data-prompt="अगर फसल में पीला रतुआ दिखे तो क्या करें?">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <span>गेहूं में पीला रतुआ (Yellow Rust) के लक्षण व उपचार</span>
+                    </span>
+                    <span>›</span>
+                </div>
+            </div>
+
+            <!-- Audio Visualizer Waves + Big Round Mic -->
+            <div class="m-voice-visualizer-container">
+                <div class="m-wave-mic-row">
+                    <div class="m-sound-wave-bars">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                    <button type="button" class="btn-big-round-mic" id="mSathiMicBtn" aria-label="Tap to speak">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </button>
+                    <div class="m-sound-wave-bars">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+                <div class="m-tap-to-speak-subtext" id="mSathiStatusText">
+                    <span>Tap microphone to start voice consult</span>
+                </div>
+            </div>
+
+            <!-- Chat Input Bar -->
+            <div class="m-sathi-chat-bar">
+                <span class="m-keyboard-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="10" y1="12" x2="10.01" y2="12"/><line x1="14" y1="12" x2="14.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
+                </span>
+                <input type="text" id="mSathiTextInput" placeholder="Type agricultural question..." aria-label="Type question">
+                <button type="button" class="btn-round-send" id="mSathiSendBtn" aria-label="Send">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             6-TAB STICKY BOTTOM NAVIGATION BAR (Vector Outlines)
+             ===================================================================== -->
+        <nav class="mobile-bottom-tabs" aria-label="Mobile Navigation">
+            <!-- Tab 1: Home -->
+            <button type="button" class="m-tab-item active" data-screen="mScreenHome">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                <span>Home</span>
+            </button>
+
+            <!-- Tab 2: Farms -->
+            <button type="button" class="m-tab-item" data-screen="mScreenFields">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </span>
+                <span>Farms</span>
+            </button>
+
+            <!-- Tab 3: Forecast -->
+            <button type="button" class="m-tab-item" data-screen="mScreenForecast">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                </span>
+                <span>Forecast</span>
+            </button>
+
+            <!-- Tab 4: Advisory -->
+            <button type="button" class="m-tab-item" data-screen="mScreenAdvisory">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12l2 2 4-4"/></svg>
+                </span>
+                <span>Advisory</span>
+            </button>
+
+            <!-- Tab 5: Schemes -->
+            <button type="button" class="m-tab-item" data-screen="mScreenSchemes">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4"/></svg>
+                </span>
+                <span>Schemes</span>
+            </button>
+
+            <!-- Tab 6: More / KrishiSathi -->
+            <button type="button" class="m-tab-item" data-screen="mScreenKrishiSathi">
+                <span class="tab-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                </span>
+                <span>More</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="shared.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

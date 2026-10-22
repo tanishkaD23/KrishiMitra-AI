@@ -1,0 +1,117 @@
+[
+  {
+    "id": "pm-kisan",
+    "name_en": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "name_hi": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+    "category": "Direct Income Support",
+    "benefit_en": "₹6,000 per year directly transferred to bank account in 3 equal installments of ₹2,000.",
+    "benefit_hi": "प्रति वर्ष ₹6,000 तीन समान किस्तों (₹2,000 प्रत्येक) में सीधे बैंक खाते में।",
+    "eligibility": {
+      "min_land_acres": 0.01,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["All"],
+      "criteria_en": "Landholding farmer families with cultivable land in their name (subject to exclusion criteria like institutional landholders or income tax payers).",
+      "criteria_hi": "अपने नाम पर कृषि भूमि वाले सभी किसान परिवार (आयकर दाता और संस्थागत धारक पात्र नहीं हैं)।"
+    },
+    "documents_required": [
+      "Aadhaar Card linked with Mobile Number",
+      "Land Ownership Documents (Khatauni / Khasra)",
+      "Active Bank Account with e-KYC"
+    ],
+    "portal_url": "https://pmkisan.gov.in"
+  },
+  {
+    "id": "pmfby",
+    "name_en": "PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+    "name_hi": "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+    "category": "Crop Insurance & Risk Mitigation",
+    "benefit_en": "Comprehensive risk coverage against crop failure due to non-preventable natural risks (drought, flood, pest attack, unseasonal rain). Only 1.5% farmer premium for Rabi crops (Wheat/Mustard).",
+    "benefit_hi": "प्राकृतिक आपदाओं, कीटों और बेमौसम बारिश से नुकसान पर पूरा बीमा। रबी फसलों (गेहूं/सरसों) के लिए केवल 1.5% का मामूली प्रीमियम।",
+    "eligibility": {
+      "min_land_acres": 0.01,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "crops": ["Wheat", "Mustard", "Rice", "Gram"],
+      "states": ["All"],
+      "criteria_en": "All farmers growing notified crops in notified areas, including sharecroppers and tenant farmers.",
+      "criteria_hi": "अधिसूचित क्षेत्र में अधिसूचित फसल उगाने वाले सभी किसान, बटाईदार और काश्तकार।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Records (Khatauni) / Tenant Sowing Certificate",
+      "Sowing Certificate (Bawani Praman Patra) from Lekhpal/Gram Pradhan",
+      "Bank Passbook"
+    ],
+    "portal_url": "https://pmfby.gov.in"
+  },
+  {
+    "id": "soil-health-card",
+    "name_en": "Soil Health Card Scheme",
+    "name_hi": "मृदा स्वास्थ्य कार्ड योजना (सॉइल हेल्थ कार्ड)",
+    "category": "Soil Fertility & Nutrient Management",
+    "benefit_en": "Free soil testing card issued every 2 years reporting 12 soil nutrient parameters (N, P, K, S, micronutrients, pH, EC) with dosage recommendations to cut fertilizer costs by 15-20%.",
+    "benefit_hi": "हर 2 साल में मुफ्त मिट्टी जांच कार्ड। 12 पोषक तत्वों की स्थिति और सही खाद की मात्रा, जिससे खाद का खर्च 15-20% घटता है।",
+    "eligibility": {
+      "min_land_acres": 0.01,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["All"],
+      "criteria_en": "Open to all farming households in India.",
+      "criteria_hi": "भारत के सभी कृषि भूमि धारक किसानों के लिए।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Khasra/Khatauni Number",
+      "Soil Sample from Plot (collected as per guidelines)"
+    ],
+    "portal_url": "https://soilhealth.dac.gov.in"
+  },
+  {
+    "id": "pmksy-micro-irrigation",
+    "name_en": "PMKSY - Per Drop More Crop (Micro-Irrigation)",
+    "name_hi": "प्रधानमंत्री कृषि सिंचाई योजना - प्रति बूंद अधिक फसल",
+    "category": "Irrigation Infrastructure Subsidy",
+    "benefit_en": "Up to 55% subsidy for small/marginal farmers (45% for other farmers) for installing drip and sprinkler irrigation systems.",
+    "benefit_hi": "ड्रिप और स्प्रिंकलर सिंचाई सिस्टम लगाने पर छोटे/सीमांत किसानों को 55% तक और अन्य को 45% तक सब्सिडी।",
+    "eligibility": {
+      "min_land_acres": 0.5,
+      "max_land_acres": 12.5,
+      "farmer_categories": ["Marginal", "Small", "Medium"],
+      "irrigation_need": ["Tube well / Borewell", "Canal"],
+      "states": ["Uttar Pradesh", "Haryana", "Rajasthan", "Madhya Pradesh", "All"],
+      "criteria_en": "Farmers having assured water source (borewell/pond/well) with land in their possession.",
+      "criteria_hi": "जिन किसानों के पास सुनिश्चित जल स्रोत (बोरवेल/तालाब) और स्वयं की कृषि भूमि है।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Ownership Record (Khatauni)",
+      "Bank Account Details",
+      "Electricity Bill of Tube well / Water Source Certificate"
+    ],
+    "portal_url": "https://pmksy.gov.in"
+  },
+  {
+    "id": "kcc",
+    "name_en": "Kisan Credit Card (KCC)",
+    "name_hi": "किसान क्रेडिट कार्ड (KCC)",
+    "category": "Institutional Credit",
+    "benefit_en": "Short-term crop cultivation loan up to ₹3 Lakh at an effective interest rate of just 4% per annum (with prompt repayment subvention). No collateral required up to ₹1.6 Lakh.",
+    "benefit_hi": "फसल बुवाई और देखभाल के लिए ₹3 लाख तक का सस्ता ऋण, समय पर भुगतान करने पर केवल 4% वार्षिक ब्याज। ₹1.6 लाख तक बिना बंधक के।",
+    "eligibility": {
+      "min_land_acres": 0.01,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["All"],
+      "criteria_en": "All owner cultivators, tenant farmers, sharecroppers, and self-help groups of farmers.",
+      "criteria_hi": "सभी भूमि स्वामी किसान, बटाईदार और काश्तकार।"
+    },
+    "documents_required": [
+      "Duly filled KCC Application Form",
+      "Aadhaar & PAN Card",
+      "Land Records verified by Revenue Authority",
+      "Two Passport-size Photographs"
+    ],
+    "portal_url": "https://www.myscheme.gov.in/schemes/kcc"
+  }
+]

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiMitra AI | Smarter Farming, Better Harvests.</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Exact Mockup Stylesheet -->
+    <link rel="stylesheet" href="krishimitra_home.css">
+</head>
+<body class="km-body">
+
+    <!-- ============================================================
+         1. TOP NAVIGATION BAR (Exact Match to Mockup)
+         ============================================================ -->
+    <nav class="km-navbar" aria-label="Main Navigation">
+        <div class="km-nav-inner">
+            <!-- Brand Logo: Green Sprout + KrishiMitra AI -->
+            <a href="index.html" class="km-logo-link">
+                <div class="km-leaf-sprout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path><path d="M12 11c3-2 5-1 6 1"></path><path d="M12 7c-3-2-5-1-6 1"></path></svg>
+                </div>
+                <div class="km-logo-text">
+                    KrishiMitra <span class="km-logo-ai">AI</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <ul class="km-nav-menu">
+                <li class="km-nav-item"><a href="index.html" class="active" data-i18n="km_nav_home">Home</a></li>
+                <li class="km-nav-item"><a href="about.html" data-i18n="km_nav_about">About</a></li>
+                <li class="km-nav-item"><a href="#features" data-i18n="km_nav_features">Features</a></li>
+                <li class="km-nav-item"><a href="forecast.html" data-i18n="km_nav_crops">Crops</a></li>
+                <li class="km-nav-item"><a href="schemes.html" data-i18n="km_nav_schemes">Schemes</a></li>
+                <li class="km-nav-item"><a href="dashboard.html" data-i18n="km_nav_dashboard">Dashboard</a></li>
+                <li class="km-nav-item"><a href="model-summary.html" data-i18n="km_nav_model_summary">Model Summary</a></li>
+                <li class="km-nav-item"><a href="krishisathi.html" data-i18n="km_nav_krishisathi">KrishiSathi</a></li>
+                <li class="km-nav-item"><a href="#contact" data-i18n="km_nav_contact">Contact</a></li>
+            </ul>
+
+            <!-- Right Actions: Language Dropdown + Theme Toggle + Get Started -->
+            <div class="km-nav-actions">
+                <!-- Theme Toggle Button (Light / Dark) -->
+                <button type="button" class="km-lang-pill theme-toggle-btn" id="indexThemeToggle" aria-label="Toggle Theme / थीम बदलें" title="Switch Theme">
+                    <span class="theme-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </span>
+                    <span class="theme-text">Dark</span>
+                </button>
+
+                <!-- Language Dropdown Pill -->
+                <button type="button" class="km-lang-pill lang-toggle-btn" id="kmLangBtn" aria-label="Switch Language / भाषा बदलें">
+                    <span class="km-lang-icon">文A</span>
+                    <span class="lang-current">EN</span>
+                    <span>▾</span>
+                </button>
+
+                <!-- Get Started Button -->
+                <a href="dashboard.html" class="km-btn-get-started" data-i18n="km_btn_get_started">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         2. HERO SECTION (Exact Match to Mockup)
+         ============================================================ -->
+    <header class="km-hero-wrapper">
+        <!-- High-res Sunset Wheat & Mustard Backdrop -->
+        <div class="km-hero-backdrop"></div>
+        <div class="km-hero-vignette"></div>
+
+        <div class="km-hero-main-container">
+            <!-- Top Grid: Left Headlines & Right Floating Cards -->
+            <div class="km-hero-top-grid">
+                <!-- Left Hero Content -->
+                <div class="km-hero-content">
+                    <h1 class="km-hero-heading">
+                        <span data-i18n="km_hero_title_1">Smarter Farming,</span>
+                        <span class="km-gold-highlight" data-i18n="km_hero_title_2">Better Harvests.</span>
+                    </h1>
+
+                    <p class="km-hero-description" data-i18n="km_hero_desc">
+                        KrishiMitra AI helps smallholder farmers in <strong>Western Uttar Pradesh</strong> get <strong>crop yield estimates</strong>, <strong>personalised advisory</strong> and <strong>government scheme guidance</strong> — with the support of <strong>KrishiSathi</strong>, a Hindi-speaking voice assistant.
+                    </p>
+
+                    <!-- Buttons Row -->
+                    <div class="km-hero-btn-row">
+                        <a href="dashboard.html" class="km-btn-gold" data-i18n="km_btn_hero_cta">
+                            Get Started →
+                        </a>
+                        <button type="button" class="km-btn-outline-white" id="btnSeeHowItWorks" data-i18n="km_btn_see_how">
+                            ▶ See How It Works
+                        </button>
+                    </div>
+
+                    <!-- 3 Feature Checkmarks Strip -->
+                    <div class="km-checkmarks-row">
+                        <div class="km-check-item">
+                            <span class="km-check-circle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                            <span data-i18n="km_chk_1">Built for real farmers</span>
+                        </div>
+                        <div class="km-check-item">
+                            <span class="km-check-circle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                            <span data-i18n="km_chk_2">Focused on Wheat & Mustard (Rabi)</span>
+                        </div>
+                        <div class="km-check-item">
+                            <span class="km-check-circle"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                            <span data-i18n="km_chk_3">Simple, Hindi-friendly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Floating Cards Column -->
+                <div class="km-floating-widgets-col">
+                    <!-- Floating Card 1: KrishiSathi Prompt -->
+                    <a href="krishisathi.html" class="km-float-sathi-card" title="Open KrishiSathi Voice Assistant">
+                        <div class="km-sathi-mic-circle">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </div>
+                        <div class="km-sathi-text-block">
+                            <span class="km-sathi-name">KrishiSathi</span>
+                            <span class="km-sathi-prompt" data-i18n="km_sathi_prompt">खेती से जुड़े अपने सवाल हिंदी में पूछें...</span>
+                        </div>
+                    </a>
+
+                    <!-- Floating Card 2: Western UP Weather & Season -->
+                    <div class="km-float-weather-card">
+                        <div class="km-weather-top-row">
+                            <span class="km-weather-sun-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            </span>
+                            <span data-i18n="km_region_name">Western Uttar Pradesh</span>
+                        </div>
+                        <div class="km-weather-data-split">
+                            <!-- Left: Temp & Sky -->
+                            <div>
+                                <div class="km-weather-temp" data-i18n="km_weather_temp">22°C</div>
+                                <div class="km-weather-sky" data-i18n="km_weather_sky">Clear Sky</div>
+                            </div>
+                            <!-- Center Divider -->
+                            <div class="km-weather-divider"></div>
+                            <!-- Right: Season & Crops -->
+                            <div>
+                                <div class="km-weather-season-label" data-i18n="km_season_label">Rabi Season</div>
+                                <div class="km-weather-season-crops" data-i18n="km_season_crops">Wheat + Mustard</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 3. FIVE FEATURE PILL CARDS (Exact Match to Mockup)
+                 ============================================================ -->
+            <div class="km-five-cards-strip" id="features">
+                <!-- Card 1: Yield Estimation (Soft Mint) -->
+                <a href="forecast.html" class="km-feature-card card-theme-mint">
+                    <div class="km-card-icon-circle circle-mint">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><path d="M17 6h6v6"></path></svg>
+                    </div>
+                    <div class="km-card-body">
+                        <div>
+                            <h3 class="km-card-title" data-i18n="km_card1_title">Yield Estimation</h3>
+                            <p class="km-card-desc" data-i18n="km_card1_desc">
+                                Get village block-level crop yield estimates with clear limitations.
+                            </p>
+                        </div>
+                        <div class="km-card-footer">
+                            <span class="km-card-arrow-circle">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2: Personalised Advisory (Soft Amber) -->
+                <a href="dashboard.html#advisory-section" class="km-feature-card card-theme-amber">
+                    <div class="km-card-icon-circle circle-amber">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 12h6"></path><path d="M9 16h6"></path></svg>
+                    </div>
+                    <div class="km-card-body">
+                        <div>
+                            <h3 class="km-card-title" data-i18n="km_card2_title">Personalised Advisory</h3>
+                            <p class="km-card-desc" data-i18n="km_card2_desc">
+                                Receive crop, stage and risk-based guidance from verified sources.
+                            </p>
+                        </div>
+                        <div class="km-card-footer">
+                            <span class="km-card-arrow-circle">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3: Government Schemes (Soft Baby Blue) -->
+                <a href="schemes.html" class="km-feature-card card-theme-blue">
+                    <div class="km-card-icon-circle circle-blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line><polyline points="12 3 2 10 22 10 12 3"></polyline><line x1="6" y1="10" x2="6" y2="21"></line><line x1="10" y1="10" x2="10" y2="21"></line><line x1="14" y1="10" x2="14" y2="21"></line><line x1="18" y1="10" x2="18" y2="21"></line></svg>
+                    </div>
+                    <div class="km-card-body">
+                        <div>
+                            <h3 class="km-card-title" data-i18n="km_card3_title">Government Schemes</h3>
+                            <p class="km-card-desc" data-i18n="km_card3_desc">
+                                Find relevant schemes, eligibility criteria and official links.
+                            </p>
+                        </div>
+                        <div class="km-card-footer">
+                            <span class="km-card-arrow-circle">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4: KrishiSathi (Soft Lavender/Purple) -->
+                <a href="krishisathi.html" class="km-feature-card card-theme-purple">
+                    <div class="km-card-icon-circle circle-purple">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    </div>
+                    <div class="km-card-body">
+                        <div>
+                            <h3 class="km-card-title" data-i18n="km_card4_title">KrishiSathi</h3>
+                            <p class="km-card-desc" data-i18n="km_card4_desc">
+                                Ask questions naturally in Hindi using voice and hear simple, clear answers.
+                            </p>
+                        </div>
+                        <div class="km-card-footer">
+                            <span class="km-card-arrow-circle">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5: Officer Dashboard (Soft Mint Green) -->
+                <a href="dashboard.html" class="km-feature-card card-theme-green">
+                    <div class="km-card-icon-circle circle-green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                    </div>
+                    <div class="km-card-body">
+                        <div>
+                            <h3 class="km-card-title" data-i18n="km_card5_title">Officer Dashboard</h3>
+                            <p class="km-card-desc" data-i18n="km_card5_desc">
+                                Track village-level outlooks, risk zones and advisory delivery.
+                            </p>
+                        </div>
+                        <div class="km-card-footer">
+                            <span class="km-card-arrow-circle">→</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             4. BOTTOM HIGHLIGHTS STRIP (Exact Match to Mockup)
+             ============================================================ -->
+        <div class="km-bottom-highlights-strip" id="contact">
+            <div class="km-highlights-container">
+                <!-- Highlight 1: Farmers First -->
+                <div class="km-highlight-item">
+                    <div class="km-highlight-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="km-highlight-text">
+                        <span class="km-highlight-title" data-i18n="km_hl1_title">Farmers First</span>
+                        <span class="km-highlight-sub" data-i18n="km_hl1_desc">Designed for smallholder farmers</span>
+                    </div>
+                </div>
+
+                <!-- Highlight 2: 2 Crops (Rabi) -->
+                <div class="km-highlight-item">
+                    <div class="km-highlight-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path></svg>
+                    </div>
+                    <div class="km-highlight-text">
+                        <span class="km-highlight-title" data-i18n="km_hl2_title">2 Crops (Rabi)</span>
+                        <span class="km-highlight-sub" data-i18n="km_hl2_desc">Wheat & Mustard (initial focus)</span>
+                    </div>
+                </div>
+
+                <!-- Highlight 3: Western Uttar Pradesh -->
+                <div class="km-highlight-item">
+                    <div class="km-highlight-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="km-highlight-text">
+                        <span class="km-highlight-title" data-i18n="km_hl3_title">Western Uttar Pradesh</span>
+                        <span class="km-highlight-sub" data-i18n="km_hl3_desc">Pilot region</span>
+                    </div>
+                </div>
+
+                <!-- Highlight 4: Verified Information -->
+                <div class="km-highlight-item">
+                    <div class="km-highlight-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <div class="km-highlight-text">
+                        <span class="km-highlight-title" data-i18n="km_hl4_title">Verified Information</span>
+                        <span class="km-highlight-sub" data-i18n="km_hl4_desc">Based on trusted government sources</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         Interactive "See How It Works" Modal
+         ============================================================ -->
+    <div class="km-modal-overlay" id="howItWorksModal" aria-hidden="true">
+        <div class="km-modal-box">
+            <button type="button" class="km-modal-close" id="btnModalClose" aria-label="Close Modal">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h2 style="font-size:1.6rem; font-weight:800; color:#0f172a; margin-bottom:12px;">
+                How KrishiMitra AI Works
+            </h2>
+            <p style="color:#64748b; font-size:0.95rem; margin-bottom:20px;">
+                Designed specifically for smallholder farmers in Western Uttar Pradesh for the Rabi season.
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:16px;">
+                <div style="display:flex; gap:14px; align-items:flex-start;">
+                    <div style="width:36px; height:36px; border-radius:50%; background:#dcfce7; color:#15803d; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+                    <div>
+                        <strong style="color:#0f172a; font-size:1.02rem;">Village & Plot-Level Yield Forecast</strong>
+                        <p style="font-size:0.86rem; color:#475569; margin-top:2px;">Calibrated on 11 years of official UP district agricultural census (APY) with transparent disclaimers.</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:14px; align-items:flex-start;">
+                    <div style="width:36px; height:36px; border-radius:50%; background:#fef3c7; color:#b45309; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+                    <div>
+                        <strong style="color:#0f172a; font-size:1.02rem;">Scientific Stage Advisory</strong>
+                        <p style="font-size:0.86rem; color:#475569; margin-top:2px;">Crown Root Initiation (CRI) 21-day irrigation and March terminal heat risk warnings (0.5% potassium nitrate).</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:14px; align-items:flex-start;">
+                    <div style="width:36px; height:36px; border-radius:50%; background:#e0f2fe; color:#0284c7; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+                    <div>
+                        <strong style="color:#0f172a; font-size:1.02rem;">Verified Government Scheme Guidance</strong>
+                        <p style="font-size:0.86rem; color:#475569; margin-top:2px;">Instant match with PM-KISAN, PMFBY (1.5% premium), Soil Health Card, and PMKSY micro-irrigation subsidies.</p>
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:14px; align-items:flex-start;">
+                    <div style="width:36px; height:36px; border-radius:50%; background:#f3e8ff; color:#7e22ce; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">4</div>
+                    <div>
+                        <strong style="color:#0f172a; font-size:1.02rem;">KrishiSathi Hindi Voice AI</strong>
+                        <p style="font-size:0.86rem; color:#475569; margin-top:2px;">Speak queries naturally in Hindi and listen aloud without needing complex app navigation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:24px; display:flex; justify-content:flex-end; gap:12px;">
+                <a href="dashboard.html" class="km-btn-gold" style="font-size:0.95rem; padding:10px 22px;">
+                    Open Farmer Dashboard →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="shared.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("howItWorksModal");
+            const btnOpen = document.getElementById("btnSeeHowItWorks");
+            const btnClose = document.getElementById("btnModalClose");
+
+            if (btnOpen && modal) {
+                btnOpen.addEventListener("click", () => {
+                    modal.classList.add("active");
+                    modal.setAttribute("aria-hidden", "false");
+                });
+            }
+
+            if (btnClose && modal) {
+                btnClose.addEventListener("click", () => {
+                    modal.classList.remove("active");
+                    modal.setAttribute("aria-hidden", "true");
+                });
+            }
+
+            if (modal) {
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("active");
+                        modal.setAttribute("aria-hidden", "true");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

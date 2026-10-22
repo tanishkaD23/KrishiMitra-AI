@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance & Benchmark Summary | KrishiMitra AI</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom Model Summary Stylesheet -->
+    <link rel="stylesheet" href="model-summary.css">
+</head>
+<body class="ms-body">
+
+    <!-- ============================================================
+         1. TOP NAVIGATION BAR
+         ============================================================ -->
+    <nav class="ms-navbar" aria-label="Main Navigation">
+        <div class="ms-nav-inner">
+            <a href="index.html" class="ms-brand-link">
+                <div class="ms-brand-logo-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path>
+                        <path d="M12 2v18"></path>
+                        <path d="M12 11c3-2 5-1 6 1"></path>
+                        <path d="M12 7c-3-2-5-1-6 1"></path>
+                    </svg>
+                </div>
+                <div class="ms-brand-title">
+                    KrishiMitra <span>AI</span>
+                    <span class="ms-badge-model">ML Metrics</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <ul class="ms-nav-links">
+                <li><a href="index.html" class="ms-nav-link" data-i18n="km_nav_home">Home</a></li>
+                <li><a href="forecast.html" class="ms-nav-link" data-i18n="km_nav_crops">Crops</a></li>
+                <li><a href="schemes.html" class="ms-nav-link" data-i18n="km_nav_schemes">Schemes</a></li>
+                <li><a href="dashboard.html" class="ms-nav-link" data-i18n="km_nav_dashboard">Farmer Dashboard</a></li>
+                <li><a href="model-summary.html" class="ms-nav-link active">Model Summary</a></li>
+                <li><a href="krishisathi.html" class="ms-nav-link" data-i18n="km_nav_krishisathi">KrishiSathi</a></li>
+                <li><a href="about.html" class="ms-nav-link" data-i18n="km_nav_about">About</a></li>
+            </ul>
+
+            <!-- Nav Actions: Theme Toggle + Language + Dashboard CTA -->
+            <div class="ms-nav-actions">
+                <!-- Theme Toggle Button -->
+                <button type="button" class="ms-pill-btn theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Light / Dark Theme">
+                    <span class="theme-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                    <span class="theme-text">Dark</span>
+                </button>
+
+                <!-- Language Toggle Button -->
+                <button type="button" class="ms-pill-btn lang-toggle-btn" aria-label="Switch Language">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                    <span class="lang-current">EN</span>
+                </button>
+
+                <!-- Primary CTA back to farmer app -->
+                <a href="dashboard.html" class="ms-pill-btn ms-btn-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         2. HERO HEADER BANNER
+         ============================================================ -->
+    <header class="ms-hero-banner">
+        <div class="ms-hero-container">
+            <div class="ms-hero-top">
+                <div>
+                    <div class="ms-hero-badge-strip">
+                        <span class="ms-tag ms-tag-emerald">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Audit Verified
+                        </span>
+                        <span class="ms-tag ms-tag-subtle">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            Temporal Split: 2014–2020 Train / 2021–2022 Test
+                        </span>
+                        <span class="ms-tag ms-tag-subtle">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Western Uttar Pradesh Wheat
+                        </span>
+                    </div>
+
+                    <h1 class="ms-hero-title">
+                        Model Performance & Benchmark Summary
+                    </h1>
+                    <p class="ms-hero-desc">
+                        Rigorous out-of-time evaluation of predictive yield models across 230 cleaned wheat crop records. Demonstrating baseline persistence, tree ensemble variance, and production architecture recommendations.
+                    </p>
+                </div>
+
+                <!-- Unit Switcher & Export Controls -->
+                <div class="ms-hero-controls">
+                    <!-- Unit Switcher -->
+                    <div class="ms-unit-toggle" role="group" aria-label="Yield Unit Selector">
+                        <button type="button" class="ms-unit-btn active" id="btnUnitTHa" title="Show metrics in Tonnes per Hectare">
+                            Tonnes / Ha
+                        </button>
+                        <button type="button" class="ms-unit-btn" id="btnUnitQAcre" title="Show metrics in Quintals per Acre">
+                            Quintals / Acre
+                        </button>
+                    </div>
+
+                    <!-- Export Buttons -->
+                    <button type="button" class="ms-pill-btn" id="btnExportCsv" title="Export Model Summary Table as CSV">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Export CSV
+                    </button>
+
+                    <button type="button" class="ms-pill-btn" id="btnExportJson" title="Export Full JSON Evaluation Payload">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        Export JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         3. DASHBOARD MAIN CONTENT
+         ============================================================ -->
+    <main class="ms-dashboard-content">
+
+        <!-- 4 Top KPI Summary Cards -->
+        <section class="ms-kpi-grid" aria-label="Key Performance Indicators">
+            <!-- Card 1: Best MAE -->
+            <div class="ms-kpi-card highlight-card">
+                <div class="ms-kpi-top">
+                    <span class="ms-kpi-label">Best Test MAE</span>
+                    <div class="ms-kpi-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="ms-kpi-value-row">
+                    <span class="ms-kpi-value" id="kpiBestMAE">0.1892</span>
+                    <span class="ms-kpi-unit" id="kpiUnitMAE">t / ha</span>
+                </div>
+                <div class="ms-kpi-foot emerald">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Leader: Previous-Year Baseline</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Best RMSE -->
+            <div class="ms-kpi-card">
+                <div class="ms-kpi-top">
+                    <span class="ms-kpi-label">Best Test RMSE</span>
+                    <div class="ms-kpi-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="ms-kpi-value-row">
+                    <span class="ms-kpi-value" id="kpiBestRMSE">0.2439</span>
+                    <span class="ms-kpi-unit" id="kpiUnitRMSE">t / ha</span>
+                </div>
+                <div class="ms-kpi-foot blue">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>Lowest Out-of-Time Variance</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Best R2 Score -->
+            <div class="ms-kpi-card">
+                <div class="ms-kpi-top">
+                    <span class="ms-kpi-label">Explained Variance (R²)</span>
+                    <div class="ms-kpi-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="ms-kpi-value-row">
+                    <span class="ms-kpi-value" id="kpiBestR2">73.6%</span>
+                    <span class="ms-kpi-unit">R² = 0.7364</span>
+                </div>
+                <div class="ms-kpi-foot emerald">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Only Positive Fit on Test Years</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Dataset Temporal Records Split -->
+            <div class="ms-kpi-card">
+                <div class="ms-kpi-top">
+                    <span class="ms-kpi-label">Data Records Split</span>
+                    <div class="ms-kpi-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="ms-kpi-value-row">
+                    <span class="ms-kpi-value" id="kpiDataSplit">180 / 50</span>
+                    <span class="ms-kpi-unit">230 Total</span>
+                </div>
+                <div class="ms-kpi-foot amber">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>78.3% Train • 21.7% Test</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Interactive Leaderboard Table -->
+        <section class="ms-section-card" aria-label="Model Benchmark Table">
+            <div class="ms-section-head">
+                <div class="ms-section-title-group">
+                    <h2>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        Comparative Model Leaderboard
+                    </h2>
+                    <p>Click column headers to sort by Rank, MAE, RMSE, or R² Score. Verified on out-of-time test years (2021–2022).</p>
+                </div>
+            </div>
+
+            <div class="ms-table-responsive">
+                <table class="ms-table" id="modelLeaderboardTable">
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="rank">Rank</th>
+                            <th class="sortable" data-sort="name">Model Architecture</th>
+                            <th class="sortable" data-sort="mae">Mean Absolute Error (MAE)</th>
+                            <th class="sortable" data-sort="rmse">Root Mean Squared Error (RMSE)</th>
+                            <th class="sortable" data-sort="r2">R² Score (Goodness of Fit)</th>
+                            <th>Status / Verdict</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modelTableBody">
+                        <!-- Rendered dynamically by model-summary.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 3: Visual Analytics (2 SVG Charts) -->
+        <section class="ms-charts-grid" aria-label="Model Performance Charts">
+            <!-- Chart 1: MAE & RMSE Side-by-Side Comparison -->
+            <div class="ms-chart-card">
+                <div class="ms-chart-header">
+                    <div>
+                        <h3 class="ms-chart-title">Error Comparison (MAE vs RMSE)</h3>
+                        <p class="ms-chart-subtitle">Lower values indicate superior predictive accuracy</p>
+                    </div>
+                    <div class="ms-chart-legend">
+                        <div><span class="ms-legend-dot" style="background: var(--ms-primary);"></span> MAE</div>
+                        <div><span class="ms-legend-dot" style="background: var(--ms-accent-amber);"></span> RMSE</div>
+                    </div>
+                </div>
+                <div class="ms-chart-svg-container" id="chartErrorsSvg">
+                    <!-- SVG rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Chart 2: R2 Score Spectrum (Diverging Bar Chart) -->
+            <div class="ms-chart-card">
+                <div class="ms-chart-header">
+                    <div>
+                        <h3 class="ms-chart-title">R² Score Spectrum (Goodness of Fit)</h3>
+                        <p class="ms-chart-subtitle">Values &gt; 0 indicate superior fit over mean baseline</p>
+                    </div>
+                    <div class="ms-chart-legend">
+                        <div><span class="ms-legend-dot" style="background: var(--ms-accent-emerald);"></span> Positive R²</div>
+                        <div><span class="ms-legend-dot" style="background: var(--ms-accent-red);"></span> Negative R²</div>
+                    </div>
+                </div>
+                <div class="ms-chart-svg-container" id="chartR2Svg">
+                    <!-- SVG rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Temporal Out-of-Time Split Visualizer -->
+        <section class="ms-split-timeline-card" aria-label="Temporal Split Visualizer">
+            <div class="ms-section-title-group">
+                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--ms-text); display: flex; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Temporal Out-of-Time Split Architecture
+                </h3>
+                <p style="color: var(--ms-text-muted); font-size: 0.88rem; margin-top: 3px;">
+                    Models were strictly trained on historical seasons (2014–2020) and tested on unseen forward horizons (2021–2022) to prevent forward-looking data leakage.
+                </p>
+            </div>
+
+            <div class="ms-timeline-strip">
+                <div class="ms-timeline-bar">
+                    <div class="ms-timeline-train">
+                        <span>Training Set (180 Records)</span>
+                        <span>78.3%</span>
+                    </div>
+                    <div class="ms-timeline-test">
+                        <span>Test Set (50 Records)</span>
+                        <span>21.7%</span>
+                    </div>
+                </div>
+
+                <div class="ms-years-row">
+                    <span class="ms-year-pill is-train">2014</span>
+                    <span class="ms-year-pill is-train">2015</span>
+                    <span class="ms-year-pill is-train">2016</span>
+                    <span class="ms-year-pill is-train">2017</span>
+                    <span class="ms-year-pill is-train">2018</span>
+                    <span class="ms-year-pill is-train">2019</span>
+                    <span class="ms-year-pill is-train">2020</span>
+                    <span class="ms-year-pill is-test">2021 (Test)</span>
+                    <span class="ms-year-pill is-test">2022 (Test)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Agronomic Deep-Dive Takeaways (4 Cards Grid) -->
+        <section aria-label="Agronomic and Modeling Insights">
+            <div style="margin-bottom: 18px;">
+                <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--ms-text); display: flex; align-items: center; gap: 8px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    Agronomic Insights & Technical Takeaways
+                </h2>
+                <p style="color: var(--ms-text-muted); font-size: 0.9rem; margin-top: 4px;">
+                    Why autoregressive persistence dominated tabular ensembles on district wheat data.
+                </p>
+            </div>
+
+            <div class="ms-insights-grid">
+                <!-- Insight 1 -->
+                <div class="ms-insight-card">
+                    <div class="ms-insight-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="ms-insight-content">
+                        <h3>1. High Spatial-Temporal Autocorrelation</h3>
+                        <p>
+                            District-level agricultural yields in Western Uttar Pradesh are anchored by slow-moving structural variables: soil texture (alluvial loam), tubewell density, canal access, and seed varieties. The Previous-Year Baseline ($Y_t \approx Y_{t-1}$) capitalizes on this stability, achieving an outstanding MAE of 0.1892 t/ha.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Insight 2 -->
+                <div class="ms-insight-card">
+                    <div class="ms-insight-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="ms-insight-content">
+                        <h3>2. Tree Ensemble Temporal Drift</h3>
+                        <p>
+                            Random Forest and Extra Trees experienced negative $R^2$ scores on the 2021–2022 test years. Without lag features, standard decision trees cannot extrapolate into years with unprecedented March heat spikes or unseasonal rainfall, leading to high out-of-distribution error.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Insight 3 -->
+                <div class="ms-insight-card">
+                    <div class="ms-insight-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </div>
+                    <div class="ms-insight-content">
+                        <h3>3. Linear Regularization Breakdown</h3>
+                        <p>
+                            Ridge Regression showed substantial error ($R^2 = -3.71$, MAE = 0.8148 t/ha). Linear assumptions fail to accommodate agronomic thresholds—such as terminal heat stress when temperatures exceed 32°C in March or nitrogen saturation plateaus.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Insight 4 -->
+                <div class="ms-insight-card">
+                    <div class="ms-insight-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="ms-insight-content">
+                        <h3>4. Hybrid Production Architecture</h3>
+                        <p>
+                            For KrishiMitra's production inference, we utilize the Previous-Year Baseline as the core anchoring prior, overlaid with a localized agronomic residual model adjusting for farmer-specific plot size, sowing window, and March temperature anomalies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Model Governance & Data Integrity Box -->
+        <section class="ms-governance-box" aria-label="Governance & Data Integrity">
+            <h3 class="ms-governance-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Governance & Data Integrity Safeguards
+            </h3>
+            <ul class="ms-governance-list">
+                <li><strong>No Deterministic Leakage:</strong> Production (Tonnes) was strictly excluded from training and evaluation features to avoid circular calculation ($Yield = Production / Area$).</li>
+                <li><strong>Temporal Independence:</strong> No randomized k-fold cross-validation was used across years, eliminating forward-looking data leakage.</li>
+                <li><strong>Plot-Level Limitation:</strong> District-level APY census data operates as a regional benchmark; plot-specific variances require on-field agronomic calibration.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+         4. FOOTER
+         ============================================================ -->
+    <footer class="ms-footer">
+        <div class="ms-footer-inner">
+            <div>
+                <strong>KrishiMitra AI</strong> • Smarter Farming, Better Harvests.
+            </div>
+            <ul class="ms-footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Farmer Dashboard</a></li>
+                <li><a href="forecast.html">Yield Forecast</a></li>
+                <li><a href="schemes.html">Government Schemes</a></li>
+                <li><a href="krishisathi.html">KrishiSathi</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div>
+                Kisan Call Center: 1800-180-1551 (Toll Free)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="shared.js"></script>
+    <script src="model-summary.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "best_model": "XGBoost",
+  "metrics": {
+    "RandomForest": {
+      "MAE": 0.84,
+      "RMSE": 1.084,
+      "R2": 0.9608
+    },
+    "XGBoost": {
+      "MAE": 0.827,
+      "RMSE": 1.066,
+      "R2": 0.9621
+    }
+  },
+  "target_unit": "Quintals/Acre",
+  "pilot_region": "Western Uttar Pradesh",
+  "pilot_crops": [
+    "Wheat",
+    "Mustard"
+  ]
+}

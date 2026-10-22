@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yield Forecasting & Precision Analytics | KrishiMitra AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-header-banner {
+            background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-deep) 100%);
+            color: #ffffff;
+            padding: 50px 28px 60px;
+            text-align: center;
+        }
+        .page-header-banner h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .page-header-banner p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .forecast-grid-layout {
+            max-width: 1360px;
+            margin: -30px auto 60px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 440px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        @media (max-width: 980px) {
+            .forecast-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-logo-circle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path><path d="M12 11c3-2 5-1 6 1"></path><path d="M12 7c-3-2-5-1-6 1"></path></svg>
+                </div>
+                <div class="brand-text-block">
+                    <h1>KrishiMitra <span class="brand-hindi">कृषिमित्र</span></h1>
+                    <span class="brand-pilot-tag" data-i18n="pilot_badge">पायलट: पश्चिमी उत्तर प्रदेश</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="mainNavLinks">
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">होम</a></li>
+                <li><a href="forecast.html" class="nav-link active" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
+                <li><a href="schemes.html" class="nav-link" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
+                <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">किसान डैशबोर्ड</a></li>
+                <li><a href="model-summary.html" class="nav-link" data-i18n="nav_model_summary">मॉडल सारांश</a></li>
+                <li><a href="krishisathi.html" class="nav-link" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
+                <li><a href="about.html" class="nav-link" data-i18n="nav_about">हमारे बारे में</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button type="button" class="lang-toggle-btn" aria-label="Switch Language">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span class="lang-current">हिंदी</span> | <span class="lang-alt">EN</span>
+                </button>
+                <a href="krishisathi.html" class="btn-nav-cta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                    <span>कृषिसाथी</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header Banner -->
+    <div class="page-header-banner">
+        <h1 data-i18n="service_1_title">खेत स्तर पर पैदावार पूर्वानुमान</h1>
+        <p data-i18n="service_1_desc">मशीन लर्निंग (XGBoost) द्वारा आपके खेत के आकार, मिट्टी, सिंचाई और तापमान के आधार पर क्विंटल/एकड़ में सटीक अनुमान।</p>
+    </div>
+
+    <!-- Main Forecast Dashboard -->
+    <main class="forecast-grid-layout">
+        <!-- Input Form -->
+        <div class="preview-form-card" style="box-shadow: var(--shadow-card);">
+            <h3 data-i18n="preview_heading">खेत और फसल का विवरण</h3>
+            <p data-i18n="preview_sub">सटीक पूर्वानुमान के लिए अपने खेत के आंकड़े दर्ज करें</p>
+
+            <form id="fullPlotForm">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="lbl_select_crop">फसल चुनें:</label>
+                    <div class="crop-radio-toggles">
+                        <label class="crop-radio-btn active" data-crop="Wheat">
+                            <input type="radio" name="crop" value="Wheat" checked>
+                            <span data-i18n="crop_wheat">गेहूं (Wheat)</span>
+                        </label>
+                        <label class="crop-radio-btn" data-crop="Mustard">
+                            <input type="radio" name="crop" value="Mustard">
+                            <span data-i18n="crop_mustard">सरसों (Mustard)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="districtSelect" class="form-label" data-i18n="lbl_select_district">जिला (District):</label>
+                    <select id="districtSelect" name="district" class="form-select">
+                        <option value="Meerut">मेरठ (Meerut)</option>
+                        <option value="Bulandshahr">बुलंदशहर (Bulandshahr)</option>
+                        <option value="Aligarh">अलीगढ़ (Aligarh)</option>
+                        <option value="Muzaffarnagar">मुजफ्फरनगर (Muzaffarnagar)</option>
+                        <option value="Mathura">मथुरा (Mathura)</option>
+                        <option value="Agra">आगरा (Agra)</option>
+                        <option value="Moradabad">मुरादाबाद (Moradabad)</option>
+                        <option value="Bareilly">बरेली (Bareilly)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="plotAcres" class="form-label" data-i18n="lbl_plot_size">खेत का आकार (Acres):</label>
+                    <input type="number" id="plotAcres" name="plot_acres" class="form-input" min="0.25" max="25" step="0.25" value="2.0">
+                    <div class="quick-acre-chips">
+                        <button type="button" class="acre-chip" data-acres="1.0">1 एकड़</button>
+                        <button type="button" class="acre-chip active" data-acres="2.0">2 एकड़</button>
+                        <button type="button" class="acre-chip" data-acres="3.0">3 एकड़</button>
+                        <button type="button" class="acre-chip" data-acres="5.0">5 एकड़</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="soilSelect" class="form-label" data-i18n="lbl_soil_type">मिट्टी का प्रकार:</label>
+                    <select id="soilSelect" name="soil_type" class="form-select">
+                        <option value="Alluvial (Sandy Loam)">बलुई दोमट (Alluvial Sandy Loam)</option>
+                        <option value="Alluvial (Clay Loam)">चिकनी दोमट (Alluvial Clay Loam)</option>
+                        <option value="Loam">साधारण दोमट (Loam)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="irrigationSelect" class="form-label" data-i18n="lbl_irrigation">सिंचाई का साधन:</label>
+                    <select id="irrigationSelect" name="irrigation_source" class="form-select">
+                        <option value="Tube well / Borewell">नलकूप / बोरवेल (Tube well)</option>
+                        <option value="Canal">नहर (Canal)</option>
+                        <option value="Rainfed">बारिश पर निर्भर (Rainfed)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sowingSelect" class="form-label" data-i18n="lbl_sowing">बुवाई का समय:</label>
+                    <select id="sowingSelect" name="sowing_window" class="form-select">
+                        <option value="Early Rabi (Oct 15 - Oct 31)">अगेती बुवाई (15 - 31 अक्टूबर)</option>
+                        <option value="Timely Sown (Nov 01 - Nov 20)" selected>समय पर बुवाई (01 - 20 नवंबर)</option>
+                        <option value="Late Sown (Nov 21 - Dec 15)">पछेती बुवाई (21 नवंबर - 15 दिसंबर)</option>
+                    </select>
+                </div>
+
+                <!-- Sliders for Nutrients and Weather -->
+                <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 14px; margin-bottom: 18px;">
+                    <h5 style="margin-bottom: 10px; color: var(--forest-dark); font-weight: 700;">उर्वरक और मौसम विवरण</h5>
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>नाइट्रोजन (N):</span>
+                            <span id="nValText" style="font-weight: 700; color: var(--green-primary);">48 kg/एकड़</span>
+                        </div>
+                        <input type="range" id="inputN" min="10" max="80" value="48" style="width: 100%;">
+
+                        <div style="display: flex; justify-content: space-between; margin-top: 6px;">
+                            <span>मार्च अधिकतम तापमान (°C):</span>
+                            <span id="tempValText" style="font-weight: 700; color: #b45309;">31.5 °C</span>
+                        </div>
+                        <input type="range" id="inputMarchTemp" min="26" max="38" value="31.5" step="0.5" style="width: 100%;">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-form-calculate" data-i18n="btn_calc_yield">
+                    पैदावार और सलाह प्राप्त करें
+                </button>
+            </form>
+        </div>
+
+        <!-- Output Display -->
+        <div class="preview-results-panel">
+            <!-- Hero Yield Display -->
+            <div class="hero-forecast-display">
+                <div class="forecast-top-row">
+                    <span class="forecast-tag" data-i18n="yield_heading">पैदावार पूर्वानुमान</span>
+                    <span id="fBenchmarkBadge" class="benchmark-status-badge">+11.5% जिला औसत से ऊपर</span>
+                </div>
+                <div class="forecast-main-numbers">
+                    <div>
+                        <span class="num-big" id="fYieldVal">19.2</span>
+                        <span class="num-unit" data-i18n="yield_unit">क्विंटल / एकड़</span>
+                    </div>
+                    <div class="total-harvest-box">
+                        <span data-i18n="lbl_total_harvest">कुल अनुमानित फसल:</span>
+                        <strong id="fTotalHarvest">38.4 क्विंटल</strong>
+                    </div>
+                </div>
+                <div class="confidence-range-track">
+                    <div class="conf-meta-row">
+                        <span data-i18n="lbl_conf_band">90% अनुमानित दायरा:</span>
+                        <strong id="fConfText">17.3 - 21.1 क्विंटल</strong>
+                    </div>
+                    <div class="conf-meter">
+                        <div class="conf-fill-bar" style="left: 20%; width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agronomic Alerts & Action Recommendations -->
+            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow-card);">
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 16px;" data-i18n="advisories_title">
+                    चरणबद्ध कृषि प्रबंधन (Timely Actions)
+                </h3>
+                <div id="alertsBox" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                    <!-- Dynamic Alerts -->
+                </div>
+                <div id="advisoryBox" style="display: flex; flex-direction: column; gap: 14px;">
+                    <!-- Dynamic Step-by-Step Advisories -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <h2 data-i18n="footer_brand">कृषिमित्र एआई</h2>
+                <p data-i18n="footer_desc">समर्पित भारतीय छोटे एवं सीमांत किसानों के स्वावलंबन और समृद्धि के लिए।</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_links_title">पृष्ठ लिंक</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" data-i18n="nav_home">होम</a></li>
+                    <li><a href="forecast.html" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
+                    <li><a href="schemes.html" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
+                    <li><a href="krishisathi.html" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_contact_title">सहायता</h4>
+                <p data-i18n="kisan_helpline">किसान कॉल सेंटर: 1800-180-1551</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <span data-i18n="footer_copyright">© 2026 KrishiMitra AI. सर्वाधिकार सुरक्षित।</span>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="shared.js"></script>
+    <script src="forecast.js"></script>
+</body>
+</html>

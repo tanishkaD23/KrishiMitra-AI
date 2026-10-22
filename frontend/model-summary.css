@@ -1,0 +1,952 @@
+/* ==========================================================================
+   KrishiMitra AI - Model Summary & Evaluation Dashboard Stylesheet
+   Full Light & Dark Theme Support • Responsive Grid • Modern Agritech SaaS
+   ========================================================================== */
+
+:root {
+    --ms-bg: #f8faf8;
+    --ms-surface: #ffffff;
+    --ms-surface-subtle: #f1f5f2;
+    --ms-surface-hover: #eaf1ec;
+    --ms-border: #e2e8e3;
+    --ms-border-focus: #15803d;
+    --ms-text: #0f1f14;
+    --ms-text-muted: #526356;
+    --ms-text-light: #7a8b7e;
+    --ms-primary: #0f5128;
+    --ms-primary-light: #dcfce7;
+    --ms-primary-hover: #166534;
+    --ms-accent-emerald: #10b981;
+    --ms-accent-amber: #f59e0b;
+    --ms-accent-amber-light: #fef3c7;
+    --ms-accent-red: #ef4444;
+    --ms-accent-red-light: #fee2e2;
+    --ms-accent-blue: #2563eb;
+    --ms-accent-blue-light: #dbeafe;
+    --ms-shadow-sm: 0 1px 3px rgba(15, 81, 40, 0.05);
+    --ms-shadow-md: 0 4px 12px rgba(15, 81, 40, 0.08);
+    --ms-shadow-lg: 0 10px 25px rgba(15, 81, 40, 0.12);
+    --ms-radius: 14px;
+    --ms-radius-sm: 8px;
+    --ms-radius-pill: 9999px;
+    --ms-font: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+    --ms-bg: #07170e;
+    --ms-surface: #0f2619;
+    --ms-surface-subtle: #143321;
+    --ms-surface-hover: #194029;
+    --ms-border: rgba(74, 222, 128, 0.15);
+    --ms-border-focus: #4ade80;
+    --ms-text: #f3f7f4;
+    --ms-text-muted: #94a3b8;
+    --ms-text-light: #64748b;
+    --ms-primary: #22c55e;
+    --ms-primary-light: rgba(34, 197, 94, 0.15);
+    --ms-primary-hover: #4ade80;
+    --ms-accent-emerald: #4ade80;
+    --ms-accent-amber: #fbbf24;
+    --ms-accent-amber-light: rgba(245, 158, 11, 0.15);
+    --ms-accent-red: #f87171;
+    --ms-accent-red-light: rgba(239, 68, 68, 0.15);
+    --ms-accent-blue: #60a5fa;
+    --ms-accent-blue-light: rgba(37, 99, 235, 0.15);
+    --ms-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --ms-shadow-md: 0 6px 18px rgba(0, 0, 0, 0.45);
+    --ms-shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.55);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.ms-body {
+    background-color: var(--ms-bg);
+    color: var(--ms-text);
+    font-family: var(--ms-font);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ==========================================================================
+   Navigation Bar (Unified Brand Header)
+   ========================================================================== */
+.ms-navbar {
+    background: var(--ms-surface);
+    border-bottom: 1px solid var(--ms-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--ms-shadow-sm);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ms-nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.ms-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ms-text);
+}
+
+.ms-brand-logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--ms-primary-light);
+    color: var(--ms-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ms-brand-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ms-badge-model {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    background: var(--ms-primary);
+    color: #ffffff;
+    border-radius: 6px;
+}
+
+.ms-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
+
+.ms-nav-link {
+    text-decoration: none;
+    color: var(--ms-text-muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: color 0.15s ease;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+}
+
+.ms-nav-link:hover {
+    color: var(--ms-primary);
+}
+
+.ms-nav-link.active {
+    color: var(--ms-primary);
+    border-bottom-color: var(--ms-primary);
+}
+
+.ms-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ms-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--ms-radius-pill);
+    background: var(--ms-surface-subtle);
+    border: 1px solid var(--ms-border);
+    color: var(--ms-text);
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.ms-pill-btn:hover {
+    background: var(--ms-surface-hover);
+    border-color: var(--ms-primary);
+    color: var(--ms-primary);
+}
+
+.ms-btn-primary {
+    background: var(--ms-primary);
+    color: #ffffff !important;
+    border-color: var(--ms-primary);
+}
+
+.ms-btn-primary:hover {
+    background: var(--ms-primary-hover);
+    border-color: var(--ms-primary-hover);
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Header Hero Banner
+   ========================================================================== */
+.ms-hero-banner {
+    background: linear-gradient(135deg, var(--ms-surface) 0%, var(--ms-surface-subtle) 100%);
+    border-bottom: 1px solid var(--ms-border);
+    padding: 38px 24px 34px;
+    transition: background 0.25s ease;
+}
+
+.ms-hero-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ms-hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ms-hero-badge-strip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.ms-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: var(--ms-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.ms-tag-emerald {
+    background: var(--ms-primary-light);
+    color: var(--ms-primary);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.ms-tag-subtle {
+    background: var(--ms-surface-subtle);
+    color: var(--ms-text-muted);
+    border: 1px solid var(--ms-border);
+}
+
+.ms-hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ms-text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.ms-hero-desc {
+    color: var(--ms-text-muted);
+    font-size: 1.02rem;
+    max-width: 860px;
+    line-height: 1.6;
+}
+
+.ms-hero-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ms-unit-toggle {
+    display: flex;
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius-pill);
+    padding: 3px;
+}
+
+.ms-unit-btn {
+    padding: 6px 14px;
+    border-radius: var(--ms-radius-pill);
+    border: none;
+    background: transparent;
+    color: var(--ms-text-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ms-unit-btn.active {
+    background: var(--ms-primary);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Dashboard Shell & 4 KPI Cards
+   ========================================================================== */
+.ms-dashboard-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.ms-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.ms-kpi-card {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius);
+    padding: 22px;
+    box-shadow: var(--ms-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ms-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ms-shadow-md);
+    border-color: var(--ms-border-focus);
+}
+
+.ms-kpi-card.highlight-card {
+    border-color: var(--ms-primary);
+    background: linear-gradient(180deg, var(--ms-surface) 0%, var(--ms-surface-subtle) 100%);
+}
+
+.ms-kpi-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ms-kpi-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ms-text-muted);
+}
+
+.ms-kpi-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--ms-surface-subtle);
+    color: var(--ms-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ms-kpi-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.ms-kpi-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ms-text);
+}
+
+.ms-kpi-unit {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ms-text-light);
+}
+
+.ms-kpi-foot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.ms-kpi-foot.emerald {
+    color: var(--ms-accent-emerald);
+}
+
+.ms-kpi-foot.amber {
+    color: var(--ms-accent-amber);
+}
+
+.ms-kpi-foot.blue {
+    color: var(--ms-accent-blue);
+}
+
+/* ==========================================================================
+   Section: Leaderboard Table Card
+   ========================================================================== */
+.ms-section-card {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius);
+    padding: 28px;
+    box-shadow: var(--ms-shadow-sm);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ms-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.ms-section-title-group h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ms-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ms-section-title-group p {
+    color: var(--ms-text-muted);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* Table */
+.ms-table-responsive {
+    overflow-x: auto;
+    border-radius: var(--ms-radius-sm);
+    border: 1px solid var(--ms-border);
+}
+
+.ms-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.ms-table th {
+    background: var(--ms-surface-subtle);
+    color: var(--ms-text-muted);
+    padding: 14px 18px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--ms-border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.15s ease;
+}
+
+.ms-table th:hover {
+    background: var(--ms-surface-hover);
+    color: var(--ms-text);
+}
+
+.ms-table th.sortable::after {
+    content: " ↕";
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+.ms-table th.sorted-asc::after {
+    content: " ↑";
+    opacity: 1;
+    color: var(--ms-primary);
+}
+
+.ms-table th.sorted-desc::after {
+    content: " ↓";
+    opacity: 1;
+    color: var(--ms-primary);
+}
+
+.ms-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--ms-border);
+    color: var(--ms-text);
+    vertical-align: middle;
+}
+
+.ms-table tr:last-child td {
+    border-bottom: none;
+}
+
+.ms-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.ms-table tbody tr:hover {
+    background: var(--ms-surface-hover);
+}
+
+.ms-table tr.champion-row {
+    background: rgba(34, 197, 94, 0.05);
+}
+
+.ms-table tr.champion-row:hover {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.ms-rank-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--ms-surface-subtle);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: var(--ms-text-muted);
+}
+
+.ms-rank-badge.rank-1 {
+    background: #fef3c7;
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+[data-theme="dark"] .ms-rank-badge.rank-1 {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.ms-model-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.ms-status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: var(--ms-radius-pill);
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.ms-status-champion {
+    background: var(--ms-primary-light);
+    color: var(--ms-primary);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.ms-status-contender {
+    background: var(--ms-accent-blue-light);
+    color: var(--ms-accent-blue);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.ms-status-underperforming {
+    background: var(--ms-accent-amber-light);
+    color: var(--ms-accent-amber);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.ms-status-poor {
+    background: var(--ms-accent-red-light);
+    color: var(--ms-accent-red);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.ms-mini-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ms-mini-bar {
+    height: 7px;
+    background: var(--ms-surface-subtle);
+    border-radius: 4px;
+    width: 80px;
+    overflow: hidden;
+}
+
+.ms-mini-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* ==========================================================================
+   Section: Analytics Visualizations (2 SVG Charts)
+   ========================================================================== */
+.ms-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.ms-chart-card {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius);
+    padding: 24px;
+    box-shadow: var(--ms-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ms-chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.ms-chart-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--ms-text);
+}
+
+.ms-chart-subtitle {
+    font-size: 0.84rem;
+    color: var(--ms-text-muted);
+    margin-top: 2px;
+}
+
+.ms-chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ms-text-muted);
+}
+
+.ms-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.ms-chart-svg-container {
+    width: 100%;
+    min-height: 280px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ms-chart-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* SVG Chart Elements */
+.ms-grid-line {
+    stroke: var(--ms-border);
+    stroke-dasharray: 3 3;
+    stroke-width: 1;
+}
+
+.ms-axis-text {
+    fill: var(--ms-text-muted);
+    font-size: 11px;
+    font-family: var(--ms-font);
+    font-weight: 600;
+}
+
+.ms-bar-rect {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.ms-bar-rect:hover {
+    opacity: 0.82;
+}
+
+/* ==========================================================================
+   Section: Temporal Split Visualizer Strip
+   ========================================================================== */
+.ms-split-timeline-card {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius);
+    padding: 24px;
+    box-shadow: var(--ms-shadow-sm);
+}
+
+.ms-timeline-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.ms-timeline-bar {
+    display: flex;
+    height: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    font-weight: 800;
+    font-size: 0.88rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ms-timeline-train {
+    background: linear-gradient(90deg, #166534 0%, #22c55e 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    width: 78.26%;
+    position: relative;
+}
+
+.ms-timeline-test {
+    background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    width: 21.74%;
+    position: relative;
+}
+
+.ms-years-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ms-text-muted);
+    padding: 0 4px;
+}
+
+.ms-year-pill {
+    padding: 4px 10px;
+    border-radius: var(--ms-radius-pill);
+    background: var(--ms-surface-subtle);
+    border: 1px solid var(--ms-border);
+}
+
+.ms-year-pill.is-train {
+    color: var(--ms-primary);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.ms-year-pill.is-test {
+    color: var(--ms-accent-amber);
+    border-color: rgba(245, 158, 11, 0.4);
+    background: var(--ms-accent-amber-light);
+}
+
+/* ==========================================================================
+   Section: Agronomic Deep-Dive Takeaways (4 Cards Grid)
+   ========================================================================== */
+.ms-insights-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.ms-insight-card {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-radius: var(--ms-radius);
+    padding: 24px;
+    box-shadow: var(--ms-shadow-sm);
+    display: flex;
+    gap: 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ms-insight-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--ms-border-focus);
+}
+
+.ms-insight-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--ms-surface-subtle);
+    color: var(--ms-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ms-insight-content h3 {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--ms-text);
+    margin-bottom: 6px;
+}
+
+.ms-insight-content p {
+    font-size: 0.9rem;
+    color: var(--ms-text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Section: Model Limitation & Governance Notice
+   ========================================================================== */
+.ms-governance-box {
+    background: var(--ms-surface);
+    border: 1px solid var(--ms-border);
+    border-left: 5px solid var(--ms-primary);
+    border-radius: var(--ms-radius);
+    padding: 22px 26px;
+    box-shadow: var(--ms-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ms-governance-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--ms-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ms-governance-list {
+    margin-left: 20px;
+    color: var(--ms-text-muted);
+    font-size: 0.88rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.ms-footer {
+    background: var(--ms-surface);
+    border-top: 1px solid var(--ms-border);
+    padding: 32px 24px;
+    margin-top: auto;
+}
+
+.ms-footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.86rem;
+    color: var(--ms-text-muted);
+}
+
+.ms-footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style: none;
+}
+
+.ms-footer-links a {
+    color: var(--ms-text-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.ms-footer-links a:hover {
+    color: var(--ms-primary);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .ms-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ms-charts-grid {
+        grid-template-columns: 1fr;
+    }
+    .ms-insights-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .ms-nav-links {
+        display: none;
+    }
+    .ms-hero-title {
+        font-size: 1.7rem;
+    }
+    .ms-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    .ms-hero-top {
+        flex-direction: column;
+    }
+    .ms-hero-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .ms-section-card {
+        padding: 18px;
+    }
+}

@@ -1,0 +1,83 @@
+{
+  "dataset": {
+    "file": "data/processed/western_up_rabi_data.csv",
+    "total_samples": 2000,
+    "train_samples": 1600,
+    "test_samples": 400,
+    "target": "yield_quintals_per_acre",
+    "target_unit": "Quintals / Acre",
+    "numerical_features": [
+      "plot_acres",
+      "seasonal_rainfall_mm",
+      "march_max_temp_c",
+      "nitrogen_kg_acre",
+      "phosphorus_kg_acre",
+      "potassium_kg_acre"
+    ],
+    "categorical_features": [
+      "crop",
+      "district",
+      "soil_type",
+      "irrigation_source",
+      "sowing_window"
+    ]
+  },
+  "benchmarks": {
+    "Baseline_1_Global_Mean": {
+      "type": "Simple Heuristic",
+      "description": "Predicts constant training mean (14.54 Q/Acre)",
+      "test_mae": 5.2,
+      "test_rmse": 5.665,
+      "test_r2": -0.0001
+    },
+    "Baseline_2_Crop_Stratified_Mean": {
+      "type": "Simple Heuristic",
+      "description": "Predicts crop mean (Wheat: 18.54, Mustard: 7.69)",
+      "test_mae": 1.743,
+      "test_rmse": 2.338,
+      "test_r2": 0.8297
+    },
+    "Linear_Ridge": {
+      "type": "Machine Learning Pipeline",
+      "test_mae": 1.186,
+      "test_rmse": 1.514,
+      "test_r2": 0.9286,
+      "cv_mae_mean": 1.137,
+      "cv_mae_std": 0.047,
+      "cv_rmse_mean": 1.453,
+      "cv_rmse_std": 0.067,
+      "mae_improvement_vs_crop_mean_pct": "32.0%",
+      "rmse_improvement_vs_crop_mean_pct": "35.3%"
+    },
+    "RandomForest": {
+      "type": "Machine Learning Pipeline",
+      "test_mae": 0.883,
+      "test_rmse": 1.145,
+      "test_r2": 0.9591,
+      "cv_mae_mean": 0.869,
+      "cv_mae_std": 0.023,
+      "cv_rmse_mean": 1.117,
+      "cv_rmse_std": 0.039,
+      "mae_improvement_vs_crop_mean_pct": "49.3%",
+      "rmse_improvement_vs_crop_mean_pct": "51.0%"
+    },
+    "XGBoost": {
+      "type": "Machine Learning Pipeline",
+      "test_mae": 0.87,
+      "test_rmse": 1.111,
+      "test_r2": 0.9616,
+      "cv_mae_mean": 0.85,
+      "cv_mae_std": 0.021,
+      "cv_rmse_mean": 1.084,
+      "cv_rmse_std": 0.034,
+      "mae_improvement_vs_crop_mean_pct": "50.1%",
+      "rmse_improvement_vs_crop_mean_pct": "52.5%"
+    }
+  },
+  "selected_model": "XGBoost",
+  "limitations": [
+    "Dataset is calibrated to Western UP district averages; does not represent sensor-verified plot ground truth.",
+    "Post-sowing climate variables (March temperature, seasonal rainfall) must be treated as forecast scenarios when predicting at sowing time.",
+    "Unobserved variables such as seed variety, disease severity, and soil electrical conductivity are not captured."
+  ]
+}

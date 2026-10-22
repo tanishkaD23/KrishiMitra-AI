@@ -1,0 +1,58 @@
+{
+  "models": [
+    {
+      "name": "Previous-Year Baseline",
+      "mae": 0.18919999999999995,
+      "rmse": 0.24393441741582916,
+      "r2": 0.736409384081083,
+      "rank": 1,
+      "status": "Champion",
+      "notes": "Optimal baseline capturing strong annual spatial-temporal autocorrelation in district yields."
+    },
+    {
+      "name": "Extra Trees",
+      "mae": 0.47292871538865183,
+      "rmse": 0.5297952483604351,
+      "r2": -0.24336861748394223,
+      "rank": 2,
+      "status": "Contender",
+      "notes": "Randomized tree ensemble with lower variance than Random Forest, but still subject to temporal domain shift."
+    },
+    {
+      "name": "Random Forest",
+      "mae": 0.5512276740276019,
+      "rmse": 0.6404497015638098,
+      "r2": -0.8169954472020209,
+      "rank": 3,
+      "status": "Underperforming",
+      "notes": "Standard decision forest struggling to generalize without explicit temporal lag engineered features."
+    },
+    {
+      "name": "Ridge Regression",
+      "mae": 0.81476206868874,
+      "rmse": 1.0312469421034522,
+      "r2": -3.710956905156819,
+      "rank": 4,
+      "status": "Poor Fit",
+      "notes": "L2-regularized linear model unable to model nonlinear soil-weather-area interactions across split years."
+    }
+  ],
+  "dataset_summary": {
+    "training_records": 180,
+    "testing_records": 50,
+    "total_records": 230,
+    "train_ratio_percent": 78.26,
+    "test_ratio_percent": 21.74,
+    "training_years": [2014, 2015, 2016, 2017, 2018, 2019, 2020],
+    "testing_years": [2021, 2022],
+    "best_method_by_MAE": "Previous-Year Baseline",
+    "best_MAE": 0.18919999999999995,
+    "best_RMSE": 0.24393441741582916,
+    "best_R2": 0.736409384081083,
+    "target_variable": "Yield (Tonne / Hectare)",
+    "target_unit": "Tonne / Hectare",
+    "crop": "Wheat (Rabi)",
+    "state": "Uttar Pradesh",
+    "validation_type": "Temporal Out-of-Time Split (2014-2020 Train / 2021-2022 Test)"
+  }
+}
