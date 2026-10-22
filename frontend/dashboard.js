@@ -1344,9 +1344,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     query: queryText,
                     lang: lang,
                     context: {
-                        farmer_name: "Tanishka",
+                        farmer_name: (state.dashboardData && state.dashboardData.farmer && state.dashboardData.farmer.name) || "Tanishka",
+                        crop: state.crop,
                         district: state.district,
-                        crops: [state.crop]
+                        plot_id: state.plotId,
+                        growth_stage: state.growthStage,
+                        plot_acres: (state.dashboardData && state.dashboardData.selected_plot && state.dashboardData.selected_plot.acres) || 2.5,
+                        predicted_yield: (state.prediction && state.prediction.predicted_yield_per_acre) || 19.9,
+                        expected_range_q_ha: (state.prediction && state.prediction.expected_range_q_ha) || "44 - 54",
+                        irrigation_source: state.irrigationSource,
+                        reported_symptoms: state.reportedSymptoms || [],
+                        weather: (state.dashboardData && state.dashboardData.weather) || null
                     }
                 })
             });

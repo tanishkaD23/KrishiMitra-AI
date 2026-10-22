@@ -8,8 +8,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
 
 from config.settings import CONFIG, BASE_DIR
+
+# Load environment variables
+load_dotenv(BASE_DIR / ".env")
 from src.database.db import (
     init_db,
     get_farmer_profile,

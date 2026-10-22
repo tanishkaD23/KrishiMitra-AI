@@ -11,8 +11,10 @@ pydantic>=2.5.0
 # Agronomic Weather & Geocoding
 requests>=2.31.0
 
-# Voice & Conversational (KrishiSathi)
+# Voice & Conversational (KrishiSathi & OpenAI LLM)
 gTTS>=2.5.0
+openai>=1.0.0
+python-dotenv>=1.0.0
 
 # User Interface
 streamlit>=1.30.0

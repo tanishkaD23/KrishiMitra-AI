@@ -6,8 +6,12 @@ and hosts the custom HTML/CSS/JS frontend dashboard.
 import json
 from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory, send_file
+from dotenv import load_dotenv
 
 from config.settings import BASE_DIR, CONFIG
+
+# Load environment variables
+load_dotenv(BASE_DIR / ".env")
 from src.database.db import (
     init_db,
     get_farmer_profile,
