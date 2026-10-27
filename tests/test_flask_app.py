@@ -23,10 +23,10 @@ class TestFlaskApp(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         content = res.get_data(as_text=True)
         self.assertIn("KrishiMitra", content)
-        self.assertIn("dashboard.css", content)
+        self.assertIn("krishimitra_pro.css", content)
         self.assertIn("dashboard.js", content)
-        self.assertIn("pcNotificationBanner", content)
-        self.assertIn("mNotificationBanner", content)
+        self.assertIn("PM Kisan", content)
+        self.assertIn("KrishiSathi", content)
 
     def test_model_summary_route(self):
         res = self.client.get("/model-summary")

@@ -362,14 +362,21 @@ def api_advisory():
 
 @app.route("/api/krishisathi/chat", methods=["POST"])
 def krishisathi_chat():
-    """Voice/Chatbot assistant returning grounded agronomic advice."""
+    """Voice/Chatbot assistant returning grounded agronomic advice via RAG."""
     payload = request.get_json(force=True, silent=True) or {}
     query = payload.get("query", "")
     context = payload.get("context", {})
     lang = payload.get("lang", "hi")
     try:
-        answer = voice_agent.ask(query, context, lang=lang)
-        return jsonify({"status": "success", "answer": answer})
+        rag_res = voice_agent.ask_rag(query, context, lang=lang)
+        return jsonify({
+            "status": "success",
+            "answer": rag_res["answer"],
+            "sources": rag_res.get("sources", []),
+            "retrieval_mode": rag_res.get("retrieval_mode", "general"),
+            "verified": rag_res.get("verified", True),
+            "lang": rag_res.get("lang", lang)
+        })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 

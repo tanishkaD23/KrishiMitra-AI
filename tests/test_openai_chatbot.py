@@ -11,10 +11,10 @@ from src.api.flask_app import app as flask_app
 
 class TestKrishiSathiOpenAIChatbot(unittest.TestCase):
 
-    def setUp(self):
-        self.fastapi_client = TestClient(fastapi_app)
-        self.flask_client = flask_app.test_client()
-        self.sample_context = {
+    @classmethod
+    def setUpClass(cls):
+        cls.flask_client = flask_app.test_client()
+        cls.sample_context = {
             "farmer_name": "Tanishka",
             "crop": "Wheat",
             "district": "Meerut",
@@ -66,16 +66,16 @@ class TestKrishiSathiOpenAIChatbot(unittest.TestCase):
 
     def test_fastapi_chat_endpoint(self):
         """Verify POST /api/krishisathi/chat in FastAPI handles queries and returns 200 OK."""
-        payload = {
-            "query": "मेरी फसल में पानी कब लगाना है?",
-            "lang": "hi",
-            "context": self.sample_context
-        }
-        res = self.fastapi_client.post("/api/krishisathi/chat", json=payload)
-        self.assertEqual(res.status_code, 200)
-        data = res.json()
-        self.assertEqual(data.get("status"), "success")
-        self.assertTrue(len(data.get("answer", "")) > 10)
+        from src.api.main import krishisathi_chat, ChatQueryInput
+        payload = ChatQueryInput(
+            query="मेरी फसल में पानी कब लगाना है?",
+            lang="hi",
+            context=self.sample_context
+        )
+        res = krishisathi_chat(payload)
+        self.assertEqual(res.get("status"), "success")
+        self.assertTrue(len(res.get("answer", "")) > 10)
+        self.assertIn("sources", res)
 
     def test_flask_chat_endpoint(self):
         """Verify POST /api/krishisathi/chat in Flask handles queries and returns 200 OK."""

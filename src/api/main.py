@@ -97,7 +97,7 @@ class AdvisoryInput(BaseModel):
 
 class ChatQueryInput(BaseModel):
     query: str
-    context: Dict[str, Any]
+    context: Optional[Dict[str, Any]] = Field(default_factory=dict)
     lang: Optional[str] = "hi"
 
 
@@ -407,10 +407,17 @@ def get_weather(
 
 @app.post("/api/krishisathi/chat")
 def krishisathi_chat(payload: ChatQueryInput):
-    """Processes farmer query in Hindi or English, returning a grounded voice answer."""
+    """Processes farmer query using RAG (PDF search -> Web Search fallback -> Verification)."""
     try:
-        answer = voice_agent.ask(payload.query, payload.context, lang=payload.lang or "hi")
-        return {"status": "success", "answer": answer}
+        rag_res = voice_agent.ask_rag(payload.query, payload.context, lang=payload.lang or "hi")
+        return {
+            "status": "success",
+            "answer": rag_res["answer"],
+            "sources": rag_res.get("sources", []),
+            "retrieval_mode": rag_res.get("retrieval_mode", "general"),
+            "verified": rag_res.get("verified", True),
+            "lang": rag_res.get("lang", payload.lang or "hi")
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

@@ -398,7 +398,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await res.json();
             const answer = data.answer;
 
-            appendBubble("assistant", answer);
+            let sourcesHtml = "";
+            if (data.sources && data.sources.length) {
+                const pills = data.sources.map(s => {
+                    const label = s.source_type === "official_pdf" ? "Official PDF" : (s.is_official ? "Official Portal" : "Web Ref");
+                    const color = s.is_official ? "#16a34a" : "#2563eb";
+                    return `<a href="${s.url}" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin:3px 4px 0 0;padding:2px 6px;border-radius:10px;border:1px solid ${color};font-size:0.65rem;color:${color};text-decoration:none;">[${label}] ${s.title} (${s.access_date || ""})</a>`;
+                }).join("");
+                sourcesHtml = `<div class="chat-sources" style="margin-top:6px;display:flex;flex-wrap:wrap;">${pills}</div>`;
+            }
+
+            appendBubble("assistant", answer + sourcesHtml);
 
             // Automatically speak the response aloud in Hindi!
             speakHindi(answer);

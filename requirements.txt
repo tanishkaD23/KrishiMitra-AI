@@ -16,6 +16,18 @@ gTTS>=2.5.0
 openai>=1.0.0
 python-dotenv>=1.0.0
 
+# Document RAG & Verified Web-Search Fallback
+pdfplumber>=0.10.0
+duckduckgo_search>=8.0.0
+ddgs>=9.0.0
+tavily-python>=0.8.0
+
+# Web & API Frameworks
+fastapi>=0.109.0
+uvicorn>=0.27.0
+flask>=3.0.0
+flask-cors>=4.0.0
+
 # User Interface
 streamlit>=1.30.0
 
