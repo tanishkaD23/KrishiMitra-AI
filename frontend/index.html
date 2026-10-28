@@ -20,9 +20,9 @@
         <div class="landing-nav-inner">
             <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home">
                 <span class="brand-logo-sprout">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"/><path d="M12 2v18"/><path d="M12 11c3-2 5-1 6 1"/><path d="M12 7c-3-2-5-1-6 1"/></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
                 </span>
-                <span>KrishiMitra <span class="brand-logo-ai">AI</span></span>
+                <span>KrishiMitra AI</span>
             </a>
 
             <ul class="landing-menu">
@@ -35,8 +35,8 @@
             </ul>
 
             <div class="landing-actions">
-                <a href="dashboard.html#login" class="btn-ghost-login">Login</a>
-                <a href="dashboard.html" class="btn-primary-pill">
+                <a href="dashboard.html#login" class="btn-outline-login">Login</a>
+                <a href="dashboard.html" class="btn-solid-start">
                     <span>Get Started</span>
                 </a>
             </div>
@@ -44,19 +44,31 @@
     </nav>
 
     <!-- =========================================================================
-         2. HERO SECTION (Exact Match to Reference Top-Left)
+         2. PANORAMIC HERO SECTION (Exact Match to Reference Image)
          ========================================================================= -->
-    <header class="hero-section">
-        <div class="hero-grid">
-            <!-- Left Hero Content -->
-            <div class="hero-content-col">
+    <header class="hero-panoramic-stage">
+        <!-- Floating Leaves Decorative Elements -->
+        <div class="floating-leaf-left" aria-hidden="true">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="#84CC16" opacity="0.85">
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.75V9c6.5-1.5 10.5-2.5 12-3-2 4-5.5 8-10.5 9-1.5.3-2.5.4-3.5.4-.5 0-1-.1-1.5-.2C7.5 12.5 10 9 17 8z"/>
+            </svg>
+        </div>
+        <div class="floating-leaf-right" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#84CC16" opacity="0.85">
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.75V9c6.5-1.5 10.5-2.5 12-3-2 4-5.5 8-10.5 9-1.5.3-2.5.4-3.5.4-.5 0-1-.1-1.5-.2C7.5 12.5 10 9 17 8z"/>
+            </svg>
+        </div>
+
+        <div class="hero-panoramic-content-grid">
+            <!-- Left Column: Headline, Subtitle, Buttons -->
+            <div class="hero-text-block">
                 <div class="hero-pill-badge">
-                    <span>🌱</span>
+                    <span class="badge-sprout">🌱</span>
                     <span>AI for a Stronger Farming Tomorrow</span>
                 </div>
 
                 <h1 class="hero-heading">
-                    Smarter Farming,
+                    Smarter Farming,<br>
                     <span class="hero-heading-gold">Better Harvests.</span>
                 </h1>
 
@@ -65,67 +77,99 @@
                 </p>
 
                 <div class="hero-cta-group">
-                    <a href="dashboard.html#predict" class="btn-primary-pill">
+                    <a href="dashboard.html#predict" class="btn-hero-predict">
                         <span>Predict Crop Yield</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </a>
-                    <a href="dashboard.html#krishisathi" class="btn-secondary-pill">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    <a href="dashboard.html#krishisathi" class="btn-hero-voice">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                         <span>Talk to KrishiSathi</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Hero Visual with Farmer Portrait & Overlay Badges -->
-            <div class="hero-visual-wrap">
-                <div class="hero-image-frame">
-                    <img src="images/farmer_portrait.jpg" alt="Indian Farmer holding wheat sheaves in golden harvest field" onerror="this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80'">
-                </div>
-
-                <!-- Circular / Pill Badge 1: Top Right -->
-                <div class="hero-badge-bubble">
+            <!-- Right Column: Visual Overlays Anchor Area -->
+            <div class="hero-visual-overlays-anchor">
+                <!-- Overlay 1: Green Speech Bubble near turban -->
+                <div class="hero-speech-bubble-green">
                     <span>खेती की सही सलाह,<br>अब आपकी भाषा में</span>
                 </div>
 
-                <!-- Pill Badge 2: Bottom Right -->
-                <div class="hero-badge-footer-pill">
-                    <span>आओ मिलकर खेती को बेहतर बनाएं</span>
-                    <span>🌱</span>
+                <!-- Overlay 2: White Pill Badge over harvested wheat -->
+                <div class="hero-pill-badge-white">
+                    <div class="pill-badge-text">
+                        <span>आओ मिलकर</span>
+                        <span>खेती को बेहतर बनाएं</span>
+                    </div>
+                    <div class="pill-badge-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 4 Value Highlight Cards (Exact Match to Hero Bottom Strip) -->
-        <div class="hero-highlights-strip" id="features">
-            <div class="hero-highlight-card">
-                <div class="highlight-icon-box">📈</div>
-                <div>
-                    <h3 class="highlight-title">Higher Productivity</h3>
-                    <p class="highlight-desc">with data-driven insights</p>
+        <!-- Docked 4 Value Cards Across Bottom of Hero (Exact match to reference) -->
+        <div class="hero-docked-cards-strip" id="features">
+            <!-- Card 1 -->
+            <div class="hero-dock-card">
+                <div class="dock-card-icon-box icon-sprout">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/>
+                    </svg>
+                </div>
+                <div class="dock-card-text">
+                    <h3 class="dock-title">Higher Productivity</h3>
+                    <p class="dock-desc">with data-driven insights</p>
                 </div>
             </div>
 
-            <div class="hero-highlight-card">
-                <div class="highlight-icon-box">🛡️</div>
-                <div>
-                    <h3 class="highlight-title">Reduced Risk</h3>
-                    <p class="highlight-desc">early warnings and advisory</p>
+            <!-- Card 2 -->
+            <div class="hero-dock-card">
+                <div class="dock-card-icon-box icon-shield">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline points="9 12 11 14 15 10"/>
+                    </svg>
+                </div>
+                <div class="dock-card-text">
+                    <h3 class="dock-title">Reduced Risk</h3>
+                    <p class="dock-desc">early warnings and advisory</p>
                 </div>
             </div>
 
-            <div class="hero-highlight-card">
-                <div class="highlight-icon-box">🏛️</div>
-                <div>
-                    <h3 class="highlight-title">Easy Access to Schemes</h3>
-                    <p class="highlight-desc">government support simplified</p>
+            <!-- Card 3 -->
+            <div class="hero-dock-card">
+                <div class="dock-card-icon-box icon-schemes">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="21" x2="21" y2="21"/>
+                        <line x1="6" y1="18" x2="6" y2="11"/>
+                        <line x1="10" y1="18" x2="10" y2="11"/>
+                        <line x1="14" y1="18" x2="14" y2="11"/>
+                        <line x1="18" y1="18" x2="18" y2="11"/>
+                        <polygon points="12 2 2 7 22 7 12 2"/>
+                    </svg>
+                </div>
+                <div class="dock-card-text">
+                    <h3 class="dock-title">Easy Access to Schemes</h3>
+                    <p class="dock-desc">government support simplified</p>
                 </div>
             </div>
 
-            <div class="hero-highlight-card">
-                <div class="highlight-icon-box">👥</div>
-                <div>
-                    <h3 class="highlight-title">Empowered Farmers</h3>
-                    <p class="highlight-desc">knowledge in local language</p>
+            <!-- Card 4 -->
+            <div class="hero-dock-card">
+                <div class="dock-card-icon-box icon-farmers">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div class="dock-card-text">
+                    <h3 class="dock-title">Empowered Farmers</h3>
+                    <p class="dock-desc">knowledge in local language</p>
                 </div>
             </div>
         </div>
