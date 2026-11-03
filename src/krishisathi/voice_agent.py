@@ -129,11 +129,12 @@ class KrishiSathiAgent:
 
         # Fallback to local rule-based response engine
         fallback_answer = self._local_grounded_response(query_clean, context, lang_mode, retrieval)
+        final_retrieval = self.last_rag_result or retrieval
         return {
             "answer": fallback_answer,
-            "sources": retrieval.get("sources", []),
-            "retrieval_mode": retrieval.get("retrieval_mode", "fallback_rules"),
-            "verified": retrieval.get("verified", True),
+            "sources": final_retrieval.get("sources", []),
+            "retrieval_mode": final_retrieval.get("retrieval_mode", "fallback_rules"),
+            "verified": final_retrieval.get("verified", True),
             "lang": lang_mode
         }
 
@@ -710,7 +711,7 @@ Strict Rules:
             )
 
         # 11. Open Agronomic Web Search Fallback before generic summary
-        web_agro = self._search_web_agronomy_fallback(query, crop, district, state, lang_mode)
+        web_agro = self._search_web_agronomy_fallback(query, crop, district, state, "hi")
         if web_agro:
             return web_agro
 

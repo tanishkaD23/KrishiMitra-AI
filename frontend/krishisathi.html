@@ -33,6 +33,7 @@
             </ul>
 
             <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
+                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 8px 14px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;">EN | हिंदी</button>
                 <a href="forecast.html" class="btn-outline-login" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
                 <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
                     <span style="white-space: nowrap;">Open Dashboard</span>
@@ -102,11 +103,14 @@
 
                 <!-- Quick Prompt Chips (English & Hindi) -->
                 <div class="chat-quick-chips-row" aria-label="Quick Suggested Questions">
-                    <button type="button" class="chip-btn" data-prompt="What are the benefits and eligibility criteria for PM-KISAN Samman Nidhi?" data-lang="en">PM-KISAN Eligibility (EN)</button>
-                    <button type="button" class="chip-btn" data-prompt="When should I apply CRI irrigation and urea top-dressing in Wheat?" data-lang="en">Wheat CRI Irrigation (EN)</button>
-                    <button type="button" class="chip-btn" data-prompt="How do I identify and control Yellow Rust in Wheat?" data-lang="en">Yellow Rust Check (EN)</button>
-                    <button type="button" class="chip-btn" data-prompt="पीएम किसान सम्मान निधि (PM-KISAN) की पात्रता और लाभ क्या हैं?" data-lang="hi">PM-KISAN जानकारी (हिंदी)</button>
-                    <button type="button" class="chip-btn" data-prompt="गेहूं में पहली सिंचाई (CRI) और यूरिया खाद कब देनी चाहिए?" data-lang="hi">गेहूं सिंचाई सलाह (हिंदी)</button>
+                    <button type="button" class="chip-btn" data-prompt="What is my expected crop yield per acre and how can I increase it?" data-lang="en">📊 Expected Yield (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="When should I apply CRI irrigation and urea top-dressing in Wheat?" data-lang="en">💧 Irrigation &amp; NPK (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="How do I identify and control Yellow Rust and Aphids?" data-lang="en">🛡️ Yellow Rust &amp; Pest (EN)</button>
+                    <button type="button" data-prompt="What is the live weather forecast and 7-day rain outlook for my district?" data-lang="en" class="chip-btn">🌦️ Live Weather (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="What are the benefits and eligibility criteria for PM-KISAN, PMFBY, KCC, and PM-KUSUM Solar Pump?" data-lang="en">🏛️ Govt Schemes (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="गेहूं में पहली सिंचाई (CRI) और यूरिया खाद कब और कितनी देनी चाहिए?" data-lang="hi">🌾 गेहूं सिंचाई व खाद (HI)</button>
+                    <button type="button" class="chip-btn" data-prompt="पीएम किसान (PM-KISAN), फसल बीमा (PMFBY) और सोलर पंप (PM-KUSUM) सब्सिडी कैसे मिलेगी?" data-lang="hi">🏛️ सरकारी योजनाएं (HI)</button>
+                    <button type="button" class="chip-btn" data-prompt="गेहूं और सरसों का सरकारी एमएसपी (MSP) मंडी भाव क्या है?" data-lang="hi">💰 MSP मंडी भाव (HI)</button>
                 </div>
 
                 <!-- Chat Input Form -->
@@ -161,16 +165,27 @@
                         </select>
                     </div>
 
-                    <div class="form-group-pro" style="margin-bottom: 16px;">
-                        <label for="voiceDistrictContext">Active Farm Context (District &amp; Crop)</label>
+                    <div class="form-group-pro" style="margin-bottom: 14px;">
+                        <label for="voiceDistrictContext">Active Farm Context (State, District &amp; Crop)</label>
                         <select id="voiceDistrictContext" class="form-select-pro">
-                            <option value="Meerut|Wheat" selected>Meerut District • Wheat (Rabi)</option>
-                            <option value="Meerut|Mustard">Meerut District • Mustard (Rabi)</option>
-                            <option value="Muzaffarnagar|Wheat">Muzaffarnagar • Wheat (Rabi)</option>
-                            <option value="Bulandshahr|Wheat">Bulandshahr • Wheat (Rabi)</option>
-                            <option value="Saharanpur|Wheat">Saharanpur • Wheat (Rabi)</option>
-                            <option value="Agra|Mustard">Agra • Mustard (Rabi)</option>
+                            <option value="Uttar Pradesh|Meerut|Wheat" selected>Uttar Pradesh • Meerut • Wheat</option>
+                            <option value="Uttar Pradesh|Meerut|Mustard">Uttar Pradesh • Meerut • Mustard</option>
+                            <option value="Uttar Pradesh|Lucknow|Gram">Uttar Pradesh • Lucknow • Gram (Chana)</option>
+                            <option value="Uttar Pradesh|Agra|Potato">Uttar Pradesh • Agra • Potato</option>
+                            <option value="Madhya Pradesh|Bhopal|Wheat">Madhya Pradesh • Bhopal • Wheat</option>
+                            <option value="Madhya Pradesh|Indore|Gram">Madhya Pradesh • Indore • Gram (Chana)</option>
+                            <option value="Bihar|Patna|Wheat">Bihar • Patna • Wheat</option>
+                            <option value="Bihar|Muzaffarpur|Maize">Bihar • Muzaffarpur • Maize</option>
+                            <option value="Rajasthan|Jaipur|Mustard">Rajasthan • Jaipur • Mustard</option>
+                            <option value="Rajasthan|Ganganagar|Wheat">Rajasthan • Sri Ganganagar • Wheat</option>
+                            <option value="Punjab|Ludhiana|Wheat">Punjab • Ludhiana • Wheat</option>
+                            <option value="Haryana|Karnal|Wheat">Haryana • Karnal • Wheat</option>
                         </select>
+                    </div>
+
+                    <div class="form-group-pro" style="margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="autoSpeakToggle" checked style="width: 16px; height: 16px; accent-color: var(--km-primary); cursor: pointer;">
+                        <label for="autoSpeakToggle" style="margin: 0; font-size: 0.84rem; font-weight: 700; color: var(--km-primary); cursor: pointer;">🔊 Auto-Speak AI Replies Aloud</label>
                     </div>
 
                     <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 12px 14px; font-size: 0.8rem; color: var(--km-text-muted); line-height: 1.45;">
@@ -223,11 +238,34 @@
         const voiceStatusLabel = document.getElementById("voiceStatusLabel");
         const voicePulseWave = document.getElementById("voicePulseWave");
         const btnClearChat = document.getElementById("btnClearChat");
+        const autoSpeakToggle = document.getElementById("autoSpeakToggle");
+        const publicLangBtn = document.getElementById("publicLangBtn");
+
+        let currentLang = localStorage.getItem("km_lang") === "hi" ? "hi" : "en";
+        if (voiceLangSelect) voiceLangSelect.value = currentLang;
+
+        if (publicLangBtn) {
+            publicLangBtn.textContent = currentLang === "hi" ? "हिंदी | EN" : "EN | हिंदी";
+            publicLangBtn.addEventListener("click", () => {
+                currentLang = currentLang === "hi" ? "en" : "hi";
+                localStorage.setItem("km_lang", currentLang);
+                publicLangBtn.textContent = currentLang === "hi" ? "हिंदी | EN" : "EN | हिंदी";
+                if (voiceLangSelect) voiceLangSelect.value = currentLang;
+            });
+        }
+
+        function formatMarkdown(text) {
+            const safe = String(text || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+            return safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        }
 
         function speakText(text, langCode = "en-IN") {
             if (!("speechSynthesis" in window)) return;
             window.speechSynthesis.cancel();
-            const clean = String(text || "").replace(/[*#_`~]/g, "");
+            const clean = String(text || "").replace(/[*#_`~•]/g, "");
             const utter = new SpeechSynthesisUtterance(clean);
             utter.lang = langCode;
             utter.rate = 0.95;
@@ -248,7 +286,10 @@
             if (!trimmed) return;
 
             const selectedLang = overrideLang || voiceLangSelect.value || "en";
-            const [district, crop] = (voiceDistrictContext.value || "Meerut|Wheat").split("|");
+            const parts = (voiceDistrictContext.value || "Uttar Pradesh|Meerut|Wheat").split("|");
+            const stateName = parts.length === 3 ? parts[0] : "Uttar Pradesh";
+            const district = parts.length === 3 ? parts[1] : parts[0];
+            const crop = parts.length === 3 ? parts[2] : (parts[1] || "Wheat");
 
             // Append User Message
             const userDiv = document.createElement("div");
@@ -262,7 +303,7 @@
             loadingWrap.innerHTML = `
                 <div class="chat-avatar-sathi">🌱</div>
                 <div class="chat-bubble-ai" style="color: var(--km-text-muted);">
-                    Searching verified scheme PDFs &amp; agronomic guidelines...
+                    Searching verified scheme PDFs, live weather &amp; ICAR guidelines...
                 </div>
             `;
             chatStream.appendChild(loadingWrap);
@@ -275,7 +316,7 @@
                     body: JSON.stringify({
                         query: trimmed,
                         lang: selectedLang,
-                        context: { district, crop, plot_acres: 2.0 }
+                        context: { state: stateName, district, crop, plot_acres: 2.5 }
                     })
                 });
                 const data = await res.json();
@@ -287,17 +328,17 @@
                 const respLang = data.lang || selectedLang;
                 const ttsLang = respLang === "hi" ? "hi-IN" : "en-IN";
 
-                const modeBadge = mode === "pdf_rag"
-                    ? `<span class="scheme-tag-pill tag-income">📄 Indexed Scheme PDF</span>`
+                const modeBadge = (mode === "pdf" || mode === "pdf_rag")
+                    ? `<span class="scheme-tag-pill tag-income">📄 Verified Scheme Record</span>`
                     : mode === "web_search"
-                    ? `<span class="scheme-tag-pill tag-insurance">🌐 Official Web Search</span>`
-                    : `<span class="scheme-tag-pill tag-soil">🌾 ICAR Agronomy Guide</span>`;
+                    ? `<span class="scheme-tag-pill tag-insurance">🌐 Live Official Web Search</span>`
+                    : `<span class="scheme-tag-pill tag-soil">🌾 ICAR Agronomy &amp; ML Engine</span>`;
 
                 const sourcesHtml = sources.length > 0
                     ? `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--km-border); font-size: 0.78rem; color: var(--km-text-muted);">
                         <strong>Verified Sources:</strong>
                         <ul style="margin: 4px 0 0 16px;">
-                            ${sources.map(s => `<li>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" style="color:var(--km-primary); font-weight:700; text-decoration:underline;">${s.title || s.source}</a>` : `<span>${s.title || s.source}</span>`} ${s.official ? '✅' : ''}</li>`).join("")}
+                            ${sources.map(s => `<li>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" style="color:var(--km-primary); font-weight:700; text-decoration:underline;">${s.title || s.source}</a>` : `<span>${s.title || s.source}</span>`} ${(s.official || s.is_official) ? '✅' : ''}</li>`).join("")}
                         </ul>
                        </div>`
                     : "";
@@ -308,7 +349,7 @@
                     <div class="chat-avatar-sathi">🌱</div>
                     <div class="chat-bubble-ai">
                         <div style="margin-bottom: 6px;">${modeBadge}</div>
-                        <div style="white-space: pre-line;">${answer}</div>
+                        <div style="white-space: pre-line; line-height: 1.55;">${formatMarkdown(answer)}</div>
                         ${sourcesHtml}
                         <div class="chat-bubble-actions">
                             <button type="button" class="btn-speak-audio" data-lang="${ttsLang}">🔊 Listen Aloud</button>
@@ -318,6 +359,10 @@
                 aiWrap.querySelector(".btn-speak-audio").setAttribute("data-speak", answer);
                 chatStream.appendChild(aiWrap);
                 chatStream.scrollTop = chatStream.scrollHeight;
+
+                if (autoSpeakToggle && autoSpeakToggle.checked) {
+                    speakText(answer, ttsLang);
+                }
             } catch (err) {
                 console.error("KrishiSathi chat error:", err);
                 loadingWrap.innerHTML = `

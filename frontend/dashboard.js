@@ -1899,8 +1899,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     query: query,
                     lang: activeChatLang,
                     context: {
-                        crop: state.crop,
-                        district: state.district,
+                        state: state.selectedState || "Uttar Pradesh",
+                        crop: state.crop || "Wheat",
+                        district: state.district || "Meerut",
                         plot_acres: 2.5,
                         growth_stage: "Tillering"
                     }
@@ -1973,10 +1974,11 @@ document.addEventListener("DOMContentLoaded", () => {
             sourcesHtml = `<div style="margin-top: 8px;">${badges}</div>`;
         }
 
+        const formattedAnswer = escapeHtml(answer).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
         wrap.innerHTML = `
             <div class="chat-avatar-sathi">🌾</div>
             <div class="chat-bubble-ai">
-                <div style="white-space: pre-line;">${escapeHtml(answer)}</div>
+                <div style="white-space: pre-line; line-height: 1.55;">${formattedAnswer}</div>
                 ${sourcesHtml}
                 <div class="chat-bubble-actions">
                     <button type="button" class="btn-speak-audio" onclick="speakText(this)">
