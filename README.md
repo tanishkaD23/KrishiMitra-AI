@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KrishiMitra AI (कृषिमित्र एआई)
 
 **Village & Plot-Level Yield Forecasting, Precision Agronomic Advisory, and Government Scheme Delivery for Smallholder Farmers.**
@@ -150,3 +151,7 @@ python app.py
 python -m unittest discover tests
 ```
 *Executes all 47 unit tests across live weather integration, database operations, FastAPI endpoints, Flask endpoints, yield prediction models, agronomic rules, and schemes.*
+=======
+# KrishiMitra-AI
+KrishiMitra-AI is an AI-powered agricultural decision-support platform that uses Machine Learning to predict crop yield and provide meaningful agricultural insights. The project aims to support smarter farming decisions by analysing historical crop production, soil characteristics, temperature, and rainfall data.
+>>>>>>> 38ae6fc2b78527120d5750dca59e98d254e4e987
