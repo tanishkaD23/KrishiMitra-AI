@@ -95,8 +95,27 @@ class TestApiAndDashboard(unittest.TestCase):
         data = get_model_summary()
         self.assertIn("models", data)
         self.assertIn("dataset_summary", data)
+        self.assertIn("state_coverage", data)
         self.assertEqual(data["dataset_summary"]["best_method_by_MAE"], "Previous-Year Baseline")
-        self.assertEqual(len(data["models"]), 4)
+        self.assertEqual(data["dataset_summary"]["best_method_by_R2"], "Random Forest Regressor")
+        self.assertGreaterEqual(len(data["models"]), 2)
+        self.assertEqual(len(data["state_coverage"]), 6)
+
+    def test_multi_state_dashboard_data(self):
+        for st, dist in [
+            ("Uttar Pradesh", "Lucknow"),
+            ("Madhya Pradesh", "Bhopal"),
+            ("Bihar", "Patna"),
+            ("Rajasthan", "Jaipur"),
+            ("Punjab", "Ludhiana"),
+            ("Haryana", "Karnal"),
+        ]:
+            data = get_dashboard_data(district=dist, crop="Wheat", state=st)
+            self.assertEqual(data.get("status"), "success")
+            self.assertEqual(data.get("state"), st)
+            self.assertEqual(data.get("district"), dist)
+            self.assertTrue(data["prediction"]["supported"])
+            self.assertGreater(len(data.get("historical_yields", [])), 0)
 
     def test_advisory_post_api(self):
         payload = AdvisoryInput(

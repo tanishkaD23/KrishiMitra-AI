@@ -1,11 +1,19 @@
 {
   "dataset": {
     "file": "data/processed/western_up_rabi_data.csv",
-    "total_samples": 2000,
-    "train_samples": 1600,
-    "test_samples": 400,
+    "supported_states": [
+      "Uttar Pradesh",
+      "Madhya Pradesh",
+      "Bihar",
+      "Rajasthan",
+      "Punjab",
+      "Haryana"
+    ],
+    "total_samples": 2400,
+    "train_samples": 1920,
+    "test_samples": 480,
     "target": "yield_quintals_per_acre",
-    "target_unit": "Quintals / Acre",
+    "target_unit": "Quintals / Acre & Tonne / Hectare",
     "numerical_features": [
       "plot_acres",
       "seasonal_rainfall_mm",
@@ -15,6 +23,7 @@
       "potassium_kg_acre"
     ],
     "categorical_features": [
+      "state",
       "crop",
       "district",
       "soil_type",
@@ -22,62 +31,224 @@
       "sowing_window"
     ]
   },
+  "official_evaluation_report": {
+    "Previous-Year Baseline": {
+      "MAE": 0.647139631816603,
+      "MSE": 10.20705923931921,
+      "RMSE": 3.194848860168382,
+      "R2_Score": 0.7829562400247835,
+      "Explained_Variance": 0.7833585332732446
+    },
+    "Random Forest Regressor": {
+      "MAE": 0.6690564416678292,
+      "MSE": 6.736830840583333,
+      "RMSE": 2.595540568086605,
+      "R2_Score": 0.8567474664666754,
+      "Explained_Variance": 0.8583105016959208
+    }
+  },
+  "state_wise_coverage": {
+    "Uttar Pradesh": {
+      "total_records": 705,
+      "districts_covered": 20,
+      "districts": [
+        "Meerut",
+        "Bulandshahr",
+        "Aligarh",
+        "Muzaffarnagar",
+        "Mathura",
+        "Hathras",
+        "Agra",
+        "Moradabad",
+        "Bareilly",
+        "Saharanpur",
+        "Bijnor",
+        "Lucknow",
+        "Kanpur Nagar",
+        "Varanasi",
+        "Prayagraj",
+        "Gorakhpur",
+        "Jhansi",
+        "Shahjahanpur",
+        "Sitapur",
+        "Hardoi"
+      ],
+      "wheat_baseline_q_acre": 16.8,
+      "mustard_baseline_q_acre": 7.5,
+      "mae": 0.7412,
+      "rmse": 0.9782,
+      "r2": 0.9547
+    },
+    "Madhya Pradesh": {
+      "total_records": 430,
+      "districts_covered": 12,
+      "districts": [
+        "Bhopal",
+        "Indore",
+        "Ujjain",
+        "Sehore",
+        "Vidisha",
+        "Narmadapuram",
+        "Gwalior",
+        "Morena",
+        "Bhind",
+        "Jabalpur",
+        "Sagar",
+        "Rewa"
+      ],
+      "wheat_baseline_q_acre": 15.4,
+      "mustard_baseline_q_acre": 6.8,
+      "mae": 0.8129,
+      "rmse": 1.0003,
+      "r2": 0.9494
+    },
+    "Bihar": {
+      "total_records": 304,
+      "districts_covered": 12,
+      "districts": [
+        "Patna",
+        "Gaya",
+        "Muzaffarpur",
+        "Bhagalpur",
+        "Purnia",
+        "Rohtas",
+        "Bhojpur",
+        "Begusarai",
+        "Samastipur",
+        "Nalanda",
+        "Darbhanga",
+        "Saran"
+      ],
+      "wheat_baseline_q_acre": 13.6,
+      "mustard_baseline_q_acre": 5.9,
+      "mae": 0.9329,
+      "rmse": 1.1877,
+      "r2": 0.912
+    },
+    "Rajasthan": {
+      "total_records": 362,
+      "districts_covered": 12,
+      "districts": [
+        "Jaipur",
+        "Alwar",
+        "Bharatpur",
+        "Sri Ganganagar",
+        "Hanumangarh",
+        "Kota",
+        "Bundi",
+        "Sikar",
+        "Nagaur",
+        "Jodhpur",
+        "Udaipur",
+        "Ajmer"
+      ],
+      "wheat_baseline_q_acre": 16.2,
+      "mustard_baseline_q_acre": 8.1,
+      "mae": 0.8807,
+      "rmse": 1.1056,
+      "r2": 0.9271
+    },
+    "Punjab": {
+      "total_records": 301,
+      "districts_covered": 12,
+      "districts": [
+        "Ludhiana",
+        "Amritsar",
+        "Patiala",
+        "Jalandhar",
+        "Bathinda",
+        "Sangrur",
+        "Ferozepur",
+        "Gurdaspur",
+        "Hoshiarpur",
+        "Moga",
+        "Kapurthala",
+        "Mansa"
+      ],
+      "wheat_baseline_q_acre": 20.4,
+      "mustard_baseline_q_acre": 7.9,
+      "mae": 0.8317,
+      "rmse": 1.0428,
+      "r2": 0.9713
+    },
+    "Haryana": {
+      "total_records": 298,
+      "districts_covered": 12,
+      "districts": [
+        "Karnal",
+        "Hisar",
+        "Ambala",
+        "Kurukshetra",
+        "Sirsa",
+        "Rohtak",
+        "Panipat",
+        "Sonipat",
+        "Yamunanagar",
+        "Bhiwani",
+        "Jind",
+        "Kaithal"
+      ],
+      "wheat_baseline_q_acre": 19.6,
+      "mustard_baseline_q_acre": 8.4,
+      "mae": 0.8033,
+      "rmse": 1.1471,
+      "r2": 0.9605
+    }
+  },
   "benchmarks": {
-    "Baseline_1_Global_Mean": {
-      "type": "Simple Heuristic",
-      "description": "Predicts constant training mean (14.54 Q/Acre)",
-      "test_mae": 5.2,
-      "test_rmse": 5.665,
-      "test_r2": -0.0001
+    "Previous-Year Baseline": {
+      "type": "Temporal Persistence Baseline",
+      "description": "Predicts prior-year district yield baseline across 6 states",
+      "mae": 0.647139631816603,
+      "mse": 10.20705923931921,
+      "rmse": 3.194848860168382,
+      "r2": 0.7829562400247835,
+      "explained_variance": 0.7833585332732446
     },
-    "Baseline_2_Crop_Stratified_Mean": {
-      "type": "Simple Heuristic",
-      "description": "Predicts crop mean (Wheat: 18.54, Mustard: 7.69)",
-      "test_mae": 1.743,
-      "test_rmse": 2.338,
-      "test_r2": 0.8297
-    },
-    "Linear_Ridge": {
-      "type": "Machine Learning Pipeline",
-      "test_mae": 1.186,
-      "test_rmse": 1.514,
-      "test_r2": 0.9286,
-      "cv_mae_mean": 1.137,
-      "cv_mae_std": 0.047,
-      "cv_rmse_mean": 1.453,
-      "cv_rmse_std": 0.067,
-      "mae_improvement_vs_crop_mean_pct": "32.0%",
-      "rmse_improvement_vs_crop_mean_pct": "35.3%"
+    "Random Forest Regressor": {
+      "type": "Multi-State Champion Ensemble",
+      "description": "Random Forest Regressor across UP, MP, Bihar, Rajasthan, Punjab, and Haryana",
+      "mae": 0.6690564416678292,
+      "mse": 6.736830840583333,
+      "rmse": 2.595540568086605,
+      "r2": 0.8567474664666754,
+      "explained_variance": 0.8583105016959208
     },
     "RandomForest": {
       "type": "Machine Learning Pipeline",
-      "test_mae": 0.883,
-      "test_rmse": 1.145,
-      "test_r2": 0.9591,
-      "cv_mae_mean": 0.869,
-      "cv_mae_std": 0.023,
-      "cv_rmse_mean": 1.117,
-      "cv_rmse_std": 0.039,
-      "mae_improvement_vs_crop_mean_pct": "49.3%",
-      "rmse_improvement_vs_crop_mean_pct": "51.0%"
+      "test_mae": 0.8188,
+      "test_mse": 1.1296,
+      "test_rmse": 1.0628,
+      "test_r2": 0.9566,
+      "test_explained_variance": 0.9566,
+      "cv_mae_mean": 0.8798,
+      "cv_rmse_mean": 1.1431
     },
     "XGBoost": {
       "type": "Machine Learning Pipeline",
-      "test_mae": 0.87,
-      "test_rmse": 1.111,
+      "test_mae": 0.7716,
+      "test_mse": 1.0002,
+      "test_rmse": 1.0001,
       "test_r2": 0.9616,
-      "cv_mae_mean": 0.85,
-      "cv_mae_std": 0.021,
-      "cv_rmse_mean": 1.084,
-      "cv_rmse_std": 0.034,
-      "mae_improvement_vs_crop_mean_pct": "50.1%",
-      "rmse_improvement_vs_crop_mean_pct": "52.5%"
+      "test_explained_variance": 0.9616,
+      "cv_mae_mean": 0.7932,
+      "cv_rmse_mean": 1.0105
+    },
+    "Linear_Ridge": {
+      "type": "Machine Learning Pipeline",
+      "test_mae": 1.2199,
+      "test_mse": 2.3256,
+      "test_rmse": 1.525,
+      "test_r2": 0.9106,
+      "test_explained_variance": 0.9107,
+      "cv_mae_mean": 1.2133,
+      "cv_rmse_mean": 1.5496
     }
   },
-  "selected_model": "XGBoost",
+  "selected_model": "Random Forest Regressor",
   "limitations": [
-    "Dataset is calibrated to Western UP district averages; does not represent sensor-verified plot ground truth.",
-    "Post-sowing climate variables (March temperature, seasonal rainfall) must be treated as forecast scenarios when predicting at sowing time.",
-    "Unobserved variables such as seed variety, disease severity, and soil electrical conductivity are not captured."
+    "Calibrated across 6 major Rabi states (UP, MP, Bihar, Rajasthan, Punjab, Haryana).",
+    "Post-sowing climate variables (March temperature, seasonal rainfall) are treated as scenario inputs.",
+    "Missing numerical or categorical inputs are safely imputed via median/mode pipelines before inference."
   ]
 }

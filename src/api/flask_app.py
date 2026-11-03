@@ -1,24 +1,24 @@
-"""Flask Application for KrishiMitra AI backend.
-Serves REST APIs, integrates with SQLite database and evaluated ML models,
-and hosts the custom HTML/CSS/JS frontend dashboard.
-"""
+"""Flask application for KrishiMitra AI backend serving REST APIs and the custom HTML/CSS/JS frontend."""
 
 import json
+import os
 from pathlib import Path
-from flask import Flask, request, jsonify, send_from_directory, send_file
-from dotenv import load_dotenv
+from flask import Flask, request, jsonify, send_from_directory
+try:
+    from flask_cors import CORS
+except ImportError:
+    CORS = None
 
-from config.settings import BASE_DIR, CONFIG
-
-# Load environment variables
-load_dotenv(BASE_DIR / ".env")
+from config.settings import CONFIG, BASE_DIR
 from src.database.db import (
     init_db,
     get_farmer_profile,
+    update_farmer_profile,
     get_farmer_plots,
     add_farmer_plot,
+    delete_farmer_plot,
     get_historical_yields,
-    get_model_benchmarks
+    get_model_benchmarks,
 )
 from src.yield_model.predict import YieldPredictor
 from src.advisory.agronomic_rules import AgronomicAdvisor, PersonalisedAdvisoryEngine
@@ -28,390 +28,272 @@ from src.weather.live_weather import fetch_open_meteo_weather
 
 FRONTEND_DIR = BASE_DIR / "frontend"
 
-app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
-
-# Enable CORS (either via flask_cors or pure Flask after_request hook)
-try:
-    from flask_cors import CORS
+app = Flask(__name__, static_folder=str(FRONTEND_DIR), template_folder=str(FRONTEND_DIR))
+if CORS:
     CORS(app)
-except ImportError:
-    @app.after_request
-    def add_cors_headers(response):
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
-        response.headers["Access-Control-Allow-Methods"] = "GET,PUT,POST,DELETE,OPTIONS"
-        return response
 
-
-# Initialize engines & DB
 init_db()
 predictor = YieldPredictor()
 schemes_engine = SchemeEligibilityEngine()
 voice_agent = KrishiSathiAgent()
 
 
-# =========================================================================
-# 1. Frontend Route Serving
-# =========================================================================
-
 @app.route("/")
-def serve_index():
-    return send_file(FRONTEND_DIR / "index.html")
+def index():
+    return send_from_directory(app.static_folder, "index.html")
+
 
 @app.route("/dashboard")
-def serve_dashboard():
-    return send_file(FRONTEND_DIR / "dashboard.html")
+def dashboard_page():
+    return send_from_directory(app.static_folder, "dashboard.html")
+
 
 @app.route("/forecast")
-def serve_forecast():
-    return send_file(FRONTEND_DIR / "forecast.html")
+def forecast_page():
+    return send_from_directory(app.static_folder, "forecast.html")
+
 
 @app.route("/schemes")
-def serve_schemes():
-    return send_file(FRONTEND_DIR / "schemes.html")
+def schemes_page():
+    return send_from_directory(app.static_folder, "schemes.html")
+
 
 @app.route("/krishisathi")
-def serve_krishisathi():
-    return send_file(FRONTEND_DIR / "krishisathi.html")
+def krishisathi_page():
+    return send_from_directory(app.static_folder, "krishisathi.html")
 
-@app.route("/model-summary")
-def serve_model_summary():
-    return send_file(FRONTEND_DIR / "model-summary.html")
 
 @app.route("/about")
-def serve_about():
-    return send_file(FRONTEND_DIR / "about.html")
-
-# Static assets fallback
-@app.route("/<path:filename>")
-def serve_static(filename):
-    target = FRONTEND_DIR / filename
-    if target.exists() and target.is_file():
-        return send_file(target)
-    return send_file(FRONTEND_DIR / "index.html")
+@app.route("/model-summary")
+def about_page():
+    return send_from_directory(app.static_folder, "about.html")
 
 
-# =========================================================================
-# 2. REST API Endpoints
-# =========================================================================
+@app.route("/<path:path>")
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
 
-@app.route("/api/health", methods=["GET"])
-def health_check():
+
+@app.route("/api/health")
+def health():
     return jsonify({
         "status": "ok",
         "backend": "Flask",
         "pilot_region": CONFIG.region,
-        "database": "SQLite (krishimitra.db)"
+        "supported_states": CONFIG.supported_states,
+        "database": "SQLite (krishimitra.db)",
     })
 
 
-@app.route("/api/config", methods=["GET"])
-def get_config():
-    """Returns available pilot choices, districts, crops, and baselines."""
+@app.route("/api/config")
+@app.route("/api/metadata")
+def get_metadata():
     return jsonify({
         "state": CONFIG.state,
-        "region": CONFIG.region,
-        "season": CONFIG.season,
-        "districts": CONFIG.districts,
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
+        "states": CONFIG.supported_states,
+        "districts": CONFIG.state_districts,
         "crops": CONFIG.crops,
-        "soil_types": CONFIG.soil_types,
-        "irrigation_sources": CONFIG.irrigation_sources,
-        "sowing_windows": [
-            "Early Rabi (Oct 15 - Oct 31)",
-            "Timely Sown (Nov 01 - Nov 20)",
-            "Late Sown (Nov 21 - Dec 15)",
-        ],
-        "yield_unit": CONFIG.yield_unit,
-        "baseline_benchmarks": CONFIG.baseline_yield_benchmarks,
     })
 
 
-@app.route("/api/farmer", methods=["GET"])
-def get_farmer():
-    """Returns profile and plot overview for the logged-in farmer."""
+@app.route("/api/states")
+def get_states():
+    return jsonify({
+        "status": "success",
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
+    })
+
+
+@app.route("/api/farmer", methods=["GET", "PUT", "POST"])
+def farmer_endpoint():
     farmer_id = request.args.get("farmer_id", "farmer-001")
+    if request.method in ("PUT", "POST"):
+        data = request.get_json(force=True) or {}
+        fid = data.get("farmer_id", farmer_id)
+        updated = update_farmer_profile(data, farmer_id=fid)
+        return jsonify({"status": "success", "farmer": updated})
     profile = get_farmer_profile(farmer_id)
-    if not profile:
-        return jsonify({"error": "Farmer not found"}), 404
     return jsonify({"status": "success", "farmer": profile})
 
 
 @app.route("/api/plots", methods=["GET", "POST"])
-def manage_plots():
-    """GET returns farmer's registered plots; POST registers a new plot."""
-    if request.method == "GET":
-        farmer_id = request.args.get("farmer_id", "farmer-001")
-        plots = get_farmer_plots(farmer_id)
-        return jsonify({"status": "success", "plots": plots})
+def plots_endpoint():
+    if request.method == "POST":
+        data = request.get_json(force=True) or {}
+        if "plot_name" in data and "name" not in data:
+            data["name"] = data["plot_name"]
+        if "area_acres" in data and "acres" not in data:
+            data["acres"] = data["area_acres"]
+        new_plot = add_farmer_plot(data)
+        plots = get_farmer_plots(data.get("farmer_id", "farmer-001"))
+        return jsonify({"status": "success", "plot": new_plot, "plots": plots}), 201
+    farmer_id = request.args.get("farmer_id", "farmer-001")
+    plots = get_farmer_plots(farmer_id)
+    return jsonify({"status": "success", "plots": plots})
 
-    # POST new plot
-    data = request.get_json(force=True, silent=True) or {}
-    if not data.get("name"):
-        return jsonify({"error": "Plot name is required"}), 400
 
-    new_plot = add_farmer_plot(data)
-    return jsonify({"status": "success", "plot": new_plot}), 201
+@app.route("/api/plots/<plot_id>", methods=["DELETE"])
+def delete_plot_endpoint(plot_id):
+    farmer_id = request.args.get("farmer_id", "farmer-001")
+    deleted = delete_farmer_plot(plot_id, farmer_id=farmer_id)
+    plots = get_farmer_plots(farmer_id)
+    return jsonify({"status": "success", "deleted": deleted, "plot_id": plot_id, "plots": plots})
 
 
-@app.route("/api/yield-history", methods=["GET"])
-def yield_history():
-    """Returns real historical yields from official APY database records."""
+@app.route("/api/yield-history")
+def yield_history_endpoint():
     district = request.args.get("district", "Meerut")
     crop = request.args.get("crop", "Wheat")
-    records = get_historical_yields(district, crop)
+    state = request.args.get("state")
+    records = get_historical_yields(district, crop, state=state)
     return jsonify({
         "status": "success",
         "district": district,
+        "state": state or "Uttar Pradesh",
         "crop": crop,
         "records_count": len(records),
-        "source": "Official Uttar Pradesh APY District Records (2012-2023)",
-        "records": records
+        "records": records,
     })
 
 
-@app.route("/api/analyze", methods=["POST"])
-def analyze_plot():
-    """Composite API computing yield prediction, stage-specific advisory,
-
-    and scheme eligibility in a single fast call.
-    """
-    farmer_data = request.get_json(force=True, silent=True) or {}
-    try:
-        # 1. Yield Prediction
-        yield_output = predictor.predict(farmer_data)
-
-        # 2. Agronomic Advisory
-        advisory_output = AgronomicAdvisor.get_advisory(farmer_data, yield_output)
-
-        # 3. Scheme Eligibility
-        schemes_output = schemes_engine.evaluate_eligibility(farmer_data)
-        plot_acres = float(farmer_data.get("plot_acres", 2.0))
-        farmer_category = schemes_engine.classify_farmer_category(plot_acres)
-
-        return jsonify({
-            "status": "success",
-            "plot_input": farmer_data,
-            "farmer_category": farmer_category,
-            "yield": yield_output,
-            "advisory": advisory_output,
-            "schemes": schemes_output,
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
-
-
 @app.route("/api/predict", methods=["POST"])
-def predict_yield():
-    """Point-estimate yield prediction with confidence bounds and conversions."""
-    farmer_data = request.get_json(force=True, silent=True) or {}
-    try:
-        yield_output = predictor.predict(farmer_data)
-        return jsonify(yield_output)
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+def api_predict():
+    data = request.get_json(force=True) or {}
+    res = predictor.predict(data)
+    return jsonify(res)
 
 
-@app.route("/api/dashboard-data", methods=["GET"])
-def get_dashboard_data():
-    """Unified dashboard data aggregator serving real database records,
-
-    live ML model predictions, and telemetry.
-    """
-    district = request.args.get("district", "Meerut")
-    crop = request.args.get("crop", "Wheat")
-    farmer_id = request.args.get("farmer_id", "farmer-001")
-    plot_id = request.args.get("plot_id")
-    stage = request.args.get("stage") or request.args.get("growth_stage")
-    symptoms = request.args.get("symptoms", "")
-    activities = request.args.get("activities", "")
-    sowing_date = request.args.get("sowing_date")
-    irrigation = request.args.get("irrigation") or request.args.get("irrigation_source")
-
-    # 1. Farmer & Plots from DB
-    farmer = get_farmer_profile(farmer_id) or {
-        "name": "Tanishka",
-        "district": district,
-        "total_acres": 4.5,
-        "plot_count": 3
-    }
-    plots = get_farmer_plots(farmer_id)
-
-    # Find selected plot
-    selected_plot = None
-    if plot_id:
-        for p in plots:
-            if str(p["id"]) == str(plot_id):
-                selected_plot = p
-                break
-    if not selected_plot and plots:
-        for p in plots:
-            if p["crop"].lower() == crop.lower():
-                selected_plot = p
-                break
-        if not selected_plot:
-            selected_plot = plots[0]
-
-    active_stage = stage or (selected_plot.get("stage") if selected_plot else "Tillering")
-    active_symptoms = [s.strip() for s in symptoms.split(",") if s.strip()] if symptoms else []
-    active_activities = [a.strip() for a in activities.split(",") if a.strip()] if activities else []
-    active_irrigation = irrigation or (selected_plot.get("irrigation_source") if selected_plot else "Tube well / Borewell")
-    active_sowing_date = sowing_date or (selected_plot.get("sowing_date") if selected_plot else None)
-
-    # 2. Live Prediction using evaluated model
-    plot_input = {
-        "crop": crop,
-        "district": district,
-        "state": "Uttar Pradesh",
-        "season": "Rabi",
-        "plot_acres": float(selected_plot["acres"]) if selected_plot else 2.5,
-        "soil_type": selected_plot["soil_type"] if selected_plot else "Alluvial (Sandy Loam)",
-        "irrigation_source": active_irrigation,
-        "sowing_window": selected_plot.get("sowing_window", "Timely Sown (Nov 01 - Nov 20)") if selected_plot else "Timely Sown (Nov 01 - Nov 20)",
-        "sowing_date": active_sowing_date,
-        "growth_stage": active_stage,
-        "stage": active_stage,
-        "recent_activities": active_activities,
-        "reported_symptoms": active_symptoms,
-        "seasonal_rainfall_mm": 65.0,
-        "march_max_temp_c": 31.5,
-        "nitrogen_kg_acre": float(selected_plot.get("nitrogen_kg_acre", 48.0)) if selected_plot else 48.0,
-        "phosphorus_kg_acre": float(selected_plot.get("phosphorus_kg_acre", 22.0)) if selected_plot else 22.0,
-        "potassium_kg_acre": float(selected_plot.get("potassium_kg_acre", 15.0)) if selected_plot else 15.0,
-        "farmer_id": farmer_id,
-        "plot_id": selected_plot["id"] if selected_plot else None
-    }
-    prediction = predictor.predict(plot_input)
-
-    # 3. Real Historical APY Yields from DB (2018–2023)
-    history_records = get_historical_yields(district, crop)
-    recent_history = [r for r in history_records if r["start_year"] >= 2018]
-    if not recent_history:
-        recent_history = history_records[-6:] if history_records else []
-
-    # 4. Projected points for 2024 and 2025
-    pred_q_ha = prediction.get("predicted_yield_q_ha", 40.0) if prediction.get("supported", True) else 39.0
-    forecast_points = [
-        {"year": "2024 (P)", "start_year": 2024, "yield_q_ha": round(pred_q_ha * 0.98, 1), "yield_q_acre": round(pred_q_ha * 0.98 / 2.47105, 1)},
-        {"year": "2025 (P)", "start_year": 2025, "yield_q_ha": round(pred_q_ha, 1), "yield_q_acre": round(pred_q_ha / 2.47105, 1)},
-    ]
-
-    # 5. Live Weather (Real Open-Meteo API using district coordinates)
-    weather = fetch_open_meteo_weather(district)
-
-    # 6. Agronomic Advisory
-    advisory = AgronomicAdvisor.get_advisory(plot_input, prediction if prediction.get("supported") else None)
-
-    # 7. Schemes
-    schemes = schemes_engine.evaluate_eligibility(plot_input)
-
-    # 8. Model Benchmark Metadata
-    benchmarks = get_model_benchmarks()
-
+@app.route("/api/analyze", methods=["POST"])
+def api_analyze():
+    data = request.get_json(force=True) or {}
+    y_res = predictor.predict(data)
+    advisory_res = AgronomicAdvisor.get_advisory(data, y_res if y_res.get("supported") else None)
+    schemes_res = schemes_engine.evaluate_eligibility(data)
+    farmer_cat = schemes_engine.classify_farmer_category(float(data.get("plot_acres", 2.0)))
     return jsonify({
         "status": "success",
-        "farmer": farmer,
-        "plots": plots,
-        "selected_plot": selected_plot,
-        "prediction": prediction,
-        "historical_yields": recent_history,
-        "forecast_points": forecast_points,
-        "weather": weather,
-        "advisory": advisory,
-        "schemes": schemes,
-        "model_benchmarks": benchmarks,
-        "pilot_scope": {
-            "supported_crops": CONFIG.crops,
-            "supported_districts": CONFIG.districts,
-            "pilot_region": CONFIG.region
-        }
+        "plot_input": data,
+        "farmer_category": farmer_cat,
+        "yield": y_res,
+        "advisory": advisory_res,
+        "schemes": schemes_res,
     })
 
 
 @app.route("/api/advisory", methods=["GET", "POST"])
 def api_advisory():
-    """Generates structured personalised advisory cards grounded in ICAR & IMD protocols."""
     if request.method == "POST":
-        farmer_data = request.get_json(force=True, silent=True) or {}
+        data = request.get_json(force=True) or {}
     else:
-        stage = request.args.get("stage") or request.args.get("growth_stage") or "Tillering"
-        symptoms = request.args.get("symptoms", "")
-        activities = request.args.get("activities", "")
-        farmer_data = {
+        symptoms_str = request.args.get("symptoms", "")
+        activities_str = request.args.get("activities", "")
+        data = {
             "crop": request.args.get("crop", "Wheat"),
             "district": request.args.get("district", "Meerut"),
             "state": request.args.get("state", "Uttar Pradesh"),
-            "season": request.args.get("season", "Rabi"),
-            "growth_stage": stage,
-            "stage": stage,
-            "sowing_window": request.args.get("sowing_window", "Timely Sown (Nov 01 - Nov 20)"),
-            "sowing_date": request.args.get("sowing_date"),
-            "irrigation_source": request.args.get("irrigation_source") or request.args.get("irrigation") or "Tube well / Borewell",
-            "soil_type": request.args.get("soil_type", "Alluvial (Sandy Loam)"),
-            "march_max_temp_c": float(request.args.get("march_max_temp_c", 31.5)),
-            "seasonal_rainfall_mm": float(request.args.get("seasonal_rainfall_mm", 65.0)),
-            "reported_symptoms": [s.strip() for s in symptoms.split(",") if s.strip()] if symptoms else [],
-            "recent_activities": [a.strip() for a in activities.split(",") if a.strip()] if activities else []
+            "growth_stage": request.args.get("stage") or request.args.get("growth_stage") or "Tillering",
+            "stage": request.args.get("stage") or request.args.get("growth_stage") or "Tillering",
+            "reported_symptoms": [s.strip() for s in symptoms_str.split(",") if s.strip()],
+            "recent_activities": [a.strip() for a in activities_str.split(",") if a.strip()],
         }
-    try:
-        yield_out = predictor.predict(farmer_data) if farmer_data.get("crop") in CONFIG.crops else None
-        advisory_output = PersonalisedAdvisoryEngine.generate_advisory(farmer_data, yield_out)
-        return jsonify(advisory_output)
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+    yield_out = predictor.predict(data) if data.get("crop", "Wheat") in CONFIG.crops else None
+    adv = PersonalisedAdvisoryEngine.generate_advisory(data, yield_out)
+    return jsonify(adv)
+
+
+@app.route("/api/weather")
+def api_weather():
+    district = request.args.get("district", "Meerut")
+    lat = request.args.get("lat", type=float)
+    lon = request.args.get("lon", type=float)
+    return jsonify(fetch_open_meteo_weather(district, lat=lat, lon=lon))
+
+
+@app.route("/api/schemes")
+def api_schemes():
+    crop = request.args.get("crop", "Wheat")
+    acres = float(request.args.get("acres", 2.0))
+    state = request.args.get("state", "Uttar Pradesh")
+    district = request.args.get("district", "Meerut")
+    data = {"crop": crop, "plot_acres": acres, "state": state, "district": district}
+    schemes = schemes_engine.evaluate_eligibility(data)
+    return jsonify({
+        "status": "success",
+        "farmer_category": schemes_engine.classify_farmer_category(acres),
+        "schemes": schemes,
+    })
 
 
 @app.route("/api/krishisathi/chat", methods=["POST"])
-def krishisathi_chat():
-    """Voice/Chatbot assistant returning grounded agronomic advice via RAG."""
-    payload = request.get_json(force=True, silent=True) or {}
-    query = payload.get("query", "")
-    context = payload.get("context", {})
-    lang = payload.get("lang", "hi")
-    try:
-        rag_res = voice_agent.ask_rag(query, context, lang=lang)
-        return jsonify({
-            "status": "success",
-            "answer": rag_res["answer"],
-            "sources": rag_res.get("sources", []),
-            "retrieval_mode": rag_res.get("retrieval_mode", "general"),
-            "verified": rag_res.get("verified", True),
-            "lang": rag_res.get("lang", lang)
-        })
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+@app.route("/api/chat", methods=["POST"])
+def api_chat():
+    data = request.get_json(force=True) or {}
+    query = data.get("query") or data.get("message") or ""
+    context = data.get("context") or {}
+    lang = data.get("lang") or "hi"
+    rag_res = voice_agent.ask_rag(query, context, lang=lang)
+    return jsonify({
+        "status": "success",
+        "answer": rag_res.get("answer", ""),
+        "sources": rag_res.get("sources", []),
+        "retrieval_mode": rag_res.get("retrieval_mode", "general"),
+        "verified": rag_res.get("verified", True),
+        "lang": rag_res.get("lang", lang),
+    })
 
 
-@app.route("/api/model-summary", methods=["GET"])
-def get_model_summary():
-    """Returns validated model evaluation summary and temporal split metadata."""
+@app.route("/api/model-summary")
+def api_model_summary():
     summary_path = BASE_DIR / "models" / "model_summary.json"
     if summary_path.exists():
         with open(summary_path, "r", encoding="utf-8") as f:
             return jsonify(json.load(f))
-    return jsonify({"error": "Model summary not found"}), 404
+    return jsonify({"status": "ok", "models": get_model_benchmarks()})
 
 
-@app.route("/api/schemes", methods=["GET"])
-def get_schemes():
-    """Returns government schemes list."""
-    schemes_path = BASE_DIR / "data" / "schemes" / "central_schemes.json"
-    if schemes_path.exists():
-        with open(schemes_path, "r", encoding="utf-8") as f:
-            return jsonify(json.load(f))
-    return jsonify([])
-
-
-@app.route("/api/weather", methods=["GET"])
-def api_weather():
-    """Fetches real-time weather from Open-Meteo for the requested district or coordinates."""
+@app.route("/api/dashboard-data")
+def api_dashboard_data():
+    state = request.args.get("state", "Uttar Pradesh")
     district = request.args.get("district", "Meerut")
-    lat = float(request.args.get("lat")) if request.args.get("lat") else None
-    lon = float(request.args.get("lon")) if request.args.get("lon") else None
-    return jsonify(fetch_open_meteo_weather(district, lat, lon))
+    crop = request.args.get("crop", "Wheat")
+    farmer_id = request.args.get("farmer_id", "farmer-001")
+    stage = request.args.get("stage") or request.args.get("growth_stage") or "Tillering"
+    symptoms_str = request.args.get("symptoms", "")
 
+    farmer = get_farmer_profile(farmer_id) or {"name": "Tanishka", "district": district, "state": state}
+    plots = get_farmer_plots(farmer_id)
+    pred = predictor.predict({"state": state, "district": district, "crop": crop, "plot_acres": 2.0})
+    hist = get_historical_yields(district, crop, state=state)
+    weather = fetch_open_meteo_weather(district)
+    adv = PersonalisedAdvisoryEngine.generate_advisory({
+        "crop": crop,
+        "district": district,
+        "state": state,
+        "growth_stage": stage,
+        "stage": stage,
+        "reported_symptoms": [s.strip() for s in symptoms_str.split(",") if s.strip()],
+    }, pred)
+    schemes = schemes_engine.evaluate_eligibility({"crop": crop, "district": district, "state": state, "plot_acres": 2.0})
 
-# =========================================================================
-# Entrypoint for direct Flask execution
-# =========================================================================
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    return jsonify({
+        "status": "success",
+        "state": state,
+        "district": district,
+        "crop": crop,
+        "farmer": farmer,
+        "plots": plots,
+        "prediction": pred,
+        "historical_yields": hist,
+        "forecast_points": [
+            {"year": 2024, "predicted_yield_q_acre": pred.get("predicted_yield_per_acre", 16.8)},
+            {"year": 2025, "predicted_yield_q_acre": round(pred.get("predicted_yield_per_acre", 16.8) * 1.02, 2)},
+        ],
+        "weather": weather,
+        "advisory": adv,
+        "schemes": schemes,
+    })

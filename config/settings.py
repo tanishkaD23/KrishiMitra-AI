@@ -1,10 +1,8 @@
-"""Configuration settings for KrishiMitra AI pilot prototype."""
-
+"""Configuration settings for KrishiMitra AI multi-state agricultural platform."""
 from pathlib import Path
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import List, Dict
 
-# Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
@@ -15,45 +13,168 @@ MODELS_DIR = BASE_DIR / "models"
 
 class PilotConfig(BaseModel):
     state: str = "Uttar Pradesh"
-    region: str = "Western Uttar Pradesh"
-    districts: List[str] = [
-        "Meerut",
-        "Bulandshahr",
-        "Aligarh",
-        "Muzaffarnagar",
-        "Mathura",
-        "Hathras",
-        "Agra",
-        "Moradabad",
-        "Bareilly",
-    ]
-    crops: List[str] = ["Wheat", "Mustard"]
+    region: str = "Multi-State Rabi Agricultural Belt (UP, MP, Bihar, Rajasthan, Punjab, Haryana)"
     season: str = "Rabi"
+    yield_unit: str = "Quintals/Acre"
 
-    # Soil taxonomy for Western Gangetic Plains
+    supported_states: List[str] = [
+        "Uttar Pradesh",
+        "Madhya Pradesh",
+        "Bihar",
+        "Rajasthan",
+        "Punjab",
+        "Haryana",
+    ]
+
+    state_districts: Dict[str, List[str]] = {
+        "Uttar Pradesh": [
+            "Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Azamgarh",
+            "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti",
+            "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah",
+            "Faizabad", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad",
+            "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun",
+            "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi",
+            "Kheri", "Kushi Nagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri",
+            "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit",
+            "Pratapgarh", "Prayagraj", "Rae Bareli", "Rampur", "Saharanpur", "Sambhal",
+            "Sant Kabeer Nagar", "Sant Ravidas Nagar", "Shahjahanpur", "Shamli", "Shravasti",
+            "Siddharth Nagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"
+        ],
+        "Madhya Pradesh": [
+            "Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind",
+            "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar",
+            "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua",
+            "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narmadapuram",
+            "Narsinghpur", "Neemuch", "Niwari", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa",
+            "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri",
+            "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"
+        ],
+        "Bihar": [
+            "Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar",
+            "Darbhanga", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur (Bhabua)", "Katihar",
+            "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur",
+            "Nalanda", "Nawada", "Pashchim Champaran", "Patna", "Purbi Champaran", "Purnia", "Rohtas",
+            "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan",
+            "Supaul", "Vaishali"
+        ],
+        "Rajasthan": [
+            "Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner",
+            "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Ganganagar",
+            "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur",
+            "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur",
+            "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"
+        ],
+        "Punjab": [
+            "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur",
+            "Firozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana",
+            "Malerkotla", "Mansa", "Moga", "Muktsar", "Nawanshahr", "Pathankot", "Patiala",
+            "Rupnagar", "S.A.S Nagar", "Sangrur", "Tarn Taran"
+        ],
+        "Haryana": [
+            "Ambala", "Bhiwani", "Charki Dadri", "Faridabad", "Fatehabad", "Gurgaon", "Hisar",
+            "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Mewat",
+            "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"
+        ],
+    }
+
+    districts: List[str] = [
+        "Meerut", "Bulandshahr", "Aligarh", "Muzaffarnagar", "Mathura",
+        "Hathras", "Agra", "Moradabad", "Bareilly", "Saharanpur",
+        "Bijnor", "Lucknow", "Kanpur Nagar", "Varanasi", "Prayagraj",
+        "Gorakhpur", "Jhansi", "Shahjahanpur", "Sitapur", "Hardoi"
+    ]
+
+    crops: List[str] = [
+        "Wheat",
+        "Mustard",
+        "Rapeseed &Mustard",
+        "Gram",
+        "Barley",
+        "Masoor",
+        "Maize",
+        "Peas & beans (Pulses)",
+        "Potato",
+        "Onion",
+        "Linseed",
+    ]
+
     soil_types: List[str] = [
         "Alluvial (Sandy Loam)",
         "Alluvial (Clay Loam)",
         "Loam",
+        "Black Cotton Soil (Vertisol)",
+        "Arid Sandy Soil",
     ]
 
-    # Irrigation taxonomy
     irrigation_sources: List[str] = [
         "Tube well / Borewell",
         "Canal",
+        "Canal Irrigation",
         "Rainfed",
+        "Rainfed / Limited",
     ]
 
-    # Yield unit: Quintals per Acre (typical smallholder reporting unit in North India)
-    # 1 Quintal = 100 kg. 1 Hectare ≈ 2.471 Acres.
-    yield_unit: str = "Quintals/Acre"
-
-    # Baseline average yield benchmarks (Quintals/Acre) for Western UP
     baseline_yield_benchmarks: Dict[str, Dict[str, float]] = {
-        "Wheat": {"mean": 18.5, "min": 10.0, "max": 26.0, "std": 3.2},
-        "Mustard": {"mean": 7.5, "min": 3.5, "max": 12.0, "std": 1.8},
+        "Wheat": {"mean": 16.8, "min": 8.5, "max": 26.5, "std": 2.6},
+        "Mustard": {"mean": 7.5, "min": 3.5, "max": 12.5, "std": 1.6},
+        "Rapeseed &Mustard": {"mean": 7.5, "min": 3.5, "max": 12.5, "std": 1.6},
+        "Gram": {"mean": 5.2, "min": 2.5, "max": 10.5, "std": 1.4},
+        "Barley": {"mean": 12.4, "min": 6.0, "max": 20.5, "std": 2.1},
+        "Masoor": {"mean": 4.2, "min": 2.0, "max": 8.5, "std": 1.2},
+        "Maize": {"mean": 15.2, "min": 7.0, "max": 28.0, "std": 3.1},
+        "Peas & beans (Pulses)": {"mean": 5.8, "min": 2.5, "max": 11.5, "std": 1.5},
+        "Potato": {"mean": 92.5, "min": 45.0, "max": 145.0, "std": 14.0},
+        "Onion": {"mean": 62.0, "min": 30.0, "max": 110.0, "std": 11.0},
+        "Linseed": {"mean": 3.6, "min": 1.5, "max": 7.5, "std": 1.0},
+    }
+
+    # Calibrated yield benchmarks (Quintals/Acre) across all 6 states
+    state_yield_benchmarks: Dict[str, Dict[str, Dict[str, float]]] = {
+        "Uttar Pradesh": {
+            "Wheat": {"mean": 16.8, "min": 10.0, "max": 24.5, "std": 2.8},
+            "Mustard": {"mean": 7.5, "min": 4.0, "max": 11.5, "std": 1.6},
+            "Gram": {"mean": 5.1, "min": 2.5, "max": 9.8, "std": 1.3},
+            "Barley": {"mean": 12.2, "min": 6.5, "max": 19.0, "std": 2.0},
+            "Masoor": {"mean": 4.1, "min": 2.0, "max": 8.0, "std": 1.1},
+            "Potato": {"mean": 95.0, "min": 50.0, "max": 145.0, "std": 14.0},
+        },
+        "Madhya Pradesh": {
+            "Wheat": {"mean": 15.4, "min": 9.5, "max": 22.0, "std": 2.7},
+            "Mustard": {"mean": 6.8, "min": 3.8, "max": 10.5, "std": 1.5},
+            "Gram": {"mean": 5.8, "min": 3.0, "max": 10.5, "std": 1.4},
+            "Barley": {"mean": 10.8, "min": 5.5, "max": 17.5, "std": 1.9},
+            "Masoor": {"mean": 4.5, "min": 2.2, "max": 8.5, "std": 1.2},
+            "Potato": {"mean": 88.0, "min": 45.0, "max": 135.0, "std": 13.0},
+        },
+        "Bihar": {
+            "Wheat": {"mean": 13.6, "min": 8.5, "max": 19.5, "std": 2.4},
+            "Mustard": {"mean": 5.9, "min": 3.5, "max": 9.2, "std": 1.4},
+            "Gram": {"mean": 4.6, "min": 2.2, "max": 8.8, "std": 1.2},
+            "Barley": {"mean": 9.5, "min": 5.0, "max": 15.5, "std": 1.8},
+            "Masoor": {"mean": 4.0, "min": 2.0, "max": 7.8, "std": 1.1},
+            "Maize": {"mean": 16.5, "min": 8.5, "max": 28.0, "std": 3.2},
+            "Potato": {"mean": 90.0, "min": 45.0, "max": 138.0, "std": 13.5},
+        },
+        "Rajasthan": {
+            "Wheat": {"mean": 16.2, "min": 10.0, "max": 23.0, "std": 2.9},
+            "Mustard": {"mean": 8.1, "min": 4.5, "max": 12.2, "std": 1.7},
+            "Gram": {"mean": 5.0, "min": 2.5, "max": 9.5, "std": 1.4},
+            "Barley": {"mean": 13.5, "min": 7.0, "max": 20.5, "std": 2.2},
+        },
+        "Punjab": {
+            "Wheat": {"mean": 20.4, "min": 14.0, "max": 26.5, "std": 2.2},
+            "Mustard": {"mean": 7.9, "min": 4.5, "max": 11.8, "std": 1.5},
+            "Gram": {"mean": 5.6, "min": 3.0, "max": 9.8, "std": 1.3},
+            "Barley": {"mean": 15.2, "min": 9.0, "max": 21.5, "std": 2.0},
+            "Potato": {"mean": 98.0, "min": 55.0, "max": 148.0, "std": 13.0},
+        },
+        "Haryana": {
+            "Wheat": {"mean": 19.6, "min": 13.5, "max": 25.8, "std": 2.3},
+            "Mustard": {"mean": 8.4, "min": 4.8, "max": 12.5, "std": 1.6},
+            "Gram": {"mean": 5.4, "min": 2.8, "max": 9.6, "std": 1.3},
+            "Barley": {"mean": 14.8, "min": 8.5, "max": 21.0, "std": 2.1},
+        },
     }
 
 
-# Singleton config instance
 CONFIG = PilotConfig()

@@ -16,6 +16,8 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 load_dotenv(ROOT_DIR / ".env")
 
 from src.rag.pipeline import SchemeRAGPipeline
+from src.weather.live_weather import fetch_open_meteo_weather
+from src.yield_model.predict import YieldPredictor
 
 logger = logging.getLogger(__name__)
 
@@ -24,10 +26,11 @@ class KrishiSathiAgent:
     """Conversational assistant grounded in farmer plot parameters,
     yield forecast, agronomic advisories, live weather, and government schemes.
     Features:
-    1. Scheme PDF RAG (KCC, PM-KISAN, PMFBY, PMKSY, Soil Health Card).
+    1. Scheme PDF & Central JSON RAG (PM-KISAN, PMFBY, KCC, PMKSY, Soil Health Card, PM-KUSUM, SMAM, PKVY, e-NAM).
     2. Fallback Official Web-Search for unindexed schemes or current updates.
-    3. Multilingual dialogue: Hindi, Hinglish, English.
-    4. Guardrails: Refuses to fabricate scheme eligibility or benefits if unverified.
+    3. Live Weather & 7-Day Forecast Integration + Multi-State ML Yield Predictor.
+    4. Multilingual dialogue: Hindi, Hinglish, English across all 10 Rabi crops and 6 states.
+    5. Guardrails: Refuses to fabricate scheme eligibility or benefits if unverified.
     """
 
     def __init__(
@@ -37,18 +40,25 @@ class KrishiSathiAgent:
         rag_pipeline: Optional[SchemeRAGPipeline] = None
     ):
         self.api_key = api_key or os.getenv("OPENAI_API_KEY")
-        self.model = model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        raw_model = model or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        self.model = "gpt-4o-mini" if raw_model in ("gpt-5.5", "gpt-5") else raw_model
         self._openai_client = None
         self.rag_pipeline = rag_pipeline or SchemeRAGPipeline()
+        self._predictor: Optional[YieldPredictor] = None
         self.last_rag_result: Optional[Dict[str, Any]] = None
 
         if self.api_key and self.api_key.strip():
             try:
                 from openai import OpenAI
-                self._openai_client = OpenAI(api_key=self.api_key.strip(), timeout=8.0)
+                self._openai_client = OpenAI(api_key=self.api_key.strip(), timeout=6.0)
             except Exception as e:
                 logger.warning(f"Could not initialize OpenAI client: {type(e).__name__}")
                 self._openai_client = None
+
+    def _get_predictor(self) -> YieldPredictor:
+        if self._predictor is None:
+            self._predictor = YieldPredictor()
+        return self._predictor
 
     def ask(self, query: str, context: Optional[Dict[str, Any]] = None, lang: str = "hi") -> str:
         """Answers farmer query and returns the answer string (for full backward compatibility)."""

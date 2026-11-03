@@ -17,10 +17,13 @@ logger = logging.getLogger(__name__)
 SCHEME_PORTALS = {
     "pm_kisan": "https://pmkisan.gov.in",
     "pmfby": "https://pmfby.gov.in",
-    "kcc": "https://myscheme.gov.in/schemes/kcc",
+    "kcc": "https://www.myscheme.gov.in/schemes/kcc",
     "pmksy": "https://pmksy.gov.in",
     "soil_health_card": "https://soilhealth.dac.gov.in",
-    "pm_kusum": "https://mnre.gov.in"
+    "pm_kusum": "https://pmkusum.mnre.gov.in",
+    "smam": "https://agrimachinery.nic.in",
+    "pkvy": "https://pgsindia-ncof.gov.in",
+    "enam": "https://www.enam.gov.in"
 }
 
 SCHEME_DISPLAY_NAMES = {
@@ -29,17 +32,23 @@ SCHEME_DISPLAY_NAMES = {
     "kcc": "Kisan Credit Card Scheme (किसान क्रेडिट कार्ड योजना)",
     "pmksy": "Pradhan Mantri Krishi Sinchayee Yojana (पीएम कृषि सिंचाई योजना)",
     "soil_health_card": "Soil Health Card Scheme (मृदा स्वास्थ्य कार्ड योजना)",
-    "pm_kusum": "PM-KUSUM Solar Agriculture Scheme (पीएम-कुसुम योजना)"
+    "pm_kusum": "PM-KUSUM Solar Agriculture Scheme (पीएम-कुसुम सोलर पंप योजना)",
+    "smam": "Sub-Mission on Agricultural Mechanization (SMAM कृषि यंत्र अनुदान)",
+    "pkvy": "Paramparagat Krishi Vikas Yojana (PKVY जैविक खेती योजना)",
+    "enam": "National Agriculture Market (e-NAM एवं एमएसपी मंडी सुविधा)"
 }
 
 # Bilingual synonyms map for matching Hindi/English agricultural terms
 SYNONYMS = {
     "pm_kisan": ["pm-kisan", "pm kisan", "pmkisan", "पीएम किसान", "किसान सम्मान निधि", "6000", "किस्त", "installment", "ekyc", "ईकेवाईसी"],
-    "pmfby": ["pmfby", "fasal bima", "crop insurance", "फसल बीमा", "बीमा", "क्लेम", "claim", "premium", "प्रीमियम", "loss assessment"],
-    "kcc": ["kcc", "kisan credit card", "किसान क्रेडिट कार्ड", "ऋण", "लोन", "loan", "interest subvention", "साहूकार", "क्रेडिट"],
-    "pmksy": ["pmksy", "krishi sinchayee", "irrigation", "सिंचाई", "ड्रिप", "स्प्रिंकलर", "drip", "sprinkler", "जल संचयन"],
-    "soil_health_card": ["soil health", "soil test", "मिट्टी जांच", "मृदा स्वास्थ्य", "मृदा परीक्षण", "shc", "rkvy", "सॉइल हेल्थ कार्ड"],
-    "pm_kusum": ["kusum", "pm-kusum", "solar pump", "सोलर पंप", "सौर ऊर्जा", "ट्यूबवेल सोलर", "solarize", "mnre"]
+    "pmfby": ["pmfby", "fasal bima", "crop insurance", "फसल बीमा", "बीमा", "क्लेम", "claim", "premium", "प्रीमियम", "loss assessment", "bima"],
+    "kcc": ["kcc", "kisan credit card", "किसान क्रेडिट कार्ड", "ऋण", "लोन", "loan", "interest subvention", "साहूकार", "क्रेडिट", "credit card"],
+    "pmksy": ["pmksy", "krishi sinchayee", "micro irrigation", "सिंचाई योजना", "ड्रिप", "स्प्रिंकलर", "drip", "sprinkler", "जल संचयन", "per drop more crop"],
+    "soil_health_card": ["soil health", "soil test", "मिट्टी जांच", "मृदा स्वास्थ्य", "मृदा परीक्षण", "shc", "rkvy", "सॉइल हेल्थ कार्ड", "soil card"],
+    "pm_kusum": ["kusum", "pm-kusum", "pm kusum", "solar pump", "सोलर पंप", "सौर ऊर्जा", "ट्यूबवेल सोलर", "solarize", "mnre", "कुसुम"],
+    "smam": ["smam", "machinery", "tractor", "rotavator", "happy seeder", "super seeder", "seed drill", "laser leveler", "कृषि यंत्र", "रोटावेटर", "सुपर सीडर", "हैप्पी सीडर", "मशीनरी", "यंत्र"],
+    "pkvy": ["pkvy", "paramparagat", "organic", "jaivik", "जैविक खेती", "परम्परागत", "vermicompost", "केंचुआ खाद", "bio-fertilizer"],
+    "enam": ["enam", "e-nam", "mandi", "msp", "minimum support price", "मंडी", "ई-नाम", "समर्थन मूल्य", "सरकारी खरीद", "apmc"]
 }
 
 
@@ -61,12 +70,67 @@ class SchemePDFIndexer:
                     data = json.load(f)
                     self.chunks = data.get("chunks", [])
                     if self.chunks:
+                        self._append_central_schemes_json()
                         logger.info(f"Loaded {len(self.chunks)} scheme chunks from cache: {self.cache_file.name}")
                         return
             except Exception as e:
                 logger.warning(f"Failed loading cache {self.cache_file}: {e}. Rebuilding index...")
 
         self.rebuild_index()
+        self._append_central_schemes_json()
+
+    def _append_central_schemes_json(self):
+        """Appends verified central schemes from data/schemes/central_schemes.json into the RAG index."""
+        base_dir = Path(__file__).resolve().parent.parent.parent
+        json_path = base_dir / "data" / "schemes" / "central_schemes.json"
+        if not json_path.exists():
+            return
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                schemes_data = json.load(f)
+            existing_ids = {ch.get("id") for ch in self.chunks}
+            key_map = {
+                "pm-kisan": "pm_kisan",
+                "pmfby": "pmfby",
+                "soil-health-card": "soil_health_card",
+                "pmksy-micro-irrigation": "pmksy",
+                "kcc": "kcc",
+                "pm-kusum": "pm_kusum",
+                "smam-machinery": "smam",
+                "pkvy-organic": "pkvy",
+                "enam-market": "enam"
+            }
+            for sc in schemes_data:
+                raw_id = sc.get("id", "")
+                scheme_key = key_map.get(raw_id, raw_id.replace("-", "_"))
+                chunk_id = f"central_json_{scheme_key}"
+                if chunk_id in existing_ids:
+                    continue
+                elig = sc.get("eligibility", {})
+                docs = ", ".join(sc.get("documents_required", []))
+                combined_text = (
+                    f"Scheme: {sc.get('name_en')} / {sc.get('name_hi')}. "
+                    f"Category: {sc.get('category')}. "
+                    f"Benefits (EN): {sc.get('benefit_en')} "
+                    f"Benefits (HI): {sc.get('benefit_hi')} "
+                    f"Eligibility (EN): {elig.get('criteria_en', '')} "
+                    f"Eligibility (HI): {elig.get('criteria_hi', '')} "
+                    f"Required Documents: {docs}. "
+                    f"Official Portal: {sc.get('portal_url', 'https://myscheme.gov.in')}"
+                )
+                self.chunks.append({
+                    "id": chunk_id,
+                    "scheme_key": scheme_key,
+                    "scheme_name": SCHEME_DISPLAY_NAMES.get(scheme_key, sc.get("name_en", scheme_key.upper())),
+                    "file_name": "central_schemes.json (Verified Official Guidelines)",
+                    "page": 1,
+                    "text": combined_text,
+                    "portal_url": sc.get("portal_url", SCHEME_PORTALS.get(scheme_key, "https://myscheme.gov.in")),
+                    "is_official": True,
+                    "source_type": "official_pdf"
+                })
+        except Exception as e:
+            logger.warning(f"Could not append central_schemes.json to index: {e}")
 
     def rebuild_index(self):
         """Extracts text from all scheme PDFs and creates indexed passages."""

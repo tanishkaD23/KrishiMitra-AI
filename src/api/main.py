@@ -17,8 +17,10 @@ load_dotenv(BASE_DIR / ".env")
 from src.database.db import (
     init_db,
     get_farmer_profile,
+    update_farmer_profile,
     get_farmer_plots,
     add_farmer_plot,
+    delete_farmer_plot,
     get_historical_yields,
     get_model_benchmarks
 )
@@ -134,6 +136,9 @@ def get_config():
     """Returns available pilot choices and baseline defaults for the frontend."""
     return {
         "state": CONFIG.state,
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
         "region": CONFIG.region,
         "season": CONFIG.season,
         "districts": CONFIG.districts,
@@ -150,6 +155,27 @@ def get_config():
     }
 
 
+@app.get("/api/states")
+def get_states():
+    """Returns all supported states, their districts, and state-level yield benchmarks."""
+    return {
+        "status": "success",
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
+    }
+
+
+class FarmerUpdateInput(BaseModel):
+    name: str = "Tanishka"
+    phone: Optional[str] = "+91 98765 43210"
+    village: Optional[str] = "Daurala"
+    district: str = "Meerut"
+    state: str = "Uttar Pradesh"
+    preferred_lang: Optional[str] = "en"
+    farmer_id: Optional[str] = "farmer-001"
+
+
 @app.get("/api/farmer")
 def get_farmer(farmer_id: str = "farmer-001"):
     """Returns profile and plot overview for the registered farmer."""
@@ -157,6 +183,15 @@ def get_farmer(farmer_id: str = "farmer-001"):
     if not profile:
         raise HTTPException(status_code=404, detail="Farmer not found")
     return {"status": "success", "farmer": profile}
+
+
+@app.put("/api/farmer")
+@app.post("/api/farmer")
+def update_farmer(payload: FarmerUpdateInput):
+    """Updates the registered farmer profile in SQLite."""
+    fid = payload.farmer_id or "farmer-001"
+    updated = update_farmer_profile(payload.model_dump(), farmer_id=fid)
+    return {"status": "success", "farmer": updated}
 
 
 @app.get("/api/plots")
@@ -174,16 +209,24 @@ def create_plot(payload: NewPlotInput):
     return {"status": "success", "plot": new_plot}
 
 
+@app.delete("/api/plots/{plot_id}")
+def remove_plot(plot_id: str, farmer_id: str = "farmer-001"):
+    """Removes a registered plot from the database."""
+    deleted = delete_farmer_plot(plot_id, farmer_id=farmer_id)
+    return {"status": "success", "deleted": deleted, "plot_id": plot_id}
+
+
 @app.get("/api/yield-history")
-def get_history(district: str = "Meerut", crop: str = "Wheat"):
+def get_history(district: str = "Meerut", crop: str = "Wheat", state: Optional[str] = None):
     """Returns real historical yields from official APY database records."""
-    records = get_historical_yields(district, crop)
+    records = get_historical_yields(district, crop, state=state)
     return {
         "status": "success",
         "district": district,
+        "state": state or "Uttar Pradesh",
         "crop": crop,
         "records_count": len(records),
-        "source": "Official Uttar Pradesh APY District Records (2012-2023)",
+        "source": "Official Multi-State APY District Records (2012-2023)",
         "records": records
     }
 
@@ -232,6 +275,7 @@ def predict_yield(payload: FarmerPlotInput):
 def get_dashboard_data(
     district: str = "Meerut",
     crop: str = "Wheat",
+    state: Optional[str] = None,
     farmer_id: str = "farmer-001",
     plot_id: Optional[str] = None,
     stage: Optional[str] = None,
@@ -243,12 +287,23 @@ def get_dashboard_data(
 ):
     """Unified dashboard data aggregator serving real database records,
 
-    live ML model predictions, and telemetry.
+    live ML model predictions, and telemetry across all 6 supported states.
     """
+    # Resolve state from parameter or district lookup
+    resolved_state = state
+    if not resolved_state:
+        for st_name, dists in CONFIG.state_districts.items():
+            if any(d.lower() == district.lower() for d in dists):
+                resolved_state = st_name
+                break
+    if not resolved_state:
+        resolved_state = "Uttar Pradesh"
+
     # 1. Farmer Profile & Plots from DB
     farmer = get_farmer_profile(farmer_id) or {
         "name": "Tanishka",
         "district": district,
+        "state": resolved_state,
         "total_acres": 4.5,
         "plot_count": 3
     }
@@ -280,7 +335,7 @@ def get_dashboard_data(
     plot_input = {
         "crop": crop,
         "district": district,
-        "state": "Uttar Pradesh",
+        "state": resolved_state,
         "season": "Rabi",
         "plot_acres": float(selected_plot["acres"]) if selected_plot else 2.5,
         "soil_type": selected_plot["soil_type"] if selected_plot else "Alluvial (Sandy Loam)",
@@ -302,7 +357,7 @@ def get_dashboard_data(
     prediction = predictor.predict(plot_input)
 
     # 3. Real Historical APY Yields from DB (2018–2023)
-    history_records = get_historical_yields(district, crop)
+    history_records = get_historical_yields(district, crop, state=resolved_state)
     recent_history = [r for r in history_records if r["start_year"] >= 2018]
     if not recent_history:
         recent_history = history_records[-6:] if history_records else []
@@ -328,6 +383,8 @@ def get_dashboard_data(
 
     return {
         "status": "success",
+        "state": resolved_state,
+        "district": district,
         "farmer": farmer,
         "plots": plots,
         "selected_plot": selected_plot,
@@ -338,7 +395,10 @@ def get_dashboard_data(
         "advisory": advisory,
         "schemes": schemes,
         "model_benchmarks": benchmarks,
+        "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
         "pilot_scope": {
+            "supported_states": CONFIG.supported_states,
+            "state_districts": CONFIG.state_districts,
             "supported_crops": CONFIG.crops,
             "supported_districts": CONFIG.districts,
             "pilot_region": CONFIG.region
@@ -440,11 +500,6 @@ def get_schemes():
         with open(schemes_path, "r", encoding="utf-8") as f:
             return json.load(f)
     return []
-
-
-@app.get("/model-summary")
-def serve_model_summary_page():
-    return FileResponse(FRONTEND_DIR / "model-summary.html")
 
 
 @app.get("/forecast")

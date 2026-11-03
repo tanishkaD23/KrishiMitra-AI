@@ -1,259 +1,430 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yield Forecasting & Precision Analytics | KrishiMitra AI</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Crop Yield Prediction | KrishiMitra AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .page-header-banner {
-            background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-deep) 100%);
-            color: #ffffff;
-            padding: 50px 28px 60px;
-            text-align: center;
-        }
-        .page-header-banner h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-        .page-header-banner p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        .forecast-grid-layout {
-            max-width: 1360px;
-            margin: -30px auto 60px;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: 440px 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-        @media (max-width: 980px) {
-            .forecast-grid-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="brand-link">
-                <div class="brand-logo-circle">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path><path d="M12 11c3-2 5-1 6 1"></path><path d="M12 7c-3-2-5-1-6 1"></path></svg>
-                </div>
-                <div class="brand-text-block">
-                    <h1>KrishiMitra <span class="brand-hindi">कृषिमित्र</span></h1>
-                    <span class="brand-pilot-tag" data-i18n="pilot_badge">पायलट: पश्चिमी उत्तर प्रदेश</span>
-                </div>
+
+    <!-- =========================================================================
+         1. CONSISTENT TOP NAVBAR
+         ========================================================================= -->
+    <nav class="landing-nav" aria-label="Main Navigation">
+        <div class="landing-nav-inner">
+            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
+                <span class="brand-logo-sprout" style="flex-shrink: 0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+                </span>
+                <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
-            <ul class="nav-links" id="mainNavLinks">
-                <li><a href="index.html" class="nav-link" data-i18n="nav_home">होम</a></li>
-                <li><a href="forecast.html" class="nav-link active" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                <li><a href="schemes.html" class="nav-link" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">किसान डैशबोर्ड</a></li>
-                <li><a href="model-summary.html" class="nav-link" data-i18n="nav_model_summary">मॉडल सारांश</a></li>
-                <li><a href="krishisathi.html" class="nav-link" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                <li><a href="about.html" class="nav-link" data-i18n="nav_about">हमारे बारे में</a></li>
+
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" class="active" style="white-space: nowrap;">Yield Prediction</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
             </ul>
-            <div class="nav-actions">
-                <button type="button" class="lang-toggle-btn" aria-label="Switch Language">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    <span class="lang-current">हिंदी</span> | <span class="lang-alt">EN</span>
-                </button>
-                <a href="krishisathi.html" class="btn-nav-cta">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-                    <span>कृषिसाथी</span>
+
+            <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
+                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 8px 14px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;">EN | हिंदी</button>
+                <a href="krishisathi.html" class="btn-outline-login" id="navAskSathi" style="white-space: nowrap; flex-shrink: 0;">Ask KrishiSathi</a>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
+                    <span id="navOpenDash" style="white-space: nowrap;">Open Dashboard</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Page Header Banner -->
-    <div class="page-header-banner">
-        <h1 data-i18n="service_1_title">खेत स्तर पर पैदावार पूर्वानुमान</h1>
-        <p data-i18n="service_1_desc">मशीन लर्निंग (XGBoost) द्वारा आपके खेत के आकार, मिट्टी, सिंचाई और तापमान के आधार पर क्विंटल/एकड़ में सटीक अनुमान।</p>
-    </div>
-
-    <!-- Main Forecast Dashboard -->
-    <main class="forecast-grid-layout">
-        <!-- Input Form -->
-        <div class="preview-form-card" style="box-shadow: var(--shadow-card);">
-            <h3 data-i18n="preview_heading">खेत और फसल का विवरण</h3>
-            <p data-i18n="preview_sub">सटीक पूर्वानुमान के लिए अपने खेत के आंकड़े दर्ज करें</p>
-
-            <form id="fullPlotForm">
-                <div class="form-group">
-                    <label class="form-label" data-i18n="lbl_select_crop">फसल चुनें:</label>
-                    <div class="crop-radio-toggles">
-                        <label class="crop-radio-btn active" data-crop="Wheat">
-                            <input type="radio" name="crop" value="Wheat" checked>
-                            <span data-i18n="crop_wheat">गेहूं (Wheat)</span>
-                        </label>
-                        <label class="crop-radio-btn" data-crop="Mustard">
-                            <input type="radio" name="crop" value="Mustard">
-                            <span data-i18n="crop_mustard">सरसों (Mustard)</span>
-                        </label>
-                    </div>
+    <!-- =========================================================================
+         2. PAGE HERO BANNER
+         ========================================================================= -->
+    <header class="page-hero-banner">
+        <div class="page-hero-inner">
+            <div>
+                <div class="page-hero-tag">
+                    <span>🌾</span>
+                    <span>Plot-Level Rabi Harvest Intelligence</span>
                 </div>
-
-                <div class="form-group">
-                    <label for="districtSelect" class="form-label" data-i18n="lbl_select_district">जिला (District):</label>
-                    <select id="districtSelect" name="district" class="form-select">
-                        <option value="Meerut">मेरठ (Meerut)</option>
-                        <option value="Bulandshahr">बुलंदशहर (Bulandshahr)</option>
-                        <option value="Aligarh">अलीगढ़ (Aligarh)</option>
-                        <option value="Muzaffarnagar">मुजफ्फरनगर (Muzaffarnagar)</option>
-                        <option value="Mathura">मथुरा (Mathura)</option>
-                        <option value="Agra">आगरा (Agra)</option>
-                        <option value="Moradabad">मुरादाबाद (Moradabad)</option>
-                        <option value="Bareilly">बरेली (Bareilly)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="plotAcres" class="form-label" data-i18n="lbl_plot_size">खेत का आकार (Acres):</label>
-                    <input type="number" id="plotAcres" name="plot_acres" class="form-input" min="0.25" max="25" step="0.25" value="2.0">
-                    <div class="quick-acre-chips">
-                        <button type="button" class="acre-chip" data-acres="1.0">1 एकड़</button>
-                        <button type="button" class="acre-chip active" data-acres="2.0">2 एकड़</button>
-                        <button type="button" class="acre-chip" data-acres="3.0">3 एकड़</button>
-                        <button type="button" class="acre-chip" data-acres="5.0">5 एकड़</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="soilSelect" class="form-label" data-i18n="lbl_soil_type">मिट्टी का प्रकार:</label>
-                    <select id="soilSelect" name="soil_type" class="form-select">
-                        <option value="Alluvial (Sandy Loam)">बलुई दोमट (Alluvial Sandy Loam)</option>
-                        <option value="Alluvial (Clay Loam)">चिकनी दोमट (Alluvial Clay Loam)</option>
-                        <option value="Loam">साधारण दोमट (Loam)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="irrigationSelect" class="form-label" data-i18n="lbl_irrigation">सिंचाई का साधन:</label>
-                    <select id="irrigationSelect" name="irrigation_source" class="form-select">
-                        <option value="Tube well / Borewell">नलकूप / बोरवेल (Tube well)</option>
-                        <option value="Canal">नहर (Canal)</option>
-                        <option value="Rainfed">बारिश पर निर्भर (Rainfed)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="sowingSelect" class="form-label" data-i18n="lbl_sowing">बुवाई का समय:</label>
-                    <select id="sowingSelect" name="sowing_window" class="form-select">
-                        <option value="Early Rabi (Oct 15 - Oct 31)">अगेती बुवाई (15 - 31 अक्टूबर)</option>
-                        <option value="Timely Sown (Nov 01 - Nov 20)" selected>समय पर बुवाई (01 - 20 नवंबर)</option>
-                        <option value="Late Sown (Nov 21 - Dec 15)">पछेती बुवाई (21 नवंबर - 15 दिसंबर)</option>
-                    </select>
-                </div>
-
-                <!-- Sliders for Nutrients and Weather -->
-                <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 14px; margin-bottom: 18px;">
-                    <h5 style="margin-bottom: 10px; color: var(--forest-dark); font-weight: 700;">उर्वरक और मौसम विवरण</h5>
-                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
-                        <div style="display: flex; justify-content: space-between;">
-                            <span>नाइट्रोजन (N):</span>
-                            <span id="nValText" style="font-weight: 700; color: var(--green-primary);">48 kg/एकड़</span>
-                        </div>
-                        <input type="range" id="inputN" min="10" max="80" value="48" style="width: 100%;">
-
-                        <div style="display: flex; justify-content: space-between; margin-top: 6px;">
-                            <span>मार्च अधिकतम तापमान (°C):</span>
-                            <span id="tempValText" style="font-weight: 700; color: #b45309;">31.5 °C</span>
-                        </div>
-                        <input type="range" id="inputMarchTemp" min="26" max="38" value="31.5" step="0.5" style="width: 100%;">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-form-calculate" data-i18n="btn_calc_yield">
-                    पैदावार और सलाह प्राप्त करें
-                </button>
-            </form>
+                <h1 class="page-hero-title">Crop Yield Prediction &amp; Plot Analysis</h1>
+                <p class="page-hero-sub">
+                    Configure your plot parameters, soil nutrition, irrigation source, and sowing window to generate real-time yield predictions in <strong>q/acre</strong> and <strong>q/ha</strong> alongside tailored agronomic recommendations.
+                </p>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <a href="dashboard.html#predict" class="btn-hero-voice" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <span>Switch to Full Dashboard View →</span>
+                </a>
+            </div>
         </div>
+    </header>
 
-        <!-- Output Display -->
-        <div class="preview-results-panel">
-            <!-- Hero Yield Display -->
-            <div class="hero-forecast-display">
-                <div class="forecast-top-row">
-                    <span class="forecast-tag" data-i18n="yield_heading">पैदावार पूर्वानुमान</span>
-                    <span id="fBenchmarkBadge" class="benchmark-status-badge">+11.5% जिला औसत से ऊपर</span>
-                </div>
-                <div class="forecast-main-numbers">
+    <!-- =========================================================================
+         3. MAIN YIELD PREDICTION WORKSPACE
+         ========================================================================= -->
+    <main class="standalone-main">
+        <div class="predict-screen-grid" style="grid-template-columns: 1.08fr 0.92fr; align-items: start;">
+
+            <!-- LEFT COLUMN: PLOT CONFIGURATION FORM -->
+            <div class="predict-form-card">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--km-border);">
                     <div>
-                        <span class="num-big" id="fYieldVal">19.2</span>
-                        <span class="num-unit" data-i18n="yield_unit">क्विंटल / एकड़</span>
+                        <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--km-text-heading);">Configure Plot Parameters</h2>
+                        <p style="font-size: 0.86rem; color: var(--km-text-muted);">Calibrated across UP, MP, Bihar, Rajasthan, Punjab &amp; Haryana</p>
                     </div>
-                    <div class="total-harvest-box">
-                        <span data-i18n="lbl_total_harvest">कुल अनुमानित फसल:</span>
-                        <strong id="fTotalHarvest">38.4 क्विंटल</strong>
-                    </div>
+                    <span class="chart-badge-tag">6 States • Rabi Season</span>
                 </div>
-                <div class="confidence-range-track">
-                    <div class="conf-meta-row">
-                        <span data-i18n="lbl_conf_band">90% अनुमानित दायरा:</span>
-                        <strong id="fConfText">17.3 - 21.1 क्विंटल</strong>
+
+                <form id="fullPlotForm" action="/api/analyze" method="POST" novalidate>
+                    <!-- 1. Crop Selection (Supports all major Rabi crops across 6 states) -->
+                    <fieldset style="border: none; margin-bottom: 20px;">
+                        <legend style="font-size: 0.88rem; font-weight: 700; color: var(--km-text-heading); margin-bottom: 8px;">1. Select Rabi Crop <span style="color: var(--km-danger);">*</span></legend>
+                        <div class="crop-radio-grid" style="margin-bottom: 12px;">
+                            <label class="crop-radio-card crop-radio-btn active" for="cropWheat">
+                                <input type="radio" id="cropWheat" name="crop" value="Wheat" checked>
+                                <div>
+                                    <div style="font-size: 0.98rem; font-weight: 800;">🌾 Wheat (Rabi)</div>
+                                    <div style="font-size: 0.78rem; color: var(--km-text-muted); font-weight: 500;">HD-2967 / HD-3086 / DBW-187</div>
+                                </div>
+                            </label>
+                            <label class="crop-radio-card crop-radio-btn" for="cropMustard">
+                                <input type="radio" id="cropMustard" name="crop" value="Mustard">
+                                <div>
+                                    <div style="font-size: 0.98rem; font-weight: 800;">🌼 Mustard (Rabi)</div>
+                                    <div style="font-size: 0.78rem; color: var(--km-text-muted); font-weight: 500;">Pusa Bold / Giriraj (DRMRIJ-31)</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-group-pro" style="margin-top: 8px;">
+                            <label for="forecastCropSelect" style="font-size: 0.82rem; color: var(--km-text-muted);">Or Choose from All Supported Rabi Crops (UP, MP, Bihar, Rajasthan, Punjab, Haryana):</label>
+                            <select id="forecastCropSelect" class="form-select-pro">
+                                <option value="Wheat" selected>Wheat / गेहूं (Rabi)</option>
+                                <option value="Mustard">Mustard / सरसों (Rabi)</option>
+                                <option value="Gram">Gram / चना (Rabi)</option>
+                                <option value="Barley">Barley / जौ (Rabi)</option>
+                                <option value="Masoor">Masoor / मसूर (Rabi)</option>
+                                <option value="Maize">Maize / मक्का (Rabi)</option>
+                                <option value="Peas & beans (Pulses)">Peas &amp; Beans / मटर (Rabi)</option>
+                                <option value="Potato">Potato / आलू (Rabi)</option>
+                                <option value="Onion">Onion / प्याज (Rabi)</option>
+                                <option value="Linseed">Linseed / अलसी (Rabi)</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <!-- 2. State, District & Plot Area -->
+                    <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                        <div class="form-group-pro">
+                            <label for="stateSelect">2. State <span style="color: var(--km-danger);">*</span></label>
+                            <select id="stateSelect" name="state" class="form-select-pro" required>
+                                <option value="Uttar Pradesh" selected>Uttar Pradesh (UP)</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh (MP)</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Haryana">Haryana</option>
+                            </select>
+                            <span class="field-hint">6 major Rabi agricultural states supported.</span>
+                        </div>
+
+                        <div class="form-group-pro">
+                            <label for="districtSelect">3. District <span style="color: var(--km-danger);">*</span></label>
+                            <select id="districtSelect" name="district" class="form-select-pro" required>
+                                <option value="Meerut" selected>Meerut</option>
+                                <option value="Muzaffarnagar">Muzaffarnagar</option>
+                                <option value="Bulandshahr">Bulandshahr</option>
+                                <option value="Aligarh">Aligarh</option>
+                                <option value="Mathura">Mathura</option>
+                                <option value="Hathras">Hathras</option>
+                                <option value="Agra">Agra</option>
+                                <option value="Moradabad">Moradabad</option>
+                                <option value="Bareilly">Bareilly</option>
+                                <option value="Saharanpur">Saharanpur</option>
+                                <option value="Bijnor">Bijnor</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Kanpur Nagar">Kanpur Nagar</option>
+                                <option value="Varanasi">Varanasi</option>
+                                <option value="Prayagraj">Prayagraj</option>
+                                <option value="Gorakhpur">Gorakhpur</option>
+                                <option value="Jhansi">Jhansi</option>
+                                <option value="Shahjahanpur">Shahjahanpur</option>
+                                <option value="Sitapur">Sitapur</option>
+                                <option value="Hardoi">Hardoi</option>
+                            </select>
+                            <span class="field-hint">Districts update automatically by state.</span>
+                        </div>
+
+                        <div class="form-group-pro">
+                            <label for="plotAcres">4. Plot Size (in Acres) <span style="color: var(--km-danger);">*</span></label>
+                            <input type="number" id="plotAcres" name="plot_acres" class="form-input-pro" value="2.0" min="0.1" max="100" step="0.1" required aria-describedby="plotAcresHint plotAcresError">
+                            <span id="plotAcresHint" class="field-hint">0.1 to 100.0 acres (1 Ha = 2.47 Acres).</span>
+                            <span id="plotAcresError" class="field-error-msg" role="alert">Please enter a valid plot size between 0.1 and 100 acres.</span>
+                            <div class="acre-chip-row" role="group" aria-label="Quick plot size presets">
+                                <button type="button" class="acre-chip" data-acres="1.0">1.0 Acre</button>
+                                <button type="button" class="acre-chip active" data-acres="2.0">2.0 Acres</button>
+                                <button type="button" class="acre-chip" data-acres="3.5">3.5 Acres</button>
+                                <button type="button" class="acre-chip" data-acres="5.0">5.0 Acres</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="conf-meter">
-                        <div class="conf-fill-bar" style="left: 20%; width: 60%;"></div>
+
+                    <!-- 3. Soil Type, Irrigation Source & Sowing Window -->
+                    <div class="predict-form-row">
+                        <div class="form-group-pro">
+                            <label for="soilSelect">5. Soil Texture</label>
+                            <select id="soilSelect" name="soil_type" class="form-select-pro">
+                                <option value="Alluvial (Sandy Loam)" selected>Alluvial (Sandy Loam)</option>
+                                <option value="Alluvial (Clay Loam)">Alluvial (Clay Loam)</option>
+                                <option value="Clay Loam">Clay Loam</option>
+                                <option value="Sandy Soil">Sandy Soil</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-pro">
+                            <label for="irrigationSelect">6. Irrigation Source</label>
+                            <select id="irrigationSelect" name="irrigation_source" class="form-select-pro">
+                                <option value="Tube well / Borewell" selected>Tube well / Borewell</option>
+                                <option value="Canal Irrigation">Canal Irrigation</option>
+                                <option value="Rainfed / Limited">Rainfed / Limited</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group-pro">
+                            <label for="sowingSelect">7. Sowing Window</label>
+                            <select id="sowingSelect" name="sowing_window" class="form-select-pro">
+                                <option value="Timely Sown (Nov 01 - Nov 20)" selected>Timely Sown (Nov 01 – Nov 20)</option>
+                                <option value="Moderately Late (Nov 21 - Dec 05)">Moderately Late (Nov 21 – Dec 05)</option>
+                                <option value="Very Late Sown (After Dec 05)">Very Late Sown (After Dec 05)</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+
+                    <!-- 4. Soil Nutrition & Weather Sliders -->
+                    <fieldset style="border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 16px; margin-bottom: 20px; background: var(--km-bg);">
+                        <legend style="font-size: 0.86rem; font-weight: 800; color: var(--km-primary); padding: 0 8px;">8. Nutrient Dosage &amp; Seasonal Weather Factors</legend>
+
+                        <div class="predict-form-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 14px;">
+                            <div class="form-group-pro">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <label for="inputN">Nitrogen Applied (N):</label>
+                                    <strong id="nValText" style="font-size: 0.88rem; color: var(--km-primary);">48 kg/acre</strong>
+                                </div>
+                                <input type="range" id="inputN" name="nitrogen_kg_acre" min="10" max="90" step="2" value="48" style="accent-color: var(--km-primary); width: 100%;">
+                                <span class="field-hint">Recommended: ~48–55 kg/acre for Wheat, ~32 kg/acre for Mustard</span>
+                            </div>
+
+                            <div class="form-group-pro">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <label for="inputMarchTemp">Expected March Max Temp:</label>
+                                    <strong id="tempValText" style="font-size: 0.88rem; color: var(--km-primary);">31.5 °C</strong>
+                                </div>
+                                <input type="range" id="inputMarchTemp" name="march_max_temp_c" min="26" max="39" step="0.5" value="31.5" style="accent-color: var(--km-primary); width: 100%;">
+                                <span class="field-hint">Temperatures above 32°C during grain filling trigger heat-stress advisories</span>
+                            </div>
+                        </div>
+
+                        <div class="predict-form-row" style="margin-bottom: 0;">
+                            <div class="form-group-pro">
+                                <label for="inputP">Phosphorus (P₂O₅ kg/acre)</label>
+                                <input type="number" id="inputP" name="phosphorus_kg_acre" class="form-input-pro" value="22" min="0" max="60" step="1">
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="inputK">Potassium (K₂O kg/acre)</label>
+                                <input type="number" id="inputK" name="potassium_kg_acre" class="form-input-pro" value="15" min="0" max="50" step="1">
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="inputRain">Rabi Winter Rainfall (mm)</label>
+                                <input type="number" id="inputRain" name="seasonal_rainfall_mm" class="form-input-pro" value="65" min="0" max="300" step="5">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div id="formErrorBanner" role="alert" aria-live="polite" style="display: none; background: var(--km-danger-bg); color: var(--km-danger); padding: 12px 16px; border-radius: var(--km-radius-sm); font-size: 0.88rem; font-weight: 700; margin-bottom: 16px;"></div>
+
+                    <button type="submit" id="btnSubmitForecast" class="btn-predict-action" style="width: 100%; height: 48px; font-size: 1rem;">
+                        <span>Generate Crop Yield Prediction &amp; Advisory</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
             </div>
 
-            <!-- Agronomic Alerts & Action Recommendations -->
-            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow-card);">
-                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 16px;" data-i18n="advisories_title">
-                    चरणबद्ध कृषि प्रबंधन (Timely Actions)
-                </h3>
-                <div id="alertsBox" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-                    <!-- Dynamic Alerts -->
+            <!-- RIGHT COLUMN: PREDICTION RESULTS & AGRONOMIC ADVISORY -->
+            <div style="display: flex; flex-direction: column; gap: 22px;">
+
+                <!-- Primary Emerald Yield Prediction Result Card -->
+                <div class="yield-result-emerald-card" style="flex-direction: column; align-items: stretch; gap: 18px; margin-bottom: 0;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                        <div class="yield-result-left">
+                            <div class="yield-result-icon">🌾</div>
+                            <div class="yield-result-text">
+                                <div class="label" id="resCropHeader">Estimated Yield • Wheat (Meerut)</div>
+                                <div class="val">
+                                    <span id="fYieldVal">18.4</span> <span style="font-size: 1.15rem; font-weight: 700;">q/acre</span>
+                                    <span id="fYieldHaVal" style="font-size: 1rem; font-weight: 600; opacity: 0.85; margin-left: 6px;">(45.5 q/ha)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="yield-result-badge">
+                            <span id="fBenchmarkBadge">+9.5% vs District Average</span>
+                        </div>
+                    </div>
+
+                    <!-- 3 Key Harvest Breakdown Boxes -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.16);">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
+                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">Total Plot Harvest</div>
+                            <div id="fTotalHarvest" style="font-size: 1.25rem; font-weight: 800; color: var(--km-accent-gold);">36.8 Quintals</div>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
+                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">90% Confidence Range</div>
+                            <div id="fConfText" style="font-size: 1.05rem; font-weight: 800;">16.6 – 20.2 q/acre</div>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
+                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">District Baseline</div>
+                            <div id="fBaselineText" style="font-size: 1.05rem; font-weight: 800;">16.8 q/acre</div>
+                        </div>
+                    </div>
                 </div>
-                <div id="advisoryBox" style="display: flex; flex-direction: column; gap: 14px;">
-                    <!-- Dynamic Step-by-Step Advisories -->
+
+                <!-- Critical Field Alerts & Personalised Advisories Card -->
+                <div class="predict-form-card" style="padding: 24px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                        <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-text-heading);">📋 Personalised Agronomic Advisory</h3>
+                        <span class="scheme-tag-pill tag-income">ICAR Verified</span>
+                    </div>
+
+                    <!-- Dynamic Critical Alerts -->
+                    <div id="alertsBox" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;"></div>
+
+                    <!-- Dynamic Actionable Recommendations -->
+                    <div id="advisoryBox" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="padding: 14px; background: var(--km-bg); border-radius: 10px; color: var(--km-text-muted); font-size: 0.9rem;">
+                            Calculating plot-specific recommendations...
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Multi-State Yield Benchmarks Overview -->
+                <div class="predict-form-card" style="padding: 20px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                        <h3 style="font-size: 1.02rem; font-weight: 800; color: var(--km-text-heading);">🗺️ Supported States &amp; Regional Yield Baselines</h3>
+                        <span class="chart-badge-tag">80 Districts • 6 States</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 0.82rem;">
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Uttar Pradesh (20 Dist.)</strong>
+                            <span>Wheat: 16.8 q/ac • Mustard: 7.5 q/ac</span>
+                        </div>
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Madhya Pradesh (12 Dist.)</strong>
+                            <span>Wheat: 15.4 q/ac • Mustard: 6.8 q/ac</span>
+                        </div>
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Bihar (12 Dist.)</strong>
+                            <span>Wheat: 13.6 q/ac • Mustard: 5.9 q/ac</span>
+                        </div>
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Rajasthan (12 Dist.)</strong>
+                            <span>Wheat: 16.2 q/ac • Mustard: 8.1 q/ac</span>
+                        </div>
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Punjab (12 Dist.)</strong>
+                            <span>Wheat: 20.4 q/ac • Mustard: 7.9 q/ac</span>
+                        </div>
+                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
+                            <strong style="color: var(--km-primary); display: block;">Haryana (12 Dist.)</strong>
+                            <span>Wheat: 19.6 q/ac • Mustard: 8.4 q/ac</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Agronomic Notes -->
+                <div class="important-notes-card">
+                    <strong>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        <span>Understanding Your Yield Prediction Units</span>
+                    </strong>
+                    <ul>
+                        <li><strong>1 Hectare = 2.471 Acres</strong>. All predictions are displayed in both <strong>Quintals per Acre (q/acre)</strong> and <strong>Quintals per Hectare (q/ha)</strong> for complete clarity.</li>
+                        <li><strong>1 Quintal = 100 Kilograms (kg)</strong>. Total Plot Harvest multiplies your per-acre yield by your entered plot size.</li>
+                        <li>Need spoken guidance in Hindi or English? <a href="krishisathi.html" style="font-weight: 800; text-decoration: underline; color: var(--km-primary);">Ask KrishiSathi AI →</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-brand-col">
-                <h2 data-i18n="footer_brand">कृषिमित्र एआई</h2>
-                <p data-i18n="footer_desc">समर्पित भारतीय छोटे एवं सीमांत किसानों के स्वावलंबन और समृद्धि के लिए।</p>
+    <!-- =========================================================================
+         4. CONSISTENT FOOTER
+         ========================================================================= -->
+    <footer class="landing-footer">
+        <div class="landing-footer-inner">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="brand-logo-sprout" style="width: 28px; height: 28px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
+                </span>
+                <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
+                <span>• Multi-State Agricultural Intelligence Platform (UP, MP, Bihar, Rajasthan, Punjab, Haryana)</span>
             </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_links_title">पृष्ठ लिंक</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html" data-i18n="nav_home">होम</a></li>
-                    <li><a href="forecast.html" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                    <li><a href="schemes.html" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                    <li><a href="krishisathi.html" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                </ul>
+
+            <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="forecast.html">Yield Prediction</a>
+                <a href="dashboard.html#advisories">Advisories</a>
+                <a href="schemes.html">Government Schemes</a>
+                <a href="krishisathi.html">KrishiSathi AI</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_contact_title">सहायता</h4>
-                <p data-i18n="kisan_helpline">किसान कॉल सेंटर: 1800-180-1551</p>
+
+            <div>
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
             </div>
-        </div>
-        <div class="footer-bottom-bar">
-            <span data-i18n="footer_copyright">© 2026 KrishiMitra AI. सर्वाधिकार सुरक्षित।</span>
         </div>
     </footer>
 
-    <script src="translations.js"></script>
-    <script src="shared.js"></script>
     <script src="forecast.js"></script>
+    <script>
+        (function() {
+            let lang = localStorage.getItem("km_lang") || "en";
+            const btn = document.getElementById("publicLangBtn");
+            function applyForecastLang() {
+                const isHi = lang === "hi";
+                if (btn) btn.textContent = isHi ? "हिंदी | EN" : "EN | हिंदी";
+                const menuLinks = document.querySelectorAll(".landing-menu a");
+                const navEn = ["Home", "Yield Prediction", "Advisories", "Government Schemes", "KrishiSathi AI", "About"];
+                const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "कृषि सलाह", "सरकारी योजनाएं", "कृषिसाथी AI", "हमारे बारे में"];
+                menuLinks.forEach((a, i) => { if (navEn[i]) a.textContent = isHi ? navHi[i] : navEn[i]; });
+
+                const askBtn = document.getElementById("navAskSathi");
+                const dashBtn = document.getElementById("navOpenDash");
+                if (askBtn) askBtn.textContent = isHi ? "कृषिसाथी से पूछें" : "Ask KrishiSathi";
+                if (dashBtn) dashBtn.textContent = isHi ? "डैशबोर्ड खोलें" : "Open Dashboard";
+
+                const titleEl = document.querySelector(".page-hero-title");
+                const subEl = document.querySelector(".page-hero-sub");
+                if (titleEl) titleEl.textContent = isHi ? "फसल उपज पूर्वानुमान और खेत विश्लेषण" : "Crop Yield Prediction & Plot Analysis";
+                if (subEl) subEl.innerHTML = isHi
+                    ? "अपने खेत के मापदंड, मिट्टी पोषण, सिंचाई स्रोत और बुवाई समय को चुनें और <strong>क्विंटल/एकड़</strong> तथा <strong>क्विंटल/हेक्टेयर</strong> में सटीक उपज पूर्वानुमान प्राप्त करें।"
+                    : "Configure your plot parameters, soil nutrition, irrigation source, and sowing window to generate real-time yield predictions in <strong>q/acre</strong> and <strong>q/ha</strong> alongside tailored agronomic recommendations.";
+            }
+            if (btn) {
+                btn.addEventListener("click", () => {
+                    lang = lang === "hi" ? "en" : "hi";
+                    localStorage.setItem("km_lang", lang);
+                    applyForecastLang();
+                });
+            }
+            applyForecastLang();
+        })();
+    </script>
 </body>
 </html>

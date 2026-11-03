@@ -113,5 +113,96 @@
       "Two Passport-size Photographs"
     ],
     "portal_url": "https://www.myscheme.gov.in/schemes/kcc"
+  },
+  {
+    "id": "pm-kusum",
+    "name_en": "PM-KUSUM (Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan)",
+    "name_hi": "प्रधानमंत्री कुसुम सोलर पंप योजना (PM-KUSUM)",
+    "category": "Solar & Energy Subsidy",
+    "benefit_en": "Up to 60% government subsidy (30% Central + 30% State) for installing standalone solar-powered agriculture irrigation pumps (2 HP to 10 HP), eliminating diesel costs.",
+    "benefit_hi": "सौर ऊर्जा चालित कृषि पंप (2 HP से 10 HP) लगाने पर 60% तक सरकारी सब्सिडी (30% केंद्र + 30% राज्य), डीजल खर्च से मुक्ति।",
+    "eligibility": {
+      "min_land_acres": 0.5,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["Uttar Pradesh", "Madhya Pradesh", "Bihar", "Rajasthan", "Punjab", "Haryana", "All"],
+      "criteria_en": "Individual farmers, Water User Associations, and Farmer Producer Organizations (FPOs) with assured borewell/irrigation need.",
+      "criteria_hi": "व्यक्तिगत किसान, जल उपयोगकर्ता समूह और किसान उत्पादक संगठन (FPO) जिनके पास बोरवेल/सिंचाई स्रोत है।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Ownership Record (Khatauni / Jamabandi)",
+      "Bank Account Passbook",
+      "Borewell / Water Source Declaration"
+    ],
+    "portal_url": "https://pmkusum.mnre.gov.in"
+  },
+  {
+    "id": "smam-machinery",
+    "name_en": "Sub-Mission on Agricultural Mechanization (SMAM)",
+    "name_hi": "कृषि मशीनीकरण उप-मिशन (SMAM - कृषि यंत्र अनुदान)",
+    "category": "Farm Machinery & Equipment",
+    "benefit_en": "40% to 50% subsidy on purchase of modern Rabi farm machinery including Super Seeder, Happy Seeder, Rotavator, Zero-Till Seed Drill, and Laser Land Leveler; up to 80% for Custom Hiring Centres (CHCs).",
+    "benefit_hi": "सुपर सीडर, हैप्पी सीडर, रोटावेटर, जीरो-टिल सीड ड्रिल और लेजर लैंड लेवलर खरीदने पर 40% से 50% तक अनुदान; कस्टम हायरिंग सेंटर पर 80% तक सब्सिडी।",
+    "eligibility": {
+      "min_land_acres": 0.5,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["All"],
+      "criteria_en": "All landholding farmers; higher 50% subsidy slab for Small, Marginal, SC/ST, and Women farmers.",
+      "criteria_hi": "सभी भूमिधर किसान; लघु, सीमांत, अनुसूचित जाति/जनजाति और महिला किसानों को 50% उच्च अनुदान।"
+    },
+    "documents_required": [
+      "Aadhaar Card & Farmer Registration Token",
+      "Land Record (Khatauni)",
+      "GST Invoice / Quotation of Approved Implement",
+      "Bank Passbook & Tractor RC (for tractor-drawn implements)"
+    ],
+    "portal_url": "https://agrimachinery.nic.in"
+  },
+  {
+    "id": "pkvy-organic",
+    "name_en": "Paramparagat Krishi Vikas Yojana (PKVY)",
+    "name_hi": "परम्परागत कृषि विकास योजना (PKVY - जैविक खेती)",
+    "category": "Organic & Sustainable Farming",
+    "benefit_en": "Financial assistance of ₹50,000 per hectare over 3 years (including ₹31,000/ha directly via DBT for organic inputs, bio-fertilizers, and vermicompost) plus PGS-India organic certification.",
+    "benefit_hi": "जैविक खेती के लिए 3 वर्षों में ₹50,000 प्रति हेक्टेयर की सहायता (जिसमें जैविक खाद और बीजों के लिए ₹31,000/हेक्टेयर सीधे DBT द्वारा) और मुफ्त जैविक प्रमाणीकरण।",
+    "eligibility": {
+      "min_land_acres": 0.25,
+      "max_land_acres": 5.0,
+      "farmer_categories": ["Marginal", "Small", "Medium"],
+      "states": ["All"],
+      "criteria_en": "Farmers forming clusters of 20 hectares (approx. 50 acres) transitioning to chemical-free/organic farming.",
+      "criteria_hi": "20 हेक्टेयर (लगभग 50 एकड़) के क्लस्टर में जैविक खेती अपनाने वाले किसान समूह।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Land Record (Khatauni)",
+      "Active DBT-enabled Bank Account",
+      "Cluster Registration via Regional Council"
+    ],
+    "portal_url": "https://pgsindia-ncof.gov.in"
+  },
+  {
+    "id": "enam-market",
+    "name_en": "National Agriculture Market (e-NAM) & MSP Mandi Linkage",
+    "name_hi": "राष्ट्रीय कृषि बाजार (e-NAM एवं एमएसपी मंडी सुविधा)",
+    "category": "Market Linkage & MSP",
+    "benefit_en": "Pan-India electronic trading portal connecting APMC mandis across UP, MP, Bihar, Rajasthan, Punjab, and Haryana for transparent quality assaying, competitive bidding, and direct bank payment for Wheat & Mustard.",
+    "benefit_hi": "यूपी, एमपी, बिहार, राजस्थान, पंजाब और हरियाणा की मंडियों को जोड़ने वाला डिजिटल पोर्टल; गेहूं और सरसों की पारदर्शी नीलामी, गुणवत्ता जांच और सीधा बैंक भुगतान।",
+    "eligibility": {
+      "min_land_acres": 0.01,
+      "max_land_acres": null,
+      "farmer_categories": ["Marginal", "Small", "Medium", "Large"],
+      "states": ["All"],
+      "criteria_en": "All farmers selling agricultural produce at e-NAM integrated APMC mandis.",
+      "criteria_hi": "ई-नाम (e-NAM) से जुड़ी मंडियों में अपनी फसल बेचने वाले सभी किसान।"
+    },
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Passbook / Cancelled Cheque",
+      "Mobile Number for OTP & Bid Alerts"
+    ],
+    "portal_url": "https://www.enam.gov.in"
   }
 ]

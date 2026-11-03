@@ -28,11 +28,11 @@ class TestFlaskApp(unittest.TestCase):
         self.assertIn("PM Kisan", content)
         self.assertIn("KrishiSathi", content)
 
-    def test_model_summary_route(self):
-        res = self.client.get("/model-summary")
+    def test_forecast_route(self):
+        res = self.client.get("/forecast")
         self.assertEqual(res.status_code, 200)
         content = res.get_data(as_text=True)
-        self.assertIn("Model Performance & Benchmark Summary", content)
+        self.assertIn("Crop Yield Prediction", content)
 
     def test_get_plots_api(self):
         res = self.client.get("/api/plots")

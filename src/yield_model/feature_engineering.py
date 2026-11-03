@@ -1,11 +1,13 @@
-"""Feature engineering and preprocessing pipeline for crop yield forecasting."""
+"""Feature engineering and preprocessing pipeline for multi-state crop yield forecasting."""
 
 from typing import List, Tuple
 from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.pipeline import Pipeline
 
 CATEGORICAL_FEATURES: List[str] = [
+    "state",
     "crop",
     "district",
     "soil_type",
@@ -26,16 +28,21 @@ TARGET_COLUMN: str = "yield_quintals_per_acre"
 
 
 def get_preprocessor() -> ColumnTransformer:
-    """Creates a ColumnTransformer pipeline that scales numerical inputs
-
-    and one-hot encodes categorical attributes.
+    """Creates a ColumnTransformer pipeline that imputes missing values,
+    scales numerical inputs, and one-hot encodes categorical attributes.
     """
     numeric_transformer = Pipeline(
-        steps=[("scaler", StandardScaler())]
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+        ]
     )
 
     categorical_transformer = Pipeline(
-        steps=[("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=False))]
+        steps=[
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("onehot", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
+        ]
     )
 
     preprocessor = ColumnTransformer(

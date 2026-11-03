@@ -553,9 +553,9 @@ const TRANSLATIONS = {
     }
 };
 
-// Global language helper
+// Global language helper (defaults to English across all pages)
 function getStoredLanguage() {
-    return localStorage.getItem("krishimitra_lang") || "hi";
+    return "en";
 }
 
 function setStoredLanguage(lang) {

@@ -1,355 +1,412 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KrishiSathi AI Voice Assistant | कृषिमित्र</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>KrishiSathi AI Voice &amp; Chat Assistant | KrishiMitra AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .voice-page-shell {
-            max-width: 960px;
-            margin: 40px auto 80px;
-            padding: 0 20px;
-        }
-        .voice-hero-card {
-            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-card) 100%);
-            border-radius: var(--radius-xl);
-            padding: 48px 32px;
-            color: #ffffff;
-            text-align: center;
-            box-shadow: var(--shadow-card);
-            position: relative;
-            margin-bottom: 28px;
-        }
-        .voice-mic-main-btn {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            background: #ef4444;
-            color: #ffffff;
-            border: 4px solid #ffffff;
-            font-size: 2.5rem;
-            cursor: pointer;
-            margin: 20px auto 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.45);
-            transition: all 0.25s ease;
-        }
-        .voice-mic-main-btn:hover {
-            transform: scale(1.08);
-        }
-        .voice-mic-main-btn.listening {
-            animation: pulse-ring 1.2s infinite;
-            background: #dc2626;
-        }
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 24px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-        .voice-status-indicator {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gold-strip);
-        }
-        .voice-prompts-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 24px;
-        }
-        .voice-prompt-chip {
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-            padding: 8px 16px;
-            border-radius: var(--radius-full);
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .voice-prompt-chip:hover {
-            background: var(--gold-strip);
-            color: var(--forest-dark);
-            border-color: var(--gold-strip);
-        }
-        .chat-container-card {
-            background: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
-            padding: 24px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            height: 480px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="brand-link">
-                <div class="brand-logo-circle">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path><path d="M12 11c3-2 5-1 6 1"></path><path d="M12 7c-3-2-5-1-6 1"></path></svg>
-                </div>
-                <div class="brand-text-block">
-                    <h1>KrishiMitra <span class="brand-hindi">कृषिमित्र</span></h1>
-                    <span class="brand-pilot-tag" data-i18n="pilot_badge">पायलट: पश्चिमी उत्तर प्रदेश</span>
-                </div>
+
+    <!-- =========================================================================
+         1. CONSISTENT TOP NAVBAR
+         ========================================================================= -->
+    <nav class="landing-nav" aria-label="Main Navigation">
+        <div class="landing-nav-inner">
+            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
+                <span class="brand-logo-sprout" style="flex-shrink: 0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+                </span>
+                <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
-            <ul class="nav-links" id="mainNavLinks">
-                <li><a href="index.html" class="nav-link" data-i18n="nav_home">होम</a></li>
-                <li><a href="forecast.html" class="nav-link" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                <li><a href="schemes.html" class="nav-link" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">किसान डैशबोर्ड</a></li>
-                <li><a href="model-summary.html" class="nav-link" data-i18n="nav_model_summary">मॉडल सारांश</a></li>
-                <li><a href="krishisathi.html" class="nav-link active" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                <li><a href="about.html" class="nav-link" data-i18n="nav_about">हमारे बारे में</a></li>
+
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" class="active" style="white-space: nowrap;">KrishiSathi AI</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
             </ul>
-            <div class="nav-actions">
-                <button type="button" class="lang-toggle-btn" aria-label="Switch Language">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    <span class="lang-current">हिंदी</span> | <span class="lang-alt">EN</span>
-                </button>
+
+            <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
+                <a href="forecast.html" class="btn-outline-login" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
+                    <span style="white-space: nowrap;">Open Dashboard</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Main Voice Shell -->
-    <main class="voice-page-shell">
-        <!-- Interactive Mic Hero Card -->
-        <div class="voice-hero-card">
-            <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 6px;" data-i18n="voice_banner_title">
-                कृषिसाथी (KrishiSathi) आवाज सेवा
-            </h1>
-            <p style="font-size: 1rem; color: #cbd5e1;" data-i18n="voice_banner_sub">
-                बिना लिखे सीधे अपनी आवाज में बोलकर पूछिए और जवाब भी आवाज में सुनिए
-            </p>
-
-            <!-- Pulsing Mic Button -->
-            <button type="button" id="mainVoiceMicBtn" class="voice-mic-main-btn" title="बोलने के लिए दबाएं">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-            </button>
-            <div class="voice-status-indicator" id="mainVoiceStatus">
-                माइक दबाएं और हिंदी या English में बोलें
+    <!-- =========================================================================
+         2. PAGE HERO BANNER
+         ========================================================================= -->
+    <header class="page-hero-banner">
+        <div class="page-hero-inner">
+            <div>
+                <div class="page-hero-tag">
+                    <span>🎙️</span>
+                    <span>RAG PDF Retrieval + Official Web Search Fallback</span>
+                </div>
+                <h1 class="page-hero-title">KrishiSathi AI Voice &amp; Chat Assistant</h1>
+                <p class="page-hero-sub">
+                    Ask any question about Wheat &amp; Mustard crop care, irrigation schedules, disease management, or government schemes. Converse in <strong>English</strong>, <strong>Hindi (हिंदी)</strong>, or <strong>Hinglish</strong> via voice or text.
+                </p>
             </div>
-
-            <!-- Quick Voice Prompts -->
-            <div class="voice-prompts-row">
-                <button class="voice-prompt-chip" data-q="मेरी पैदावार कितनी होगी?">पैदावार कितनी निकलेगी?</button>
-                <button class="voice-prompt-chip" data-q="पहली सिंचाई कब करनी है?">पहली सिंचाई कब करें?</button>
-                <button class="voice-prompt-chip" data-q="यूरिया खाद कितनी डालें?">यूरिया की सही मात्रा?</button>
-                <button class="voice-prompt-chip" data-q="पीला रतुआ और माहू कीट से कैसे बचें?">कीट और रोग से बचाव?</button>
-                <button class="voice-prompt-chip" data-q="मुझे कौन सी सरकारी योजना मिलेगी?">सरकारी योजनाएं?</button>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="dashboard.html#krishisathi" class="btn-hero-voice" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <span>Open in Dashboard View →</span>
+                </a>
             </div>
         </div>
+    </header>
 
-        <!-- Chat History Window -->
-        <div class="chat-container-card">
-            <div id="fullChatBox" class="chat-messages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding: 12px;">
-                <div class="v-bubble v-bubble-assistant" style="background: #f8fafc; border: 1px solid var(--border-light); padding: 14px; border-radius: 12px; font-size: 0.96rem;">
-                    <strong>कृषिसाथी (KrishiSathi):</strong>
-                    <p>नमस्ते किसान भाई! मैं आपका डिजिटल कृषि मित्र हूँ। आप अपनी गेहूं या सरसों की फसल, खाद, पानी, रोग या सरकारी योजनाओं के बारे में कोई भी सवाल बोलकर या लिखकर पूछ सकते हैं।</p>
+    <!-- =========================================================================
+         3. MAIN KRISHISATHI TWO-COLUMN WORKSPACE
+         ========================================================================= -->
+    <main class="standalone-main">
+        <div class="krishisathi-two-col-layout">
+
+            <!-- LEFT: INTERACTIVE CHAT STREAM & TYPED INPUT -->
+            <div class="krishisathi-chat-card" style="height: 640px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--km-border);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="chat-avatar-sathi">🌱</div>
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 800; color: var(--km-text-heading);">KrishiSathi Digital Agronomist</div>
+                            <div style="font-size: 0.78rem; color: var(--km-success); font-weight: 700;">● Online • Grounded in Official Scheme PDFs &amp; ICAR Guides</div>
+                        </div>
+                    </div>
+                    <button type="button" id="btnClearChat" class="btn-outline-login" style="padding: 5px 12px; font-size: 0.78rem;">Clear Chat</button>
+                </div>
+
+                <!-- Chat Messages Stream -->
+                <div class="chat-stream-box" id="sathiChatStream" aria-live="polite">
+                    <div class="chat-bubble-ai-wrap">
+                        <div class="chat-avatar-sathi">🌱</div>
+                        <div class="chat-bubble-ai">
+                            <strong>Welcome to KrishiSathi AI! (नमस्ते किसान मित्र!)</strong><br>
+                            I can help you with <strong>Wheat &amp; Mustard agronomy</strong>, <strong>CRI irrigation &amp; fertilizer schedules</strong>, <strong>Yellow Rust diagnostics</strong>, and verified government schemes like <strong>PM-KISAN</strong> and <strong>PMFBY</strong>.<br><br>
+                            Ask me in <strong>English</strong> or <strong>Hindi (हिंदी)</strong> by typing below or clicking the microphone!
+                            <div class="chat-bubble-actions">
+                                <button type="button" class="btn-speak-audio" data-speak="Welcome to KrishiSathi AI! Ask me any question about Wheat, Mustard, or government schemes in English or Hindi." data-lang="en-IN">🔊 Listen (EN)</button>
+                                <button type="button" class="btn-speak-audio" data-speak="नमस्ते किसान मित्र! आप मुझसे गेहूं, सरसों या सरकारी योजनाओं के बारे में हिंदी या अंग्रेजी में सवाल पूछ सकते हैं।" data-lang="hi-IN">🔊 सुनें (HI)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Prompt Chips (English & Hindi) -->
+                <div class="chat-quick-chips-row" aria-label="Quick Suggested Questions">
+                    <button type="button" class="chip-btn" data-prompt="What are the benefits and eligibility criteria for PM-KISAN Samman Nidhi?" data-lang="en">PM-KISAN Eligibility (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="When should I apply CRI irrigation and urea top-dressing in Wheat?" data-lang="en">Wheat CRI Irrigation (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="How do I identify and control Yellow Rust in Wheat?" data-lang="en">Yellow Rust Check (EN)</button>
+                    <button type="button" class="chip-btn" data-prompt="पीएम किसान सम्मान निधि (PM-KISAN) की पात्रता और लाभ क्या हैं?" data-lang="hi">PM-KISAN जानकारी (हिंदी)</button>
+                    <button type="button" class="chip-btn" data-prompt="गेहूं में पहली सिंचाई (CRI) और यूरिया खाद कब देनी चाहिए?" data-lang="hi">गेहूं सिंचाई सलाह (हिंदी)</button>
+                </div>
+
+                <!-- Chat Input Form -->
+                <form id="sathiChatForm" class="chat-input-bar" onsubmit="event.preventDefault();">
+                    <label for="sathiChatInput" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);">Type your farming or scheme question</label>
+                    <input type="text" id="sathiChatInput" name="query" class="chat-input-text" placeholder="Ask a question in English or Hindi (e.g., How to apply for PMFBY crop insurance?)..." required>
+                    <button type="button" class="btn-chat-mic" id="btnInlineMic" title="Speak with Microphone" aria-label="Use voice input">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                    </button>
+                    <button type="submit" class="btn-chat-send" id="btnSendChat" title="Send Message" aria-label="Send message">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- RIGHT: VOICE COMPANION & CONVERSATION CONTROLS -->
+            <div class="voice-mode-card" style="height: 640px;">
+                <div style="width: 100%;">
+                    <span class="scheme-tag-pill tag-income" style="display: inline-block; margin-bottom: 10px;">Hands-Free Voice Mode</span>
+                    <h2 class="voice-mode-title" style="margin-bottom: 8px;">Speak Directly to KrishiSathi</h2>
+                    <p style="font-size: 0.88rem; color: var(--km-text-muted);">
+                        Select your preferred conversation language below and tap the microphone to speak naturally.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="pulse-mic-outer">
+                        <div class="pulse-mic-wave" id="voicePulseWave" style="display: none;"></div>
+                        <button type="button" class="pulse-mic-btn" id="btnBigVoiceMic" aria-label="Start or stop voice recording">
+                            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                        </button>
+                    </div>
+                    <div class="voice-status-text" id="voiceStatusLabel">Tap the Microphone to Speak</div>
+
+                    <div class="waveform-container" aria-hidden="true">
+                        <div class="waveform-bar" style="height: 12px;"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                        <div class="waveform-bar"></div>
+                    </div>
+                </div>
+
+                <div style="width: 100%; text-align: left;">
+                    <div class="form-group-pro" style="margin-bottom: 14px;">
+                        <label for="voiceLangSelect">Response &amp; Voice Language</label>
+                        <select id="voiceLangSelect" class="form-select-pro">
+                            <option value="en" selected>English (en-IN)</option>
+                            <option value="hi">Hindi / हिंदी (hi-IN)</option>
+                            <option value="hinglish">Hinglish (Conversational)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-pro" style="margin-bottom: 16px;">
+                        <label for="voiceDistrictContext">Active Farm Context (District &amp; Crop)</label>
+                        <select id="voiceDistrictContext" class="form-select-pro">
+                            <option value="Meerut|Wheat" selected>Meerut District • Wheat (Rabi)</option>
+                            <option value="Meerut|Mustard">Meerut District • Mustard (Rabi)</option>
+                            <option value="Muzaffarnagar|Wheat">Muzaffarnagar • Wheat (Rabi)</option>
+                            <option value="Bulandshahr|Wheat">Bulandshahr • Wheat (Rabi)</option>
+                            <option value="Saharanpur|Wheat">Saharanpur • Wheat (Rabi)</option>
+                            <option value="Agra|Mustard">Agra • Mustard (Rabi)</option>
+                        </select>
+                    </div>
+
+                    <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 12px 14px; font-size: 0.8rem; color: var(--km-text-muted); line-height: 1.45;">
+                        <strong style="color: var(--km-primary);">🔒 Verified Source Guarantee:</strong> KrishiSathi searches indexed official scheme PDFs first and falls back to trusted <code>.gov.in</code> portals when needed.
+                    </div>
                 </div>
             </div>
 
-            <!-- Bottom Chat Input Bar -->
-            <form id="chatInputForm" style="display: flex; gap: 10px; margin-top: 14px;">
-                <input type="text" id="chatTextQuery" class="form-input" placeholder="अपना सवाल यहां लिखें या ऊपर दिए गए माइक से बोलें..." required style="flex: 1; border-radius: var(--radius-full);">
-                <button type="submit" class="btn-hero-primary" style="padding: 12px 24px; border-radius: var(--radius-full); font-size: 0.92rem;">
-                    पूछें ↗
-                </button>
-            </form>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-brand-col">
-                <h2 data-i18n="footer_brand">कृषिमित्र एआई</h2>
-                <p data-i18n="footer_desc">समर्पित भारतीय छोटे एवं सीमांत किसानों के स्वावलंबन और समृद्धि के लिए।</p>
+    <!-- =========================================================================
+         4. CONSISTENT FOOTER
+         ========================================================================= -->
+    <footer class="landing-footer">
+        <div class="landing-footer-inner">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="brand-logo-sprout" style="width: 28px; height: 28px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
+                </span>
+                <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
+                <span>• Western Uttar Pradesh Agricultural Intelligence Platform</span>
             </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_links_title">पृष्ठ लिंक</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html" data-i18n="nav_home">होम</a></li>
-                    <li><a href="forecast.html" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                    <li><a href="schemes.html" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                    <li><a href="krishisathi.html" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                </ul>
+
+            <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="forecast.html">Yield Prediction</a>
+                <a href="dashboard.html#advisories">Advisories</a>
+                <a href="schemes.html">Government Schemes</a>
+                <a href="krishisathi.html">KrishiSathi AI</a>
+                <a href="about.html">About</a>
             </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_contact_title">सहायता</h4>
-                <p data-i18n="kisan_helpline">किसान कॉल सेंटर: 1800-180-1551</p>
+
+            <div>
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
             </div>
-        </div>
-        <div class="footer-bottom-bar">
-            <span data-i18n="footer_copyright">© 2026 KrishiMitra AI. सर्वाधिकार सुरक्षित।</span>
         </div>
     </footer>
 
-    <script src="translations.js"></script>
-    <script src="shared.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let isRecording = false;
-            let recognition = null;
+    document.addEventListener("DOMContentLoaded", () => {
+        const chatStream = document.getElementById("sathiChatStream");
+        const chatForm = document.getElementById("sathiChatForm");
+        const chatInput = document.getElementById("sathiChatInput");
+        const voiceLangSelect = document.getElementById("voiceLangSelect");
+        const voiceDistrictContext = document.getElementById("voiceDistrictContext");
+        const btnBigVoiceMic = document.getElementById("btnBigVoiceMic");
+        const btnInlineMic = document.getElementById("btnInlineMic");
+        const voiceStatusLabel = document.getElementById("voiceStatusLabel");
+        const voicePulseWave = document.getElementById("voicePulseWave");
+        const btnClearChat = document.getElementById("btnClearChat");
 
-            const micBtn = document.getElementById("mainVoiceMicBtn");
-            const statusText = document.getElementById("mainVoiceStatus");
-            const fullChatBox = document.getElementById("fullChatBox");
-            const chatInputForm = document.getElementById("chatInputForm");
-            const chatTextQuery = document.getElementById("chatTextQuery");
-            const promptChips = document.querySelectorAll(".voice-prompt-chip");
+        function speakText(text, langCode = "en-IN") {
+            if (!("speechSynthesis" in window)) return;
+            window.speechSynthesis.cancel();
+            const clean = String(text || "").replace(/[*#_`~]/g, "");
+            const utter = new SpeechSynthesisUtterance(clean);
+            utter.lang = langCode;
+            utter.rate = 0.95;
+            window.speechSynthesis.speak(utter);
+        }
 
-            function speak(text) {
-                if (!('speechSynthesis' in window)) return;
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                const lang = window.krishiI18n ? window.krishiI18n.getCurrentLang() : "hi";
-                utterance.lang = lang === "hi" ? "hi-IN" : "en-IN";
-                utterance.rate = 0.95;
-
-                const voices = window.speechSynthesis.getVoices();
-                const voice = voices.find(v => lang === "hi" ? v.lang.includes("hi") : v.lang.includes("en-IN") || v.lang.includes("en-US"));
-                if (voice) utterance.voice = voice;
-
-                utterance.onstart = () => {
-                    statusText.textContent = lang === "hi" ? "कृषिसाथी बोल रहे हैं..." : "KrishiSathi is speaking...";
-                };
-                utterance.onend = () => {
-                    statusText.textContent = lang === "hi" ? "माइक दबाएं और हिंदी या English में बोलें" : "Click mic and speak in Hindi or English";
-                };
-
-                window.speechSynthesis.speak(utterance);
+        chatStream.addEventListener("click", (e) => {
+            const btn = e.target.closest(".btn-speak-audio");
+            if (btn) {
+                const text = btn.getAttribute("data-speak");
+                const lang = btn.getAttribute("data-lang") || "en-IN";
+                speakText(text, lang);
             }
-
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (SpeechRecognition) {
-                recognition = new SpeechRecognition();
-                recognition.interimResults = false;
-
-                recognition.onstart = () => {
-                    isRecording = true;
-                    micBtn.classList.add("listening");
-                    const lang = window.krishiI18n ? window.krishiI18n.getCurrentLang() : "hi";
-                    statusText.textContent = lang === "hi" ? "आपकी आवाज सुन रहे हैं... कृपया बोलिए" : "Listening... Please speak";
-                };
-
-                recognition.onresult = (e) => {
-                    const transcript = e.results[0][0].transcript;
-                    chatTextQuery.value = transcript;
-                    sendQuery(transcript);
-                };
-
-                recognition.onerror = () => stop();
-                recognition.onend = () => stop();
-            }
-
-            function toggle() {
-                if (!recognition) {
-                    alert("माइक सुविधा Google Chrome या Edge ब्राउज़र में सबसे अच्छी तरह काम करती है।");
-                    return;
-                }
-                if (isRecording) {
-                    recognition.stop();
-                    stop();
-                } else {
-                    const lang = window.krishiI18n ? window.krishiI18n.getCurrentLang() : "hi";
-                    recognition.lang = lang === "hi" ? "hi-IN" : "en-IN";
-                    try { recognition.start(); } catch (e) { console.warn(e); }
-                }
-            }
-
-            function stop() {
-                isRecording = false;
-                micBtn.classList.remove("listening");
-                const lang = window.krishiI18n ? window.krishiI18n.getCurrentLang() : "hi";
-                statusText.textContent = lang === "hi" ? "माइक दबाएं और हिंदी या English में बोलें" : "Click mic and speak in Hindi or English";
-            }
-
-            micBtn.addEventListener("click", toggle);
-
-            async function sendQuery(q) {
-                if (!q.trim()) return;
-
-                const userDiv = document.createElement("div");
-                userDiv.className = "v-bubble v-bubble-user";
-                userDiv.style.alignSelf = "flex-end";
-                userDiv.style.background = "var(--green-primary)";
-                userDiv.style.color = "#ffffff";
-                userDiv.style.padding = "12px 18px";
-                userDiv.style.borderRadius = "14px";
-                userDiv.style.maxWidth = "80%";
-                userDiv.innerHTML = `<strong>किसान:</strong> <p>${q}</p>`;
-                fullChatBox.appendChild(userDiv);
-                chatTextQuery.value = "";
-                fullChatBox.scrollTop = fullChatBox.scrollHeight;
-
-                const context = {
-                    crop: "Wheat",
-                    plot_acres: 2.0,
-                    predicted_yield: 19.2,
-                    district: "Meerut",
-                    alerts_hi: ["ताज जड़ अवस्था (21 दिन) पर पहली सिंचाई अवश्य करें।"],
-                    advisories_hi: ["संतुलित उर्वरक एवं समय पर सिंचाई प्रबंधन करें।"],
-                    eligible_schemes: [{ name_hi: "प्रधानमंत्री फसल बीमा योजना" }, { name_hi: "PM-KISAN" }]
-                };
-
-                try {
-                    const res = await fetch("/api/krishisathi/chat", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ query: q, context: context })
-                    });
-                    const data = await res.json();
-                    const answer = data.answer;
-
-                    const asstDiv = document.createElement("div");
-                    asstDiv.className = "v-bubble v-bubble-assistant";
-                    asstDiv.style.background = "#f0fdf4";
-                    asstDiv.style.border = "1px solid #86efac";
-                    asstDiv.style.padding = "14px 18px";
-                    asstDiv.style.borderRadius = "14px";
-                    asstDiv.style.maxWidth = "85%";
-                    asstDiv.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                            <strong style="color: var(--forest-dark);">कृषिसाथी:</strong>
-                            <button type="button" class="btn-speaker-trigger" style="padding: 4px 10px; font-size: 0.76rem;" onclick="speak('${answer.replace(/'/g, "\\'")}')">पुनः सुनें</button>
-                        </div>
-                        <p style="font-size: 0.95rem; line-height: 1.5;">${answer}</p>
-                    `;
-                    fullChatBox.appendChild(asstDiv);
-                    fullChatBox.scrollTop = fullChatBox.scrollHeight;
-
-                    speak(answer);
-                } catch (e) {
-                    console.error(e);
-                }
-            }
-
-            chatInputForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                sendQuery(chatTextQuery.value);
-            });
-
-            promptChips.forEach(chip => {
-                chip.addEventListener("click", () => {
-                    sendQuery(chip.dataset.q);
-                });
-            });
-
-            window.speak = speak;
         });
+
+        async function sendQuery(queryText, overrideLang = null) {
+            const trimmed = (queryText || "").trim();
+            if (!trimmed) return;
+
+            const selectedLang = overrideLang || voiceLangSelect.value || "en";
+            const [district, crop] = (voiceDistrictContext.value || "Meerut|Wheat").split("|");
+
+            // Append User Message
+            const userDiv = document.createElement("div");
+            userDiv.className = "chat-bubble-user";
+            userDiv.textContent = trimmed;
+            chatStream.appendChild(userDiv);
+
+            // Append Loading Indicator
+            const loadingWrap = document.createElement("div");
+            loadingWrap.className = "chat-bubble-ai-wrap";
+            loadingWrap.innerHTML = `
+                <div class="chat-avatar-sathi">🌱</div>
+                <div class="chat-bubble-ai" style="color: var(--km-text-muted);">
+                    Searching verified scheme PDFs &amp; agronomic guidelines...
+                </div>
+            `;
+            chatStream.appendChild(loadingWrap);
+            chatStream.scrollTop = chatStream.scrollHeight;
+
+            try {
+                const res = await fetch("/api/krishisathi/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        query: trimmed,
+                        lang: selectedLang,
+                        context: { district, crop, plot_acres: 2.0 }
+                    })
+                });
+                const data = await res.json();
+                loadingWrap.remove();
+
+                const answer = data.answer || "I could not verify an answer right now. Please try again.";
+                const sources = data.sources || [];
+                const mode = data.retrieval_mode || "general";
+                const respLang = data.lang || selectedLang;
+                const ttsLang = respLang === "hi" ? "hi-IN" : "en-IN";
+
+                const modeBadge = mode === "pdf_rag"
+                    ? `<span class="scheme-tag-pill tag-income">📄 Indexed Scheme PDF</span>`
+                    : mode === "web_search"
+                    ? `<span class="scheme-tag-pill tag-insurance">🌐 Official Web Search</span>`
+                    : `<span class="scheme-tag-pill tag-soil">🌾 ICAR Agronomy Guide</span>`;
+
+                const sourcesHtml = sources.length > 0
+                    ? `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--km-border); font-size: 0.78rem; color: var(--km-text-muted);">
+                        <strong>Verified Sources:</strong>
+                        <ul style="margin: 4px 0 0 16px;">
+                            ${sources.map(s => `<li>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" style="color:var(--km-primary); font-weight:700; text-decoration:underline;">${s.title || s.source}</a>` : `<span>${s.title || s.source}</span>`} ${s.official ? '✅' : ''}</li>`).join("")}
+                        </ul>
+                       </div>`
+                    : "";
+
+                const aiWrap = document.createElement("div");
+                aiWrap.className = "chat-bubble-ai-wrap";
+                aiWrap.innerHTML = `
+                    <div class="chat-avatar-sathi">🌱</div>
+                    <div class="chat-bubble-ai">
+                        <div style="margin-bottom: 6px;">${modeBadge}</div>
+                        <div style="white-space: pre-line;">${answer}</div>
+                        ${sourcesHtml}
+                        <div class="chat-bubble-actions">
+                            <button type="button" class="btn-speak-audio" data-lang="${ttsLang}">🔊 Listen Aloud</button>
+                        </div>
+                    </div>
+                `;
+                aiWrap.querySelector(".btn-speak-audio").setAttribute("data-speak", answer);
+                chatStream.appendChild(aiWrap);
+                chatStream.scrollTop = chatStream.scrollHeight;
+            } catch (err) {
+                console.error("KrishiSathi chat error:", err);
+                loadingWrap.innerHTML = `
+                    <div class="chat-avatar-sathi">🌱</div>
+                    <div class="chat-bubble-ai" style="color: var(--km-danger);">
+                        Unable to reach KrishiSathi right now. Please check your connection or call Kisan Call Centre at 1800-180-1551.
+                    </div>
+                `;
+            }
+        }
+
+        chatForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const val = chatInput.value;
+            chatInput.value = "";
+            sendQuery(val);
+        });
+
+        document.querySelectorAll(".chip-btn").forEach(chip => {
+            chip.addEventListener("click", () => {
+                const prompt = chip.getAttribute("data-prompt");
+                const lang = chip.getAttribute("data-lang");
+                if (lang) voiceLangSelect.value = lang;
+                sendQuery(prompt, lang);
+            });
+        });
+
+        if (btnClearChat) {
+            btnClearChat.addEventListener("click", () => {
+                chatStream.innerHTML = `
+                    <div class="chat-bubble-ai-wrap">
+                        <div class="chat-avatar-sathi">🌱</div>
+                        <div class="chat-bubble-ai">
+                            Chat history cleared. Ask me any question about Wheat, Mustard, or government schemes in English or Hindi!
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Web Speech API Voice Recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+        let isRecording = false;
+
+        function toggleVoiceInput() {
+            if (!SpeechRecognition) {
+                voiceStatusLabel.textContent = "Voice input requires Chrome or Edge browser.";
+                chatInput.focus();
+                return;
+            }
+            if (isRecording && recognition) {
+                recognition.stop();
+                return;
+            }
+
+            recognition = new SpeechRecognition();
+            recognition.lang = voiceLangSelect.value === "hi" ? "hi-IN" : "en-IN";
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = () => {
+                isRecording = true;
+                voiceStatusLabel.textContent = recognition.lang === "hi-IN" ? "Listening in Hindi (बोलिए)..." : "Listening in English... Speak now";
+                if (voicePulseWave) voicePulseWave.style.display = "block";
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                chatInput.value = transcript;
+                sendQuery(transcript);
+            };
+
+            recognition.onerror = () => {
+                voiceStatusLabel.textContent = "Could not capture audio. Please try again.";
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                voiceStatusLabel.textContent = "Tap the Microphone to Speak";
+                if (voicePulseWave) voicePulseWave.style.display = "none";
+            };
+
+            recognition.start();
+        }
+
+        if (btnBigVoiceMic) btnBigVoiceMic.addEventListener("click", toggleVoiceInput);
+        if (btnInlineMic) btnInlineMic.addEventListener("click", toggleVoiceInput);
+    });
     </script>
 </body>
 </html>

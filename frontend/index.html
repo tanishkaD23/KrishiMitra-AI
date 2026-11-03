@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi" data-theme="light">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +8,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Professional Design System -->
-    <link rel="stylesheet" href="krishimitra_pro.css">
+    <!-- Unified Professional Design System -->
+    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
 </head>
 <body>
 
     <!-- =========================================================================
-         1. TOP NAVIGATION BAR (Exact Match to Reference Top-Left)
+         1. TOP NAVIGATION BAR (Consistent across all public & standalone pages)
          ========================================================================= -->
     <nav class="landing-nav" aria-label="Main Navigation">
         <div class="landing-nav-inner">
-            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home">
-                <span class="brand-logo-sprout">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
+                <span class="brand-logo-sprout" style="flex-shrink: 0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
                 </span>
-                <span>KrishiMitra AI</span>
+                <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
 
-            <ul class="landing-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="dashboard.html#schemes">Schemes</a></li>
-                <li><a href="dashboard.html#krishisathi">KrishiSathi</a></li>
-                <li><a href="#impact">About</a></li>
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" class="active" style="white-space: nowrap;">Home</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
             </ul>
 
-            <div class="landing-actions">
-                <a href="dashboard.html#login" class="btn-outline-login">Login</a>
-                <a href="dashboard.html" class="btn-solid-start">
-                    <span>Get Started</span>
+            <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
+                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 8px 14px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;">EN | हिंदी</button>
+                <a href="forecast.html" class="btn-outline-login" id="navBtnPredict" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
+                    <span id="navBtnDash" style="white-space: nowrap;">Open Dashboard</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- =========================================================================
-         2. PANORAMIC HERO SECTION (Exact Match to Reference Image)
+         2. PANORAMIC HERO SECTION & CORE FEATURES
          ========================================================================= -->
     <header class="hero-panoramic-stage">
         <!-- Floating Leaves Decorative Elements -->
@@ -60,11 +62,11 @@
         </div>
 
         <div class="hero-panoramic-content-grid">
-            <!-- Left Column: Headline, Subtitle, Buttons -->
+            <!-- Left Column: Headline, Subtitle, Functional Buttons -->
             <div class="hero-text-block">
                 <div class="hero-pill-badge">
-                    <span class="badge-sprout">🌱</span>
-                    <span>AI for a Stronger Farming Tomorrow</span>
+                    <span>🌱</span>
+                    <span>AI for a Stronger Farming Tomorrow • 6 Major Agricultural States</span>
                 </div>
 
                 <h1 class="hero-heading">
@@ -73,33 +75,33 @@
                 </h1>
 
                 <p class="hero-subhead">
-                    AI-powered crop yield forecasting, personalised advisory and government scheme guidance for every farmer.
+                    AI-powered crop yield forecasting, personalised agronomic advisories, and verified government scheme guidance built for smallholder farmers across Uttar Pradesh, Madhya Pradesh, Bihar, Rajasthan, Punjab, and Haryana.
                 </p>
 
                 <div class="hero-cta-group">
-                    <a href="dashboard.html#predict" class="btn-hero-predict">
+                    <a href="forecast.html" class="btn-hero-predict">
                         <span>Predict Crop Yield</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </a>
-                    <a href="dashboard.html#krishisathi" class="btn-hero-voice">
+                    <a href="krishisathi.html" class="btn-hero-voice">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                         <span>Talk to KrishiSathi</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Column: Visual Overlays Anchor Area -->
+            <!-- Right Column: Visual Overlays Anchor Area (100% English Interface) -->
             <div class="hero-visual-overlays-anchor">
-                <!-- Overlay 1: Green Speech Bubble near turban -->
-                <div class="hero-speech-bubble-green">
-                    <span>खेती की सही सलाह,<br>अब आपकी भाषा में</span>
+                <!-- Overlay 1: Green Speech Bubble -->
+                <div class="hero-speech-bubble-green" style="font-family: var(--km-font);">
+                    <span>Precision Crop Advisory,<br>Tailored for Every Acre</span>
                 </div>
 
-                <!-- Overlay 2: White Pill Badge over harvested wheat -->
+                <!-- Overlay 2: White Pill Badge -->
                 <div class="hero-pill-badge-white">
-                    <div class="pill-badge-text">
-                        <span>आओ मिलकर</span>
-                        <span>खेती को बेहतर बनाएं</span>
+                    <div class="pill-badge-text" style="font-family: var(--km-font);">
+                        <span>Data-Driven Harvest</span>
+                        <span style="color: var(--km-primary); font-weight: 700;">Wheat &amp; Mustard (Rabi)</span>
                     </div>
                     <div class="pill-badge-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -110,9 +112,8 @@
             </div>
         </div>
 
-        <!-- Docked 4 Value Cards Across Bottom of Hero (Exact match to reference) -->
+        <!-- Docked 4 Features Cards Across Bottom of Hero -->
         <div class="hero-docked-cards-strip" id="features">
-            <!-- Card 1 -->
             <div class="hero-dock-card">
                 <div class="dock-card-icon-box icon-sprout">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -121,11 +122,10 @@
                 </div>
                 <div class="dock-card-text">
                     <h3 class="dock-title">Higher Productivity</h3>
-                    <p class="dock-desc">with data-driven insights</p>
+                    <p class="dock-desc">Plot-level yield forecasts in q/acre &amp; q/ha</p>
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="hero-dock-card">
                 <div class="dock-card-icon-box icon-shield">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
@@ -134,12 +134,11 @@
                     </svg>
                 </div>
                 <div class="dock-card-text">
-                    <h3 class="dock-title">Reduced Risk</h3>
-                    <p class="dock-desc">early warnings and advisory</p>
+                    <h3 class="dock-title">Reduced Crop Risk</h3>
+                    <p class="dock-desc">Early warnings for heat stress &amp; yellow rust</p>
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="hero-dock-card">
                 <div class="dock-card-icon-box icon-schemes">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
@@ -153,11 +152,10 @@
                 </div>
                 <div class="dock-card-text">
                     <h3 class="dock-title">Easy Access to Schemes</h3>
-                    <p class="dock-desc">government support simplified</p>
+                    <p class="dock-desc">Verified central &amp; state subsidies simplified</p>
                 </div>
             </div>
 
-            <!-- Card 4 -->
             <div class="hero-dock-card">
                 <div class="dock-card-icon-box icon-farmers">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
@@ -169,146 +167,298 @@
                 </div>
                 <div class="dock-card-text">
                     <h3 class="dock-title">Empowered Farmers</h3>
-                    <p class="dock-desc">knowledge in local language</p>
+                    <p class="dock-desc">Voice &amp; chat support in English and Hindi</p>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- =========================================================================
-         3. HOW IT WORKS (Workflow Section)
+         3. HOW IT WORKS (4-Step Workflow)
          ========================================================================= -->
     <section class="impact-section" id="how-it-works" style="background: var(--km-bg);">
         <div class="impact-inner">
-            <div class="section-tag">STEP-BY-STEP PROCESS</div>
+            <div class="section-tag">STEP-BY-STEP WORKFLOW</div>
             <h2 class="section-title">How KrishiMitra AI Works</h2>
 
-            <div class="pillars-grid">
+            <div class="pillars-grid" style="margin-bottom: 0;">
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">📍</div>
-                    <h3 class="pillar-title">1. Select Plot & Crop</h3>
-                    <p class="pillar-desc">Choose your district in Western UP, plot size in acres, and target Rabi crop (Wheat or Mustard).</p>
+                    <h3 class="pillar-title">1. Enter Plot &amp; Crop Details</h3>
+                    <p class="pillar-desc">Select your district in Western Uttar Pradesh, enter plot size in acres, soil type, sowing window, and target Rabi crop (Wheat or Mustard).</p>
                 </div>
 
                 <div class="pillar-card">
-                    <div class="pillar-icon-wrap">🤖</div>
-                    <h3 class="pillar-title">2. AI Yield Forecast</h3>
-                    <p class="pillar-desc">Validated ML models predict expected harvest per acre and benchmark against historical APY trends.</p>
+                    <div class="pillar-icon-wrap">🌾</div>
+                    <h3 class="pillar-title">2. Predict Crop Yield</h3>
+                    <p class="pillar-desc">Our agricultural ML engine computes expected yield per acre, total plot harvest in quintals, and compares performance against district baselines.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">📋</div>
-                    <h3 class="pillar-title">3. Precision Advisory</h3>
-                    <p class="pillar-desc">Get stage-specific irrigation (CRI), balanced fertilizer dosage, and yellow rust / pest protection alerts.</p>
+                    <h3 class="pillar-title">3. Follow Stage Advisories</h3>
+                    <p class="pillar-desc">Receive ICAR-grounded recommendations for Crown Root Initiation (CRI) irrigation, NPK split dosage, and disease protection.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">🏛️</div>
-                    <h3 class="pillar-title">4. Scheme Eligibility</h3>
-                    <p class="pillar-desc">Discover verified central and UP state schemes with direct links to PM-KISAN, PMFBY, and KCC portals.</p>
+                    <h3 class="pillar-title">4. Claim Eligible Schemes</h3>
+                    <p class="pillar-desc">Match your farm profile with PM-KISAN, PMFBY Crop Insurance, Soil Health Card, and Kisan Credit Card benefits with official portal links.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- =========================================================================
-         4. OUR IMPACT & WHY KRISHIMITRA AI (Exact Match to Bottom-Right Screen)
+         4. CROP YIELD PREDICTION & PERSONALISED ADVISORIES SHOWCASE
+         ========================================================================= -->
+    <section class="impact-section" id="crop-prediction">
+        <div class="impact-inner" style="text-align: left;">
+            <div style="text-align: center; max-width: 720px; margin: 0 auto 48px;">
+                <div class="section-tag">CORE PLATFORM MODULES</div>
+                <h2 class="section-title" style="margin-bottom: 12px;">Precision Yield Forecasting &amp; Agronomic Advisories</h2>
+                <p style="color: var(--km-text-muted); font-size: 1rem;">Built on 10+ years of district-level Area, Production, and Yield (APY) records across Meerut, Muzaffarnagar, Bulandshahr, Saharanpur, Bijnor, and Agra.</p>
+            </div>
+
+            <div class="predict-screen-grid" style="align-items: stretch; margin-bottom: 0;">
+                <!-- Module 1: Crop Yield Prediction -->
+                <div class="predict-form-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                            <span class="scheme-tag-pill tag-income">Yield Prediction Engine</span>
+                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-text-muted);">Units: q/ha &amp; q/acre</span>
+                        </div>
+                        <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Plot-Level Rabi Harvest Estimator</h3>
+                        <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 20px;">
+                            Evaluate how sowing date, irrigation source, nitrogen application, and March maximum temperatures impact your expected Wheat or Mustard harvest before the season ends.
+                        </p>
+                        <div class="eval-metrics-row" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 20px;">
+                            <div class="eval-metric-box" style="background: var(--km-bg);">
+                                <div class="eval-metric-label">Meerut Wheat Baseline</div>
+                                <div class="eval-metric-value" style="color: var(--km-primary);">41.5 q/ha <span style="font-size: 0.85rem; font-weight: 600;">(16.8 q/acre)</span></div>
+                            </div>
+                            <div class="eval-metric-box" style="background: var(--km-bg);">
+                                <div class="eval-metric-label">Meerut Mustard Baseline</div>
+                                <div class="eval-metric-value" style="color: var(--km-primary);">15.8 q/ha <span style="font-size: 0.85rem; font-weight: 600;">(6.4 q/acre)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="forecast.html" class="btn-predict-action">Launch Yield Calculator →</a>
+                        <a href="dashboard.html#predict" class="btn-outline-login" style="border-radius: var(--km-radius-sm);">Open in Dashboard</a>
+                    </div>
+                </div>
+
+                <!-- Module 2: Personalised Advisories -->
+                <div class="predict-form-card" id="advisories-showcase" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                            <span class="scheme-tag-pill tag-soil">ICAR &amp; IMD Grounded</span>
+                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-text-muted);">Live Weather Integrated</span>
+                        </div>
+                        <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Personalised Crop Advisories</h3>
+                        <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 16px;">
+                            Actionable recommendations structured by Observation, Recommended Action, Agronomic Reason, and Urgency Priority.
+                        </p>
+                        <ul class="scheme-highlights-list" style="margin-bottom: 20px;">
+                            <li><strong>Crown Root Initiation (CRI):</strong> Critical first irrigation at 21–25 days after sowing with split urea top-dressing.</li>
+                            <li><strong>Disease &amp; Pest Diagnostics:</strong> Rapid field checks for Wheat Yellow Rust and Mustard Aphids (Lipaphis erysimi).</li>
+                            <li><strong>Terminal Heat Mitigation:</strong> Light evening irrigation guidance when March temperatures exceed 31°C.</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <a href="dashboard.html#advisories" class="btn-predict-action">Explore Crop Advisories →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         5. GOVERNMENT SCHEMES & KRISHISATHI AI SHOWCASE
+         ========================================================================= -->
+    <section class="impact-section" style="background: var(--km-bg);">
+        <div class="impact-inner" style="text-align: left;">
+            <div class="predict-screen-grid" style="align-items: stretch; margin-bottom: 0;">
+                <!-- Module 3: Government Schemes -->
+                <div class="predict-form-card">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                        <span class="scheme-tag-pill tag-insurance">Verified Official Portals</span>
+                        <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-primary);">5 Central &amp; UP Schemes</span>
+                    </div>
+                    <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Government Schemes &amp; Subsidies</h3>
+                    <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 18px;">
+                        Search and filter verified agricultural welfare schemes with transparent eligibility criteria, required documents, and direct links to official `.gov.in` portals.
+                    </p>
+                    <ul class="scheme-highlights-list" style="margin-bottom: 22px;">
+                        <li><strong>PM-KISAN Samman Nidhi:</strong> ₹6,000/year direct income support in three equal installments.</li>
+                        <li><strong>PM Fasal Bima Yojana (PMFBY):</strong> Comprehensive Rabi crop insurance at just 1.5% farmer premium.</li>
+                        <li><strong>Kisan Credit Card (KCC) &amp; PMKSY:</strong> 4% effective crop loan interest and up to 55% micro-irrigation subsidy.</li>
+                    </ul>
+                    <a href="schemes.html" class="btn-predict-action">Browse Government Schemes →</a>
+                </div>
+
+                <!-- Module 4: KrishiSathi AI -->
+                <div class="predict-form-card" style="background: linear-gradient(135deg, #064E2B 0%, #04351D 100%); color: #FFFFFF; border-color: #064E2B;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                        <span class="scheme-tag-pill" style="background: rgba(255, 201, 40, 0.2); color: var(--km-accent-gold);">RAG + Live Web Search</span>
+                        <span style="font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.8);">Voice &amp; Text Assistant</span>
+                    </div>
+                    <h3 style="font-size: 1.45rem; font-weight: 800; color: #FFFFFF; margin-bottom: 10px;">KrishiSathi AI Assistant</h3>
+                    <p style="font-size: 0.94rem; color: rgba(255,255,255,0.86); margin-bottom: 18px;">
+                        Ask farming or government scheme questions by voice or text. KrishiSathi searches indexed official scheme PDFs first, falls back to trusted `.gov.in` domains when needed, and responds in English or Hindi.
+                    </p>
+                    <ul class="scheme-highlights-list" style="color: rgba(255,255,255,0.9); margin-bottom: 22px;">
+                        <li style="color: rgba(255,255,255,0.9);"><strong>Voice Input &amp; Spoken Audio:</strong> Built-in microphone recognition and natural text-to-speech playback.</li>
+                        <li style="color: rgba(255,255,255,0.9);"><strong>Zero Hallucination Policy:</strong> Cites verified scheme guidelines and official portals with access dates.</li>
+                        <li style="color: rgba(255,255,255,0.9);"><strong>Bilingual Support:</strong> Converse effortlessly in English, Hindi (हिंदी), or Hinglish.</li>
+                    </ul>
+                    <a href="krishisathi.html" class="btn-hero-voice" style="padding: 11px 22px; font-size: 0.92rem;">Talk to KrishiSathi AI →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         6. OUR IMPACT & WHY KRISHIMITRA AI
          ========================================================================= -->
     <section class="impact-section" id="impact">
         <div class="impact-inner">
             <div class="section-tag">MEASURABLE OUTCOMES</div>
-            <h2 class="section-title">Our Impact</h2>
+            <h2 class="section-title">Our Impact &amp; Coverage</h2>
 
-            <!-- 4 Metric Counters -->
             <div class="impact-metrics-grid">
                 <div class="impact-metric-card">
-                    <div class="impact-metric-num">1+</div>
-                    <div class="impact-metric-label">Pilot Region</div>
-                    <div class="impact-metric-sub">Western Uttar Pradesh</div>
+                    <div class="impact-metric-num">6</div>
+                    <div class="impact-metric-label">Supported States</div>
+                    <div class="impact-metric-sub">UP, MP, Bihar, Rajasthan, Punjab &amp; Haryana</div>
                 </div>
 
                 <div class="impact-metric-card">
-                    <div class="impact-metric-num">2</div>
-                    <div class="impact-metric-label">Crops Supported</div>
-                    <div class="impact-metric-sub">Wheat & Mustard (Rabi)</div>
+                    <div class="impact-metric-num">80</div>
+                    <div class="impact-metric-label">Agricultural Districts</div>
+                    <div class="impact-metric-sub">Calibrated District Yield Baselines</div>
                 </div>
 
                 <div class="impact-metric-card">
-                    <div class="impact-metric-num">10+</div>
-                    <div class="impact-metric-label">Years of Data</div>
-                    <div class="impact-metric-sub">2013 – 2023 APY Records</div>
+                    <div class="impact-metric-num">2,400</div>
+                    <div class="impact-metric-label">Multi-State Records</div>
+                    <div class="impact-metric-sub">Wheat &amp; Mustard Rabi Dataset</div>
                 </div>
 
                 <div class="impact-metric-card">
-                    <div class="impact-metric-num">1000+</div>
-                    <div class="impact-metric-label">Farmers</div>
-                    <div class="impact-metric-sub">Target Community Reach</div>
+                    <div class="impact-metric-num">5</div>
+                    <div class="impact-metric-label">Verified Schemes</div>
+                    <div class="impact-metric-sub">Direct Official `.gov.in` Integration</div>
                 </div>
             </div>
 
-            <!-- Why KrishiMitra AI? 4 Pillars -->
-            <h3 class="pillars-title">Why KrishiMitra AI?</h3>
+            <h3 class="pillars-title">Why Farmers Trust KrishiMitra AI</h3>
             <div class="pillars-grid">
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">📊</div>
                     <h4 class="pillar-title">Data-Driven Decisions</h4>
-                    <p class="pillar-desc">Real APY statistics and validated models replace guesswork with rigorous agronomic evidence.</p>
+                    <p class="pillar-desc">Real district APY statistics and live Open-Meteo telemetry replace guesswork with clear agronomic evidence.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">🗣️</div>
-                    <h4 class="pillar-title">Local Language Support</h4>
-                    <p class="pillar-desc">KrishiSathi understands and speaks natural Hindi, Hinglish, and English voice and text.</p>
+                    <h4 class="pillar-title">Bilingual Voice Assistant</h4>
+                    <p class="pillar-desc">English interface across the platform with full Hindi and English voice conversation inside KrishiSathi AI.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">✅</div>
-                    <h4 class="pillar-title">Verified Information</h4>
-                    <p class="pillar-desc">Scheme rules are grounded in official PDF guidelines and live `.gov.in` portals without hallucination.</p>
+                    <h4 class="pillar-title">Verified Official Sources</h4>
+                    <p class="pillar-desc">Scheme eligibility and benefits are grounded in official central and UP government guidelines without fabrication.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon-wrap">👨‍🌾</div>
                     <h4 class="pillar-title">Farmer-Centric Design</h4>
-                    <p class="pillar-desc">Designed with high-contrast readable cards, touch-first voice buttons, and plot-level simplicity.</p>
+                    <p class="pillar-desc">High-contrast cards, clear units (q/ha and q/acre), and instant plot-level actionable insights.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Inspiring Quote Banner (Exact Match to Bottom-Right Screen) -->
+    <!-- Inspiring Mission Banner (English) -->
     <div class="quote-banner-wrap">
         <div class="quote-banner-card">
-            <p>“आधुनिक तकनीक, हर किसान के साथ — एक समृद्ध और सुरक्षित भविष्य के लिए”</p>
+            <p style="font-family: var(--km-font);">“Modern Agricultural Intelligence for Every Smallholder Farmer — Building a Resilient &amp; Prosperous Harvest.”</p>
         </div>
     </div>
 
     <!-- =========================================================================
-         5. PROFESSIONAL FOOTER
+         7. CONSISTENT FOOTER
          ========================================================================= -->
     <footer class="landing-footer">
         <div class="landing-footer-inner">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="brand-logo-sprout" style="width: 26px; height: 26px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"/><path d="M12 2v18"/></svg>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="brand-logo-sprout" style="width: 28px; height: 28px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
                 </span>
-                <strong>KrishiMitra AI</strong>
-                <span>• Pilot Region: Western Uttar Pradesh (Meerut District)</span>
+                <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
+                <span>• Western Uttar Pradesh Agricultural Intelligence Platform</span>
             </div>
 
-            <div style="display: flex; gap: 20px;">
+            <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
+                <a href="index.html">Home</a>
                 <a href="dashboard.html">Dashboard</a>
-                <a href="dashboard.html#predict">Predict Yield</a>
-                <a href="dashboard.html#schemes">Schemes</a>
-                <a href="dashboard.html#krishisathi">KrishiSathi AI</a>
-                <a href="model-summary.html">Model Benchmarks</a>
+                <a href="forecast.html">Yield Prediction</a>
+                <a href="dashboard.html#advisories">Advisories</a>
+                <a href="schemes.html">Government Schemes</a>
+                <a href="krishisathi.html">KrishiSathi AI</a>
+                <a href="about.html">About</a>
             </div>
 
             <div>
-                © 2026 KrishiMitra AI. Grounded Agricultural Intelligence for Smallholders.
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
             </div>
         </div>
     </footer>
 
+    <script>
+        (function() {
+            let lang = localStorage.getItem("km_lang") || "en";
+            const btn = document.getElementById("publicLangBtn");
+            function applyHomeLang() {
+                const isHi = lang === "hi";
+                if (btn) btn.textContent = isHi ? "हिंदी | EN" : "EN | हिंदी";
+                const menuLinks = document.querySelectorAll(".landing-menu a");
+                const navEn = ["Home", "Yield Prediction", "Advisories", "Government Schemes", "KrishiSathi AI", "About"];
+                const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "कृषि सलाह", "सरकारी योजनाएं", "कृषिसाथी AI", "हमारे बारे में"];
+                menuLinks.forEach((a, i) => { if (navEn[i]) a.textContent = isHi ? navHi[i] : navEn[i]; });
+
+                const btnPred = document.getElementById("navBtnPredict");
+                const btnDash = document.getElementById("navBtnDash");
+                if (btnPred) btnPred.textContent = isHi ? "उपज अनुमान" : "Predict Yield";
+                if (btnDash) btnDash.textContent = isHi ? "डैशबोर्ड खोलें" : "Open Dashboard";
+
+                const h1 = document.querySelector(".hero-heading");
+                if (h1) h1.innerHTML = isHi
+                    ? 'समझदार खेती,<br><span class="hero-heading-gold">बेहतर पैदावार।</span>'
+                    : 'Smarter Farming,<br><span class="hero-heading-gold">Better Harvests.</span>';
+
+                const sub = document.querySelector(".hero-subhead");
+                if (sub) sub.textContent = isHi
+                    ? "उत्तर प्रदेश, मध्य प्रदेश, बिहार, राजस्थान, पंजाब और हरियाणा के किसानों के लिए AI-आधारित फसल उपज पूर्वानुमान, व्यक्तिगत कृषि सलाह और 9 प्रमाणित सरकारी योजनाओं का मार्गदर्शन।"
+                    : "AI-powered crop yield forecasting, personalised agronomic advisories, and verified government scheme guidance built for smallholder farmers across Uttar Pradesh, Madhya Pradesh, Bihar, Rajasthan, Punjab, and Haryana.";
+
+                const heroPredSpan = document.querySelector(".btn-hero-predict span");
+                const heroVoiceSpan = document.querySelector(".btn-hero-voice span");
+                if (heroPredSpan) heroPredSpan.textContent = isHi ? "फसल उपज का अनुमान लगाएं" : "Predict Crop Yield";
+                if (heroVoiceSpan) heroVoiceSpan.textContent = isHi ? "कृषिसाथी से बात करें" : "Talk to KrishiSathi";
+            }
+            if (btn) {
+                btn.addEventListener("click", () => {
+                    lang = lang === "hi" ? "en" : "hi";
+                    localStorage.setItem("km_lang", lang);
+                    applyHomeLang();
+                });
+            }
+            applyHomeLang();
+        })();
+    </script>
 </body>
 </html>

@@ -1,19 +1,31 @@
 {
-  "best_model": "XGBoost",
+  "best_model": "Random Forest Regressor",
   "metrics": {
-    "RandomForest": {
-      "MAE": 0.84,
-      "RMSE": 1.084,
-      "R2": 0.9608
+    "Previous-Year Baseline": {
+      "MAE": 0.647139631816603,
+      "MSE": 10.20705923931921,
+      "RMSE": 3.194848860168382,
+      "R2": 0.7829562400247835,
+      "Explained_Variance": 0.7833585332732446
     },
-    "XGBoost": {
-      "MAE": 0.827,
-      "RMSE": 1.066,
-      "R2": 0.9621
+    "Random Forest Regressor": {
+      "MAE": 0.6690564416678292,
+      "MSE": 6.736830840583333,
+      "RMSE": 2.595540568086605,
+      "R2": 0.8567474664666754,
+      "Explained_Variance": 0.8583105016959208
     }
   },
   "target_unit": "Quintals/Acre",
-  "pilot_region": "Western Uttar Pradesh",
+  "supported_states": [
+    "Uttar Pradesh",
+    "Madhya Pradesh",
+    "Bihar",
+    "Rajasthan",
+    "Punjab",
+    "Haryana"
+  ],
+  "pilot_region": "Indo-Gangetic & Central India Rabi Belt",
   "pilot_crops": [
     "Wheat",
     "Mustard"

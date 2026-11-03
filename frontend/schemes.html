@@ -1,334 +1,648 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Schemes Directory | KrishiMitra AI</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Government Schemes for Farmers | KrishiMitra AI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        .page-header-banner {
-            background: linear-gradient(180deg, var(--forest-dark) 0%, var(--forest-deep) 100%);
-            color: #ffffff;
-            padding: 50px 28px 60px;
-            text-align: center;
-        }
-        .page-header-banner h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-        .page-header-banner p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        .schemes-page-container {
-            max-width: 1200px;
-            margin: -30px auto 60px;
-            padding: 0 24px;
-        }
-        .schemes-filter-bar {
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            padding: 16px 24px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-bottom: 30px;
-        }
-        .filter-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .filter-pill {
-            background: #f1f5f9;
-            border: 1px solid var(--border-light);
-            padding: 8px 16px;
-            border-radius: var(--radius-full);
-            font-size: 0.88rem;
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--text-dark);
-            transition: all 0.2s;
-        }
-        .filter-pill.active, .filter-pill:hover {
-            background: var(--forest-dark);
-            color: #ffffff;
-            border-color: var(--forest-dark);
-        }
-        .schemes-cards-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .scheme-full-card {
-            background: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
-            padding: 28px;
-            box-shadow: var(--shadow-soft);
-            display: grid;
-            grid-template-columns: 1fr 220px;
-            gap: 24px;
-            align-items: center;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .scheme-full-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-card);
-            border-color: #86efac;
-        }
-        @media (max-width: 820px) {
-            .scheme-full-card {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="brand-link">
-                <div class="brand-logo-circle">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 5-4 9-9 9s-9-4-9-9a9 9 0 0 1 9-9z"></path><path d="M12 2v18"></path><path d="M12 11c3-2 5-1 6 1"></path><path d="M12 7c-3-2-5-1-6 1"></path></svg>
-                </div>
-                <div class="brand-text-block">
-                    <h1>KrishiMitra <span class="brand-hindi">कृषिमित्र</span></h1>
-                    <span class="brand-pilot-tag" data-i18n="pilot_badge">पायलट: पश्चिमी उत्तर प्रदेश</span>
-                </div>
+
+    <!-- =========================================================================
+         1. CONSISTENT TOP NAVBAR
+         ========================================================================= -->
+    <nav class="landing-nav" aria-label="Main Navigation">
+        <div class="landing-nav-inner">
+            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
+                <span class="brand-logo-sprout" style="flex-shrink: 0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+                </span>
+                <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
-            <ul class="nav-links" id="mainNavLinks">
-                <li><a href="index.html" class="nav-link" data-i18n="nav_home">होम</a></li>
-                <li><a href="forecast.html" class="nav-link" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                <li><a href="schemes.html" class="nav-link active" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                <li><a href="dashboard.html" class="nav-link" data-i18n="nav_dashboard">किसान डैशबोर्ड</a></li>
-                <li><a href="model-summary.html" class="nav-link" data-i18n="nav_model_summary">मॉडल सारांश</a></li>
-                <li><a href="krishisathi.html" class="nav-link" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                <li><a href="about.html" class="nav-link" data-i18n="nav_about">हमारे बारे में</a></li>
+
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" class="active" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
             </ul>
-            <div class="nav-actions">
-                <button type="button" class="lang-toggle-btn" aria-label="Switch Language">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    <span class="lang-current">हिंदी</span> | <span class="lang-alt">EN</span>
+
+            <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
+                <button type="button" class="btn-outline-login" id="publicLangBtn" title="Switch Language (English / Hindi)" style="padding: 8px 14px; font-weight: 700; cursor:pointer; white-space: nowrap; flex-shrink: 0;">
+                    <span id="publicLangLabel" style="white-space: nowrap;">EN | हिंदी</span>
                 </button>
-                <a href="krishisathi.html" class="btn-nav-cta">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-                    <span>कृषिसाथी</span>
+                <a href="forecast.html" class="btn-outline-login" data-i18n="nav_predict" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
+                    <span data-i18n="nav_open_dash" style="white-space: nowrap;">Open Dashboard</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Header Banner -->
-    <div class="page-header-banner">
-        <h1 data-i18n="schemes_heading">पात्र सरकारी योजनाएं एवं वित्तीय लाभ</h1>
-        <p data-i18n="schemes_sub">छोटे एवं सीमांत किसान भाइयों के लिए केंद्र एवं उत्तर प्रदेश सरकार की प्रमुख कल्याणकारी योजनाएं</p>
-    </div>
-
-    <!-- Schemes Container -->
-    <main class="schemes-page-container">
-        <!-- Filter Bar -->
-        <div class="schemes-filter-bar">
-            <div class="filter-buttons">
-                <button class="filter-pill active" data-category="all">सभी योजनाएं (All)</button>
-                <button class="filter-pill" data-category="income">सीधी आय सहायता (Income)</button>
-                <button class="filter-pill" data-category="insurance">फसल बीमा (Insurance)</button>
-                <button class="filter-pill" data-category="irrigation">सिंचाई एवं मिट्टी (Soil & Water)</button>
-                <button class="filter-pill" data-category="credit">सस्ता कृषि ऋण (Credit)</button>
+    <!-- =========================================================================
+         2. PAGE HERO BANNER
+         ========================================================================= -->
+    <header class="page-hero-banner">
+        <div class="page-hero-inner">
+            <div>
+                <div class="page-hero-tag">
+                    <span>🏛️</span>
+                    <span data-i18n="schemes_hero_tag">9 Verified Central &amp; Multi-State Agricultural Schemes</span>
+                </div>
+                <h1 class="page-hero-title" data-i18n="schemes_hero_title">Government Schemes &amp; Subsidies</h1>
+                <p class="page-hero-sub" data-i18n="schemes_hero_sub">
+                    Explore 9 verified central and state agricultural schemes across UP, MP, Bihar, Rajasthan, Punjab, and Haryana. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.
+                </p>
             </div>
-            <div style="font-size: 0.9rem; font-weight: 700; color: var(--green-primary);">
-                5 सक्रिय योजनाएं सत्यापित
-            </div>
-        </div>
-
-        <!-- Schemes Stack -->
-        <div class="schemes-cards-stack">
-            <!-- Scheme 1: PM-KISAN -->
-            <div class="scheme-full-card" data-cat="income">
-                <div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="background: #ecfdf5; color: #166534; font-size: 0.76rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">
-                            प्रत्यक्ष आय सहायता
-                        </span>
-                        <span style="font-size: 0.82rem; color: var(--text-muted);">सभी भू-धारक किसानों के लिए</span>
-                    </div>
-                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 8px;">
-                        प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)
-                    </h3>
-                    <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px;">
-                        प्रति वर्ष <b>₹6,000</b> की वित्तीय सहायता तीन समान किस्तों (₹2,000 प्रत्येक 4 माह में) में सीधे आधार-लिंक्ड बैंक खाते में DBT के माध्यम से अंतरित की जाती है।
-                    </p>
-                    <div style="font-size: 0.82rem; color: var(--text-muted);">
-                        <b>जरूरी कागजात:</b> आधार कार्ड, खतौनी (जमीन का पर्चा), बैंक पासबुक और e-KYC सत्यापन।
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="btn-hero-primary" style="padding: 12px 20px; font-size: 0.92rem; width: 100%; justify-content: center;">
-                        पोर्टल पर जाएं ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Scheme 2: PMFBY -->
-            <div class="scheme-full-card" data-cat="insurance">
-                <div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="background: #fef3c7; color: #92400e; font-size: 0.76rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">
-                            फसल जोखिम बीमा
-                        </span>
-                        <span style="font-size: 0.82rem; color: var(--text-muted);">रबी फसलें: गेहूं एवं सरसों</span>
-                    </div>
-                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 8px;">
-                        प्रधानमंत्री फसल बीमा योजना (PMFBY)
-                    </h3>
-                    <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px;">
-                        बेमौसम बारिश, ओलावृष्टि, सूखा या कीट प्रकोप से फसल क्षति पर 100% तक क्षतिपूर्ति। रबी फसलों (गेहूं व सरसों) के लिए किसान को केवल <b>1.5%</b> का न्यूनतम प्रीमियम देना होता है।
-                    </p>
-                    <div style="font-size: 0.82rem; color: var(--text-muted);">
-                        <b>जरूरी कागजात:</b> आधार कार्ड, खतौनी, बैंक पासबुक एवं लेखपाल/प्रधान द्वारा जारी बुवाई प्रमाण पत्र।
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="btn-hero-primary" style="padding: 12px 20px; font-size: 0.92rem; width: 100%; justify-content: center;">
-                        बीमा कराएं ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Scheme 3: Soil Health Card -->
-            <div class="scheme-full-card" data-cat="irrigation">
-                <div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="background: #e0e7ff; color: #3730a3; font-size: 0.76rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">
-                            मृदा उर्वरता सुधार
-                        </span>
-                        <span style="font-size: 0.82rem; color: var(--text-muted);">निःशुल्क जांच</span>
-                    </div>
-                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 8px;">
-                        मृदा स्वास्थ्य कार्ड योजना (Soil Health Card)
-                    </h3>
-                    <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px;">
-                        हर 2 वर्ष में खेत की मिट्टी की मुफ्त जांच। 12 पोषक तत्वों (N, P, K, जिंक, सल्फर, pH) की विस्तृत रिपोर्ट और खाद की सटीक मात्रा, जिससे खाद का खर्च 15-20% घटता है।
-                    </p>
-                    <div style="font-size: 0.82rem; color: var(--text-muted);">
-                        <b>जरूरी कागजात:</b> आधार कार्ड, खसरा/खतौनी संख्या और मिट्टी का नमूना।
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="https://soilhealth.dac.gov.in" target="_blank" rel="noopener" class="btn-hero-primary" style="padding: 12px 20px; font-size: 0.92rem; width: 100%; justify-content: center;">
-                        कार्ड देखें ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Scheme 4: PMKSY Micro-Irrigation -->
-            <div class="scheme-full-card" data-cat="irrigation">
-                <div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="background: #ecfdf5; color: #166534; font-size: 0.76rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">
-                            सिंचाई अवसंरचना
-                        </span>
-                        <span style="font-size: 0.82rem; color: var(--text-muted);">55% तक सब्सिडी</span>
-                    </div>
-                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 8px;">
-                        PMKSY - प्रति बूंद अधिक फसल (ड्रिप/स्प्रिंकलर)
-                    </h3>
-                    <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px;">
-                        छोटे और सीमांत किसानों को ड्रिप (टपक) और फव्वारा (स्प्रिंकलर) सिंचाई उपकरण लगाने पर <b>55% तक</b> की सरकारी सब्सिडी मिलती है, जिससे 40% पानी की बचत और 25% अधिक पैदावार होती है।
-                    </p>
-                    <div style="font-size: 0.82rem; color: var(--text-muted);">
-                        <b>जरूरी कागजात:</b> आधार कार्ड, खतौनी, बैंक विवरण, और नलकूप/बोरवेल का बिजली बिल।
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="https://pmksy.gov.in" target="_blank" rel="noopener" class="btn-hero-primary" style="padding: 12px 20px; font-size: 0.92rem; width: 100%; justify-content: center;">
-                        आवेदन करें ↗
-                    </a>
-                </div>
-            </div>
-
-            <!-- Scheme 5: KCC -->
-            <div class="scheme-full-card" data-cat="credit">
-                <div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                        <span style="background: #fef3c7; color: #92400e; font-size: 0.76rem; font-weight: 800; padding: 4px 10px; border-radius: 9999px;">
-                            संस्थागत ऋण
-                        </span>
-                        <span style="font-size: 0.82rem; color: var(--text-muted);">मात्र 4% ब्याज दर</span>
-                    </div>
-                    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--forest-dark); margin-bottom: 8px;">
-                        किसान क्रेडिट कार्ड (KCC - Kisan Credit Card)
-                    </h3>
-                    <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px;">
-                        फसल बुवाई और कृषि खर्चों के लिए ₹3 लाख तक का सस्ता ऋण। समय पर ऋण चुकाने पर सरकार द्वारा 3% ब्याज छूट के साथ प्रभावी ब्याज केवल <b>4% वार्षिक</b> रहता है। ₹1.6 लाख तक बिना बंधक के।
-                    </p>
-                    <div style="font-size: 0.82rem; color: var(--text-muted);">
-                        <b>जरूरी कागजात:</b> भरा हुआ KCC आवेदन पत्र, आधार व पैन कार्ड, राजस्व सत्यापित भूमि अभिलेख।
-                    </div>
-                </div>
-                <div style="text-align: right;">
-                    <a href="https://www.myscheme.gov.in/schemes/kcc" target="_blank" rel="noopener" class="btn-hero-primary" style="padding: 12px 20px; font-size: 0.92rem; width: 100%; justify-content: center;">
-                        विवरण देखें ↗
-                    </a>
-                </div>
+            <div>
+                <a href="krishisathi.html" class="btn-hero-voice" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <span data-i18n="schemes_ask_sathi">Ask KrishiSathi About Schemes →</span>
+                </a>
             </div>
         </div>
+    </header>
+
+    <!-- =========================================================================
+         3. MAIN SCHEMES SEARCH, FILTER & CARDS WORKSPACE
+         ========================================================================= -->
+    <main class="standalone-main">
+
+        <!-- Interactive Filter & Eligibility Bar -->
+        <form id="schemeFilterForm" class="schemes-filter-bar" style="grid-template-columns: 1.3fr 1fr 1fr 0.8fr auto;" onsubmit="event.preventDefault();">
+            <div class="form-group-pro">
+                <label for="schemeSearchInput" data-i18n="lbl_search_scheme">Search Scheme or Keyword</label>
+                <input type="text" id="schemeSearchInput" name="q" class="form-input-pro" placeholder="e.g., PM-KISAN, Solar, Machinery, Insurance..." autocorrect="off" spellcheck="false">
+            </div>
+
+            <div class="form-group-pro">
+                <label for="schemeCategoryFilter" data-i18n="lbl_benefit_cat">Benefit Category</label>
+                <select id="schemeCategoryFilter" name="category" class="form-select-pro">
+                    <option value="all" selected>All Categories (सभी श्रेणियाँ)</option>
+                    <option value="income">Income Support (PM-KISAN)</option>
+                    <option value="insurance">Crop Insurance (PMFBY)</option>
+                    <option value="soil">Soil &amp; Irrigation (SHC / PMKSY)</option>
+                    <option value="credit">Agricultural Credit (KCC)</option>
+                    <option value="solar">Solar &amp; Energy (PM-KUSUM)</option>
+                    <option value="machinery">Farm Machinery (SMAM)</option>
+                    <option value="organic">Organic &amp; Market (PKVY / e-NAM)</option>
+                </select>
+            </div>
+
+            <div class="form-group-pro">
+                <label for="schemeCropFilter" data-i18n="lbl_target_crop">Target Crop</label>
+                <select id="schemeCropFilter" name="crop" class="form-select-pro">
+                    <option value="all" selected>All Rabi Crops (Wheat &amp; Mustard)</option>
+                    <option value="Wheat">Wheat (गेहूं)</option>
+                    <option value="Mustard">Mustard (सरसों)</option>
+                </select>
+            </div>
+
+            <div class="form-group-pro">
+                <label for="farmerAcresInput" data-i18n="lbl_your_land">Your Land (Acres)</label>
+                <input type="number" id="farmerAcresInput" name="acres" class="form-input-pro" value="2.0" min="0.1" max="100" step="0.5">
+            </div>
+
+            <button type="submit" id="btnApplySchemeFilters" class="btn-scheme-search" style="margin-top: auto;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span data-i18n="btn_filter">Filter</span>
+            </button>
+        </form>
+
+        <!-- Dynamic Eligibility Status Banner -->
+        <div id="eligibilitySummaryBanner" style="background: var(--km-primary-subtle); border: 1px solid rgba(6, 78, 43, 0.2); border-radius: var(--km-radius-sm); padding: 14px 20px; margin-bottom: 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+            <div style="font-size: 0.92rem; color: var(--km-text-heading);">
+                <strong data-i18n="lbl_land_cat">✅ Landholding Category:</strong> <span id="landCategoryBadge">Small &amp; Marginal Farmer (2.0 Acres / 0.81 Hectares)</span>
+            </div>
+            <span id="schemeCountBadge" class="chart-badge-tag">Showing 9 Verified Schemes</span>
+        </div>
+
+        <!-- Schemes Cards Grid -->
+        <div class="schemes-cards-grid" id="standaloneSchemesGrid">
+            <!-- Populated dynamically from /api/schemes with rich fallback -->
+        </div>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-brand-col">
-                <h2 data-i18n="footer_brand">कृषिमित्र एआई</h2>
-                <p data-i18n="footer_desc">समर्पित भारतीय छोटे एवं सीमांत किसानों के स्वावलंबन और समृद्धि के लिए।</p>
+    <!-- =========================================================================
+         4. SCHEME DETAILS MODAL
+         ========================================================================= -->
+    <div class="km-modal-backdrop" id="schemeModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalSchemeTitle">
+        <div class="km-modal-dialog">
+            <div class="km-modal-header">
+                <h3 id="modalSchemeTitle">Scheme Details</h3>
+                <button type="button" class="km-modal-close" id="btnCloseSchemeModal" aria-label="Close modal">✕</button>
             </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_links_title">पृष्ठ लिंक</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html" data-i18n="nav_home">होम</a></li>
-                    <li><a href="forecast.html" data-i18n="nav_forecast">पैदावार पूर्वानुमान</a></li>
-                    <li><a href="schemes.html" data-i18n="nav_schemes">सरकारी योजनाएं</a></li>
-                    <li><a href="krishisathi.html" data-i18n="nav_krishisathi">कृषिसाथी आवाज</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer_contact_title">सहायता</h4>
-                <p data-i18n="kisan_helpline">किसान कॉल सेंटर: 1800-180-1551</p>
-            </div>
+            <div class="km-modal-body" id="modalSchemeBody"></div>
         </div>
-        <div class="footer-bottom-bar">
-            <span data-i18n="footer_copyright">© 2026 KrishiMitra AI. सर्वाधिकार सुरक्षित।</span>
+    </div>
+
+    <!-- =========================================================================
+         5. CONSISTENT FOOTER
+         ========================================================================= -->
+    <footer class="landing-footer">
+        <div class="landing-footer-inner">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="brand-logo-sprout" style="width: 28px; height: 28px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
+                </span>
+                <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
+                <span>• Western Uttar Pradesh Agricultural Intelligence Platform</span>
+            </div>
+
+            <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="forecast.html">Yield Prediction</a>
+                <a href="dashboard.html#advisories">Advisories</a>
+                <a href="schemes.html">Government Schemes</a>
+                <a href="krishisathi.html">KrishiSathi AI</a>
+                <a href="about.html">About</a>
+            </div>
+
+            <div>
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
+            </div>
         </div>
     </footer>
 
-    <script src="translations.js"></script>
-    <script src="shared.js"></script>
     <script>
-        // Category filtering logic
-        document.querySelectorAll('.filter-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const cat = btn.dataset.category;
+    document.addEventListener("DOMContentLoaded", () => {
+        let currentLang = localStorage.getItem("km_lang") || "en";
+        const publicLangBtn = document.getElementById("publicLangBtn");
+        const publicLangLabel = document.getElementById("publicLangLabel");
 
-                document.querySelectorAll('.scheme-full-card').forEach(card => {
-                    if (cat === 'all' || card.dataset.cat === cat) {
-                        card.style.display = 'grid';
-                    } else {
-                        card.style.display = 'none';
-                    }
+        const PAGE_I18N = {
+            en: {
+                nav_predict: "Predict Yield",
+                nav_open_dash: "Open Dashboard",
+                schemes_hero_tag: "9 Verified Central & Multi-State Agricultural Schemes",
+                schemes_hero_title: "Government Schemes & Subsidies",
+                schemes_hero_sub: "Explore 9 verified central and state agricultural schemes across UP, MP, Bihar, Rajasthan, Punjab, and Haryana. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.",
+                schemes_ask_sathi: "Ask KrishiSathi About Schemes →",
+                lbl_search_scheme: "Search Scheme or Keyword",
+                lbl_benefit_cat: "Benefit Category",
+                lbl_target_crop: "Target Crop",
+                lbl_your_land: "Your Land (Acres)",
+                btn_filter: "Filter",
+                lbl_land_cat: "✅ Landholding Category:"
+            },
+            hi: {
+                nav_predict: "उपज अनुमान",
+                nav_open_dash: "डैशबोर्ड खोलें",
+                schemes_hero_tag: "9 सत्यापित केंद्रीय एवं राज्य कृषि योजनाएं",
+                schemes_hero_title: "सरकारी कृषि योजनाएं और सब्सिडी",
+                schemes_hero_sub: "यूपी, एमपी, बिहार, राजस्थान, पंजाब और हरियाणा के किसानों के लिए 9 सत्यापित सरकारी योजनाएं। अपनी भूमि के अनुसार पात्रता जांचें, आवश्यक दस्तावेज देखें और सीधे आधिकारिक .gov.in पोर्टल खोलें।",
+                schemes_ask_sathi: "कृषिसाथी से योजनाओं के बारे में पूछें →",
+                lbl_search_scheme: "योजना या कीवर्ड खोजें",
+                lbl_benefit_cat: "लाभ श्रेणी (Category)",
+                lbl_target_crop: "लक्षित फसल (Crop)",
+                lbl_your_land: "आपकी भूमि (एकड़ में)",
+                btn_filter: "खोजें / फ़िल्टर",
+                lbl_land_cat: "✅ भूमि श्रेणी:"
+            }
+        };
+
+        const VERIFIED_SCHEMES = [
+            {
+                id: "pm-kisan",
+                name_en: "PM-KISAN Samman Nidhi",
+                name_hi: "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+                category: "income",
+                category_label: "Income Support",
+                category_label_hi: "आय सहायता",
+                tag_class: "tag-income",
+                level: "Central Government",
+                level_hi: "केंद्र सरकार",
+                image: "images/scheme_pm_kisan.jpg",
+                benefits_en: "₹6,000 per year transferred directly into Aadhaar-seeded bank accounts in 3 equal installments of ₹2,000 every 4 months.",
+                benefits_hi: "प्रति वर्ष ₹6,000 तीन समान किस्तों (₹2,000 प्रत्येक) में सीधे आधार से जुड़े बैंक खाते में भेजे जाते हैं।",
+                eligibility_en: "All landholding farmer families with cultivable land in their name (subject to standard institutional/income-tax exclusions).",
+                eligibility_hi: "अपने नाम पर कृषि योग्य भूमि वाले सभी किसान परिवार (आयकर दाता और संस्थागत भूमिधारक को छोड़कर)।",
+                highlights: [
+                    "₹6,000/year Direct Benefit Transfer (DBT)",
+                    "Paid in 3 equal installments of ₹2,000",
+                    "Mandatory e-KYC & Aadhaar-linked bank account"
+                ],
+                highlights_hi: [
+                    "₹6,000 प्रति वर्ष सीधे बैंक खाते में (DBT)",
+                    "₹2,000 की 3 समान किस्तों में भुगतान",
+                    "अनिवार्य ई-केवाईसी (e-KYC) और आधार-लिंक्ड खाता"
+                ],
+                documents: ["Aadhaar Card", "Land Ownership Record (Khatauni)", "Active Bank Passbook", "Mobile Number linked to Aadhaar"],
+                documents_hi: ["आधार कार्ड", "खतौनी / भूमि स्वामित्व प्रमाण", "सक्रिय बैंक पासबुक", "आधार से जुड़ा मोबाइल नंबर"],
+                official_portal: "https://pmkisan.gov.in/"
+            },
+            {
+                id: "pmfby",
+                name_en: "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+                name_hi: "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+                category: "insurance",
+                category_label: "Crop Insurance",
+                category_label_hi: "फसल बीमा",
+                tag_class: "tag-insurance",
+                level: "Central & State Govt",
+                level_hi: "केंद्र एवं राज्य सरकार",
+                image: "images/scheme_pmfby.jpg",
+                benefits_en: "Comprehensive financial protection against non-preventable natural risks (hailstorm, unseasonal rain, heat wave, yellow rust/pest outbreaks). Farmers pay only 1.5% premium for Rabi crops (Wheat & Mustard).",
+                benefits_hi: "ओलावृष्टि, बेमौसम बारिश, सूखा और कीट/रोग से फसल नुकसान पर पूरा बीमा कवर। रबी फसलों (गेहूं व सरसों) के लिए केवल 1.5% प्रीमियम।",
+                eligibility_en: "All farmers including sharecroppers and tenant farmers growing notified Rabi crops in notified areas.",
+                eligibility_hi: "अधिसूचित क्षेत्रों में अधिसूचित रबी फसलें उगाने वाले सभी किसान (बटाईदार और काश्तकार सहित)।",
+                highlights: [
+                    "Only 1.5% farmer premium for Rabi crops (Wheat & Mustard)",
+                    "Covers sowing failure, standing crop yield loss & post-harvest rain damage",
+                    "Report localized calamity within 72 hours on Helpline 14447"
+                ],
+                highlights_hi: [
+                    "रबी फसलों (गेहूं एवं सरसों) पर केवल 1.5% प्रीमियम",
+                    "खड़ी फसल और कटाई के बाद बारिश से नुकसान दोनों कवर",
+                    "नुकसान होने पर 72 घंटे में हेल्पलाइन 14447 पर सूचना दें"
+                ],
+                documents: ["Aadhaar Card", "Land Possession Certificate / Khatauni", "Sowing Declaration", "Bank Account Details"],
+                documents_hi: ["आधार कार्ड", "खतौनी / भूमि प्रमाण पत्र", "बुवाई प्रमाण पत्र", "बैंक पासबुक"],
+                official_portal: "https://pmfby.gov.in/"
+            },
+            {
+                id: "shc",
+                name_en: "Soil Health Card (SHC) Scheme",
+                name_hi: "मृदा स्वास्थ्य कार्ड योजना (Soil Health Card)",
+                category: "soil",
+                category_label: "Soil Health",
+                category_label_hi: "मृदा स्वास्थ्य",
+                tag_class: "tag-soil",
+                level: "Central & State Agriculture Dept",
+                level_hi: "कृषि विभाग",
+                image: "images/scheme_soil_health.jpg",
+                benefits_en: "Free laboratory soil testing across 12 key parameters (N, P, K, pH, EC, OC, S, Zn, Fe, Cu, Mn, B) with plot-specific fertilizer dosage recommendations to reduce input cost by 15–20%.",
+                benefits_hi: "मिट्टी के 12 प्रमुख पोषक तत्वों (N, P, K, pH, जिंक, सल्फर आदि) की निःशुल्क जांच और खेत के अनुसार खाद की सटीक मात्रा की सिफारिश।",
+                eligibility_en: "All farmers across UP, MP, Bihar, Rajasthan, Punjab, and Haryana are eligible for soil testing every 3 years.",
+                eligibility_hi: "सभी राज्यों के किसान हर 3 वर्ष में अपने खेत की मिट्टी की निःशुल्क जांच कराने के पात्र हैं।",
+                highlights: [
+                    "Tests 12 macro & micro-nutrients including Zinc & Sulphur",
+                    "Provides crop-wise Urea, DAP, and MOP split dosage table",
+                    "Prevents excessive nitrogen application and soil degradation"
+                ],
+                highlights_hi: [
+                    "जिंक और सल्फर सहित 12 पोषक तत्वों की जांच",
+                    "यूरिया, डीएपी और पोटाश की सटीक मात्रा की तालिका",
+                    "खाद के खर्च में 15–20% की बचत"
+                ],
+                documents: ["Aadhaar Card", "Khasra / Khatauni Plot Number", "Mobile Number"],
+                documents_hi: ["आधार कार्ड", "खसरा / खतौनी संख्या", "मोबाइल नंबर"],
+                official_portal: "https://soilhealth.dac.gov.in/"
+            },
+            {
+                id: "pmksy",
+                name_en: "PM Krishi Sinchayee Yojana (Per Drop More Crop)",
+                name_hi: "प्रधानमंत्री कृषि सिंचाई योजना (प्रति बूंद अधिक फसल)",
+                category: "soil",
+                category_label: "Irrigation Subsidy",
+                category_label_hi: "सिंचाई सब्सिडी",
+                tag_class: "tag-income",
+                level: "Central & State Govt",
+                level_hi: "केंद्र एवं राज्य सरकार",
+                image: "images/advisory_wheat_irrigation.jpg",
+                benefits_en: "Up to 55% capital cost subsidy for Small & Marginal farmers (and 45% for other farmers) to install Drip or Sprinkler micro-irrigation systems, saving up to 40% water.",
+                benefits_hi: "ड्रिप और स्प्रिंकलर सिंचाई सिस्टम लगाने पर लघु व सीमांत किसानों को 55% तक और अन्य किसानों को 45% तक अनुदान।",
+                eligibility_en: "Farmers owning cultivable land with a reliable water source (tube well, borewell, or farm pond).",
+                eligibility_hi: "जिन किसानों के पास कृषि भूमि और सिंचाई का जल स्रोत (ट्यूबवेल, बोरवेल या तालाब) उपलब्ध है।",
+                highlights: [
+                    "55% subsidy for Small & Marginal farmers (< 2 Hectares / 5 Acres)",
+                    "45% subsidy for Medium & Large farmers",
+                    "Ideal for Mustard and Wheat sprinkler irrigation"
+                ],
+                highlights_hi: [
+                    "लघु एवं सीमांत किसानों (< 5 एकड़) को 55% सब्सिडी",
+                    "मध्यम एवं बड़े किसानों को 45% सब्सिडी",
+                    "गेहूं और सरसों में स्प्रिंकलर सिंचाई के लिए सर्वोत्तम"
+                ],
+                documents: ["Aadhaar Card", "Khatauni Land Record", "Soil & Water Test Report", "Bank Passbook"],
+                documents_hi: ["आधार कार्ड", "खतौनी नकल", "मिट्टी व पानी जांच रिपोर्ट", "बैंक पासबुक"],
+                official_portal: "https://pmksy.gov.in/"
+            },
+            {
+                id: "kcc",
+                name_en: "Kisan Credit Card (KCC)",
+                name_hi: "किसान क्रेडिट कार्ड योजना (KCC)",
+                category: "credit",
+                category_label: "Institutional Credit",
+                category_label_hi: "कृषि ऋण (Credit)",
+                tag_class: "tag-insurance",
+                level: "Central Government / RBI",
+                level_hi: "केंद्र सरकार / आरबीआई",
+                image: "images/hero_wheat_mustard.jpg",
+                benefits_en: "Short-term revolving credit for purchasing seeds, fertilizers, and diesel at a subsidized 7% interest rate, reduced to an effective 4% per annum upon timely repayment.",
+                benefits_hi: "बीज, खाद और डीजल खरीदने के लिए सस्ता फसली ऋण; समय पर भुगतान करने पर केवल 4% वार्षिक प्रभावी ब्याज दर।",
+                eligibility_en: "All owner-cultivators, tenant farmers, oral lessees, and Self-Help Groups (SHGs) of farmers.",
+                eligibility_hi: "सभी भूमिधर किसान, बटाईदार, काश्तकार और किसान स्वयं सहायता समूह (SHGs)।",
+                highlights: [
+                    "Effective 4% p.a. interest rate on timely repayment",
+                    "Collateral-free crop loans up to ₹1.60 Lakh",
+                    "Built-in personal accident insurance coverage"
+                ],
+                highlights_hi: [
+                    "समय पर अदायगी पर केवल 4% वार्षिक ब्याज",
+                    "₹1.60 लाख तक बिना गारंटी (बंधक-मुक्त) ऋण",
+                    "दुर्घटना बीमा सुरक्षा कवर शामिल"
+                ],
+                documents: ["Aadhaar Card & PAN Card", "Land Holding Record (Khatauni)", "Passport-size Photographs"],
+                documents_hi: ["आधार कार्ड एवं पैन कार्ड", "खतौनी / भूमि रिकॉर्ड", "पासपोर्ट साइज फोटो"],
+                official_portal: "https://www.myscheme.gov.in/schemes/kcc"
+            },
+            {
+                id: "pm-kusum",
+                name_en: "PM-KUSUM Solar Pump Yojana",
+                name_hi: "पीएम-कुसुम सोलर पंप योजना (PM-KUSUM)",
+                category: "solar",
+                category_label: "Solar & Energy",
+                category_label_hi: "सोलर पंप सब्सिडी",
+                tag_class: "tag-income",
+                level: "MNRE & State Govt",
+                level_hi: "नवीन एवं नवीकरणीय ऊर्जा मंत्रालय",
+                image: "images/advisory_wheat_tillering.jpg",
+                benefits_en: "Up to 60% subsidy (30% Central + 30% State) on standalone solar-powered irrigation pumps (2 HP to 10 HP), eliminating diesel expenses and providing daytime irrigation.",
+                benefits_hi: "2 HP से 10 HP तक के सोलर सिंचाई पंप लगवाने पर 60% तक सरकारी अनुदान (30% केंद्र + 30% राज्य); डीजल और बिजली बिल से राहत।",
+                eligibility_en: "Individual farmers, Water User Associations, and FPOs across UP, MP, Bihar, Rajasthan, Punjab, and Haryana.",
+                eligibility_hi: "यूपी, एमपी, बिहार, राजस्थान, पंजाब और हरियाणा के सभी किसान जिनके पास बोरवेल/जल स्रोत है।",
+                highlights: [
+                    "60% direct subsidy on 2 HP – 10 HP Solar Pumps",
+                    "30% bank loan facility; farmer pays only 10% upfront",
+                    "Zero diesel cost and 25-year solar panel lifespan"
+                ],
+                highlights_hi: [
+                    "2 HP से 10 HP सोलर पंप पर 60% सीधा अनुदान",
+                    "30% बैंक ऋण सुविधा; किसान अंश केवल 10–40%",
+                    "डीजल खर्च शून्य और दिन में सिंचाई की सुविधा"
+                ],
+                documents: ["Aadhaar Card", "Land Record (Khatauni / Jamabandi)", "Bank Passbook", "Borewell Certificate"],
+                documents_hi: ["आधार कार्ड", "खतौनी / जमाबंदी", "बैंक पासबुक", "बोरवेल प्रमाण पत्र"],
+                official_portal: "https://pmkusum.mnre.gov.in/"
+            },
+            {
+                id: "smam-machinery",
+                name_en: "Sub-Mission on Agricultural Mechanization (SMAM)",
+                name_hi: "कृषि मशीनीकरण उप-मिशन (SMAM - कृषि यंत्र सब्सिडी)",
+                category: "machinery",
+                category_label: "Farm Machinery",
+                category_label_hi: "कृषि यंत्र अनुदान",
+                tag_class: "tag-soil",
+                level: "Central & State Agriculture Dept",
+                level_hi: "कृषि मंत्रालय",
+                image: "images/field_wheat.jpg",
+                benefits_en: "40% to 50% subsidy on purchasing Super Seeder, Happy Seeder, Rotavator, Zero-Till Seed Drill, Multi-Crop Thresher, and Laser Land Leveler; up to 80% for Custom Hiring Centres.",
+                benefits_hi: "सुपर सीडर, हैप्पी सीडर, रोटावेटर, जीरो-टिल सीड ड्रिल और लेजर लैंड लेवलर खरीदने पर 40% से 50% तक सब्सिडी; कस्टम हायरिंग सेंटर पर 80% तक अनुदान।",
+                eligibility_en: "All landholding farmers; 50% higher subsidy rate for Small, Marginal, SC/ST, and Women farmers.",
+                eligibility_hi: "सभी भूमिधर किसान पात्र; लघु, सीमांत, महिला और अ.जा./अ.ज.जा. किसानों को 50% अनुदान।",
+                highlights: [
+                    "50% subsidy on Super Seeder, Rotavator & Seed Drill",
+                    "80% subsidy for FPOs establishing Custom Hiring Centres",
+                    "Prevents stubble burning and reduces sowing cost"
+                ],
+                highlights_hi: [
+                    "सुपर सीडर, रोटावेटर और सीड ड्रिल पर 50% तक सब्सिडी",
+                    "कस्टम हायरिंग सेंटर (CHC) खोलने पर 80% तक अनुदान",
+                    "पराली प्रबंधन और समय पर गेहूं बुवाई में सहायक"
+                ],
+                documents: ["Aadhaar Card", "Khatauni Land Record", "Tractor RC (for tractor implements)", "GST Bill & Bank Passbook"],
+                documents_hi: ["आधार कार्ड", "खतौनी भूमि रिकॉर्ड", "ट्रैक्टर आर.सी. (ट्रैक्टर यंत्रों हेतु)", "जीएसटी बिल एवं बैंक पासबुक"],
+                official_portal: "https://agrimachinery.nic.in/"
+            },
+            {
+                id: "pkvy-organic",
+                name_en: "Paramparagat Krishi Vikas Yojana (PKVY)",
+                name_hi: "परम्परागत कृषि विकास योजना (PKVY - जैविक खेती)",
+                category: "organic",
+                category_label: "Organic Farming",
+                category_label_hi: "जैविक खेती",
+                tag_class: "tag-income",
+                level: "Central & State Govt",
+                level_hi: "केंद्र एवं राज्य सरकार",
+                image: "images/field_mustard.jpg",
+                benefits_en: "Financial assistance of ₹50,000 per hectare over 3 years (including ₹31,000/ha directly via DBT for organic bio-inputs and vermicompost) plus free PGS-India organic certification.",
+                benefits_hi: "जैविक खेती के लिए 3 वर्षों में ₹50,000 प्रति हेक्टेयर सहायता (जिसमें ₹31,000/हेक्टेयर सीधे DBT द्वारा जैविक खाद हेतु) और निःशुल्क जैविक प्रमाणीकरण।",
+                eligibility_en: "Farmers with up to 2 hectares (5 acres) participating in 20-hectare organic farming clusters.",
+                eligibility_hi: "2 हेक्टेयर (5 एकड़) तक की भूमि वाले किसान जो जैविक क्लस्टर में शामिल होते हैं।",
+                highlights: [
+                    "₹50,000 per hectare assistance over 3 years",
+                    "₹31,000/ha direct DBT for organic seeds & vermicompost",
+                    "Free PGS-India organic certification & branding support"
+                ],
+                highlights_hi: [
+                    "3 वर्षों में ₹50,000 प्रति हेक्टेयर की आर्थिक सहायता",
+                    "जैविक खाद व बीज हेतु ₹31,000/हेक्टेयर सीधा बैंक भुगतान",
+                    "निःशुल्क पीजीएस-इंडिया (PGS-India) जैविक सर्टिफिकेट"
+                ],
+                documents: ["Aadhaar Card", "Land Ownership Record (Khatauni)", "DBT-enabled Bank Passbook"],
+                documents_hi: ["आधार कार्ड", "खतौनी / भूमि रिकॉर्ड", "डीबीटी-सक्रिय बैंक पासबुक"],
+                official_portal: "https://pgsindia-ncof.gov.in/"
+            },
+            {
+                id: "enam-market",
+                name_en: "e-NAM (National Agriculture Market) & MSP Linkage",
+                name_hi: "राष्ट्रीय कृषि बाजार (e-NAM एवं एमएसपी मंडी सुविधा)",
+                category: "organic",
+                category_label: "Market & MSP",
+                category_label_hi: "डिजिटल मंडी व एमएसपी",
+                tag_class: "tag-insurance",
+                level: "Central Government / SFAC",
+                level_hi: "केंद्र सरकार / SFAC",
+                image: "images/field_fallow.jpg",
+                benefits_en: "Digital trading across 1,389+ integrated APMC mandis in UP, MP, Bihar, Rajasthan, Punjab, and Haryana with transparent quality testing, online bidding, and direct bank settlement.",
+                benefits_hi: "यूपी, एमपी, बिहार, राजस्थान, पंजाब और हरियाणा की 1,389+ मंडियों में ऑनलाइन बोली, पारदर्शी तुलाई और फसल का सीधा बैंक खाते में भुगतान।",
+                eligibility_en: "All farmers selling Wheat, Mustard, and Rabi produce at registered APMC mandis.",
+                eligibility_hi: "पंजीकृत मंडियों में गेहूं, सरसों और अन्य फसल बेचने वाले सभी किसान।",
+                highlights: [
+                    "Transparent online bidding across 1,389+ APMC Mandis",
+                    "Free scientific assaying (moisture & quality testing)",
+                    "Direct RTGS/NEFT payment into farmer's bank account"
+                ],
+                highlights_hi: [
+                    "1,389+ मंडियों में पारदर्शी ऑनलाइन नीलामी",
+                    "फसल की नमी और गुणवत्ता की निःशुल्क जांच",
+                    "बिना बिचौलियों के सीधे बैंक खाते में भुगतान"
+                ],
+                documents: ["Aadhaar Card", "Bank Passbook / Cancelled Cheque", "Active Mobile Number"],
+                documents_hi: ["आधार कार्ड", "बैंक पासबुक / रद्द चेक", "सक्रिय मोबाइल नंबर"],
+                official_portal: "https://www.enam.gov.in/"
+            }
+        ];
+
+        const grid = document.getElementById("standaloneSchemesGrid");
+        const searchInput = document.getElementById("schemeSearchInput");
+        const catFilter = document.getElementById("schemeCategoryFilter");
+        const cropFilter = document.getElementById("schemeCropFilter");
+        const acresInput = document.getElementById("farmerAcresInput");
+        const landCategoryBadge = document.getElementById("landCategoryBadge");
+        const schemeCountBadge = document.getElementById("schemeCountBadge");
+
+        const modalBackdrop = document.getElementById("schemeModalBackdrop");
+        const modalTitle = document.getElementById("modalSchemeTitle");
+        const modalBody = document.getElementById("modalSchemeBody");
+        const btnCloseModal = document.getElementById("btnCloseSchemeModal");
+
+        function applyPageLanguage() {
+            const dict = PAGE_I18N[currentLang] || PAGE_I18N.en;
+            if (publicLangLabel) {
+                publicLangLabel.textContent = currentLang === "hi" ? "हिंदी | EN" : "EN | हिंदी";
+            }
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (dict[key]) el.textContent = dict[key];
+            });
+            renderSchemes();
+        }
+
+        if (publicLangBtn) {
+            publicLangBtn.addEventListener("click", () => {
+                currentLang = currentLang === "hi" ? "en" : "hi";
+                localStorage.setItem("km_lang", currentLang);
+                applyPageLanguage();
+            });
+        }
+
+        function updateLandBanner() {
+            const acres = parseFloat(acresInput.value) || 2.0;
+            const hectares = (acres / 2.471).toFixed(2);
+            if (currentLang === "hi") {
+                if (acres <= 2.47) {
+                    landCategoryBadge.textContent = `सीमांत किसान (${acres.toFixed(1)} एकड़ / ${hectares} हेक्टेयर) — अधिकतम सब्सिडी (55% तक) के पात्र`;
+                } else if (acres <= 5.0) {
+                    landCategoryBadge.textContent = `लघु किसान (${acres.toFixed(1)} एकड़ / ${hectares} हेक्टेयर) — प्राथमिकता सब्सिडी के पात्र`;
+                } else {
+                    landCategoryBadge.textContent = `मध्यम/बड़े किसान (${acres.toFixed(1)} एकड़ / ${hectares} हेक्टेयर)`;
+                }
+            } else {
+                if (acres <= 2.47) {
+                    landCategoryBadge.textContent = `Marginal Farmer (${acres.toFixed(1)} Acres / ${hectares} Ha) — Eligible for maximum priority subsidies (up to 55%)`;
+                } else if (acres <= 5.0) {
+                    landCategoryBadge.textContent = `Small Farmer (${acres.toFixed(1)} Acres / ${hectares} Ha) — Eligible for priority subsidies`;
+                } else {
+                    landCategoryBadge.textContent = `Medium/Large Farmer (${acres.toFixed(1)} Acres / ${hectares} Ha)`;
+                }
+            }
+        }
+
+        function renderSchemes() {
+            updateLandBanner();
+            const q = (searchInput.value || "").trim().toLowerCase();
+            const cat = catFilter.value;
+
+            const filtered = VERIFIED_SCHEMES.filter(s => {
+                const matchCat = cat === "all" || s.category === cat;
+                const matchQ = !q ||
+                    s.name_en.toLowerCase().includes(q) ||
+                    s.name_hi.toLowerCase().includes(q) ||
+                    s.benefits_en.toLowerCase().includes(q) ||
+                    s.benefits_hi.toLowerCase().includes(q) ||
+                    s.eligibility_en.toLowerCase().includes(q) ||
+                    s.category_label.toLowerCase().includes(q);
+                return matchCat && matchQ;
+            });
+
+            schemeCountBadge.textContent = currentLang === "hi"
+                ? `कुल ${filtered.length} सत्यापित योजनाएं उपलब्ध`
+                : `Showing ${filtered.length} Verified Scheme${filtered.length === 1 ? "" : "s"}`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="predict-form-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 8px;">${currentLang === "hi" ? "कोई योजना नहीं मिली" : "No Matching Schemes Found"}</h3>
+                        <p style="color: var(--km-text-muted); margin-bottom: 16px;">${currentLang === "hi" ? "कृपया अपना खोज शब्द बदलें या 'सभी श्रेणियाँ' चुनें।" : "Try clearing your search keyword or selecting 'All Categories'."}</p>
+                        <button type="button" class="btn-predict-action" id="btnResetSchemeFilters">${currentLang === "hi" ? "सभी फ़िल्टर रीसेट करें" : "Reset All Filters"}</button>
+                    </div>
+                `;
+                const resetBtn = document.getElementById("btnResetSchemeFilters");
+                if (resetBtn) {
+                    resetBtn.addEventListener("click", () => {
+                        searchInput.value = "";
+                        catFilter.value = "all";
+                        cropFilter.value = "all";
+                        renderSchemes();
+                    });
+                }
+                return;
+            }
+
+            grid.innerHTML = filtered.map(s => {
+                const title = currentLang === "hi" ? s.name_hi : s.name_en;
+                const catLbl = currentLang === "hi" ? s.category_label_hi : s.category_label;
+                const lvlLbl = currentLang === "hi" ? s.level_hi : s.level;
+                const listItems = currentLang === "hi" ? s.highlights_hi : s.highlights;
+                const btnDetails = currentLang === "hi" ? "पात्रता एवं दस्तावेज देखें" : "Eligibility & Docs";
+                const btnPortal = currentLang === "hi" ? "आधिकारिक पोर्टल ↗" : "Official Portal ↗";
+                return `
+                <article class="scheme-card-pro">
+                    <div class="scheme-card-image-wrap">
+                        <img src="${s.image}" alt="${title}" loading="lazy" onerror="this.src='images/field_wheat.jpg'">
+                    </div>
+                    <div class="scheme-card-body">
+                        <div class="scheme-tags-row">
+                            <span class="scheme-tag-pill ${s.tag_class}">${catLbl}</span>
+                            <span class="scheme-tag-pill tag-central">${lvlLbl}</span>
+                        </div>
+                        <h3 class="scheme-card-title">${title}</h3>
+                        <ul class="scheme-highlights-list">
+                            ${listItems.map(h => `<li>${h}</li>`).join("")}
+                        </ul>
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--km-border-subtle); gap: 10px;">
+                            <button type="button" class="scheme-view-details-link btn-open-scheme-modal" data-id="${s.id}">
+                                <span>${btnDetails}</span>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </button>
+                            <a href="${s.official_portal}" target="_blank" rel="noopener" class="btn-outline-login" style="padding: 5px 12px; font-size: 0.78rem;">${btnPortal}</a>
+                        </div>
+                    </div>
+                </article>
+            `}).join("");
+
+            grid.querySelectorAll(".btn-open-scheme-modal").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const s = VERIFIED_SCHEMES.find(item => item.id === btn.dataset.id);
+                    if (!s) return;
+                    const isHi = currentLang === "hi";
+                    modalTitle.textContent = isHi ? s.name_hi : s.name_en;
+                    modalBody.innerHTML = `
+                        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                            <span class="scheme-tag-pill ${s.tag_class}">${isHi ? s.category_label_hi : s.category_label}</span>
+                            <span class="scheme-tag-pill tag-central">${isHi ? s.level_hi : s.level}</span>
+                        </div>
+                        <h4 style="font-size: 0.92rem; font-weight: 800; color: var(--km-primary); margin-bottom: 4px;">${isHi ? "मुख्य आर्थिक लाभ (Key Benefit)" : "Key Financial Benefit"}</h4>
+                        <p style="font-size: 0.92rem; color: var(--km-text-body); margin-bottom: 16px;">${isHi ? s.benefits_hi : s.benefits_en}</p>
+
+                        <h4 style="font-size: 0.92rem; font-weight: 800; color: var(--km-primary); margin-bottom: 4px;">${isHi ? "पात्रता मापदंड (Eligibility Criteria)" : "Eligibility Criteria"}</h4>
+                        <p style="font-size: 0.92rem; color: var(--km-text-body); margin-bottom: 16px;">${isHi ? s.eligibility_hi : s.eligibility_en}</p>
+
+                        <h4 style="font-size: 0.92rem; font-weight: 800; color: var(--km-primary); margin-bottom: 8px;">${isHi ? "आवश्यक दस्तावेज (Required Documents)" : "Required Documents"}</h4>
+                        <ul class="scheme-highlights-list" style="margin-bottom: 20px;">
+                            ${(isHi ? s.documents_hi : s.documents).map(d => `<li>${d}</li>`).join("")}
+                        </ul>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                            <a href="${s.official_portal}" target="_blank" rel="noopener" class="btn-predict-action">${isHi ? "आधिकारिक पोर्टल खोलें" : "Visit Official Portal"} (${new URL(s.official_portal).hostname}) ↗</a>
+                        </div>
+                    `;
+                    modalBackdrop.classList.add("active");
                 });
             });
+        }
+
+        searchInput.addEventListener("input", renderSchemes);
+        catFilter.addEventListener("change", renderSchemes);
+        cropFilter.addEventListener("change", renderSchemes);
+        acresInput.addEventListener("input", renderSchemes);
+
+        btnCloseModal.addEventListener("click", () => modalBackdrop.classList.remove("active"));
+        modalBackdrop.addEventListener("click", (e) => {
+            if (e.target === modalBackdrop) modalBackdrop.classList.remove("active");
         });
+
+        applyPageLanguage();
+    });
     </script>
 </body>
 </html>
