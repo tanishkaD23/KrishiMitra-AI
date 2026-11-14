@@ -33,6 +33,8 @@ class KrishiSathiAgent:
     5. Guardrails: Refuses to fabricate scheme eligibility or benefits if unverified.
     """
 
+    _OPENAI_QUOTA_EXHAUSTED: bool = False
+
     def __init__(
         self,
         api_key: Optional[str] = None,
@@ -116,7 +118,8 @@ class KrishiSathiAgent:
         # Stage 4: Answer Generation (OpenAI LLM or Expert Grounded Rules)
         # -------------------------------------------------------------
         # Try OpenAI LLM if configured
-        if self._openai_client:
+        is_mock_key = "sk-mock" in str(self.api_key or "")
+        if self._openai_client and (is_mock_key or not KrishiSathiAgent._OPENAI_QUOTA_EXHAUSTED):
             llm_answer = self._call_openai_llm(query_clean, context, lang_mode, retrieval)
             if llm_answer:
                 return {
@@ -227,6 +230,8 @@ Strict Rules:
                 logger.warning(f"OpenAI call with model '{model_name}' encountered: {type(e).__name__} - {err_msg[:100]}")
                 err_lower = err_msg.lower()
                 if any(k in err_lower for k in ["insufficient_quota", "credit", "quota", "429", "rate limit", "connection", "apiconnection"]):
+                    if "sk-mock" not in str(self.api_key or ""):
+                        KrishiSathiAgent._OPENAI_QUOTA_EXHAUSTED = True
                     break
 
         return None
@@ -450,18 +455,28 @@ Strict Rules:
 
     @staticmethod
     def _extract_crop_from_query(query_lower: str) -> Optional[str]:
-        """Detects if the user explicitly mentioned one of the 10 supported Rabi crops in their message."""
+        """Detects if the user explicitly mentioned one of the supported All-India crops in their message."""
         crop_keywords = [
             ("Wheat", ["wheat", "gehun", "gehu", "गेहूं", "गेहूँ"]),
             ("Mustard", ["mustard", "sarson", "sarso", "सरसों", "लाही", "राया"]),
+            ("Rice", ["rice", "paddy", "dhan", "dhaan", "धान", "चावल"]),
+            ("Cotton(lint)", ["cotton", "kapas", "कपास", "नरमा"]),
+            ("Sugarcane", ["sugarcane", "ganna", "गन्ना", "ईख"]),
+            ("Soyabean", ["soybean", "soyabean", "soya", "सोयाबीन"]),
+            ("Groundnut", ["groundnut", "peanut", "moongphali", "मूंगफली"]),
             ("Gram", ["gram", "chana", "chickpea", "चना", "छोले"]),
             ("Barley", ["barley", "jau", "जौ"]),
             ("Masoor", ["masoor", "lentil", "मसूर"]),
             ("Maize", ["maize", "makka", "corn", "मक्का"]),
+            ("Bajra", ["bajra", "pearl millet", "बाजरा"]),
+            ("Jowar", ["jowar", "sorghum", "ज्वार"]),
+            ("Arhar/Tur", ["arhar", "tur", "pigeonpea", "अरहर", "तूर"]),
             ("Peas & beans (Pulses)", ["pea", "peas", "matar", "beans", "मटर", "दलहन"]),
             ("Potato", ["potato", "aaloo", "aloo", "आलू"]),
             ("Onion", ["onion", "pyaz", "pyaaz", "प्याज"]),
             ("Linseed", ["linseed", "alsi", "flax", "अलसी"]),
+            ("Banana", ["banana", "kela", "केला"]),
+            ("Turmeric", ["turmeric", "haldi", "हल्दी"]),
         ]
         for canonical_crop, words in crop_keywords:
             if any(w in query_lower for w in words):
@@ -710,6 +725,15 @@ Strict Rules:
                 f"• बुवाई से पहले प्रति एकड़ 2–3 टन सड़ी गोबर की खाद या केंचुआ खाद (Vermicompost) मिलाएं और **soilhealth.dac.gov.in** पर निःशुल्क मृदा स्वास्थ्य कार्ड बनवाएं।"
             )
 
+        # 10b. NASA Earth & Satellite Intelligence
+        if any(w in query for w in ["nasa", "satellite", "ndvi", "gibs", "modis", "solar radiation", "उपग्रह", "सैटेलाइट", "नासा"]):
+            return (
+                f"**{district} ({state}) के लिए NASA Earth & Weather Intelligence:**\n"
+                f"• **NASA POWER Reanalysis:** 2m तापमान (T2M), सापेक्ष आर्द्रता (RH2M), सौर विकिरण (ALLSKY_SFC_SW_DWN), हवा की गति और वर्षा (PRECTOTCORR) का वैज्ञानिक विश्लेषण उपलब्ध कराता है।\n"
+                f"• **NASA GIBS Satellite Layers:** MODIS NDVI (वनस्पति स्वास्थ्य सूचकांक), True Color इमेजरी, Land Surface Temperature (LST) और GPM IMERG वर्षा मानचित्र उपलब्ध हैं।\n"
+                f"• **नोट:** NASA POWER ऐतिहासिक एवं नियर-रियल-टाइम रीएनालिसिस डेटा प्रदान करता है, लाइव मौसम पूर्वानुमान नहीं।"
+            )
+
         # 11. Open Agronomic Web Search Fallback before generic summary
         web_agro = self._search_web_agronomy_fallback(query, crop, district, state, "hi")
         if web_agro:
@@ -749,7 +773,7 @@ Strict Rules:
         if any(w in query for w in ["yield", "production", "harvest", "quintal", "output", "how much"]):
             total = round(float(predicted_yield) * float(plot_acres), 1)
             return (
-                f"For your **{plot_acres} acre** **{crop}** plot in **{district} ({state})**, the ML-estimated yield is **{predicted_yield} Quintals/Acre** "
+                f"For your **{plot_acres} acre** **{crop}** plot in **{district} ({state})**, the estimated {crop} yield is **{predicted_yield} Quintals/Acre** "
                 f"(total harvest ~**{total} Quintals** | expected regional range: **{range_q_ha} Q/Ha**).\n"
                 f"• **Yield Booster Tip:** Ensure timely stage-wise irrigation and split Nitrogen application to protect grain weight against March terminal heat."
             )
@@ -902,6 +926,15 @@ Strict Rules:
                 f"**Soil Management for {district} ({state}):**\n"
                 f"• Predominant soil profile: **{soil_t}** (ideal pH: **6.5 – 7.5**).\n"
                 f"• Incorporate 2–3 tonnes/acre of well-decomposed FYM or Vermicompost before sowing and get a free 12-parameter soil report via **soilhealth.dac.gov.in**."
+            )
+
+        # 10b. NASA Earth & Satellite Intelligence
+        if any(w in query for w in ["nasa", "satellite", "ndvi", "gibs", "modis", "solar radiation", "उपग्रह", "सैटेलाइट", "नासा"]):
+            return (
+                f"**{district} ({state}) के लिए NASA Earth & Weather Intelligence:**\n"
+                f"• **NASA POWER Reanalysis:** 2m तापमान (T2M), सापेक्ष आर्द्रता (RH2M), सौर विकिरण (ALLSKY_SFC_SW_DWN), हवा की गति और वर्षा (PRECTOTCORR) का वैज्ञानिक विश्लेषण उपलब्ध कराता है।\n"
+                f"• **NASA GIBS Satellite Layers:** MODIS NDVI (वनस्पति स्वास्थ्य सूचकांक), True Color इमेजरी, Land Surface Temperature (LST) और GPM IMERG वर्षा मानचित्र उपलब्ध हैं।\n"
+                f"• **नोट:** NASA POWER ऐतिहासिक एवं नियर-रियल-टाइम रीएनालिसिस डेटा प्रदान करता है, लाइव मौसम पूर्वानुमान नहीं।"
             )
 
         # 11. Open Agronomic Web Search Fallback before generic summary

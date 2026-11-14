@@ -1,7 +1,8 @@
-"""Configuration settings for KrishiMitra AI multi-state agricultural platform."""
+"""Configuration settings for KrishiMitra AI All-India agricultural platform."""
+import json
 from pathlib import Path
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List, Dict, Any
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -10,72 +11,75 @@ PROCESSED_DATA_DIR = DATA_DIR / "processed"
 SCHEMES_DATA_DIR = DATA_DIR / "schemes"
 MODELS_DIR = BASE_DIR / "models"
 
+# Exact required All-India dataset paths
+CROP_DATASET_PATH = BASE_DIR / "crops" / "all_india_all_seasons_crops_dataset(1).csv"
+SOIL_DATASET_PATH = BASE_DIR / "soil" / "all_states_india_soil_dataset(2).csv"
+WEATHER_DATASET_PATH = BASE_DIR / "weather" / "all_states_india_weather_and_rainfall_dataset(1).csv"
+
+
+def _load_dynamic_coverage() -> Dict[str, Any]:
+    """Loads All-India states, districts, crops, and seasons dynamically from the lookup/report."""
+    lookup_path = MODELS_DIR / "all_india_intelligence_lookup.joblib"
+    if lookup_path.exists():
+        try:
+            import joblib
+            data = joblib.load(lookup_path)
+            return {
+                "states": data.get("all_states", []),
+                "state_districts": data.get("state_districts", {}),
+                "crops": data.get("all_crops", []),
+                "seasons": data.get("all_seasons", ["Kharif", "Rabi", "Summer", "Winter", "Autumn"]),
+                "state_crops": data.get("state_crops", {}),
+                "state_seasons": data.get("state_seasons", {}),
+                "district_crops": data.get("district_crops", {}),
+                "crop_seasons": data.get("crop_seasons", {}),
+            }
+        except Exception:
+            pass
+    return {}
+
+
+_DYN = _load_dynamic_coverage()
+
 
 class PilotConfig(BaseModel):
     state: str = "Uttar Pradesh"
-    region: str = "Multi-State Rabi Agricultural Belt (UP, MP, Bihar, Rajasthan, Punjab, Haryana)"
+    region: str = "All-India Agricultural Intelligence & Decision Support Platform (35 States/UTs, 736 Districts)"
     season: str = "Rabi"
-    yield_unit: str = "Quintals/Acre"
+    yield_unit: str = "Tonnes/Hectare & Quintals/Acre"
 
-    supported_states: List[str] = [
-        "Uttar Pradesh",
-        "Madhya Pradesh",
-        "Bihar",
-        "Rajasthan",
-        "Punjab",
-        "Haryana",
+    supported_states: List[str] = _DYN.get("states") or [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir",
+        "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Madhya Pradesh",
+        "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+        "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim",
+        "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
+        "West Bengal", "Andaman and Nicobar Islands", "Chandigarh",
+        "Dadra and Nagar Haveli and Daman and Diu", "Delhi"
     ]
 
-    state_districts: Dict[str, List[str]] = {
+    state_districts: Dict[str, List[str]] = _DYN.get("state_districts") or {
         "Uttar Pradesh": [
-            "Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Azamgarh",
-            "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti",
+            "Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh",
+            "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly", "Basti", "Bhadohi",
             "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah",
-            "Faizabad", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad",
+            "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddha Nagar", "Ghaziabad",
             "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun",
             "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi",
-            "Kheri", "Kushi Nagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri",
+            "Kheri (Lakhimpur)", "Kushinagar", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri",
             "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit",
-            "Pratapgarh", "Prayagraj", "Rae Bareli", "Rampur", "Saharanpur", "Sambhal",
-            "Sant Kabeer Nagar", "Sant Ravidas Nagar", "Shahjahanpur", "Shamli", "Shravasti",
-            "Siddharth Nagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"
-        ],
-        "Madhya Pradesh": [
-            "Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind",
-            "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar",
-            "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua",
-            "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narmadapuram",
-            "Narsinghpur", "Neemuch", "Niwari", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa",
-            "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri",
-            "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"
-        ],
-        "Bihar": [
-            "Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar",
-            "Darbhanga", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur (Bhabua)", "Katihar",
-            "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur",
-            "Nalanda", "Nawada", "Pashchim Champaran", "Patna", "Purbi Champaran", "Purnia", "Rohtas",
-            "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan",
-            "Supaul", "Vaishali"
-        ],
-        "Rajasthan": [
-            "Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner",
-            "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Ganganagar",
-            "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur",
-            "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur",
-            "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"
-        ],
-        "Punjab": [
-            "Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur",
-            "Firozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana",
-            "Malerkotla", "Mansa", "Moga", "Muktsar", "Nawanshahr", "Pathankot", "Patiala",
-            "Rupnagar", "S.A.S Nagar", "Sangrur", "Tarn Taran"
-        ],
-        "Haryana": [
-            "Ambala", "Bhiwani", "Charki Dadri", "Faridabad", "Fatehabad", "Gurgaon", "Hisar",
-            "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Mewat",
-            "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"
+            "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal",
+            "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shravasti",
+            "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"
         ],
     }
+
+    state_crops: Dict[str, List[str]] = _DYN.get("state_crops") or {}
+    state_seasons: Dict[str, List[str]] = _DYN.get("state_seasons") or {}
+    district_crops: Dict[str, List[str]] = _DYN.get("district_crops") or {}
+    crop_seasons: Dict[str, List[str]] = _DYN.get("crop_seasons") or {}
+    all_india_crops: List[str] = _DYN.get("crops") or []
 
     districts: List[str] = [
         "Meerut", "Bulandshahr", "Aligarh", "Muzaffarnagar", "Mathura",
@@ -84,25 +88,24 @@ class PilotConfig(BaseModel):
         "Gorakhpur", "Jhansi", "Shahjahanpur", "Sitapur", "Hardoi"
     ]
 
-    crops: List[str] = [
-        "Wheat",
-        "Mustard",
-        "Rapeseed &Mustard",
-        "Gram",
-        "Barley",
-        "Masoor",
-        "Maize",
-        "Peas & beans (Pulses)",
-        "Potato",
-        "Onion",
-        "Linseed",
-    ]
+    seasons: List[str] = _DYN.get("seasons") or ["Kharif", "Rabi", "Summer", "Winter", "Autumn"]
+
+    crops: List[str] = (
+        ["Wheat", "Mustard"]
+        + [c for c in (_DYN.get("crops") or [
+            "Rapeseed &Mustard", "Rice", "Maize", "Gram", "Barley", "Masoor",
+            "Peas & beans (Pulses)", "Potato", "Onion", "Linseed", "Arhar/Tur",
+            "Moong(Green Gram)", "Urad", "Groundnut", "Soyabean", "Sunflower",
+            "Sesamum", "Jowar", "Bajra", "Ragi"
+        ]) if c not in ("Wheat", "Mustard")]
+    )
 
     soil_types: List[str] = [
         "Alluvial (Sandy Loam)",
         "Alluvial (Clay Loam)",
         "Loam",
         "Black Cotton Soil (Vertisol)",
+        "Red & Lateritic Soil",
         "Arid Sandy Soil",
     ]
 
@@ -112,12 +115,14 @@ class PilotConfig(BaseModel):
         "Canal Irrigation",
         "Rainfed",
         "Rainfed / Limited",
+        "Drip / Micro-Irrigation",
     ]
 
     baseline_yield_benchmarks: Dict[str, Dict[str, float]] = {
         "Wheat": {"mean": 16.8, "min": 8.5, "max": 26.5, "std": 2.6},
         "Mustard": {"mean": 7.5, "min": 3.5, "max": 12.5, "std": 1.6},
         "Rapeseed &Mustard": {"mean": 7.5, "min": 3.5, "max": 12.5, "std": 1.6},
+        "Rice": {"mean": 14.5, "min": 6.5, "max": 25.0, "std": 2.8},
         "Gram": {"mean": 5.2, "min": 2.5, "max": 10.5, "std": 1.4},
         "Barley": {"mean": 12.4, "min": 6.0, "max": 20.5, "std": 2.1},
         "Masoor": {"mean": 4.2, "min": 2.0, "max": 8.5, "std": 1.2},
@@ -128,7 +133,6 @@ class PilotConfig(BaseModel):
         "Linseed": {"mean": 3.6, "min": 1.5, "max": 7.5, "std": 1.0},
     }
 
-    # Calibrated yield benchmarks (Quintals/Acre) across all 6 states
     state_yield_benchmarks: Dict[str, Dict[str, Dict[str, float]]] = {
         "Uttar Pradesh": {
             "Wheat": {"mean": 16.8, "min": 10.0, "max": 24.5, "std": 2.8},

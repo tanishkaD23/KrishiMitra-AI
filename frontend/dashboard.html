@@ -12,6 +12,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Professional Design System -->
     <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
+    <!-- Supabase Authentication & Route Protection -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+    <script src="supabase_auth.js"></script>
 </head>
 <body>
 
@@ -48,7 +52,7 @@
                             <span data-i18n="nav_predict">Predict Yield</span>
                         </a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="display: none;">
                         <a href="#advisories" class="sidebar-link" data-tab="tab-advisories">
                             <span class="sidebar-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -56,7 +60,7 @@
                             <span data-i18n="nav_advisories">Advisories</span>
                         </a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="display: none;">
                         <a href="#schemes" class="sidebar-link" data-tab="tab-schemes">
                             <span class="sidebar-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 10h18"/><path d="M5 6l7-3 7 3"/><path d="M4 10v11"/><path d="M20 10v11"/><path d="M8 14v4"/><path d="M12 14v4"/><path d="M16 14v4"/></svg>
@@ -65,14 +69,38 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-item">
+                        <a href="#scheme-intel" class="sidebar-link" data-tab="tab-scheme-intel">
+                            <span class="sidebar-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            </span>
+                            <span data-i18n="nav_scheme_intel">Govt Schemes</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#suraksha" class="sidebar-link" data-tab="tab-suraksha">
+                            <span class="sidebar-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </span>
+                            <span data-i18n="nav_suraksha">Crop Insurance</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a href="#nasa" class="sidebar-link" data-tab="tab-nasa">
+                            <span class="sidebar-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </span>
+                            <span data-i18n="nav_nasa">NASA Weather</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-item">
                         <a href="#krishisathi" class="sidebar-link" data-tab="tab-krishisathi">
                             <span class="sidebar-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                             </span>
-                            <span data-i18n="nav_krishisathi">KrishiSathi</span>
+                            <span data-i18n="nav_krishisathi">KrishiSathi AI</span>
                         </a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="display: none;">
                         <a href="#weather" class="sidebar-link" data-tab="tab-weather">
                             <span class="sidebar-icon">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>
@@ -116,16 +144,16 @@
              ========================================================================= -->
         <main class="app-main-canvas">
 
-            <!-- Top Header Bar -->
+            <!-- Clean, Professional Single-Line Top Header Bar -->
             <header class="app-top-header">
                 <div class="header-welcome-col">
-                    <h1 id="topGreetingText">Welcome back, Farmer! 🌾</h1>
-                    <p id="topGreetingSub">Here's an overview of your farm and crop insights.</p>
+                    <h1 id="topGreetingText">Welcome back, Tanishka</h1>
+                    <p id="topGreetingSub">All-India Farm &amp; Crop Intelligence Overview</p>
                 </div>
 
                 <div class="header-controls-col">
                     <!-- State Selector Dropdown -->
-                    <select class="header-select-pill" id="statePicker" aria-label="Select State">
+                    <select class="header-select-pill" id="statePicker" aria-label="Select State" style="max-width: 175px;">
                         <option value="Uttar Pradesh" selected>Uttar Pradesh (UP)</option>
                         <option value="Madhya Pradesh">Madhya Pradesh (MP)</option>
                         <option value="Bihar">Bihar</option>
@@ -135,7 +163,7 @@
                     </select>
 
                     <!-- District Selector Dropdown -->
-                    <select class="header-select-pill" id="districtPicker" aria-label="Select District">
+                    <select class="header-select-pill" id="districtPicker" aria-label="Select District" style="max-width: 155px;">
                         <option value="Meerut" selected>Meerut</option>
                         <option value="Bulandshahr">Bulandshahr</option>
                         <option value="Aligarh">Aligarh</option>
@@ -158,6 +186,11 @@
                         <option value="Hardoi">Hardoi</option>
                     </select>
 
+                    <!-- Compact Single-Line Role Badge -->
+                    <button type="button" class="header-select-pill" id="headerAuthRoleBtn" title="Active Role">
+                        <span id="headerAuthRoleLabel">Role: Farmer</span>
+                    </button>
+
                     <!-- Language Selector Button -->
                     <button type="button" class="header-select-pill" id="langSwitchBtn" title="Switch Language">
                         <span id="langSwitchLabel">EN | हिंदी</span>
@@ -165,7 +198,15 @@
 
                     <!-- Theme Toggle Button -->
                     <button type="button" class="header-select-pill" id="themeToggleBtn" title="Toggle Light/Dark Theme">
-                        <span id="themeToggleIcon">🌙 Dark</span>
+                        <span id="themeToggleIcon">Dark Mode</span>
+                    </button>
+
+                    <!-- Dedicated Switch Role & Logout Buttons -->
+                    <a href="login.html?switch=1" class="header-select-pill" style="text-decoration:none; font-weight:800; background:#FFF7D6; border-color:#D97706; color:#064E2B;" title="Switch Role">
+                        Switch Role
+                    </a>
+                    <button type="button" class="header-select-pill" id="headerLogoutBtn" data-km-logout style="font-weight:800; cursor:pointer; color:#064E2B;" title="Sign Out of KrishiMitra AI">
+                        Logout
                     </button>
 
                     <!-- Farmer Avatar -->
@@ -179,26 +220,84 @@
             <nav class="mobile-dashboard-nav" aria-label="Mobile Dashboard Sections">
                 <a href="#dashboard" class="sidebar-link active" data-tab="tab-dashboard" data-i18n="nav_dashboard">Overview</a>
                 <a href="#predict" class="sidebar-link" data-tab="tab-predict" data-i18n="nav_predict">Predict Yield</a>
-                <a href="#advisories" class="sidebar-link" data-tab="tab-advisories" data-i18n="nav_advisories">Advisories</a>
-                <a href="#schemes" class="sidebar-link" data-tab="tab-schemes" data-i18n="nav_schemes">Schemes</a>
-                <a href="#krishisathi" class="sidebar-link" data-tab="tab-krishisathi" data-i18n="nav_krishisathi">KrishiSathi</a>
-                <a href="#weather" class="sidebar-link" data-tab="tab-weather" data-i18n="nav_weather">Weather</a>
+                <a href="#scheme-intel" class="sidebar-link" data-tab="tab-scheme-intel">Govt Schemes</a>
+                <a href="#suraksha" class="sidebar-link" data-tab="tab-suraksha">Crop Insurance</a>
+                <a href="#nasa" class="sidebar-link" data-tab="tab-nasa">NASA Weather</a>
+                <a href="#krishisathi" class="sidebar-link" data-tab="tab-krishisathi" data-i18n="nav_krishisathi">KrishiSathi AI</a>
                 <a href="#farms" class="sidebar-link" data-tab="tab-farms" data-i18n="nav_farms">My Farms</a>
-                <a href="index.html" data-i18n="nav_home_ext">Home ↗</a>
+                <a href="index.html">Main Website ↗</a>
+                <a href="login.html">Login ↗</a>
             </nav>
 
             <div class="app-tab-content-wrapper">
 
                 <!-- =====================================================================
-                     TAB 1: DASHBOARD (OVERVIEW) — Exact Match to Reference Screen 2
+                     TAB 1: DASHBOARD (OVERVIEW)
                      ===================================================================== -->
                 <section class="app-tab-screen active" id="tab-dashboard">
+
+                    <!-- DEDICATED AGRICULTURAL OFFICER WORKSPACE PANEL (Shown ONLY in Overview when Role == Officer) -->
+                    <div id="officerDedicatedPanel" class="chart-card-pro" style="display: none; margin-bottom: 22px; border: 2px solid #1D4ED8; background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(29, 78, 216, 0.2);">
+                            <div>
+                                <h3 style="font-size: 1.12rem; font-weight: 800; color: #1E3A8A;">District Agricultural Officer Command View</h3>
+                                <p style="font-size: 0.82rem; color: #1E40AF; margin-top: 2px;">District plot surveillance, PMFBY 72-hour crop loss claim inspections, and scheme penetration audit.</p>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button type="button" class="acre-chip" onclick="document.querySelector('[data-tab=\'tab-suraksha\']').click()" style="background:#1D4ED8; color:#fff; border-color:#1D4ED8; cursor:pointer;">Inspect PMFBY Claims</button>
+                                <button type="button" class="acre-chip" onclick="document.querySelector('[data-tab=\'tab-scheme-intel\']').click()" style="cursor:pointer;">Scheme Audit</button>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px;">
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #BFDBFE;">
+                                <div style="font-size:0.74rem; color:#1E40AF; font-weight:700;">DISTRICT PLOTS MONITORED</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#1E3A8A; margin-top:3px;" id="officerStatPlots">1,420 Active Plots</div>
+                            </div>
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #BFDBFE;">
+                                <div style="font-size:0.74rem; color:#1E40AF; font-weight:700;">PENDING PMFBY INSPECTIONS</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#B45309; margin-top:3px;" id="officerStatClaims">18 Field Surveys Due</div>
+                            </div>
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #BFDBFE;">
+                                <div style="font-size:0.74rem; color:#1E40AF; font-weight:700;">DISTRICT SCHEME REACH</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#065F46; margin-top:3px;">94.2% PM-KISAN e-KYC</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DEDICATED ADMINISTRATOR WORKSPACE PANEL (Shown ONLY in Overview when Role == Admin) -->
+                    <div id="adminDedicatedPanel" class="chart-card-pro" style="display: none; margin-bottom: 22px; border: 2px solid #B45309; background: linear-gradient(135deg, #FFFBEB 0%, #FFFFFF 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(180, 83, 9, 0.2);">
+                            <div>
+                                <h3 style="font-size: 1.12rem; font-weight: 800; color: #92400E;">Platform Administrator Command Center</h3>
+                                <p style="font-size: 0.82rem; color: #B45309; margin-top: 2px;">System-wide user governance, verified government scheme uploads, and 35-State ML pipeline monitoring.</p>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <button type="button" class="acre-chip" onclick="document.querySelector('[data-tab=\'tab-profile\']').click()" style="background:#B45309; color:#fff; border-color:#B45309; cursor:pointer;">Manage Users</button>
+                                <button type="button" class="acre-chip" onclick="document.querySelector('[data-tab=\'tab-scheme-intel\']').click()" style="cursor:pointer;">Upload Scheme Record</button>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px;">
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #FDE68A;">
+                                <div style="font-size:0.74rem; color:#92400E; font-weight:700;">ALL-INDIA COVERAGE</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#78350F; margin-top:3px;">35 States • 736 Districts</div>
+                            </div>
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #FDE68A;">
+                                <div style="font-size:0.74rem; color:#92400E; font-weight:700;">PLATFORM ACCOUNTS</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#065F46; margin-top:3px;" id="adminStatUsersCount">3 Active Role Accounts</div>
+                            </div>
+                            <div style="background:#fff; padding:12px 14px; border-radius:12px; border:1px solid #FDE68A;">
+                                <div style="font-size:0.74rem; color:#92400E; font-weight:700;">ML PIPELINE STATUS</div>
+                                <div style="font-size:1.25rem; font-weight:900; color:#1E3A8A; margin-top:3px;">Random Forest Active</div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- 4 Overview Stat Cards Grid -->
                     <div class="overview-stats-grid">
                         <!-- Stat 1: Estimated Yield -->
                         <div class="stat-card-pro">
-                            <div class="stat-icon-wrapper stat-icon-green">
-                                📈
+                            <div class="stat-icon-wrapper stat-icon-green" style="font-size: 0.85rem; font-weight: 800;">
+                                YLD
                             </div>
                             <div class="stat-info-col">
                                 <div class="stat-label" data-i18n="stat_est_yield">Estimated Yield</div>
@@ -209,8 +308,8 @@
 
                         <!-- Stat 2: Risk Status -->
                         <div class="stat-card-pro">
-                            <div class="stat-icon-wrapper stat-icon-shield">
-                                🛡️
+                            <div class="stat-icon-wrapper stat-icon-shield" style="font-size: 0.85rem; font-weight: 800;">
+                                RSK
                             </div>
                             <div class="stat-info-col">
                                 <div class="stat-label" data-i18n="stat_risk_status">Risk Status</div>
@@ -221,8 +320,8 @@
 
                         <!-- Stat 3: Weather Outlook -->
                         <div class="stat-card-pro">
-                            <div class="stat-icon-wrapper stat-icon-weather">
-                                ⛅
+                            <div class="stat-icon-wrapper stat-icon-weather" style="font-size: 0.85rem; font-weight: 800;">
+                                WTH
                             </div>
                             <div class="stat-info-col">
                                 <div class="stat-label" data-i18n="stat_weather_outlook">Weather Outlook</div>
@@ -233,8 +332,8 @@
 
                         <!-- Stat 4: Relevant Schemes -->
                         <div class="stat-card-pro">
-                            <div class="stat-icon-wrapper stat-icon-gold">
-                                📄
+                            <div class="stat-icon-wrapper stat-icon-gold" style="font-size: 0.85rem; font-weight: 800;">
+                                GOV
                             </div>
                             <div class="stat-info-col">
                                 <div class="stat-label" data-i18n="stat_rel_schemes">Relevant Schemes</div>
@@ -273,7 +372,7 @@
                     <div class="chart-card-pro" style="background: linear-gradient(135deg, #f8faf7 0%, #edf3eb 100%);">
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
                             <div>
-                                <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--km-primary);" data-i18n="dash_banner_title">🌾 Active Crop Phase: Tillering Stage (20–35 Days After Sowing)</h4>
+                                <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--km-primary);" data-i18n="dash_banner_title">Active Crop Phase: Tillering Stage (20–35 Days After Sowing)</h4>
                                 <p style="font-size: 0.88rem; color: var(--km-text-body); margin-top: 4px;" data-i18n="dash_banner_desc">
                                     Maintain optimum moisture in sandy-loam soil. First nitrogen top-dressing recommended before the 2nd irrigation.
                                 </p>
@@ -415,8 +514,8 @@
                     <!-- Emerald Prediction Result Banner -->
                     <div class="yield-result-emerald-card">
                         <div class="yield-result-left">
-                            <div class="yield-result-icon">
-                                🌾
+                            <div class="yield-result-icon" style="display: flex; align-items: center; justify-content: center;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                             </div>
                             <div class="yield-result-text">
                                 <div class="label" id="predBannerCropLabel">Estimated Yield • Wheat (Meerut)</div>
@@ -451,7 +550,7 @@
 
                     <!-- Important Notes Card -->
                     <div class="important-notes-card">
-                        <strong data-i18n="notes_title">ℹ️ Agronomic Guidance &amp; Units</strong>
+                        <strong data-i18n="notes_title">Agronomic Guidance &amp; Units</strong>
                         <ul>
                             <li data-i18n="notes_li_1">Predictions are displayed in both Quintals per Hectare (q/ha) and Quintals per Acre (q/acre) (1 Hectare = 2.471 Acres).</li>
                             <li data-i18n="notes_li_2">Total Expected Harvest multiplies your per-acre yield estimate by your entered plot area in acres.</li>
@@ -583,7 +682,7 @@
                     <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                         <div>
                             <h2 data-i18n="sathi_title">KrishiSathi AI Assistant</h2>
-                            <p data-i18n="sathi_sub">Ask your farming and government scheme questions in English or Hindi (हिंदी), anytime. 🌾</p>
+                            <p data-i18n="sathi_sub">Ask your farming and government scheme questions in English or Hindi (हिंदी), anytime.</p>
                         </div>
                         <a href="krishisathi.html" class="btn-outline-login" style="font-size: 0.85rem;" data-i18n="btn_fullscreen_chat">Open Full Screen Chat ↗</a>
                     </div>
@@ -595,17 +694,15 @@
                                 <!-- Initial User Bubble -->
                                 <div class="chat-bubble-user">
                                     <span data-i18n="chat_init_q">When is the best time to sow Wheat in Rabi season?</span>
-                                    <span>👨‍🌾</span>
                                 </div>
 
                                 <!-- KrishiSathi AI Bubble -->
                                 <div class="chat-bubble-ai-wrap">
-                                    <div class="chat-avatar-sathi">🌾</div>
+                                    <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
                                     <div class="chat-bubble-ai">
                                         <span data-i18n="chat_init_ans">The optimal timely sowing window for Wheat across UP, MP, Bihar, Rajasthan, Punjab, and Haryana is November 1 to November 20. Ensure adequate pre-sowing irrigation (Palewa) and use certified varieties such as HD-2967, HD-3086, or DBW-187. You can ask me follow-up questions in English or Hindi (हिंदी)!</span>
                                         <div class="chat-bubble-actions">
                                             <button type="button" class="btn-speak-audio" onclick="speakText(this)">
-                                                <span>🔊</span>
                                                 <span data-i18n="btn_listen_aloud">Listen Aloud</span>
                                             </button>
                                         </div>
@@ -691,11 +788,9 @@
 
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <button type="button" class="btn-outline-login" id="btnWeatherUseGps" style="padding: 8px 14px; font-size: 0.84rem; cursor: pointer;">
-                                <span>📍</span>
                                 <span data-i18n="btn_use_gps">Use My GPS Location</span>
                             </button>
                             <button type="button" class="btn-solid-start" id="btnRefreshLiveWeather" style="padding: 8px 16px; font-size: 0.84rem; cursor: pointer;">
-                                <span>🔄</span>
                                 <span data-i18n="btn_refresh_weather">Refresh Live Weather</span>
                             </button>
                         </div>
@@ -706,7 +801,7 @@
                         <!-- Current Weather -->
                         <div class="weather-stat-box">
                             <div class="weather-box-icon weather-box-icon-sun" id="weatherCurIcon">
-                                ☀️
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
                             </div>
                             <div class="weather-box-text">
                                 <div class="w-label" data-i18n="wea_cur">Current Weather</div>
@@ -721,7 +816,7 @@
                         <!-- Rainfall (Next 7 Days) -->
                         <div class="weather-stat-box">
                             <div class="weather-box-icon weather-box-icon-rain">
-                                🌧️
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
                             </div>
                             <div class="weather-box-text">
                                 <div class="w-label" data-i18n="wea_rain_7d">Rainfall (Next 7 days)</div>
@@ -736,7 +831,7 @@
                         <!-- Risk Level -->
                         <div class="weather-stat-box">
                             <div class="weather-box-icon weather-box-icon-shield">
-                                🛡️
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             </div>
                             <div class="weather-box-text">
                                 <div class="w-label" data-i18n="wea_risk_lvl">Risk Level</div>
@@ -752,7 +847,7 @@
                     <!-- Live 7-Day Weather Forecast Strip -->
                     <div class="seasonal-risks-card" style="margin-bottom: 22px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
-                            <h3 class="seasonal-risks-title" style="margin-bottom: 0;" data-i18n="wea_7d_title">📅 Live 7-Day District Weather Forecast</h3>
+                            <h3 class="seasonal-risks-title" style="margin-bottom: 0;" data-i18n="wea_7d_title">Live 7-Day District Weather Forecast</h3>
                             <span id="weatherUpdatedTimeBadge" style="font-size: 0.78rem; color: var(--km-text-muted); font-weight: 600;">Updated Live</span>
                         </div>
                         <div id="live7DayForecastGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); gap: 12px;">
@@ -768,7 +863,6 @@
                             <!-- Indicator 1: Heavy Rainfall -->
                             <div class="risk-indicator-pro">
                                 <div class="risk-indicator-left">
-                                    <span class="risk-indicator-icon">🌧️</span>
                                     <div>
                                         <span class="risk-indicator-name" data-i18n="risk_heavy_rain">Heavy Rainfall</span>
                                         <div id="riskHeavyRainSub" style="font-size: 0.74rem; color: var(--km-text-muted);">7-day cumulative forecast</div>
@@ -780,7 +874,6 @@
                             <!-- Indicator 2: Drought Condition -->
                             <div class="risk-indicator-pro">
                                 <div class="risk-indicator-left">
-                                    <span class="risk-indicator-icon">☀️</span>
                                     <div>
                                         <span class="risk-indicator-name" data-i18n="risk_drought">Drought Condition</span>
                                         <div id="riskDroughtSub" style="font-size: 0.74rem; color: var(--km-text-muted);">Soil moisture &amp; humidity</div>
@@ -792,7 +885,6 @@
                             <!-- Indicator 3: Pest Risk -->
                             <div class="risk-indicator-pro">
                                 <div class="risk-indicator-left">
-                                    <span class="risk-indicator-icon">🐛</span>
                                     <div>
                                         <span class="risk-indicator-name" data-i18n="risk_pest">Pest Risk</span>
                                         <div id="riskPestSub" style="font-size: 0.74rem; color: var(--km-text-muted);">Humidity &amp; temperature window</div>
@@ -804,7 +896,6 @@
                             <!-- Indicator 4: Heat Stress -->
                             <div class="risk-indicator-pro">
                                 <div class="risk-indicator-left">
-                                    <span class="risk-indicator-icon">🔥</span>
                                     <div>
                                         <span class="risk-indicator-name" data-i18n="risk_heat">Heat Stress</span>
                                         <div id="riskHeatSub" style="font-size: 0.74rem; color: var(--km-text-muted);">7-day max temperature</div>
@@ -827,8 +918,7 @@
                             <p id="myFarmsSubtitle" data-i18n="farms_sub">Registered agricultural plots and soil parameters. Add or manage your farm plots below.</p>
                         </div>
                         <button type="button" class="btn-solid-start" id="btnScrollToAddFarm" style="cursor: pointer;">
-                            <span>➕</span>
-                            <span data-i18n="btn_add_my_farm">Add My Farm</span>
+                            <span data-i18n="btn_add_my_farm">+ Add My Farm</span>
                         </button>
                     </div>
 
@@ -841,7 +931,7 @@
                     <div class="predict-form-card" id="addFarmCardBox" style="border: 2px dashed var(--km-primary); background: var(--km-bg);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--km-border);">
                             <div>
-                                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--km-primary);" data-i18n="add_farm_box_title">🌾 Add My Farm Details (नया खेत जोड़ें)</h3>
+                                <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--km-primary);" data-i18n="add_farm_box_title">Add My Farm Details (नया खेत जोड़ें)</h3>
                                 <p style="font-size: 0.86rem; color: var(--km-text-muted);" data-i18n="add_farm_box_sub">Enter your plot name, village, crop, land size in acres, soil type, and irrigation source.</p>
                             </div>
                             <span class="scheme-tag-pill tag-income" data-i18n="badge_instant_save">Saves to Your Profile</span>
@@ -929,8 +1019,7 @@
                             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
                                 <span id="addFarmStatusMsg" style="font-size: 0.88rem; font-weight: 700; color: var(--km-primary);"></span>
                                 <button type="submit" class="btn-predict-action" id="btnSubmitNewFarm" style="min-width: 220px;">
-                                    <span>➕</span>
-                                    <span data-i18n="btn_save_farm">Add Farm to My Holdings</span>
+                                    <span data-i18n="btn_save_farm">+ Add Farm to My Holdings</span>
                                 </button>
                             </div>
                         </form>
@@ -948,7 +1037,6 @@
                             <p data-i18n="prof_sub">Verified profile credentials, registered landholding summary, and personal settings.</p>
                         </div>
                         <button type="button" class="btn-solid-start" id="btnToggleEditProfile" style="cursor: pointer;">
-                            <span>✏️</span>
                             <span data-i18n="btn_edit_profile">Edit Profile</span>
                         </button>
                     </div>
@@ -968,7 +1056,7 @@
                             <div style="font-size: 0.92rem; color: var(--km-text-body); line-height: 1.9; border-top: 1px solid var(--km-border); padding-top: 16px;">
                                 <p><strong data-i18n="prof_lbl_phone">Mobile Number:</strong> <span id="profileDisplayPhone">+91 98765 43210</span></p>
                                 <p><strong data-i18n="prof_lbl_lang">Preferred Language:</strong> <span id="profileDisplayLang">English (with Bilingual Hindi Support)</span></p>
-                                <p><strong data-i18n="prof_lbl_ekyc">Aadhaar / eKYC Status:</strong> <span style="color: var(--km-primary); font-weight: 700;" data-i18n="prof_val_verified">✅ Verified on PM-KISAN Portal</span></p>
+                                <p><strong data-i18n="prof_lbl_ekyc">Aadhaar / eKYC Status:</strong> <span style="color: var(--km-primary); font-weight: 700;" data-i18n="prof_val_verified">Verified on PM-KISAN Portal</span></p>
                                 <p><strong data-i18n="prof_lbl_zone">Supported Region:</strong> <span id="profileDisplayZone">Uttar Pradesh (Multi-State Rabi Platform)</span></p>
                                 <p><strong>Farmer ID:</strong> <code>farmer-001</code></p>
                             </div>
@@ -977,7 +1065,7 @@
                         <!-- Right Card: Edit Farmer Profile Form -->
                         <div class="predict-form-card" id="editProfileFormCard">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--km-border);">
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-primary);" data-i18n="edit_prof_heading">✏️ Edit Farmer Profile (प्रोफ़ाइल संपादित करें)</h3>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-primary);" data-i18n="edit_prof_heading">Edit Farmer Profile (प्रोफ़ाइल संपादित करें)</h3>
                                 <span class="chart-badge-tag" data-i18n="badge_sqlite_sync">Live Database Sync</span>
                             </div>
 
@@ -1036,6 +1124,698 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- Role-Based Authentication, Registration, Password Reset & Access Control Panel (Handled on dedicated login.html) -->
+                    <div class="predict-screen-grid" style="grid-template-columns: 1fr 1fr; align-items: start; margin-top: 22px; display: none;">
+                        <div class="predict-form-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--km-border);">
+                                <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--km-primary);">Secure Account Login &amp; Role Access (PBKDF2-SHA256)</h3>
+                                <span class="chart-badge-tag" id="authCurrentRoleBadge">Active: Farmer</span>
+                            </div>
+
+                            <div style="display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+                                <button type="button" class="acre-chip active" id="btnAuthTabLogin">Login</button>
+                                <button type="button" class="acre-chip" id="btnAuthTabRegister">Register Account</button>
+                                <button type="button" class="acre-chip" id="btnAuthTabReset">Forgot / Reset Password</button>
+                                <button type="button" class="acre-chip" id="btnAuthLogout" style="margin-left: auto; color: var(--km-danger);">Logout</button>
+                            </div>
+
+                            <!-- Login Form -->
+                            <form id="authLoginForm">
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="authLoginEmail">Email Address *</label>
+                                        <input type="email" id="authLoginEmail" class="form-input-pro" value="farmer@krishimitra.in" required>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="authLoginPassword">Password *</label>
+                                        <input type="password" id="authLoginPassword" class="form-input-pro" value="Farmer@123" required>
+                                    </div>
+                                </div>
+                                <div style="font-size: 0.78rem; color: var(--km-text-muted); margin-bottom: 12px;">
+                                    <strong>Quick Demo Role Accounts:</strong>
+                                    <button type="button" class="acre-chip" onclick="fillDemoLogin('farmer@krishimitra.in','Farmer@123')">Farmer</button>
+                                    <button type="button" class="acre-chip" onclick="fillDemoLogin('officer@krishimitra.in','Officer@123')">Agricultural Officer</button>
+                                    <button type="button" class="acre-chip" onclick="fillDemoLogin('admin@krishimitra.in','Admin@123')">Administrator</button>
+                                </div>
+                                <button type="submit" class="btn-predict-action" style="width: 100%;">Sign In to KrishiMitra AI</button>
+                            </form>
+
+                            <!-- Registration Form -->
+                            <form id="authRegisterForm" style="display: none;">
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="regName">Full Name *</label>
+                                        <input type="text" id="regName" class="form-input-pro" placeholder="e.g., Ramesh Kumar" required>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="regEmail">Email Address *</label>
+                                        <input type="email" id="regEmail" class="form-input-pro" placeholder="ramesh@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="regPassword">Password (min 6 chars) *</label>
+                                        <input type="password" id="regPassword" class="form-input-pro" required>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="regRole">User Role *</label>
+                                        <select id="regRole" class="form-select-pro">
+                                            <option value="farmer" selected>Farmer</option>
+                                            <option value="officer">Agricultural Officer</option>
+                                            <option value="admin">Administrator</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="regPhone">Phone Number</label>
+                                        <input type="text" id="regPhone" class="form-input-pro" value="+91 ">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-predict-action" style="width: 100%;">Create Verified Account</button>
+                            </form>
+
+                            <!-- Forgot / Reset Password Form -->
+                            <form id="authResetForm" style="display: none;">
+                                <div class="predict-form-row" style="grid-template-columns: 1fr auto;">
+                                    <div class="form-group-pro">
+                                        <label for="resetEmailInput">Account Email</label>
+                                        <input type="email" id="resetEmailInput" class="form-input-pro" value="farmer@krishimitra.in">
+                                    </div>
+                                    <div class="form-group-pro" style="display: flex; align-items: flex-end;">
+                                        <button type="button" class="btn-outline-login" id="btnGenerateResetToken" style="height: 42px;">Generate Token</button>
+                                    </div>
+                                </div>
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="resetTokenInput">Reset Token</label>
+                                        <input type="text" id="resetTokenInput" class="form-input-pro" placeholder="Paste reset token">
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="resetNewPassInput">New Password</label>
+                                        <input type="password" id="resetNewPassInput" class="form-input-pro" placeholder="Min 6 characters">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-predict-action" style="width: 100%;">Reset Password</button>
+                            </form>
+
+                            <div id="authStatusBanner" style="margin-top: 12px; font-size: 0.85rem; font-weight: 700; color: var(--km-primary);"></div>
+                        </div>
+
+                        <!-- Role Permissions & Officer/Admin Console -->
+                        <div class="chart-card-pro">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--km-text-heading);">Role-Based Access Permissions</h3>
+                                <span class="scheme-tag-pill tag-income" id="rbacRoleTag">Farmer Access</span>
+                            </div>
+                            <div id="rbacPermissionsDescription" style="font-size: 0.86rem; color: var(--km-text-body); line-height: 1.65;">
+                                <p><strong>Farmer Role:</strong> Access All-India crop yield predictions, historical agricultural analytics, government schemes, KrishiSuraksha crop insurance guidance, NASA Earth intelligence, and KrishiSathi AI.</p>
+                                <p style="margin-top: 6px;"><strong>Agricultural Officer Role:</strong> Access district-wise agricultural analytics, government scheme performance, and insurance assistance records.</p>
+                                <p style="margin-top: 6px;"><strong>Administrator Role:</strong> Manage platform users, upload verified government scheme datasets, monitor ML model benchmarks, and view system-wide analytics.</p>
+                            </div>
+                            <div id="adminUsersTableWrap" style="margin-top: 14px; display: none;">
+                                <h4 style="font-size: 0.92rem; font-weight: 800; color: var(--km-primary); margin-bottom: 8px;">Registered Platform Users (Officer / Admin View)</h4>
+                                <div id="adminUsersListBox" style="max-height: 180px; overflow-y: auto; font-size: 0.8rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =====================================================================
+                     TAB 9: KRISHISCHEME INTELLIGENCE — Farmer Beneficiary & Amount Finder
+                     ===================================================================== -->
+                <section class="app-tab-screen" id="tab-scheme-intel">
+                    <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2 data-i18n="intel_main_title">KrishiScheme Intelligence — Farmer Beneficiary &amp; Amount Finder</h2>
+                            <p data-i18n="intel_main_sub">Select or search any scheme below to see how many farmers benefited and total ₹ amount distributed.</p>
+                        </div>
+                        <span class="scheme-tag-pill tag-income" data-i18n="intel_badge_6">6 Central Schemes • Verified Govt Data</span>
+                    </div>
+
+                    <!-- Clickable Quick Scheme Pills -->
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;" id="intelQuickSchemePills">
+                        <button type="button" class="acre-chip intel-scheme-pill active" data-scheme="pm-kisan" data-scheme-id="pm-kisan" style="cursor:pointer; font-weight:800;" data-i18n="pill_s1">1. PM-KISAN (₹6,000/yr)</button>
+                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pmfby" data-scheme-id="pmfby" style="cursor:pointer; font-weight:800;" data-i18n="pill_s2">2. PMFBY Crop Insurance</button>
+                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="kcc" data-scheme-id="kcc" style="cursor:pointer; font-weight:800;" data-i18n="pill_s3">3. KCC (4% Interest Loan)</button>
+                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="soil-health-card" data-scheme-id="soil-health-card" style="cursor:pointer; font-weight:800;" data-i18n="pill_s4">4. Soil Health Card</button>
+                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pmksy" data-scheme-id="pmksy" style="cursor:pointer; font-weight:800;" data-i18n="pill_s5">5. PMKSY Micro-Irrigation</button>
+                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pm-kusum" data-scheme-id="pm-kusum" style="cursor:pointer; font-weight:800;" data-i18n="pill_s6">6. PM-KUSUM Solar Pump</button>
+                    </div>
+
+                    <!-- Search Keyword + Scheme & State Selector Bar -->
+                    <div class="schemes-filter-bar" style="grid-template-columns: 1.2fr 1.2fr 1fr auto; margin-bottom: 18px;">
+                        <div class="form-group-pro">
+                            <label for="intelQuickSearchInput" data-i18n="intel_lbl_search">Search Scheme</label>
+                            <input type="text" id="intelQuickSearchInput" class="form-input-pro" placeholder="Type e.g. PM-KISAN, Bima, Solar, Loan...">
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="intelSchemeSelect" data-i18n="intel_lbl_select">Select Government Scheme</label>
+                            <select class="form-select-pro" id="intelSchemeSelect">
+                                <option value="pm-kisan" selected data-i18n="opt_s1">1. PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)</option>
+                                <option value="pmfby" data-i18n="opt_s2">2. PMFBY (Pradhan Mantri Fasal Bima Yojana)</option>
+                                <option value="kcc" data-i18n="opt_s3">3. KCC (Kisan Credit Card Scheme)</option>
+                                <option value="soil-health-card" data-i18n="opt_s4">4. Soil Health Card (SHC) Scheme</option>
+                                <option value="pmksy" data-i18n="opt_s5">5. PMKSY (Pradhan Mantri Krishi Sinchayee Yojana)</option>
+                                <option value="pm-kusum" data-i18n="opt_s6">6. PM-KUSUM (Solar Agriculture Pumps)</option>
+                            </select>
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="intelStateSelect" data-i18n="intel_lbl_state">Select Your State</label>
+                            <select class="form-select-pro" id="intelStateSelect">
+                                <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-scheme-search" id="btnLoadSchemeIntel" style="margin-top:auto; cursor:pointer;" data-i18n="intel_btn_check">Check Beneficiaries &amp; ₹ Amount</button>
+                    </div>
+
+                    <!-- PROMINENT FARMER BENEFIT & AMOUNT SPOTLIGHT BANNER -->
+                    <div class="yield-result-emerald-card" id="intelFarmerSpotlightCard" style="flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                            <div>
+                                <div class="label" id="spotlightSchemeTag" data-i18n="intel_spot_tag">VERIFIED SCHEME BENEFICIARIES &amp; FINANCIAL AMOUNT</div>
+                                <div class="val" id="spotlightSchemeTitle" style="font-size: 1.32rem;">PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)</div>
+                            </div>
+                            <a id="spotlightApplyBtn" href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="btn-hero-voice" style="padding: 8px 16px; font-size: 0.84rem; text-decoration: none;" data-i18n="intel_btn_portal">
+                                Official Portal ↗
+                            </a>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.18);">
+                            <div style="background: rgba(255,255,255,0.12); padding: 13px 14px; border-radius: 12px;">
+                                <div style="font-size: 0.76rem; opacity: 0.9;" data-i18n="intel_lbl_nat_ben">All-India Beneficiaries</div>
+                                <div id="spotlightNationalFarmers" style="font-size: 1.28rem; font-weight: 900; color: var(--km-accent-gold); margin-top: 3px;">9.40 Crore+ Farmers</div>
+                                <div id="spotlightNationalSub" style="font-size: 0.75rem; opacity: 0.88; margin-top: 2px;">Registered: 12.50 Crore</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.12); padding: 13px 14px; border-radius: 12px;">
+                                <div style="font-size: 0.76rem; opacity: 0.9;" data-i18n="intel_lbl_nat_amt">Total Financial Assistance</div>
+                                <div id="spotlightNationalAmount" style="font-size: 1.28rem; font-weight: 900; color: var(--km-accent-gold); margin-top: 3px;">₹3.46 Lakh Crore+</div>
+                                <div id="spotlightPerFarmerBenefit" style="font-size: 0.75rem; opacity: 0.92; margin-top: 2px;">Per Farmer: ₹6,000 / Year (Direct DBT)</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.16); padding: 13px 14px; border-radius: 12px; border: 1px solid rgba(255, 201, 40, 0.45);">
+                                <div style="font-size: 0.76rem; opacity: 0.95;" id="spotlightStateHeader">State Beneficiaries (Uttar Pradesh)</div>
+                                <div id="spotlightStateFarmers" style="font-size: 1.22rem; font-weight: 900; color: #86efac; margin-top: 3px;">225.4 Lakh Farmers</div>
+                                <div id="spotlightStateAmount" style="font-size: 0.8rem; font-weight: 700; color: #fde047; margin-top: 2px;">Total State Amount: ₹74,500 Crore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ALL 6 SCHEMES AT-A-GLANCE BENEFICIARY & AMOUNT COMPARISON TABLE -->
+                    <div class="chart-card-pro" style="margin-bottom: 20px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+                            <h3 style="font-size:1.04rem; font-weight:800; color:var(--km-text-heading);" data-i18n="intel_tbl_title">All 6 Schemes — Existing Farmers Benefited &amp; Total Amount (Click any row)</h3>
+                            <span class="chart-badge-tag" data-i18n="intel_tbl_badge">Interactive Comparison</span>
+                        </div>
+                        <div style="overflow-x:auto;">
+                            <table style="width:100%; border-collapse:collapse; font-size:0.83rem; text-align:left;">
+                                <thead>
+                                    <tr style="border-bottom:2px solid var(--km-border); color:var(--km-text-heading); background:var(--km-bg);">
+                                        <th style="padding:10px 8px;" data-i18n="th_sch_name">Scheme Name</th>
+                                        <th style="padding:10px 8px;" data-i18n="th_sch_farmers">Existing Farmers Benefited</th>
+                                        <th style="padding:10px 8px;" data-i18n="th_sch_amount">Total ₹ Amount Distributed</th>
+                                        <th style="padding:10px 8px;" data-i18n="th_sch_per_farmer">Benefit Per Farmer</th>
+                                        <th style="padding:10px 8px;" data-i18n="th_sch_portal">Portal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="intelAllSchemesQuickTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 2 Charts: Year-wise Beneficiary Trend + State-wise Beneficiaries -->
+                    <div class="dashboard-charts-grid" style="margin-bottom: 20px;">
+                        <div class="chart-card-pro">
+                            <div class="chart-card-header">
+                                <h3 class="chart-card-title" id="intelYearlyChartTitle" data-i18n="intel_ch1_title">Year-Wise Beneficiary Trend</h3>
+                                <span class="chart-badge-tag" id="intelTrendDirBadge" data-i18n="intel_ch1_badge">Official Series</span>
+                            </div>
+                            <div class="chart-container-box">
+                                <canvas id="chartSchemeYearly"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card-pro">
+                            <div class="chart-card-header">
+                                <h3 class="chart-card-title" data-i18n="intel_ch2_title">State-Wise Beneficiaries</h3>
+                                <span class="chart-badge-tag" data-i18n="intel_ch2_badge">Top States</span>
+                            </div>
+                            <div class="chart-container-box">
+                                <canvas id="chartSchemeStates"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- State Table (Collapsed by default to keep page concise) -->
+                    <div class="chart-card-pro" style="display: none;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 8px;" id="intelSchemeFullTitle">State-Wise Beneficiaries &amp; Amount Breakdown</h3>
+                        <div id="intelSchemeSummaryBox" style="font-size: 0.84rem; color: var(--km-text-body); margin-bottom: 12px;"></div>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid var(--km-border); color: var(--km-text-heading);">
+                                        <th style="padding: 8px;">State</th>
+                                        <th style="padding: 8px;">Registered / Enrolled</th>
+                                        <th style="padding: 8px;">Farmers Benefited</th>
+                                        <th style="padding: 8px;">Amount Disbursed (₹)</th>
+                                        <th style="padding: 8px;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="intelStateTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Administrator Verified Dataset Upload Card (Hidden for normal farmers) -->
+                    <div class="predict-form-card" id="adminSchemeUploadCardWrap" style="padding: 18px; margin-top: 18px; display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--km-primary);">Admin: Upload Verified Scheme Record</h4>
+                            <span class="chart-badge-tag">Official District Report</span>
+                        </div>
+                        <form id="adminSchemeUploadForm">
+                            <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr 1fr auto; margin-bottom: 8px;">
+                                <div class="form-group-pro">
+                                    <label for="upSchemeState">State</label>
+                                    <input type="text" id="upSchemeState" class="form-input-pro" value="Uttar Pradesh" required>
+                                </div>
+                                <div class="form-group-pro">
+                                    <label for="upSchemeDistrict">District</label>
+                                    <input type="text" id="upSchemeDistrict" class="form-input-pro" value="Meerut">
+                                </div>
+                                <div class="form-group-pro">
+                                    <label for="upSchemeBen">Beneficiaries *</label>
+                                    <input type="number" id="upSchemeBen" class="form-input-pro" placeholder="231000" required>
+                                </div>
+                                <div class="form-group-pro">
+                                    <label for="upSchemeAmt">Amount (₹ Cr)</label>
+                                    <input type="number" step="0.01" id="upSchemeAmt" class="form-input-pro" placeholder="138.6">
+                                </div>
+                                <div class="form-group-pro" style="display: flex; align-items: flex-end;">
+                                    <button type="submit" class="btn-predict-action" style="height: 40px;">Save</button>
+                                </div>
+                            </div>
+                            <div id="upSchemeStatusMsg" style="font-size: 0.8rem; font-weight: 700; color: var(--km-primary);"></div>
+                        </form>
+                    </div>
+                </section>
+
+
+                <!-- =====================================================================
+                     TAB 10: KRISHISURAKSHA — Landowner & Tenant Crop Insurance (PMFBY)
+                     ===================================================================== -->
+                <section class="app-tab-screen" id="tab-suraksha">
+                    <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2 data-i18n="sur_main_title">KrishiSuraksha — Landowner &amp; Tenant Crop Insurance (PMFBY)</h2>
+                            <p data-i18n="sur_main_sub">Check whether a farmer cultivating a Landowner's land (Bataidar / Tenant) or own land can claim PMFBY crop insurance and calculate your Sum Insured (₹).</p>
+                        </div>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                            <span class="scheme-tag-pill tag-income" data-i18n="sur_helpline">Helpline: 14447</span>
+                            <a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="btn-outline-login" style="font-size: 0.84rem;" data-i18n="sur_portal_link">pmfby.gov.in ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- LANDOWNER VS TENANT / SHARECROPPER (BATAIDAR) INTERACTIVE ELIGIBILITY CHECKER -->
+                    <div class="chart-card-pro" id="landownerTenantInteractiveBox" style="margin-bottom: 20px; border-left: 5px solid var(--km-primary);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                            <div>
+                                <h3 style="font-size: 1.08rem; font-weight: 800; color: var(--km-primary);" data-i18n="sur_q_landowner">Can a Farmer Get Insurance on a Landowner's Land? (Select Your Category)</h3>
+                            </div>
+                            <span class="chart-badge-tag" id="selectedOwnershipBadge" data-i18n="sur_mode_owner">Mode: Own Land</span>
+                        </div>
+
+                        <!-- 4 Clickable Land Ownership Buttons -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px;">
+                            <button type="button" class="acre-chip ownership-type-btn active" data-ownership="owner" style="padding: 11px 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.86rem;" data-i18n="own_btn1_t">1. Own Land (Landowner)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="own_btn1_s">Khatauni in your own name</div>
+                            </button>
+                            <button type="button" class="acre-chip ownership-type-btn" data-ownership="tenant_with_agreement" style="padding: 11px 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.86rem;" data-i18n="own_btn2_t">2. Landowner's Land (+ Consent/NOC)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="own_btn2_s">Tenant with Landowner NOC / Sowing Cert</div>
+                            </button>
+                            <button type="button" class="acre-chip ownership-type-btn" data-ownership="tenant_without_agreement" style="padding: 11px 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.86rem;" data-i18n="own_btn3_t">3. Landowner's Land (Oral Bataidar)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="own_btn3_s">Oral tenant without written agreement</div>
+                            </button>
+                            <button type="button" class="acre-chip ownership-type-btn" data-ownership="joint_family" style="padding: 11px 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.86rem;" data-i18n="own_btn4_t">4. Joint Family Khatauni</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="own_btn4_s">Combined family Khatauni</div>
+                            </button>
+                        </div>
+
+                        <!-- Dynamic Landowner-to-Farmer Explanation Box -->
+                        <div id="landownerExplainBox" style="padding: 12px 15px; border-radius: 10px; background: #ECFDF5; border: 1px solid #6EE7B7; font-size: 0.85rem; color: #065F46; line-height: 1.55;">
+                            <strong>Yes — Farmers cultivating a Landowner's land are eligible for PMFBY crop insurance.</strong><br>
+                            • Tenant / Bataidar farmers require a copy of the Landowner's Khatauni + Consent Letter (NOC) or a Patwari/Sarpanch <strong>Cultivator Sowing Certificate</strong> so the claim payout is transferred directly to the farmer's bank account (DBT).
+                        </div>
+                    </div>
+
+                    <div class="predict-screen-grid" style="grid-template-columns: 1.05fr 0.95fr; align-items: start;">
+                        <!-- Left: Streamlined Farmer Claim Details Form -->
+                        <div class="predict-form-card">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--km-border);">
+                                <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--km-text-heading);" data-i18n="sur_form_title">Check Claim Eligibility &amp; Coverage</h3>
+                                <span class="chart-badge-tag" data-i18n="sur_72hr_badge">72-Hr Rule Check</span>
+                            </div>
+
+                            <!-- Quick Clickable Cause of Damage Pills -->
+                            <div style="margin-bottom: 14px;">
+                                <label style="font-size: 0.78rem; font-weight: 800; color: var(--km-text-heading); display: block; margin-bottom: 6px;" data-i18n="sur_lbl_peril_pills">Select Cause of Crop Loss:</label>
+                                <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="surakshaQuickPerilPills">
+                                    <button type="button" class="acre-chip peril-quick-btn active" data-peril="Hailstorm (Localized Calamity)" style="cursor:pointer;" data-i18n="peril_hail">Hailstorm</button>
+                                    <button type="button" class="acre-chip peril-quick-btn" data-peril="Unseasonal / Excess Rainfall" style="cursor:pointer;" data-i18n="peril_rain">Unseasonal Rain</button>
+                                    <button type="button" class="acre-chip peril-quick-btn" data-peril="Inundation / Waterlogging" style="cursor:pointer;" data-i18n="peril_flood">Flood / Waterlogging</button>
+                                    <button type="button" class="acre-chip peril-quick-btn" data-peril="Drought / Dry Spell" style="cursor:pointer;" data-i18n="peril_drought">Drought</button>
+                                    <button type="button" class="acre-chip peril-quick-btn" data-peril="Pest & Disease Outbreak" style="cursor:pointer;" data-i18n="peril_pest">Pest / Disease</button>
+                                </div>
+                            </div>
+
+                            <form id="surakshaAssessForm">
+                                <input type="hidden" id="insOwnershipType" value="owner">
+                                <input type="hidden" id="insFarmerName" value="Tanishka">
+                                <input type="hidden" id="insVillage" value="Daurala">
+
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="insState" data-i18n="lbl_state">State *</label>
+                                        <select id="insState" class="form-select-pro" required>
+                                            <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insDistrict" data-i18n="lbl_district">District *</label>
+                                        <select id="insDistrict" class="form-select-pro" required>
+                                            <option value="Meerut" selected>Meerut</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insCrop" data-i18n="lbl_crop">Crop *</label>
+                                        <select id="insCrop" class="form-select-pro" required>
+                                            <option value="Wheat" selected>Wheat</option>
+                                            <option value="Rice">Rice / Paddy</option>
+                                            <option value="Mustard">Mustard</option>
+                                            <option value="Gram">Gram / Chana</option>
+                                            <option value="Maize">Maize</option>
+                                            <option value="Soyabean">Soyabean</option>
+                                            <option value="Cotton(lint)">Cotton</option>
+                                            <option value="Potato">Potato</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="insSeason" data-i18n="lbl_season">Season *</label>
+                                        <select id="insSeason" class="form-select-pro" required>
+                                            <option value="Rabi" selected data-i18n="opt_rabi_prem">Rabi (1.5% Premium)</option>
+                                            <option value="Kharif" data-i18n="opt_kharif_prem">Kharif (2.0% Premium)</option>
+                                            <option value="Summer" data-i18n="opt_hort_prem">Commercial / Hort (5%)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insLandAcres" data-i18n="lbl_plot_acres">Land Size (Acres) *</label>
+                                        <input type="number" step="0.1" min="0.1" id="insLandAcres" class="form-input-pro" value="2.5" required>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insEnrolled" data-i18n="sur_lbl_enrolled">PMFBY Enrolled? *</label>
+                                        <select id="insEnrolled" class="form-select-pro">
+                                            <option value="yes" selected data-i18n="opt_enr_yes">Yes (Enrolled)</option>
+                                            <option value="unsure" data-i18n="opt_enr_unsure">Unsure (Check KCC)</option>
+                                            <option value="no" data-i18n="opt_enr_no">No (Not Enrolled)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="form-group-pro">
+                                        <label for="insLandownerKcc" data-i18n="sur_lbl_dup_kcc">Landowner Duplicate KCC?</label>
+                                        <select id="insLandownerKcc" class="form-select-pro">
+                                            <option value="no" selected data-i18n="opt_kcc_no">No (Only Cultivator)</option>
+                                            <option value="yes" data-i18n="opt_kcc_yes">Yes (Landowner Claimed KCC)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insDamageDate" data-i18n="sur_lbl_loss_date">Loss Date *</label>
+                                        <input type="date" id="insDamageDate" class="form-input-pro" required>
+                                    </div>
+                                    <div class="form-group-pro">
+                                        <label for="insDamageType" data-i18n="sur_lbl_cause">Cause of Damage *</label>
+                                        <select id="insDamageType" class="form-select-pro" required>
+                                            <option value="Hailstorm (Localized Calamity)" selected data-i18n="peril_hail">Hailstorm</option>
+                                            <option value="Unseasonal / Excess Rainfall" data-i18n="peril_rain">Unseasonal Rainfall</option>
+                                            <option value="Inundation / Waterlogging" data-i18n="peril_flood">Flood / Waterlogging</option>
+                                            <option value="Drought / Dry Spell" data-i18n="peril_drought">Drought</option>
+                                            <option value="Pest & Disease Outbreak" data-i18n="peril_pest">Pest / Disease Outbreak</option>
+                                            <option value="Post-Harvest Cyclone / Unseasonal Rain (within 14 days)" data-i18n="peril_post">Post-Harvest Rain (14 days)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-predict-action" style="width: 100%; height: 44px; margin-top: 6px; cursor: pointer;">
+                                    <span data-i18n="sur_btn_submit">Check Landowner/Farmer Eligibility &amp; Calculate Claim Coverage →</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Right: Clean Eligibility Verdict & Required Documents -->
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div class="yield-result-emerald-card" id="surakshaStatusBanner" style="flex-direction: column; align-items: stretch; gap: 12px; margin-bottom: 0;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                                    <div>
+                                        <div class="label" data-i18n="sur_verdict_tag">PMFBY Claim &amp; Landholding Verdict</div>
+                                        <div class="val" id="surakshaStatusTitle" style="font-size: 1.3rem;">Potentially eligible.</div>
+                                    </div>
+                                    <div class="yield-result-badge">
+                                        <span id="suraksha72HrBadge">Within 72-Hr Window</span>
+                                    </div>
+                                </div>
+                                <p id="surakshaExplanationText" style="font-size: 0.85rem; line-height: 1.5; opacity: 0.95; margin: 0;">
+                                    Both direct Landowners and Tenant/Bataidar farmers with a Landowner Consent Note or Patwari Sowing Certificate are eligible under PMFBY.
+                                </p>
+                                <!-- Live Financial Coverage & Premium Strip -->
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.18);">
+                                    <div style="background: rgba(255,255,255,0.12); padding: 10px; border-radius: 10px;">
+                                        <div style="font-size: 0.72rem; opacity: 0.85;" data-i18n="sur_lbl_sum">Est. Sum Insured</div>
+                                        <div id="surakshaSumInsuredVal" style="font-size: 1.12rem; font-weight: 900; color: var(--km-accent-gold);">₹68,797</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.12); padding: 10px; border-radius: 10px;">
+                                        <div style="font-size: 0.72rem; opacity: 0.85;" data-i18n="sur_lbl_prem">Farmer Premium</div>
+                                        <div id="surakshaFarmerPremVal" style="font-size: 1.12rem; font-weight: 900; color: #86efac;">₹1,032 (1.5%)</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.12); padding: 10px; border-radius: 10px;">
+                                        <div style="font-size: 0.72rem; opacity: 0.85;" data-i18n="sur_lbl_payout">Payout Mode</div>
+                                        <div style="font-size: 0.88rem; font-weight: 800; color: #fff;" data-i18n="sur_val_dbt">Direct Bank DBT</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Concise Verification & Documents Card -->
+                            <div class="chart-card-pro">
+                                <h3 style="font-size: 1.02rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 8px;" data-i18n="sur_docs_title">Eligibility Checks &amp; Required Documents</h3>
+                                <div id="surakshaRuleChecksBox" style="font-size: 0.83rem; margin-bottom: 10px; line-height: 1.6;"></div>
+                                <ul id="surakshaDocsList" style="font-size: 0.82rem; color: var(--km-text-body); padding-left: 18px; line-height: 1.6;">
+                                    <li data-i18n="sur_doc_1"><strong>Own Land:</strong> Khatauni copy + Aadhaar Bank Passbook + PMFBY Receipt.</li>
+                                    <li data-i18n="sur_doc_2"><strong>Landowner's Land (Bataidar):</strong> Landowner NOC / Lease Agreement OR Patwari/Pradhan Sowing Certificate.</li>
+                                    <li data-i18n="sur_doc_3"><strong>72-Hour Intimation:</strong> Report within 72 hours on Crop Insurance App or Toll-Free 14447.</li>
+                                </ul>
+                                <p id="surakshaDisclaimerText" style="font-size: 0.76rem; color: var(--km-text-muted); margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--km-border);" data-i18n="sur_disclaimer">
+                                    Preliminary AI eligibility guidance based on PMFBY guidelines. Final settlement is verified by the insurance company.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- =====================================================================
+                     TAB 11: NASA EARTH & WEATHER INTELLIGENCE (Clickable & Interactive)
+                     ===================================================================== -->
+                <section class="app-tab-screen" id="tab-nasa">
+                    <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                        <div>
+                            <h2>NASA Earth &amp; Agroclimatology Intelligence</h2>
+                            <p>Select any agricultural zone, district, or parameter below to inspect <strong>NASA POWER</strong> agroclimatology and <strong>NASA GIBS</strong> satellite layers.</p>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button type="button" class="btn-outline-login" id="btnNasaUseLiveGps" style="font-size: 0.82rem; font-weight: 800; cursor: pointer;">Use Live GPS</button>
+                            <button type="button" class="btn-outline-login" id="btnDownloadNasaCsv" style="font-size: 0.82rem; font-weight: 800; cursor: pointer;">Export CSV</button>
+                            <a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener" class="btn-outline-login" style="font-size: 0.82rem;">NASA Worldview ↗</a>
+                        </div>
+                    </div>
+
+                    <!-- CLICKABLE AGRICULTURAL BELT QUICK-JUMP BUTTONS -->
+                    <div class="chart-card-pro" style="padding: 14px 18px; margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                            <strong style="font-size: 0.86rem; color: var(--km-text-heading);">Select Agricultural Zone to Load Satellite Telemetry:</strong>
+                            <span class="chart-badge-tag" id="nasaActiveZoneBadge">Active: Meerut, Uttar Pradesh</span>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="nasaQuickZoneBtns">
+                            <button type="button" class="acre-chip nasa-zone-btn active" data-state="Uttar Pradesh" data-district="Meerut" data-nasa-state="Uttar Pradesh" data-nasa-district="Meerut" style="cursor:pointer; font-weight:800;">Meerut (UP)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Madhya Pradesh" data-district="Indore" data-nasa-state="Madhya Pradesh" data-nasa-district="Indore" style="cursor:pointer; font-weight:800;">Indore (MP)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Punjab" data-district="Ludhiana" data-nasa-state="Punjab" data-nasa-district="Ludhiana" style="cursor:pointer; font-weight:800;">Ludhiana (Punjab)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Maharashtra" data-district="Pune" data-nasa-state="Maharashtra" data-nasa-district="Pune" style="cursor:pointer; font-weight:800;">Pune (MH)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Rajasthan" data-district="Jaipur" data-nasa-state="Rajasthan" data-nasa-district="Jaipur" style="cursor:pointer; font-weight:800;">Jaipur (RJ)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Bihar" data-district="Patna" data-nasa-state="Bihar" data-nasa-district="Patna" style="cursor:pointer; font-weight:800;">Patna (Bihar)</button>
+                            <button type="button" class="acre-chip nasa-zone-btn" data-state="Tamil Nadu" data-district="Thanjavur" data-nasa-state="Tamil Nadu" data-nasa-district="Thanjavur" style="cursor:pointer; font-weight:800;">Thanjavur (TN)</button>
+                        </div>
+                    </div>
+
+                    <!-- Controls Bar + Clickable Fetch NASA Satellite Data Button -->
+                    <div class="schemes-filter-bar" style="margin-bottom: 14px;">
+                        <div class="form-group-pro">
+                            <label for="nasaStateSelect">State (35 States/UTs)</label>
+                            <select class="form-select-pro" id="nasaStateSelect">
+                                <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                            </select>
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="nasaDistrictSelect">District (736 Districts)</label>
+                            <select class="form-select-pro" id="nasaDistrictSelect">
+                                <option value="Meerut" selected>Meerut</option>
+                            </select>
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="nasaViewMode">Temporal Aggregation</label>
+                            <select class="form-select-pro" id="nasaViewMode">
+                                <option value="monthly" selected>Monthly Agro-Climatic Series</option>
+                                <option value="yearly">Yearly Multi-Year Series</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-scheme-search" id="btnFetchNasaIntel" style="cursor: pointer; margin-top: auto; font-weight: 800; transition: transform 0.15s ease;">
+                            Fetch NASA Satellite Data
+                        </button>
+                    </div>
+
+                    <!-- Clickable Temporal & Parameter Focus Buttons -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; padding: 10px 14px; background: var(--km-surface); border: 1px solid var(--km-border); border-radius: 12px;">
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                            <span style="font-size: 0.78rem; font-weight: 800; color: var(--km-text-muted);">Time View:</span>
+                            <button type="button" class="acre-chip nasa-time-btn active" data-mode="monthly" data-nasa-time="monthly" style="cursor:pointer; font-weight:800;">Monthly View</button>
+                            <button type="button" class="acre-chip nasa-time-btn" data-mode="yearly" data-nasa-time="yearly" style="cursor:pointer; font-weight:800;">Multi-Year Annual View</button>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                            <span style="font-size: 0.78rem; font-weight: 800; color: var(--km-text-muted);">Parameter Filter:</span>
+                            <button type="button" class="acre-chip nasa-focus-btn active" data-focus="all" data-nasa-focus="all" style="cursor:pointer; font-weight:800;">All Parameters</button>
+                            <button type="button" class="acre-chip nasa-focus-btn" data-focus="temp" data-nasa-focus="temp" style="cursor:pointer; font-weight:800;">Thermal &amp; Heat Stress</button>
+                            <button type="button" class="acre-chip nasa-focus-btn" data-focus="rain" data-nasa-focus="rain" style="cursor:pointer; font-weight:800;">Precipitation &amp; Drought</button>
+                            <button type="button" class="acre-chip nasa-focus-btn" data-focus="solar" data-nasa-focus="solar" style="cursor:pointer; font-weight:800;">Solar &amp; PM-KUSUM</button>
+                        </div>
+                    </div>
+
+                    <!-- 4 NASA Agroclimatology Summary Cards (Clickable to filter parameter) -->
+                    <div class="overview-stats-grid">
+                        <div class="stat-card-pro" id="nasaStatCardTemp" style="cursor:pointer;" title="Click to focus Temperature">
+                            <div class="stat-icon-wrapper stat-icon-weather" style="font-size:0.8rem; font-weight:800;">T2M</div>
+                            <div class="stat-info-col">
+                                <div class="stat-label">Mean / Peak 2m Temp (T2M)</div>
+                                <div class="stat-value" id="nasaCardTemp">25.4°C</div>
+                                <div class="stat-sub" id="nasaCardTempSub">Peak Max: 38.2°C</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-pro" id="nasaStatCardRain" style="cursor:pointer;" title="Click to focus Precipitation">
+                            <div class="stat-icon-wrapper stat-icon-green" style="font-size:0.8rem; font-weight:800;">PRC</div>
+                            <div class="stat-info-col">
+                                <div class="stat-label">Cumulative Precip (PRECTOTCORR)</div>
+                                <div class="stat-value" id="nasaCardRain">680 mm</div>
+                                <div class="stat-sub" id="nasaCardRainSub">Heavy Rain Days: 2</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-pro" id="nasaStatCardSolar" style="cursor:pointer;" title="Click to focus Solar Irradiance">
+                            <div class="stat-icon-wrapper stat-icon-gold" style="font-size:0.8rem; font-weight:800;">SOL</div>
+                            <div class="stat-info-col">
+                                <div class="stat-label">Solar Irradiance (SW_DWN)</div>
+                                <div class="stat-value" id="nasaCardSolar">18.4 MJ/m²</div>
+                                <div class="stat-sub" id="nasaCardHumiditySub">Mean RH2M: 58%</div>
+                            </div>
+                        </div>
+                        <div class="stat-card-pro" id="nasaStatCardAll" style="cursor:pointer;" title="Click to show all parameters">
+                            <div class="stat-icon-wrapper stat-icon-shield" style="font-size:0.8rem; font-weight:800;">GEO</div>
+                            <div class="stat-info-col">
+                                <div class="stat-label">District Coordinates</div>
+                                <div class="stat-value" id="nasaCardCoords" style="font-size: 1.05rem;">28.98°N, 77.71°E</div>
+                                <div class="stat-sub" id="nasaCardSourceBadge">NASA POWER Agroclimatology</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 NASA Charts: Temperature & Solar Radiation + Precipitation & Humidity -->
+                    <div class="dashboard-charts-grid">
+                        <div class="chart-card-pro" id="nasaChartCardTemp">
+                            <div class="chart-card-header">
+                                <h3 class="chart-card-title" id="nasaChart1Title">NASA POWER Temperature &amp; Solar Radiation Series</h3>
+                                <span class="chart-badge-tag" id="nasaChart1Badge">T2M / T2M_MAX / SW_DWN</span>
+                            </div>
+                            <div class="chart-container-box">
+                                <canvas id="chartNasaTempSolar"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card-pro" id="nasaChartCardRain">
+                            <div class="chart-card-header">
+                                <h3 class="chart-card-title" id="nasaChart2Title">NASA POWER Precipitation &amp; Relative Humidity</h3>
+                                <span class="chart-badge-tag" id="nasaChart2Badge">PRECTOTCORR / RH2M</span>
+                            </div>
+                            <div class="chart-container-box">
+                                <canvas id="chartNasaRainHumidity"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agro-Climatic Indicators & Clickable NASA GIBS Satellite Imagery -->
+                    <div class="predict-screen-grid" style="grid-template-columns: 1.05fr 0.95fr; align-items: start; margin-top: 20px;">
+                        <div class="chart-card-pro">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading);">Agro-Climatic Stress Indicators</h3>
+                                <span class="chart-badge-tag" id="nasaIndicatorFilterBadge">Showing: All Parameters</span>
+                            </div>
+                            <div id="nasaIndicatorsList" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                        </div>
+
+                        <div class="chart-card-pro">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+                                <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading);">NASA GIBS Satellite Layers</h3>
+                                <select id="nasaGibsLayerSelect" class="form-select-pro" style="width: auto; padding: 6px 10px; font-size: 0.8rem;">
+                                    <option value="MODIS_Terra_NDVI_8Day" selected>MODIS Terra NDVI (Vegetation Health)</option>
+                                    <option value="MODIS_Terra_CorrectedReflectance_TrueColor">MODIS Terra True Color</option>
+                                    <option value="MODIS_Terra_Land_Surface_Temp_Day">MODIS Daytime Land Surface Temp</option>
+                                    <option value="IMERG_Precipitation_Rate">GPM IMERG Precipitation Rate</option>
+                                </select>
+                            </div>
+
+                            <!-- 4 Clickable Layer Switcher Buttons -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;" id="nasaGibsLayerButtons">
+                                <button type="button" class="acre-chip gibs-layer-btn active" data-layer="MODIS_Terra_NDVI_8Day" data-gibs-layer="MODIS_Terra_NDVI_8Day" style="cursor:pointer; font-weight:800; text-align:left; padding:9px 10px;">
+                                    MODIS NDVI (Crop Greenness)
+                                </button>
+                                <button type="button" class="acre-chip gibs-layer-btn" data-layer="MODIS_Terra_CorrectedReflectance_TrueColor" data-gibs-layer="MODIS_Terra_CorrectedReflectance_TrueColor" style="cursor:pointer; font-weight:800; text-align:left; padding:9px 10px;">
+                                    MODIS True Color Imagery
+                                </button>
+                                <button type="button" class="acre-chip gibs-layer-btn" data-layer="MODIS_Terra_Land_Surface_Temp_Day" data-gibs-layer="MODIS_Terra_Land_Surface_Temp_Day" style="cursor:pointer; font-weight:800; text-align:left; padding:9px 10px;">
+                                    Daytime Land Surface Temp
+                                </button>
+                                <button type="button" class="acre-chip gibs-layer-btn" data-layer="IMERG_Precipitation_Rate" data-gibs-layer="IMERG_Precipitation_Rate" style="cursor:pointer; font-weight:800; text-align:left; padding:9px 10px;">
+                                    GPM IMERG Precipitation
+                                </button>
+                            </div>
+
+                            <div id="nasaGibsLayerDesc" style="font-size: 0.83rem; color: var(--km-text-body); margin-bottom: 12px; padding: 10px 12px; background: var(--km-bg); border-radius: 8px; border-left: 3px solid var(--km-primary);">
+                                Normalized Difference Vegetation Index (NDVI) measuring crop canopy greenness and photosynthetic vigor over India.
+                            </div>
+
+                            <div style="background: #0b192c; border-radius: 12px; padding: 14px 16px; color: #e2e8f0; font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                                <div>
+                                    <strong id="nasaGibsTileHeader" style="display:block;">NASA GIBS Satellite Map Layer</strong>
+                                    <span style="color: #86efac; font-weight: 700; font-size: 0.76rem;">● Live Layer Active</span>
+                                    <code id="nasaGibsUrlCode" style="display: none;">https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_NDVI_8Day/default/2024-02-18/GoogleMapsCompatible_Level9/5/13/22.png</code>
+                                </div>
+                                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                    <a id="nasaWorldviewDirectLink" href="https://worldview.earthdata.nasa.gov/?v=66,6,99,37&l=MODIS_Terra_NDVI_8Day,Reference_Labels_15m,Coastlines_15m" target="_blank" rel="noopener" class="btn-solid-start" style="padding: 8px 14px; font-size: 0.8rem; text-decoration: none;">
+                                        Open NASA Worldview Map ↗
+                                    </a>
+                                    <button type="button" id="btnCopyGibsUrl" style="padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff; font-size: 0.78rem; font-weight: 700; cursor: pointer;">
+                                        Copy Layer URL
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
             </div>
@@ -1057,7 +1837,58 @@
         </div>
     </div>
 
+    <!-- Instant Fail-Safe Tab & Hash Router -->
+    <script>
+    (function() {
+        var HASH_TO_TAB = {
+            "dashboard": "tab-dashboard",
+            "predict": "tab-predict",
+            "advisories": "tab-advisories",
+            "schemes": "tab-schemes",
+            "scheme-intel": "tab-scheme-intel",
+            "suraksha": "tab-suraksha",
+            "nasa": "tab-nasa",
+            "krishisathi": "tab-krishisathi",
+            "weather": "tab-weather",
+            "farms": "tab-farms",
+            "profile": "tab-profile"
+        };
+        function activateDashboardTab(tabId) {
+            if (!tabId) return;
+            document.querySelectorAll(".sidebar-link[data-tab]").forEach(function(link) {
+                link.classList.toggle("active", link.getAttribute("data-tab") === tabId);
+            });
+            document.querySelectorAll(".app-tab-screen").forEach(function(sec) {
+                var isMatch = (sec.id === tabId);
+                sec.classList.toggle("active", isMatch);
+                sec.style.display = isMatch ? "block" : "none";
+            });
+        }
+        window.kmActivateTab = activateDashboardTab;
+        function syncFromHash() {
+            var h = (window.location.hash || "").replace(/^#/, "").toLowerCase();
+            var target = HASH_TO_TAB[h] || "tab-dashboard";
+            activateDashboardTab(target);
+        }
+        document.querySelectorAll(".sidebar-link[data-tab]").forEach(function(link) {
+            link.addEventListener("click", function(e) {
+                var t = link.getAttribute("data-tab");
+                if (!t) return;
+                e.preventDefault();
+                var href = link.getAttribute("href");
+                if (href && href.charAt(0) === "#") {
+                    history.replaceState(null, "", href);
+                }
+                activateDashboardTab(t);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+        window.addEventListener("hashchange", syncFromHash);
+        syncFromHash();
+    })();
+    </script>
+
     <!-- Main Dashboard Controller -->
-    <script src="dashboard.js"></script>
+    <script src="dashboard.js?v=6.0"></script>
 </body>
 </html>
