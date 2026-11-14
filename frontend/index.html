@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase_config.js"></script>
     <script src="supabase_auth.js"></script>
+    <script src="all_india_static_data.js"></script>
     <style>
         .unified-section {
             padding: 56px 24px;
@@ -722,13 +723,21 @@
          ========================================================================= -->
     <script>
     document.addEventListener("DOMContentLoaded", async () => {
-        let stateDistrictsMap = { "Uttar Pradesh": ["Meerut", "Lucknow", "Varanasi", "Agra", "Kanpur Nagar"] };
-        let supportedStates = ["Uttar Pradesh", "Madhya Pradesh", "Bihar", "Rajasthan", "Punjab", "Haryana"];
-        let allCrops = ["Wheat", "Rice", "Mustard", "Maize", "Gram", "Sugarcane", "Potato"];
+        const staticData = window.KRISHI_ALL_INDIA_DATA || {};
+        let stateDistrictsMap = staticData.state_districts
+            ? Object.assign({}, staticData.state_districts)
+            : { "Uttar Pradesh": ["Meerut", "Lucknow", "Varanasi", "Agra", "Kanpur Nagar"] };
+        let supportedStates = Array.isArray(staticData.supported_states) && staticData.supported_states.length
+            ? staticData.supported_states.slice()
+            : Object.keys(stateDistrictsMap);
+        let allCrops = Array.isArray(staticData.all_india_crops) && staticData.all_india_crops.length
+            ? staticData.all_india_crops.slice()
+            : ["Wheat", "Rice", "Mustard", "Maize", "Gram", "Sugarcane", "Potato"];
 
-        // 1. Load All-India Config
+        // 1. Load All-India Config (API or static JSON fallback)
         try {
-            const res = await fetch("/api/config");
+            let res = await fetch("/api/config");
+            if (!res.ok) res = await fetch("all_india_config.json");
             if (res.ok) {
                 const cfg = await res.json();
                 if (cfg.state_districts) stateDistrictsMap = cfg.state_districts;
@@ -792,14 +801,22 @@
                 irrigation_source: document.getElementById("hmIrrigation").value,
                 sowing_window: document.getElementById("hmSowing").value
             };
+            let data = null;
             try {
                 const res = await fetch("/api/analyze", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
-                if (!res.ok) return;
-                const data = await res.json();
+                if (res.ok) {
+                    data = await res.json();
+                }
+            } catch (e) {}
+            if (!data && window.KrishiAllIndiaStatic && typeof window.KrishiAllIndiaStatic.computeFallbackPrediction === "function") {
+                data = window.KrishiAllIndiaStatic.computeFallbackPrediction(payload);
+            }
+            if (!data) return;
+            try {
                 const p = data.prediction || {};
                 const yAc = Number(p.predicted_yield_per_acre || 18.3).toFixed(1);
                 const yHa = Number(p.predicted_yield_q_ha || (yAc * 2.471)).toFixed(1);
@@ -859,12 +876,19 @@
         async function loadHomeScheme() {
             const isHi = (localStorage.getItem("km_lang") || "en") === "hi";
             const st = document.getElementById("hmSchemeStateSelect").value || "Uttar Pradesh";
+            let sc = null;
             try {
                 const res = await fetch(`/api/schemes/intelligence?scheme_id=${encodeURIComponent(currentSchemeId)}&state=${encodeURIComponent(st)}`);
-                if (!res.ok) return;
-                const data = await res.json();
-                const sc = data.scheme || (data.schemes && data.schemes[0]);
-                if (!sc) return;
+                if (res.ok) {
+                    const data = await res.json();
+                    sc = data.scheme || (data.schemes && data.schemes[0]);
+                }
+            } catch (e) {}
+            if (!sc && window.KRISHI_ALL_INDIA_DATA && Array.isArray(window.KRISHI_ALL_INDIA_DATA.schemes)) {
+                sc = window.KRISHI_ALL_INDIA_DATA.schemes.find(s => s.id === currentSchemeId) || window.KRISHI_ALL_INDIA_DATA.schemes[0];
+            }
+            if (!sc) return;
+            try {
                 const nm = sc.national_metrics || {};
                 const statesList = sc.top_beneficiary_states || [];
                 const stRow = statesList.find(r => r.state && r.state.toLowerCase() === st.toLowerCase()) || statesList[0] || {};
@@ -1052,10 +1076,18 @@
             const dt = document.getElementById("hmNasaDistrict").value || "Meerut";
             const btn = document.getElementById("btnHmFetchNasa");
             btn.textContent = "Syncing NASA...";
+            let data = null;
             try {
                 const res = await fetch(`/api/nasa/intelligence?state=${encodeURIComponent(st)}&district=${encodeURIComponent(dt)}`);
                 if (res.ok) {
-                    const data = await res.json();
+                    data = await res.json();
+                }
+            } catch (e) {}
+            if (!data && window.KrishiAllIndiaStatic && typeof window.KrishiAllIndiaStatic.computeFallbackNasa === "function") {
+                data = window.KrishiAllIndiaStatic.computeFallbackNasa(st, dt);
+            }
+            if (data) {
+                try {
                     const sm = data.summary_metrics || {};
                     const coords = data.coordinates || {};
                     document.getElementById("hmNasaZoneBadge").textContent = `Active Zone: ${dt}, ${st}`;
@@ -1067,8 +1099,8 @@
                     document.getElementById("hmNasaCoords").textContent = `${coords.latitude || 28.98}°N, ${coords.longitude || 77.71}°E`;
                     hmNasaSeries = data.monthly_series || [];
                     renderHomeNasaChart();
-                }
-            } catch (e) {}
+                } catch (e) {}
+            }
             setTimeout(() => { btn.textContent = "Fetch NASA Satellite Data"; }, 400);
         }
 

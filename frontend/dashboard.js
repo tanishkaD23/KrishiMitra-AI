@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         farmerPlots: []
     };
 
-    const STATE_DISTRICTS = {
+    const STATE_DISTRICTS = Object.assign({
         "Uttar Pradesh": [
             "Meerut", "Agra", "Aligarh", "Allahabad", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya",
             "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Barabanki", "Bareilly",
@@ -87,16 +87,45 @@ document.addEventListener("DOMContentLoaded", () => {
             "Hisar", "Jhajjar", "Jind", "Kaithal", "Kurukshetra", "Mahendragarh", "Mewat",
             "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"
         ]
-    };
+    }, (window.KRISHI_ALL_INDIA_DATA && window.KRISHI_ALL_INDIA_DATA.state_districts) || {});
 
-    const STATE_HI = {
-        "Uttar Pradesh": "उत्तर प्रदेश",
-        "Madhya Pradesh": "मध्य प्रदेश",
+    const STATE_HI = Object.assign({
+        "Andaman and Nicobar Islands": "अंडमान और निकोबार द्वीप समूह",
+        "Andhra Pradesh": "आंध्र प्रदेश",
+        "Arunachal Pradesh": "अरुणाचल प्रदेश",
+        "Assam": "असम",
         "Bihar": "बिहार",
-        "Rajasthan": "राजस्थान",
+        "Chandigarh": "चंडीगढ़",
+        "Chhattisgarh": "छत्तीसगढ़",
+        "Dadra and Nagar Haveli and Daman and Diu": "दादरा और नगर हवेली और दमन और दीव",
+        "Delhi": "दिल्ली",
+        "Goa": "गोवा",
+        "Gujarat": "गुजरात",
+        "Haryana": "हरियाणा",
+        "Himachal Pradesh": "हिमाचल प्रदेश",
+        "Jammu and Kashmir": "जम्मू और कश्मीर",
+        "Jharkhand": "झारखंड",
+        "Karnataka": "कर्नाटक",
+        "Kerala": "केरल",
+        "Ladakh": "लद्दाख",
+        "Madhya Pradesh": "मध्य प्रदेश",
+        "Maharashtra": "महाराष्ट्र",
+        "Manipur": "मणिपुर",
+        "Meghalaya": "मेघालय",
+        "Mizoram": "मिजोरम",
+        "Nagaland": "नागालैंड",
+        "Odisha": "ओडिशा",
+        "Puducherry": "पुदुचेरी",
         "Punjab": "पंजाब",
-        "Haryana": "हरियाणा"
-    };
+        "Rajasthan": "राजस्थान",
+        "Sikkim": "सिक्किम",
+        "Tamil Nadu": "तमिलनाडु",
+        "Telangana": "तेलंगाना",
+        "Tripura": "त्रिपुरा",
+        "Uttar Pradesh": "उत्तर प्रदेश",
+        "Uttarakhand": "उत्तराखंड",
+        "West Bengal": "पश्चिम बंगाल"
+    }, (window.KRISHI_ALL_INDIA_DATA && window.KRISHI_ALL_INDIA_DATA.state_hi) || {});
 
     const CROP_HI = {
         "Wheat": "गेहूं",
@@ -861,8 +890,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function translateSelectOptions(lang) {
         const isHi = lang === "hi";
 
-        // Translate State Dropdowns
-        ["statePicker", "predState", "filterState", "newPlotState", "editFarmerState"].forEach(id => {
+        // Translate State Dropdowns (All 35 States & UTs)
+        ["statePicker", "predState", "filterState", "newPlotState", "editFarmerState", "intelStateSelect", "insState", "nasaStateSelect"].forEach(id => {
             const el = document.getElementById(id);
             if (!el) return;
             Array.from(el.options).forEach(opt => {
@@ -1400,7 +1429,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             renderCharts(data.historical_yields, data.prediction);
         } catch (err) {
-            console.warn("Could not fetch live dashboard data; using local benchmark values.", err);
+            if (window.KrishiAllIndiaStatic && typeof window.KrishiAllIndiaStatic.computeFallbackPrediction === "function") {
+                const fb = window.KrishiAllIndiaStatic.computeFallbackPrediction({
+                    state: state.stateName,
+                    district: state.district,
+                    crop: state.crop,
+                    plot_acres: 2.0
+                });
+                state.cachedData = fb;
+                updateDynamicYieldLabels();
+                if (fb.weather) renderLiveWeatherForecast(fb.weather);
+                renderMyFarms();
+                renderFarmerProfile();
+                renderCharts(fb.historical_yields, fb.prediction);
+                return;
+            }
             renderMyFarms();
             renderFarmerProfile();
             renderCharts();
@@ -1433,7 +1476,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let values = [38.2, 39.8, 41.5, 38.9, 41.2, 43.5];
 
             if (historyRecords && historyRecords.length >= 3) {
-                labels = historyRecords.map(r => String(r.start_year));
+                labels = historyRecords.map(r => String(r.start_year || r.year));
                 values = historyRecords.map(r => {
                     if (r.yield_q_ha) return Number(r.yield_q_ha);
                     if (r.yield_quintals_per_acre) return Number((r.yield_quintals_per_acre * 2.471).toFixed(1));
@@ -1485,8 +1528,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             ticks: { color: textColor, font: { family: "inherit", size: 11 } }
                         },
                         y: {
-                            min: 10,
-                            max: 55,
+                            min: 5,
+                            max: 60,
                             grid: { color: gridColor },
                             ticks: {
                                 color: textColor,
@@ -1499,16 +1542,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Chart 2: Multi-State Comparison Bar Chart
+        // Chart 2: All-India Multi-State Comparison Bar Chart (Dynamic across all 35 States & UTs)
         const ctxComp = document.getElementById("chartCropComparison");
         if (ctxComp) {
             if (state.cropComparisonChart) {
                 state.cropComparisonChart.destroy();
             }
 
-            const barLabels = isHi
-                ? ["उ.प्र.", "म.प्र.", "बिहार", "राजस्थान", "पंजाब", "हरियाणा"]
-                : ["UP", "MP", "Bihar", "Rajasthan", "Punjab", "Haryana"];
+            const sbMap = (window.KRISHI_ALL_INDIA_DATA && window.KRISHI_ALL_INDIA_DATA.state_benchmarks) || {};
+            const baseComparisonStates = [
+                "Uttar Pradesh", "Punjab", "Haryana", "Madhya Pradesh", "Rajasthan",
+                "Bihar", "Maharashtra", "Gujarat", "Karnataka", "Andhra Pradesh",
+                "Tamil Nadu", "West Bengal", "Telangana", "Odisha", "Chhattisgarh", "Assam"
+            ];
+            if (state.stateName && !baseComparisonStates.includes(state.stateName)) {
+                baseComparisonStates.unshift(state.stateName);
+            }
+
+            const shortLabelEn = {
+                "Uttar Pradesh": "UP", "Madhya Pradesh": "MP", "Maharashtra": "MH",
+                "Andhra Pradesh": "AP", "Tamil Nadu": "TN", "West Bengal": "WB",
+                "Chhattisgarh": "CG", "Himachal Pradesh": "HP", "Jammu and Kashmir": "J&K",
+                "Arunachal Pradesh": "AR", "Uttarakhand": "UK", "Jharkhand": "JH"
+            };
+            const barLabels = baseComparisonStates.map(st =>
+                isHi ? (STATE_HI[st] || st) : (shortLabelEn[st] || st)
+            );
+            const wheatData = baseComparisonStates.map(st =>
+                (sbMap[st] && sbMap[st].wheat_q_ha) ? sbMap[st].wheat_q_ha : 36.5
+            );
+            const mustardData = baseComparisonStates.map(st =>
+                (sbMap[st] && sbMap[st].mustard_q_ha) ? sbMap[st].mustard_q_ha : 16.2
+            );
 
             state.cropComparisonChart = new Chart(ctxComp, {
                 type: "bar",
@@ -1516,14 +1581,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     labels: barLabels,
                     datasets: [
                         {
-                            label: isHi ? "गेहूं (q/ha)" : "Wheat (q/ha)",
-                            data: [41.5, 38.0, 33.6, 40.0, 50.4, 48.4],
+                            label: isHi ? "गेहूं / मुख्य फसल (q/ha)" : "Wheat / Cereal (q/ha)",
+                            data: wheatData,
                             backgroundColor: "#064E2B",
                             borderRadius: 6
                         },
                         {
-                            label: isHi ? "सरसों (q/ha)" : "Mustard (q/ha)",
-                            data: [18.5, 16.8, 14.6, 20.0, 19.5, 20.8],
+                            label: isHi ? "सरसों / तिलहन (q/ha)" : "Mustard / Oilseed (q/ha)",
+                            data: mustardData,
                             backgroundColor: "#FFC928",
                             borderRadius: 6
                         }
@@ -1550,11 +1615,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     scales: {
                         x: {
                             grid: { display: false },
-                            ticks: { color: textColor, font: { family: "inherit", weight: "600", size: 11 } }
+                            ticks: { color: textColor, font: { family: "inherit", weight: "600", size: 10 } }
                         },
                         y: {
                             min: 0,
-                            max: 55,
+                            max: 60,
                             grid: { color: gridColor },
                             ticks: { color: textColor, font: { family: "inherit", size: 11 } }
                         }
@@ -1581,28 +1646,31 @@ document.addEventListener("DOMContentLoaded", () => {
             const acres = parseFloat(document.getElementById("predAcres")?.value) || 2.0;
             const sowing = document.getElementById("predSowing")?.value || "Timely Sown (Nov 01 - Nov 20)";
             const irrigation = document.getElementById("predIrrigation")?.value || "Tube well / Borewell";
+            const seasonVal = document.getElementById("predSeason")?.value || "Rabi";
+
+            const reqPayload = {
+                state: selectedState,
+                district: district,
+                crop: crop,
+                plot_acres: acres,
+                season: seasonVal,
+                sowing_window: sowing,
+                soil_type: "Alluvial (Sandy Loam)",
+                irrigation_source: irrigation,
+                seasonal_rainfall_mm: 65.0,
+                march_max_temp_c: 31.5,
+                nitrogen_kg_acre: crop === "Mustard" ? 32.0 : 48.0,
+                phosphorus_kg_acre: crop === "Mustard" ? 16.0 : 22.0,
+                potassium_kg_acre: crop === "Mustard" ? 8.0 : 15.0
+            };
 
             try {
                 const res = await fetch("/api/predict", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        state: selectedState,
-                        district: district,
-                        crop: crop,
-                        plot_acres: acres,
-                        season: "Rabi",
-                        sowing_window: sowing,
-                        soil_type: "Alluvial (Sandy Loam)",
-                        irrigation_source: irrigation,
-                        seasonal_rainfall_mm: 65.0,
-                        march_max_temp_c: 31.5,
-                        nitrogen_kg_acre: crop === "Mustard" ? 32.0 : 48.0,
-                        phosphorus_kg_acre: crop === "Mustard" ? 16.0 : 22.0,
-                        potassium_kg_acre: crop === "Mustard" ? 8.0 : 15.0
-                    })
+                    body: JSON.stringify(reqPayload)
                 });
-
+                if (!res.ok) throw new Error("API predict status " + res.status);
                 const data = await res.json();
                 state.stateName = selectedState;
                 state.district = district;
@@ -1612,7 +1680,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 updateDynamicYieldLabels();
             } catch (err) {
-                console.warn("Prediction call failed, using offline model output.", err);
+                if (window.KrishiAllIndiaStatic && typeof window.KrishiAllIndiaStatic.computeFallbackPrediction === "function") {
+                    const fb = window.KrishiAllIndiaStatic.computeFallbackPrediction(reqPayload);
+                    state.stateName = selectedState;
+                    state.district = district;
+                    state.crop = crop;
+                    if (!state.cachedData) state.cachedData = {};
+                    state.cachedData.prediction = fb.prediction;
+                    updateDynamicYieldLabels();
+                }
             } finally {
                 if (btn) {
                     const lbl = state.lang === "hi" ? "उपज का अनुमान लगाएं" : "Predict Yield";
@@ -2284,72 +2360,89 @@ document.addEventListener("DOMContentLoaded", () => {
     let nasaTempSolarChartInstance = null;
     let nasaRainHumidityChartInstance = null;
 
+    function applyAllIndiaConfigToSelectors(cfg) {
+        if (!cfg) return;
+        if (cfg.state_districts && Object.keys(cfg.state_districts).length > 0) {
+            Object.assign(STATE_DISTRICTS, cfg.state_districts);
+        }
+        const allStates = Array.isArray(cfg.supported_states) && cfg.supported_states.length
+            ? cfg.supported_states
+            : Object.keys(STATE_DISTRICTS);
+        const allCrops = Array.isArray(cfg.all_india_crops) && cfg.all_india_crops.length
+            ? cfg.all_india_crops
+            : (cfg.crops || []);
+        const allSeasons = Array.isArray(cfg.seasons) && cfg.seasons.length
+            ? cfg.seasons
+            : ["Rabi", "Kharif", "Summer", "Whole Year", "Autumn", "Winter"];
+
+        const stateSelectIds = [
+            "statePicker", "predState", "newPlotState", "editFarmerState",
+            "filterState", "intelStateSelect", "insState", "nasaStateSelect"
+        ];
+        const isHi = state.lang === "hi";
+        stateSelectIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const cur = el.value || "Uttar Pradesh";
+            el.innerHTML = "";
+            allStates.forEach(st => {
+                const opt = document.createElement("option");
+                opt.value = st;
+                opt.textContent = (isHi && STATE_HI[st]) ? `${STATE_HI[st]} (${st})` : st;
+                if (st === cur) opt.selected = true;
+                el.appendChild(opt);
+            });
+        });
+
+        populateDistrictDropdown(document.getElementById("districtPicker"), state.stateName || "Uttar Pradesh", state.district || "Meerut");
+        populateDistrictDropdown(document.getElementById("predDistrict"), state.stateName || "Uttar Pradesh", state.district || "Meerut");
+        populateDistrictDropdown(document.getElementById("newPlotDistrict"), document.getElementById("newPlotState")?.value || "Uttar Pradesh", "Meerut");
+        populateDistrictDropdown(document.getElementById("editFarmerDistrict"), document.getElementById("editFarmerState")?.value || "Uttar Pradesh", "Meerut");
+        populateDistrictDropdown(document.getElementById("insDistrict"), document.getElementById("insState")?.value || "Uttar Pradesh", "Meerut");
+        populateDistrictDropdown(document.getElementById("nasaDistrictSelect"), document.getElementById("nasaStateSelect")?.value || "Uttar Pradesh", "Meerut");
+
+        const cropSelectIds = ["predCrop", "newPlotCrop", "insCrop"];
+        cropSelectIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el || !allCrops.length) return;
+            const cur = el.value || "Wheat";
+            el.innerHTML = "";
+            allCrops.forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c;
+                opt.textContent = c;
+                if (c === cur) opt.selected = true;
+                el.appendChild(opt);
+            });
+        });
+
+        const predSeasonEl = document.getElementById("predSeason");
+        if (predSeasonEl && allSeasons.length) {
+            predSeasonEl.innerHTML = "";
+            allSeasons.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = s;
+                opt.textContent = s;
+                if (s === "Rabi") opt.selected = true;
+                predSeasonEl.appendChild(opt);
+            });
+        }
+    }
+
     async function initAllIndiaDynamicSelectors() {
+        // 1. Immediately populate all 35 States, 743 Districts, and 72 Crops synchronously from static bundle
+        if (window.KRISHI_ALL_INDIA_DATA) {
+            applyAllIndiaConfigToSelectors(window.KRISHI_ALL_INDIA_DATA);
+        }
+        // 2. Also fetch /api/config (or fallback all_india_config.json on Netlify)
         try {
-            const res = await fetch("/api/config");
-            if (!res.ok) return;
-            const cfg = await res.json();
-            if (cfg.state_districts && Object.keys(cfg.state_districts).length > 0) {
-                Object.assign(STATE_DISTRICTS, cfg.state_districts);
+            let res = await fetch("/api/config").catch(() => null);
+            if (!res || !res.ok) {
+                res = await fetch("all_india_config.json").catch(() => null);
             }
-            const allStates = Array.isArray(cfg.supported_states) && cfg.supported_states.length
-                ? cfg.supported_states
-                : Object.keys(STATE_DISTRICTS);
-            const allCrops = Array.isArray(cfg.all_india_crops) && cfg.all_india_crops.length
-                ? cfg.all_india_crops
-                : (cfg.crops || []);
-            const allSeasons = Array.isArray(cfg.seasons) && cfg.seasons.length
-                ? cfg.seasons
-                : ["Rabi", "Kharif", "Summer", "Whole Year", "Autumn", "Winter"];
-
-            const stateSelectIds = [
-                "statePicker", "predState", "newPlotState", "editFarmerState",
-                "filterState", "intelStateSelect", "insState", "nasaStateSelect"
-            ];
-            stateSelectIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (!el) return;
-                const cur = el.value || "Uttar Pradesh";
-                el.innerHTML = "";
-                allStates.forEach(st => {
-                    const opt = document.createElement("option");
-                    opt.value = st;
-                    opt.textContent = st;
-                    if (st === cur) opt.selected = true;
-                    el.appendChild(opt);
-                });
-            });
-
-            populateDistrictDropdown(document.getElementById("districtPicker"), state.selectedState || "Uttar Pradesh", state.district || "Meerut");
-            populateDistrictDropdown(document.getElementById("predDistrict"), state.selectedState || "Uttar Pradesh", state.district || "Meerut");
-            populateDistrictDropdown(document.getElementById("insDistrict"), "Uttar Pradesh", "Meerut");
-            populateDistrictDropdown(document.getElementById("nasaDistrictSelect"), "Uttar Pradesh", "Meerut");
-
-            const cropSelectIds = ["predCrop", "newPlotCrop", "insCrop"];
-            cropSelectIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (!el || !allCrops.length) return;
-                const cur = el.value || "Wheat";
-                el.innerHTML = "";
-                allCrops.forEach(c => {
-                    const opt = document.createElement("option");
-                    opt.value = c;
-                    opt.textContent = c;
-                    if (c === cur) opt.selected = true;
-                    el.appendChild(opt);
-                });
-            });
-
-            const predSeasonEl = document.getElementById("predSeason");
-            if (predSeasonEl && allSeasons.length) {
-                predSeasonEl.innerHTML = "";
-                allSeasons.forEach(s => {
-                    const opt = document.createElement("option");
-                    opt.value = s;
-                    opt.textContent = s;
-                    if (s === "Rabi") opt.selected = true;
-                    predSeasonEl.appendChild(opt);
-                });
+            if (res && res.ok) {
+                const cfg = await res.json();
+                applyAllIndiaConfigToSelectors(cfg);
             }
         } catch (err) {
             console.warn("All-India selector init fallback:", err);
@@ -2712,12 +2805,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch("/api/schemes/intelligence");
             if (res.ok) {
                 const data = await res.json();
-                if (Array.isArray(data.schemes)) {
+                if (Array.isArray(data.schemes) && data.schemes.length > 0) {
                     allSchemesCache = data.schemes;
+                    return allSchemesCache;
                 }
             }
         } catch (e) {
-            console.warn("Could not preload all schemes list:", e);
+            console.warn("Using static All-India 35-state schemes bundle:", e);
+        }
+        if (window.KRISHI_ALL_INDIA_DATA && Array.isArray(window.KRISHI_ALL_INDIA_DATA.schemes)) {
+            allSchemesCache = window.KRISHI_ALL_INDIA_DATA.schemes;
         }
         return allSchemesCache;
     }
@@ -2779,10 +2876,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         try {
-            const res = await fetch(`/api/schemes/intelligence?scheme_id=${encodeURIComponent(schemeId)}&state=${encodeURIComponent(st)}`);
-            if (!res.ok) return;
-            const data = await res.json();
-            const sc = data.scheme || (data.schemes && data.schemes[0]) || allSchemesCache.find(x => x.id === schemeId);
+            let sc = null;
+            try {
+                const res = await fetch(`/api/schemes/intelligence?scheme_id=${encodeURIComponent(schemeId)}&state=${encodeURIComponent(st)}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    sc = data.scheme || (data.schemes && data.schemes[0]);
+                }
+            } catch (_) {}
+            if (!sc) {
+                sc = allSchemesCache.find(x => x.id === schemeId) || allSchemesCache[0];
+            }
             if (!sc) return;
 
             renderAllSchemesQuickComparisonTable(sc.id);
@@ -3353,9 +3457,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            const res = await fetch(`/api/nasa/intelligence?state=${encodeURIComponent(st)}&district=${encodeURIComponent(dt)}`);
-            if (!res.ok) return;
-            const data = await res.json();
+            let data = null;
+            try {
+                const res = await fetch(`/api/nasa/intelligence?state=${encodeURIComponent(st)}&district=${encodeURIComponent(dt)}`);
+                if (res.ok) {
+                    data = await res.json();
+                }
+            } catch (_) {}
+            if (!data && window.KrishiAllIndiaStatic && typeof window.KrishiAllIndiaStatic.computeFallbackNasa === "function") {
+                data = window.KrishiAllIndiaStatic.computeFallbackNasa(st, dt);
+            }
+            if (!data) return;
             const sm = data.summary_metrics || {};
             const coords = data.coordinates || {};
 

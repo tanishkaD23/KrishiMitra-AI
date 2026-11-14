@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase_config.js"></script>
     <script src="supabase_auth.js"></script>
+    <script src="all_india_static_data.js"></script>
     <style>
         body.persona-auth-body {
             min-height: 100vh;
@@ -833,24 +834,33 @@
             }
         });
 
-        // Populate states in registration dropdown
+        // Populate all 35 states & 743 districts in registration dropdown
+        const applyRegStatesAndDistricts = (cfg) => {
+            if (!cfg) return;
+            const stateDistrictsMap = cfg.state_districts || {};
+            const states = cfg.supported_states || Object.keys(stateDistrictsMap);
+            const regState = document.getElementById("regState");
+            const regDistrict = document.getElementById("regDistrict");
+            if (states.length > 0 && regState && regDistrict) {
+                const curSt = regState.value || "Uttar Pradesh";
+                regState.innerHTML = states.map(s => `<option value="${s}" ${s === curSt ? "selected" : ""}>${s}</option>`).join("");
+                const populateDists = (st) => {
+                    const dList = stateDistrictsMap[st] || ["Meerut"];
+                    const defDist = dList.includes("Meerut") ? "Meerut" : dList[0];
+                    regDistrict.innerHTML = dList.map(d => `<option value="${d}" ${d === defDist ? "selected" : ""}>${d}</option>`).join("");
+                };
+                populateDists(curSt);
+                regState.onchange = () => populateDists(regState.value);
+            }
+        };
+        if (window.KRISHI_ALL_INDIA_DATA) {
+            applyRegStatesAndDistricts(window.KRISHI_ALL_INDIA_DATA);
+        }
         try {
             const r = await fetch("/api/config");
             if (r.ok) {
                 const cfg = await r.json();
-                const stateDistrictsMap = cfg.state_districts || {};
-                const states = cfg.supported_states || Object.keys(stateDistrictsMap);
-                const regState = document.getElementById("regState");
-                const regDistrict = document.getElementById("regDistrict");
-                if (states.length > 0 && regState) {
-                    regState.innerHTML = states.map(s => `<option value="${s}" ${s === "Uttar Pradesh" ? "selected" : ""}>${s}</option>`).join("");
-                    const populateDists = (st) => {
-                        const dList = stateDistrictsMap[st] || ["Meerut"];
-                        regDistrict.innerHTML = dList.map(d => `<option value="${d}">${d}</option>`).join("");
-                    };
-                    populateDists("Uttar Pradesh");
-                    regState.addEventListener("change", () => populateDists(regState.value));
-                }
+                applyRegStatesAndDistricts(cfg);
             }
         } catch (e) {}
 
