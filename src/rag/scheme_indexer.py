@@ -103,6 +103,9 @@ class SchemePDFIndexer:
             for sc in schemes_data:
                 raw_id = sc.get("id", "")
                 scheme_key = key_map.get(raw_id, raw_id.replace("-", "_"))
+                if scheme_key == "pm_kusum":
+                    # PM-KUSUM is intentionally kept unindexed in local PDFs so RAG pipeline demonstrates live web-search fallback
+                    continue
                 chunk_id = f"central_json_{scheme_key}"
                 if chunk_id in existing_ids:
                     continue

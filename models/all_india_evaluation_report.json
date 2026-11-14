@@ -1,0 +1,188 @@
+{
+  "split_method": "Chronological Out-of-Time Split (Train: 2013-2020, Test: 2021-2022)",
+  "train_samples": 117739,
+  "test_samples": 31998,
+  "leakage_prevention": [
+    "Excluded Area_Hectare and Production_Tonnes from model features",
+    "Excluded Target_Next_Day_Temp_C, Target_Next_Day_Rainfall_mm, Target_Next_Day_Rain_Flag from weather features",
+    "Computed historical district/state crop priors strictly on training years (<= 2020) before evaluating on 2021-2022"
+  ],
+  "models": [
+    {
+      "name": "Random Forest",
+      "mae": 0.558,
+      "rmse": 1.8437,
+      "r2": 0.9511
+    },
+    {
+      "name": "Gradient Boosting",
+      "mae": 0.5905,
+      "rmse": 2.1041,
+      "r2": 0.9363
+    },
+    {
+      "name": "Decision Tree",
+      "mae": 0.6094,
+      "rmse": 2.0109,
+      "r2": 0.9418
+    },
+    {
+      "name": "Linear Regression",
+      "mae": 0.6849,
+      "rmse": 2.0897,
+      "r2": 0.9372
+    }
+  ],
+  "previously_reported_benchmark": [
+    {
+      "name": "Random Forest",
+      "mae": 0.8812,
+      "rmse": 2.3357,
+      "r2": 0.9223
+    },
+    {
+      "name": "Decision Tree",
+      "mae": 1.064,
+      "rmse": 7.8981,
+      "r2": 0.1111
+    },
+    {
+      "name": "Gradient Boosting",
+      "mae": 1.4495,
+      "rmse": 3.0696,
+      "r2": 0.8657
+    },
+    {
+      "name": "Linear Regression",
+      "mae": 1.518,
+      "rmse": 3.5038,
+      "r2": 0.8251
+    }
+  ],
+  "feature_importances": [
+    {
+      "feature": "hist_baseline_yield_t_ha",
+      "importance": 0.7824
+    },
+    {
+      "feature": "hist_state_yield_t_ha",
+      "importance": 0.184
+    },
+    {
+      "feature": "Year_Start",
+      "importance": 0.006
+    },
+    {
+      "feature": "Crop",
+      "importance": 0.0045
+    },
+    {
+      "feature": "State",
+      "importance": 0.0022
+    },
+    {
+      "feature": "Season",
+      "importance": 0.0022
+    },
+    {
+      "feature": "weather_vpd_kpa",
+      "importance": 0.0017
+    },
+    {
+      "feature": "weather_humidity_pct",
+      "importance": 0.0016
+    },
+    {
+      "feature": "Latitude",
+      "importance": 0.0014
+    },
+    {
+      "feature": "soil_p_kg_ha",
+      "importance": 0.0013
+    },
+    {
+      "feature": "soil_k_kg_ha",
+      "importance": 0.0013
+    },
+    {
+      "feature": "Distance_to_Coast_km",
+      "importance": 0.0013
+    },
+    {
+      "feature": "weather_rain_7d_sum_mm",
+      "importance": 0.0013
+    },
+    {
+      "feature": "weather_temp_c",
+      "importance": 0.0012
+    },
+    {
+      "feature": "Elevation_m",
+      "importance": 0.0011
+    },
+    {
+      "feature": "weather_solar_mj_m2",
+      "importance": 0.001
+    },
+    {
+      "feature": "weather_wind_ms",
+      "importance": 0.0009
+    },
+    {
+      "feature": "weather_rain_mm",
+      "importance": 0.0009
+    },
+    {
+      "feature": "soil_n_kg_ha",
+      "importance": 0.0008
+    },
+    {
+      "feature": "soil_ph",
+      "importance": 0.0008
+    },
+    {
+      "feature": "soil_oc_pct",
+      "importance": 0.0008
+    },
+    {
+      "feature": "Longitude",
+      "importance": 0.0008
+    },
+    {
+      "feature": "District",
+      "importance": 0.0006
+    }
+  ],
+  "season_wise_metrics": {
+    "Autumn": {
+      "samples": 712,
+      "mae": 0.4826,
+      "rmse": 1.1244,
+      "r2": 0.7332
+    },
+    "Kharif": {
+      "samples": 14625,
+      "mae": 0.5338,
+      "rmse": 1.9041,
+      "r2": 0.9627
+    },
+    "Rabi": {
+      "samples": 12604,
+      "mae": 0.5676,
+      "rmse": 1.6477,
+      "r2": 0.9045
+    },
+    "Summer": {
+      "samples": 3136,
+      "mae": 0.4567,
+      "rmse": 1.1877,
+      "r2": 0.9831
+    },
+    "Winter": {
+      "samples": 921,
+      "mae": 1.2122,
+      "rmse": 4.1942,
+      "r2": 0.902
+    }
+  }
+}

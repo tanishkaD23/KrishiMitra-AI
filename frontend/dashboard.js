@@ -141,8 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
             stat_based_profile: "Based on your profile",
             badge_apy_hist: "APY Historical (2018-2023)",
             chart_comp_title: "Multi-State Yield Comparison (q/ha)",
-            badge_6_states: "6 States • Rabi Benchmark",
-            dash_banner_title: "🌾 Active Crop Phase: Tillering Stage (20–35 Days After Sowing)",
+            badge_6_states: "All-India • Rabi Benchmark",
+            dash_banner_title: "Active Crop Phase: Tillering Stage (20–35 Days After Sowing)",
             dash_banner_desc: "Maintain optimum moisture in sandy-loam soil. First nitrogen top-dressing recommended before the 2nd irrigation.",
             btn_view_advisories: "View Advisories →",
             pred_title: "Predict Crop Yield",
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lbl_tot_harvest: "Total Expected Harvest",
             lbl_conf_range: "90% Confidence Range",
             lbl_dist_base: "District Baseline",
-            notes_title: "ℹ️ Agronomic Guidance & Units",
+            notes_title: "Agronomic Guidance & Units",
             notes_li_1: "Predictions are displayed in both Quintals per Hectare (q/ha) and Quintals per Acre (q/acre) (1 Hectare = 2.471 Acres).",
             notes_li_2: "Total Expected Harvest multiplies your per-acre yield estimate by your entered plot area in acres.",
             notes_li_3: "Timely irrigation at Crown Root Initiation (21–25 DAS) and balanced NPK application help achieve the upper confidence bound.",
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lbl_category: "Category",
             btn_search: "Search",
             sathi_title: "KrishiSathi AI Assistant",
-            sathi_sub: "Ask your farming and government scheme questions in English or Hindi (हिंदी), anytime. 🌾",
+            sathi_sub: "Ask your farming and government scheme questions in English or Hindi (हिंदी), anytime.",
             btn_fullscreen_chat: "Open Full Screen Chat ↗",
             chat_init_q: "When is the best time to sow Wheat in Rabi season?",
             chat_init_ans: "The optimal timely sowing window for Wheat across UP, MP, Bihar, Rajasthan, Punjab, and Haryana is November 1 to November 20. Ensure adequate pre-sowing irrigation (Palewa) and use certified varieties such as HD-2967, HD-3086, or DBW-187. You can ask me follow-up questions in English or Hindi (हिंदी)!",
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
             wea_sub: "Live meteorological conditions, 7-day forecast, and crop risk indicators for your selected district.",
             btn_use_gps: "Use My GPS Location",
             btn_refresh_weather: "Refresh Live Weather",
-            wea_7d_title: "📅 Live 7-Day District Weather Forecast",
+            wea_7d_title: "Live 7-Day District Weather Forecast",
             wea_cur: "Current Weather",
             wea_rain_7d: "Rainfall (Next 7 days)",
             wea_norm_precip: "Normal precipitation",
@@ -212,26 +212,109 @@ document.addEventListener("DOMContentLoaded", () => {
             badge_low_risk: "Low Risk",
             farms_title: "My Farm Holdings",
             farms_sub: "Registered agricultural plots and soil parameters. Add or manage your farm plots below.",
-            btn_add_my_farm: "Add My Farm",
-            add_farm_box_title: "🌾 Add My Farm Details",
+            btn_add_my_farm: "+ Add My Farm",
+            add_farm_box_title: "Add My Farm Details",
             add_farm_box_sub: "Enter your plot name, village, crop, land size in acres, soil type, and irrigation source.",
             badge_instant_save: "Saves to Your Profile",
             lbl_farm_name: "Farm / Plot Name *",
             lbl_village: "Village / Tehsil *",
             lbl_soil_type: "Soil Type",
-            btn_save_farm: "Add Farm to My Holdings",
+            btn_save_farm: "+ Add Farm to My Holdings",
             prof_title: "Farmer Profile",
             prof_sub: "Verified profile credentials, registered landholding summary, and personal settings.",
             btn_edit_profile: "Edit Profile",
             prof_lbl_phone: "Mobile Number:",
             prof_lbl_lang: "Preferred Language:",
             prof_lbl_ekyc: "Aadhaar / eKYC Status:",
-            prof_val_verified: "✅ Verified on PM-KISAN Portal",
+            prof_val_verified: "Verified on PM-KISAN Portal",
             prof_lbl_zone: "Supported Region:",
-            edit_prof_heading: "✏️ Edit Farmer Profile",
+            edit_prof_heading: "Edit Farmer Profile",
             badge_sqlite_sync: "Live Database Sync",
             lbl_farmer_name: "Farmer Full Name *",
-            btn_save_profile: "Save Profile Changes"
+            btn_save_profile: "Save Profile Changes",
+            nav_scheme_intel: "Govt Schemes",
+            nav_suraksha: "Crop Insurance",
+            nav_nasa: "NASA Weather",
+            intel_main_title: "KrishiScheme Intelligence — Farmer Beneficiary & Amount Finder",
+            intel_main_sub: "Select or search any scheme below to see how many farmers benefited and total ₹ amount distributed.",
+            intel_badge_6: "6 Central Schemes • Verified Govt Data",
+            pill_s1: "1. PM-KISAN (₹6,000/yr)",
+            pill_s2: "2. PMFBY Crop Insurance",
+            pill_s3: "3. KCC (4% Interest Loan)",
+            pill_s4: "4. Soil Health Card",
+            pill_s5: "5. PMKSY Micro-Irrigation",
+            pill_s6: "6. PM-KUSUM Solar Pump",
+            intel_lbl_search: "Search Scheme",
+            intel_lbl_select: "Select Government Scheme",
+            opt_s1: "1. PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+            opt_s2: "2. PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+            opt_s3: "3. KCC (Kisan Credit Card Scheme)",
+            opt_s4: "4. Soil Health Card (SHC) Scheme",
+            opt_s5: "5. PMKSY (Pradhan Mantri Krishi Sinchayee Yojana)",
+            opt_s6: "6. PM-KUSUM (Solar Agriculture Pumps)",
+            intel_lbl_state: "Select Your State",
+            intel_btn_check: "Check Beneficiaries & ₹ Amount",
+            intel_spot_tag: "VERIFIED SCHEME BENEFICIARIES & FINANCIAL AMOUNT",
+            intel_btn_portal: "Official Portal ↗",
+            intel_lbl_nat_ben: "All-India Beneficiaries",
+            intel_lbl_nat_amt: "Total Financial Assistance",
+            intel_tbl_title: "All 6 Schemes — Existing Farmers Benefited & Total Amount (Click any row)",
+            intel_tbl_badge: "Interactive Comparison",
+            th_sch_name: "Scheme Name",
+            th_sch_farmers: "Existing Farmers Benefited",
+            th_sch_amount: "Total ₹ Amount Distributed",
+            th_sch_per_farmer: "Benefit Per Farmer",
+            th_sch_portal: "Portal",
+            intel_ch1_title: "Year-Wise Beneficiary Trend",
+            intel_ch1_badge: "Official Series",
+            intel_ch2_title: "State-Wise Beneficiaries",
+            intel_ch2_badge: "Top States",
+            sur_main_title: "KrishiSuraksha — Landowner & Tenant Crop Insurance (PMFBY)",
+            sur_main_sub: "Check whether a farmer cultivating a Landowner's land (Bataidar / Tenant) or own land can claim PMFBY crop insurance and calculate your Sum Insured (₹).",
+            sur_helpline: "Helpline: 14447",
+            sur_portal_link: "pmfby.gov.in ↗",
+            sur_q_landowner: "Can a Farmer Get Insurance on a Landowner's Land? (Select Your Category)",
+            sur_mode_owner: "Mode: Own Land",
+            own_btn1_t: "1. Own Land (Landowner)",
+            own_btn1_s: "Khatauni in your own name",
+            own_btn2_t: "2. Landowner's Land (+ Consent/NOC)",
+            own_btn2_s: "Tenant with Landowner NOC / Sowing Cert",
+            own_btn3_t: "3. Landowner's Land (Oral Bataidar)",
+            own_btn3_s: "Oral tenant without written agreement",
+            own_btn4_t: "4. Joint Family Khatauni",
+            own_btn4_s: "Combined family Khatauni",
+            sur_form_title: "Check Claim Eligibility & Coverage",
+            sur_72hr_badge: "72-Hr Rule Check",
+            sur_lbl_peril_pills: "Select Cause of Crop Loss:",
+            peril_hail: "Hailstorm",
+            peril_rain: "Unseasonal Rain",
+            peril_flood: "Flood / Waterlogging",
+            peril_drought: "Drought",
+            peril_pest: "Pest / Disease",
+            peril_post: "Post-Harvest Rain (14 days)",
+            opt_rabi_prem: "Rabi (1.5% Premium)",
+            opt_kharif_prem: "Kharif (2.0% Premium)",
+            opt_hort_prem: "Commercial / Hort (5%)",
+            sur_lbl_enrolled: "PMFBY Enrolled? *",
+            opt_enr_yes: "Yes (Enrolled)",
+            opt_enr_unsure: "Unsure (Check KCC)",
+            opt_enr_no: "No (Not Enrolled)",
+            sur_lbl_dup_kcc: "Landowner Duplicate KCC?",
+            opt_kcc_no: "No (Only Cultivator)",
+            opt_kcc_yes: "Yes (Landowner Claimed KCC)",
+            sur_lbl_loss_date: "Loss Date *",
+            sur_lbl_cause: "Cause of Damage *",
+            sur_btn_submit: "Check Landowner/Farmer Eligibility & Calculate Claim Coverage →",
+            sur_verdict_tag: "PMFBY Claim & Landholding Verdict",
+            sur_lbl_sum: "Est. Sum Insured",
+            sur_lbl_prem: "Farmer Premium",
+            sur_lbl_payout: "Payout Mode",
+            sur_val_dbt: "Direct Bank DBT",
+            sur_docs_title: "Eligibility Checks & Required Documents",
+            sur_doc_1: "Own Land: Khatauni copy + Aadhaar Bank Passbook + PMFBY Receipt.",
+            sur_doc_2: "Landowner's Land (Bataidar): Landowner NOC / Lease Agreement OR Patwari/Pradhan Sowing Certificate.",
+            sur_doc_3: "72-Hour Intimation: Report within 72 hours on Crop Insurance App or Toll-Free 14447.",
+            sur_disclaimer: "Preliminary AI eligibility guidance based on PMFBY guidelines. Final settlement is verified by the insurance company."
         },
         hi: {
             nav_dashboard: "डैशबोर्ड",
@@ -259,8 +342,8 @@ document.addEventListener("DOMContentLoaded", () => {
             stat_based_profile: "आपकी प्रोफ़ाइल के अनुसार",
             badge_apy_hist: "ऐतिहासिक रिकॉर्ड (2018-2023)",
             chart_comp_title: "बहु-राज्य उपज तुलना (क्विंटल/हेक्टेयर)",
-            badge_6_states: "6 राज्य • रबी बेंचमार्क",
-            dash_banner_title: "🌾 सक्रिय फसल अवस्था: कल्ले निकलने की अवस्था (बुवाई के 20–35 दिन बाद)",
+            badge_6_states: "अखिल भारतीय बेंचमार्क",
+            dash_banner_title: "सक्रिय फसल अवस्था: कल्ले निकलने की अवस्था (बुवाई के 20–35 दिन बाद)",
             dash_banner_desc: "दोमट मिट्टी में उचित नमी बनाए रखें। दूसरी सिंचाई से पहले यूरिया की पहली टॉप-ड्रेसिंग की सलाह दी जाती है।",
             btn_view_advisories: "कृषि सलाह देखें →",
             pred_title: "फसल उपज का अनुमान लगाएं",
@@ -279,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lbl_tot_harvest: "कुल अनुमानित पैदावार",
             lbl_conf_range: "90% विश्वसनीयता सीमा",
             lbl_dist_base: "जिला औसत बेंचमार्क",
-            notes_title: "ℹ️ कृषि मार्गदर्शन और इकाइयां",
+            notes_title: "कृषि मार्गदर्शन और इकाइयां",
             notes_li_1: "उपज का अनुमान क्विंटल प्रति हेक्टेयर (q/ha) और क्विंटल प्रति एकड़ (q/acre) दोनों में दिखाया गया है (1 हेक्टेयर = 2.471 एकड़)।",
             notes_li_2: "कुल अनुमानित पैदावार आपकी प्रति एकड़ उपज को आपके खेत के कुल एकड़ से गुणा करके निकाली जाती है।",
             notes_li_3: "शीर्ष जड़ अवस्था (21–25 दिन) पर समय पर सिंचाई और संतुलित NPK उर्वरक से अधिकतम उपज प्राप्त होती है।",
@@ -302,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
             lbl_category: "योजना श्रेणी",
             btn_search: "खोजें",
             sathi_title: "कृषिसाथी AI सहायक",
-            sathi_sub: "खेती और सरकारी योजनाओं से जुड़े अपने सवाल हिंदी या अंग्रेजी में कभी भी पूछें। 🌾",
+            sathi_sub: "खेती और सरकारी योजनाओं से जुड़े अपने सवाल हिंदी या अंग्रेजी में कभी भी पूछें।",
             btn_fullscreen_chat: "फुल-स्क्रीन चैट खोलें ↗",
             chat_init_q: "रबी सीजन में गेहूं की बुवाई का सबसे अच्छा समय कब है?",
             chat_init_ans: "उत्तर प्रदेश, मध्य प्रदेश, बिहार, राजस्थान, पंजाब और हरियाणा में गेहूं की समय पर बुवाई का सर्वोत्तम समय 1 नवंबर से 20 नवंबर है। बुवाई से पहले पर्याप्त पलेवा करें और HD-2967, HD-3086 या DBW-187 जैसी प्रमाणित किस्मों का उपयोग करें। आप मुझसे हिंदी या अंग्रेजी में कोई भी सवाल पूछ सकते हैं!",
@@ -316,7 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
             wea_sub: "आपके चुने हुए जिले के लिए लाइव मौसम, 7-दिन का पूर्वानुमान और फसल जोखिम संकेतक।",
             btn_use_gps: "मेरी GPS लोकेशन चुनें",
             btn_refresh_weather: "लाइव मौसम अपडेट करें",
-            wea_7d_title: "📅 आगामी 7-दिन का लाइव मौसम पूर्वानुमान",
+            wea_7d_title: "आगामी 7-दिन का लाइव मौसम पूर्वानुमान",
             wea_cur: "वर्तमान मौसम",
             wea_rain_7d: "वर्षा (अगले 7 दिन)",
             wea_norm_precip: "सामान्य वर्षा स्तर",
@@ -330,26 +413,109 @@ document.addEventListener("DOMContentLoaded", () => {
             badge_low_risk: "कम जोखिम",
             farms_title: "मेरे खेत (My Farm Holdings)",
             farms_sub: "पंजीकृत कृषि भूखंड और मिट्टी का विवरण। नीचे अपने नए खेत का विवरण जोड़ें या प्रबंधित करें।",
-            btn_add_my_farm: "नया खेत जोड़ें",
-            add_farm_box_title: "🌾 नया खेत जोड़ें (Add My Farm Details)",
+            btn_add_my_farm: "+ नया खेत जोड़ें",
+            add_farm_box_title: "नया खेत जोड़ें (Add My Farm Details)",
             add_farm_box_sub: "अपने खेत का नाम, गांव, फसल, भूमि का आकार (एकड़ में), मिट्टी का प्रकार और सिंचाई का साधन दर्ज करें।",
             badge_instant_save: "प्रोफ़ाइल में सुरक्षित",
             lbl_farm_name: "खेत / प्लॉट का नाम *",
             lbl_village: "गांव / तहसील *",
             lbl_soil_type: "मिट्टी का प्रकार",
-            btn_save_farm: "मेरे खेतों में जोड़ें",
+            btn_save_farm: "+ मेरे खेतों में जोड़ें",
             prof_title: "किसान प्रोफ़ाइल",
             prof_sub: "प्रमाणित किसान विवरण, कुल पंजीकृत भूमि और व्यक्तिगत सेटिंग्स।",
             btn_edit_profile: "प्रोफ़ाइल संपादित करें",
             prof_lbl_phone: "मोबाइल नंबर:",
             prof_lbl_lang: "पसंदीदा भाषा:",
             prof_lbl_ekyc: "आधार / eKYC स्थिति:",
-            prof_val_verified: "✅ पीएम-किसान पोर्टल पर सत्यापित",
+            prof_val_verified: "पीएम-किसान पोर्टल पर सत्यापित",
             prof_lbl_zone: "पंजीकृत क्षेत्र:",
-            edit_prof_heading: "✏️ किसान प्रोफ़ाइल संपादित करें",
+            edit_prof_heading: "किसान प्रोफ़ाइल संपादित करें",
             badge_sqlite_sync: "लाइव डेटाबेस सिंक",
             lbl_farmer_name: "किसान का पूरा नाम *",
-            btn_save_profile: "प्रोफ़ाइल परिवर्तन सहेजें"
+            btn_save_profile: "प्रोफ़ाइल परिवर्तन सहेजें",
+            nav_scheme_intel: "सरकारी योजनाएं",
+            nav_suraksha: "फसल बीमा (PMFBY)",
+            nav_nasa: "नासा मौसम",
+            intel_main_title: "कृषि-योजना इंटेलिजेंस — लाभार्थी किसान एवं कुल राशि विवरण",
+            intel_main_sub: "नीचे किसी भी सरकारी योजना को चुनें या खोजें और जानें कि अब तक कितने किसानों को लाभ मिला और कुल कितनी राशि (₹) वितरित की गई।",
+            intel_badge_6: "6 प्रमुख केंद्रीय योजनाएं • सत्यापित सरकारी डेटा",
+            pill_s1: "1. पीएम-किसान (₹6,000/वर्ष)",
+            pill_s2: "2. पीएम फसल बीमा (PMFBY)",
+            pill_s3: "3. किसान क्रेडिट कार्ड (4% ऋण)",
+            pill_s4: "4. मृदा स्वास्थ्य कार्ड",
+            pill_s5: "5. पीएम कृषि सिंचाई (PMKSY)",
+            pill_s6: "6. पीएम-कुसुम सोलर पंप",
+            intel_lbl_search: "योजना खोजें",
+            intel_lbl_select: "सरकारी योजना चुनें",
+            opt_s1: "1. पीएम-किसान (प्रधानमंत्री किसान सम्मान निधि)",
+            opt_s2: "2. पीएमएफबीवाई (प्रधानमंत्री फसल बीमा योजना)",
+            opt_s3: "3. केसीसी (किसान क्रेडिट कार्ड योजना)",
+            opt_s4: "4. मृदा स्वास्थ्य कार्ड (Soil Health Card) योजना",
+            opt_s5: "5. पीएमकेएसवाई (प्रधानमंत्री कृषि सिंचाई योजना)",
+            opt_s6: "6. पीएम-कुसुम (सोलर कृषि पंप योजना)",
+            intel_lbl_state: "अपना राज्य चुनें",
+            intel_btn_check: "लाभार्थी संख्या और ₹ राशि देखें",
+            intel_spot_tag: "सत्यापित योजना लाभार्थी और कुल वितरित वित्तीय राशि",
+            intel_btn_portal: "आधिकारिक पोर्टल ↗",
+            intel_lbl_nat_ben: "अखिल भारतीय लाभार्थी किसान (कितने किसानों को लाभ मिला)",
+            intel_lbl_nat_amt: "कुल वितरित वित्तीय सहायता (कुल कितनी राशि मिली)",
+            intel_tbl_title: "सभी 6 सरकारी योजनाएं — कुल लाभार्थी किसान और वितरित राशि (किसी भी पंक्ति पर क्लिक करें)",
+            intel_tbl_badge: "इंटरएक्टिव तुलना",
+            th_sch_name: "योजना का नाम",
+            th_sch_farmers: "लाभान्वित किसानों की संख्या",
+            th_sch_amount: "कुल वितरित राशि (₹)",
+            th_sch_per_farmer: "प्रति किसान मिलने वाला लाभ",
+            th_sch_portal: "पोर्टल लिंक",
+            intel_ch1_title: "वर्ष-वार लाभार्थी रुझान (Yearly Trend)",
+            intel_ch1_badge: "आधिकारिक श्रृंखला",
+            intel_ch2_title: "राज्य-वार लाभार्थी किसान",
+            intel_ch2_badge: "प्रमुख राज्य",
+            sur_main_title: "कृषिसुरक्षा — भूमि मालिक (Landowner) एवं बटाईदार किसान फसल बीमा (PMFBY)",
+            sur_main_sub: "जांचें कि ज़मीन मालिक (Landowner) की भूमि पर खेती करने वाले बटाईदार/किरायेदार किसान या स्वयं की भूमि वाले किसान को PMFBY फसल बीमा क्लेम कैसे मिलेगा और अपनी बीमा राशि (₹) की गणना करें।",
+            sur_helpline: "हेल्पलाइन: 14447",
+            sur_portal_link: "pmfby.gov.in ↗",
+            sur_q_landowner: "क्या ज़मीन मालिक (Landowner) की भूमि पर किसान को बीमा मिल सकता है? (अपनी श्रेणी चुनें)",
+            sur_mode_owner: "श्रेणी: स्वयं की भूमि (Own Land)",
+            own_btn1_t: "1. स्वयं की भूमि (Landowner)",
+            own_btn1_s: "आपके अपने नाम की खतौनी",
+            own_btn2_t: "2. ज़मीन मालिक की भूमि (+ सहमति पत्र/NOC)",
+            own_btn2_s: "बटाईदार किसान (मालिक की NOC / बुवाई प्रमाण पत्र सहित)",
+            own_btn3_t: "3. ज़मीन मालिक की भूमि (मौखिक बटाईदार)",
+            own_btn3_s: "बिना लिखित समझौते के बटाईदार किसान",
+            own_btn4_t: "4. संयुक्त परिवार की खतौनी",
+            own_btn4_s: "परिवार के संयुक्त नाम की खतौनी",
+            sur_form_title: "बीमा क्लेम पात्रता और कवरेज की जांच करें",
+            sur_72hr_badge: "72-घंटे नियम जांच",
+            sur_lbl_peril_pills: "फसल नुकसान का कारण चुनें:",
+            peril_hail: "ओलावृष्टि (Hailstorm)",
+            peril_rain: "बेमौसम / अत्यधिक बारिश",
+            peril_flood: "बाढ़ / जलभराव",
+            peril_drought: "सूखा (Drought)",
+            peril_pest: "कीट एवं रोग प्रकोप",
+            peril_post: "कटाई के बाद बारिश (14 दिन के भीतर)",
+            opt_rabi_prem: "रबी (1.5% किसान प्रीमियम)",
+            opt_kharif_prem: "खरीफ (2.0% किसान प्रीमियम)",
+            opt_hort_prem: "वाणिज्यिक / बागवानी (5%)",
+            sur_lbl_enrolled: "PMFBY में पंजीकृत? *",
+            opt_enr_yes: "हाँ (पंजीकृत है)",
+            opt_enr_unsure: "अनिश्चित (KCC जांचें)",
+            opt_enr_no: "नहीं (पंजीकृत नहीं)",
+            sur_lbl_dup_kcc: "क्या मालिक ने डुप्लीकेट KCC लिया है?",
+            opt_kcc_no: "नहीं (केवल वास्तविक काश्तकार)",
+            opt_kcc_yes: "हाँ (मालिक ने KCC क्लेम किया है)",
+            sur_lbl_loss_date: "नुकसान की तिथि *",
+            sur_lbl_cause: "नुकसान का मुख्य कारण *",
+            sur_btn_submit: "भूमि मालिक/किसान पात्रता जांचें और बीमा कवरेज की गणना करें →",
+            sur_verdict_tag: "PMFBY क्लेम और भूमि पात्रता निर्णय",
+            sur_lbl_sum: "अनुमानित बीमित राशि",
+            sur_lbl_prem: "किसान प्रीमियम अंश",
+            sur_lbl_payout: "भुगतान माध्यम",
+            sur_val_dbt: "सीधा बैंक खाता (DBT)",
+            sur_docs_title: "पात्रता जांच और आवश्यक दस्तावेज",
+            sur_doc_1: "स्वयं की भूमि: खतौनी की नकल + आधार लिंक बैंक पासबुक + PMFBY रसीद।",
+            sur_doc_2: "ज़मीन मालिक की भूमि (बटाईदार): मालिक का सहमति पत्र (NOC) / किरायानामा या पटवारी/प्रधान द्वारा जारी बुवाई प्रमाण पत्र।",
+            sur_doc_3: "72-घंटे में सूचना: फसल नुकसान के 72 घंटे के भीतर क्रॉप इंश्योरेंस ऐप या टोल-फ्री 14447 पर सूचना दें।",
+            sur_disclaimer: "यह PMFBY दिशानिर्देशों पर आधारित प्रारंभिक AI पात्रता मार्गदर्शन है। अंतिम क्लेम भुगतान बीमा कंपनी और जिला कृषि अधिकारी के सर्वे द्वारा सत्यापित किया जाता है।"
         }
     };
 
@@ -603,6 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tabScreens.forEach(screen => {
             const isMatch = screen.id === tabId;
             screen.classList.toggle("active", isMatch);
+            screen.style.display = isMatch ? "block" : "none";
         });
 
         if (tabId === "tab-dashboard") {
@@ -652,6 +819,9 @@ document.addEventListener("DOMContentLoaded", () => {
             "predict": "tab-predict",
             "advisories": "tab-advisories",
             "schemes": "tab-schemes",
+            "scheme-intel": "tab-scheme-intel",
+            "suraksha": "tab-suraksha",
+            "nasa": "tab-nasa",
             "krishisathi": "tab-krishisathi",
             "weather": "tab-weather",
             "farms": "tab-farms",
@@ -681,9 +851,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const iconSpan = document.getElementById("themeToggleIcon");
         if (iconSpan) {
             if (state.lang === "hi") {
-                iconSpan.textContent = state.theme === "dark" ? "☀️ लाइट" : "🌙 डार्क";
+                iconSpan.textContent = state.theme === "dark" ? "लाइट मोड" : "डार्क मोड";
             } else {
-                iconSpan.textContent = state.theme === "dark" ? "☀️ Light" : "🌙 Dark";
+                iconSpan.textContent = state.theme === "dark" ? "Light Mode" : "Dark Mode";
             }
         }
     }
@@ -844,10 +1014,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const topGreeting = document.getElementById("topGreetingText");
         const topSub = document.getElementById("topGreetingSub");
         if (lang === "hi") {
-            if (topGreeting) topGreeting.textContent = `नमस्ते, ${farmerName}! 🌾`;
+            if (topGreeting) topGreeting.textContent = `नमस्ते, ${farmerName}`;
             if (topSub) topSub.textContent = "यहाँ आपके खेत, मौसम और फसल उपज का संपूर्ण विवरण है।";
         } else {
-            if (topGreeting) topGreeting.textContent = `Welcome back, ${farmerName}! 🌾`;
+            if (topGreeting) topGreeting.textContent = `Welcome back, ${farmerName}`;
             if (topSub) topSub.textContent = "Here's an overview of your farm and crop insights.";
         }
 
@@ -860,6 +1030,12 @@ document.addEventListener("DOMContentLoaded", () => {
         renderMyFarms();
         renderFarmerProfile();
         updateDynamicYieldLabels();
+        if (typeof loadKrishiSchemeIntelligence === "function") {
+            loadKrishiSchemeIntelligence();
+        }
+        if (typeof refreshSurakshaLanguage === "function") {
+            refreshSurakshaLanguage();
+        }
         if (state.cachedData?.weather) {
             renderLiveWeatherForecast(state.cachedData.weather);
         }
@@ -1936,7 +2112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!chatBox) return;
         const bubble = document.createElement("div");
         bubble.className = "chat-bubble-user";
-        bubble.innerHTML = `<span>${escapeHtml(text)}</span><span>👨‍🌾</span>`;
+        bubble.innerHTML = `<span>${escapeHtml(text)}</span>`;
         chatBox.appendChild(bubble);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -1947,7 +2123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const wrap = document.createElement("div");
         wrap.className = "chat-bubble-ai-wrap";
         wrap.innerHTML = `
-            <div class="chat-avatar-sathi">🌾</div>
+            <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
             <div class="chat-bubble-ai" style="padding: 10px 16px;">
                 <em>${isHi ? "कृषिसाथी प्रमाणित दिशानिर्देश खोज रहा है..." : "KrishiSathi is searching verified guidelines..."}</em>
             </div>
@@ -1976,13 +2152,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const formattedAnswer = escapeHtml(answer).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
         wrap.innerHTML = `
-            <div class="chat-avatar-sathi">🌾</div>
+            <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
             <div class="chat-bubble-ai">
                 <div style="white-space: pre-line; line-height: 1.55;">${formattedAnswer}</div>
                 ${sourcesHtml}
                 <div class="chat-bubble-actions">
                     <button type="button" class="btn-speak-audio" onclick="speakText(this)">
-                        <span>🔊</span>
                         <span>${isHi ? "आवाज़ में सुनें" : "Listen Aloud"}</span>
                     </button>
                 </div>
@@ -2099,6 +2274,1408 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         return text ? String(text).replace(/[&<>"']/g, m => map[m]) : "";
     }
+
+    // -------------------------------------------------------------------------
+    // 11. ALL-INDIA DYNAMIC METADATA, AUTHENTICATION, KRISHISCHEME INTEL,
+    //     KRISHISURAKSHA PMFBY INSURANCE & NASA EARTH INTELLIGENCE
+    // -------------------------------------------------------------------------
+    let schemeYearlyChartInstance = null;
+    let schemeStatesChartInstance = null;
+    let nasaTempSolarChartInstance = null;
+    let nasaRainHumidityChartInstance = null;
+
+    async function initAllIndiaDynamicSelectors() {
+        try {
+            const res = await fetch("/api/config");
+            if (!res.ok) return;
+            const cfg = await res.json();
+            if (cfg.state_districts && Object.keys(cfg.state_districts).length > 0) {
+                Object.assign(STATE_DISTRICTS, cfg.state_districts);
+            }
+            const allStates = Array.isArray(cfg.supported_states) && cfg.supported_states.length
+                ? cfg.supported_states
+                : Object.keys(STATE_DISTRICTS);
+            const allCrops = Array.isArray(cfg.all_india_crops) && cfg.all_india_crops.length
+                ? cfg.all_india_crops
+                : (cfg.crops || []);
+            const allSeasons = Array.isArray(cfg.seasons) && cfg.seasons.length
+                ? cfg.seasons
+                : ["Rabi", "Kharif", "Summer", "Whole Year", "Autumn", "Winter"];
+
+            const stateSelectIds = [
+                "statePicker", "predState", "newPlotState", "editFarmerState",
+                "filterState", "intelStateSelect", "insState", "nasaStateSelect"
+            ];
+            stateSelectIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const cur = el.value || "Uttar Pradesh";
+                el.innerHTML = "";
+                allStates.forEach(st => {
+                    const opt = document.createElement("option");
+                    opt.value = st;
+                    opt.textContent = st;
+                    if (st === cur) opt.selected = true;
+                    el.appendChild(opt);
+                });
+            });
+
+            populateDistrictDropdown(document.getElementById("districtPicker"), state.selectedState || "Uttar Pradesh", state.district || "Meerut");
+            populateDistrictDropdown(document.getElementById("predDistrict"), state.selectedState || "Uttar Pradesh", state.district || "Meerut");
+            populateDistrictDropdown(document.getElementById("insDistrict"), "Uttar Pradesh", "Meerut");
+            populateDistrictDropdown(document.getElementById("nasaDistrictSelect"), "Uttar Pradesh", "Meerut");
+
+            const cropSelectIds = ["predCrop", "newPlotCrop", "insCrop"];
+            cropSelectIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el || !allCrops.length) return;
+                const cur = el.value || "Wheat";
+                el.innerHTML = "";
+                allCrops.forEach(c => {
+                    const opt = document.createElement("option");
+                    opt.value = c;
+                    opt.textContent = c;
+                    if (c === cur) opt.selected = true;
+                    el.appendChild(opt);
+                });
+            });
+
+            const predSeasonEl = document.getElementById("predSeason");
+            if (predSeasonEl && allSeasons.length) {
+                predSeasonEl.innerHTML = "";
+                allSeasons.forEach(s => {
+                    const opt = document.createElement("option");
+                    opt.value = s;
+                    opt.textContent = s;
+                    if (s === "Rabi") opt.selected = true;
+                    predSeasonEl.appendChild(opt);
+                });
+            }
+        } catch (err) {
+            console.warn("All-India selector init fallback:", err);
+        }
+    }
+
+    const insStateEl = document.getElementById("insState");
+    const insDistrictEl = document.getElementById("insDistrict");
+    if (insStateEl && insDistrictEl) {
+        insStateEl.addEventListener("change", () => {
+            populateDistrictDropdown(insDistrictEl, insStateEl.value);
+        });
+    }
+
+    const nasaStateEl = document.getElementById("nasaStateSelect");
+    const nasaDistrictEl = document.getElementById("nasaDistrictSelect");
+    if (nasaStateEl && nasaDistrictEl) {
+        nasaStateEl.addEventListener("change", () => {
+            populateDistrictDropdown(nasaDistrictEl, nasaStateEl.value);
+            loadNasaIntelligence();
+        });
+    }
+
+    // --- 11A. Role-Based Authentication & Account Access ---
+    const btnAuthTabLogin = document.getElementById("btnAuthTabLogin");
+    const btnAuthTabRegister = document.getElementById("btnAuthTabRegister");
+    const btnAuthTabReset = document.getElementById("btnAuthTabReset");
+    const authLoginForm = document.getElementById("authLoginForm");
+    const authRegisterForm = document.getElementById("authRegisterForm");
+    const authResetForm = document.getElementById("authResetForm");
+    const authStatusBanner = document.getElementById("authStatusBanner");
+
+    function switchAuthForm(mode) {
+        [btnAuthTabLogin, btnAuthTabRegister, btnAuthTabReset].forEach(b => b && b.classList.remove("active"));
+        if (authLoginForm) authLoginForm.style.display = mode === "login" ? "block" : "none";
+        if (authRegisterForm) authRegisterForm.style.display = mode === "register" ? "block" : "none";
+        if (authResetForm) authResetForm.style.display = mode === "reset" ? "block" : "none";
+        if (mode === "login" && btnAuthTabLogin) btnAuthTabLogin.classList.add("active");
+        if (mode === "register" && btnAuthTabRegister) btnAuthTabRegister.classList.add("active");
+        if (mode === "reset" && btnAuthTabReset) btnAuthTabReset.classList.add("active");
+    }
+
+    if (btnAuthTabLogin) btnAuthTabLogin.addEventListener("click", () => switchAuthForm("login"));
+    if (btnAuthTabRegister) btnAuthTabRegister.addEventListener("click", () => switchAuthForm("register"));
+    if (btnAuthTabReset) btnAuthTabReset.addEventListener("click", () => switchAuthForm("reset"));
+
+    window.fillDemoLogin = function(email, pass) {
+        const em = document.getElementById("authLoginEmail");
+        const pw = document.getElementById("authLoginPassword");
+        if (em) em.value = email;
+        if (pw) pw.value = pass;
+    };
+
+    let currentActiveRoleView = "farmer";
+
+    function switchActiveRoleView(role, userObj) {
+        const cleanRole = (role || "farmer").toLowerCase();
+        currentActiveRoleView = cleanRole;
+        const roleMeta = {
+            farmer: {
+                pill: "Role: Farmer",
+                label: "Farmer"
+            },
+            officer: {
+                pill: "Role: Agri Officer",
+                label: "Agricultural Officer"
+            },
+            admin: {
+                pill: "Role: Admin",
+                label: "Administrator"
+            }
+        };
+        const meta = roleMeta[cleanRole] || roleMeta.farmer;
+
+        const officerPanel = document.getElementById("officerDedicatedPanel");
+        const adminPanel = document.getElementById("adminDedicatedPanel");
+        const adminUploadCard = document.getElementById("adminSchemeUploadCardWrap");
+        const adminUsersWrap = document.getElementById("adminUsersTableWrap");
+
+        if (officerPanel) officerPanel.style.display = cleanRole === "officer" ? "block" : "none";
+        if (adminPanel) adminPanel.style.display = cleanRole === "admin" ? "block" : "none";
+        if (adminUploadCard) adminUploadCard.style.display = (cleanRole === "admin" || cleanRole === "officer") ? "block" : "none";
+
+        if (cleanRole === "admin" || cleanRole === "officer") {
+            if (adminUsersWrap) adminUsersWrap.style.display = "block";
+            loadAdminUsersList();
+        } else if (adminUsersWrap) {
+            adminUsersWrap.style.display = "none";
+        }
+
+        const headerLbl = document.getElementById("headerAuthRoleLabel");
+        const roleBadge = document.getElementById("authCurrentRoleBadge");
+        const rbacTag = document.getElementById("rbacRoleTag");
+        const topGreet = document.getElementById("topGreetingText");
+
+        // Keep header pill concise so it never wraps onto two lines
+        if (headerLbl) headerLbl.textContent = meta.pill;
+        if (roleBadge) roleBadge.textContent = `Active: ${meta.label}`;
+        if (rbacTag) rbacTag.textContent = `${meta.label} Access`;
+
+        if (topGreet && userObj && userObj.name) {
+            const firstName = String(userObj.name).split("(")[0].trim().split(" ").slice(0, 2).join(" ");
+            topGreet.textContent = `Welcome back, ${firstName}`;
+        }
+    }
+
+    function applyUserSessionUI(user) {
+        if (!user) return;
+        switchActiveRoleView(user.role || "farmer", user);
+    }
+
+    const headerAuthRoleBtn = document.getElementById("headerAuthRoleBtn");
+    if (headerAuthRoleBtn) {
+        headerAuthRoleBtn.addEventListener("click", () => {
+            const order = ["farmer", "officer", "admin"];
+            const nextRole = order[(order.indexOf(currentActiveRoleView) + 1) % order.length];
+            let savedUser = null;
+            try { savedUser = JSON.parse(localStorage.getItem("km_auth_user") || "null"); } catch (_) {}
+            switchActiveRoleView(nextRole, savedUser ? { ...savedUser, role: nextRole } : null);
+        });
+    }
+
+    async function loadAdminUsersList() {
+        const box = document.getElementById("adminUsersListBox");
+        if (!box) return;
+        try {
+            const token = localStorage.getItem("km_auth_token") || "";
+            const res = await fetch(`/api/admin/users?token=${encodeURIComponent(token)}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            const users = data.users || [];
+            box.innerHTML = users.map(u =>
+                `<div style="padding:6px 8px; border-bottom:1px solid var(--km-border); display:flex; justify-content:space-between;">
+                    <span><strong>${escapeHtml(u.name)}</strong> (${escapeHtml(u.email)})</span>
+                    <span class="chart-badge-tag">${escapeHtml(u.role.toUpperCase())} • ${escapeHtml(u.district)}</span>
+                </div>`
+            ).join("");
+        } catch (err) {
+            console.warn("Could not load users list:", err);
+        }
+    }
+
+    if (authLoginForm) {
+        authLoginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("authLoginEmail")?.value || "";
+            const password = document.getElementById("authLoginPassword")?.value || "";
+            try {
+                const data = window.KrishiAuth
+                    ? await window.KrishiAuth.signIn(email, password)
+                    : await (await fetch("/api/auth/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email, password })
+                    })).json();
+                if (data.status === "success" && data.user) {
+                    localStorage.setItem("km_auth_token", data.token);
+                    localStorage.setItem("km_auth_user", JSON.stringify(data.user));
+                    applyUserSessionUI(data.user);
+                    if (authStatusBanner) {
+                        authStatusBanner.style.color = "var(--km-primary)";
+                        authStatusBanner.textContent = `Signed in as ${data.user.name} (${data.user.role.toUpperCase()})`;
+                    }
+                } else if (authStatusBanner) {
+                    authStatusBanner.style.color = "var(--km-danger)";
+                    authStatusBanner.textContent = data.message || "Invalid credentials";
+                }
+            } catch (err) {
+                if (authStatusBanner) authStatusBanner.textContent = "Login request failed.";
+            }
+        });
+    }
+
+    if (authRegisterForm) {
+        authRegisterForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const payload = {
+                name: document.getElementById("regName")?.value || "",
+                email: document.getElementById("regEmail")?.value || "",
+                password: document.getElementById("regPassword")?.value || "",
+                role: document.getElementById("regRole")?.value || "farmer",
+                phone: document.getElementById("regPhone")?.value || "",
+                state: state.selectedState || "Uttar Pradesh",
+                district: state.district || "Meerut"
+            };
+            try {
+                const data = window.KrishiAuth
+                    ? await window.KrishiAuth.signUp(payload)
+                    : await (await fetch("/api/auth/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    })).json();
+                if (data.status === "success" && data.user) {
+                    localStorage.setItem("km_auth_token", data.token);
+                    localStorage.setItem("km_auth_user", JSON.stringify(data.user));
+                    applyUserSessionUI(data.user);
+                    if (authStatusBanner) {
+                        authStatusBanner.style.color = "var(--km-primary)";
+                        authStatusBanner.textContent = `Registered & signed in as ${data.user.name} (${data.user.role.toUpperCase()})`;
+                    }
+                } else if (authStatusBanner) {
+                    authStatusBanner.style.color = "var(--km-danger)";
+                    authStatusBanner.textContent = data.message || "Registration failed";
+                }
+            } catch (err) {
+                if (authStatusBanner) authStatusBanner.textContent = "Registration request failed.";
+            }
+        });
+    }
+
+    const btnGenerateResetToken = document.getElementById("btnGenerateResetToken");
+    if (btnGenerateResetToken) {
+        btnGenerateResetToken.addEventListener("click", async () => {
+            const email = document.getElementById("resetEmailInput")?.value || "";
+            const data = window.KrishiAuth
+                ? await window.KrishiAuth.forgotPassword(email)
+                : await (await fetch("/api/auth/forgot-password", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email })
+                })).json();
+            if (data.reset_token) {
+                const tkIn = document.getElementById("resetTokenInput");
+                if (tkIn) tkIn.value = data.reset_token;
+                if (authStatusBanner) {
+                    authStatusBanner.style.color = "var(--km-primary)";
+                    authStatusBanner.textContent = data.message || `Reset token generated: ${data.reset_token}`;
+                }
+            } else if (authStatusBanner) {
+                authStatusBanner.textContent = data.message || "Could not generate reset token.";
+            }
+        });
+    }
+
+    if (authResetForm) {
+        authResetForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const token = document.getElementById("resetTokenInput")?.value || "";
+            const new_password = document.getElementById("resetNewPassInput")?.value || "";
+            const data = window.KrishiAuth
+                ? await window.KrishiAuth.resetPassword(token, new_password)
+                : await (await fetch("/api/auth/reset-password", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token, new_password })
+                })).json();
+            if (authStatusBanner) {
+                authStatusBanner.style.color = data.status === "success" ? "var(--km-primary)" : "var(--km-danger)";
+                authStatusBanner.textContent = data.message || "Password reset completed.";
+            }
+        });
+    }
+
+    const btnAuthLogout = document.getElementById("btnAuthLogout");
+    if (btnAuthLogout) {
+        btnAuthLogout.addEventListener("click", async () => {
+            if (window.KrishiAuth && typeof window.KrishiAuth.signOut === "function") {
+                await window.KrishiAuth.signOut("login.html?logout=1");
+                return;
+            }
+            const token = localStorage.getItem("km_auth_token") || "";
+            await fetch("/api/auth/logout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token })
+            }).catch(() => {});
+            localStorage.removeItem("km_auth_token");
+            localStorage.removeItem("km_auth_user");
+            window.location.href = "login.html?logout=1";
+        });
+    }
+
+    // Restore saved session or URL ?role= parameter
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlRole = urlParams.get("role");
+        const savedUser = JSON.parse(localStorage.getItem("km_auth_user") || "null");
+        if (urlRole && ["farmer", "officer", "admin"].includes(urlRole.toLowerCase())) {
+            switchActiveRoleView(urlRole.toLowerCase(), savedUser);
+        } else if (savedUser) {
+            applyUserSessionUI(savedUser);
+        } else {
+            switchActiveRoleView("farmer", null);
+        }
+    } catch (_) {}
+
+    // --- 11B. KrishiScheme Intelligence (Beneficiaries & ₹ Amount Spotlight + All-Schemes Table) ---
+    let allSchemesCache = [];
+
+    const PER_FARMER_SUMMARY_MAP = {
+        "pm-kisan": {
+            en: "₹6,000 / year direct bank transfer (₹2,000 × 3 installments)",
+            hi: "₹6,000 / वर्ष सीधा बैंक ट्रांसफर (₹2,000 × 3 किस्तें)"
+        },
+        "pmfby": {
+            en: "Full crop loss claim payout (Avg ₹18,000–₹42,000/ha against 1.5%–2% premium)",
+            hi: "पूर्ण फसल नुकसान मुआवजा (1.5%–2% प्रीमियम पर औसतन ₹18,000–₹42,000/हेक्टेयर क्लेम)"
+        },
+        "kcc": {
+            en: "Up to ₹3.00 Lakh crop loan @ 4% p.a. (₹2.00 Lakh collateral-free)",
+            hi: "4% वार्षिक ब्याज पर ₹3.00 लाख तक फसल ऋण (₹2.00 लाख बिना गारंटी)"
+        },
+        "soil-health-card": {
+            en: "Free 12-parameter Soil Lab Test + ₹1,500–₹2,500/acre fertilizer savings",
+            hi: "नि:शुल्क 12-पैरामीटर मिट्टी जांच + ₹1,500–₹2,500/एकड़ खाद बचत"
+        },
+        "pmksy": {
+            en: "45% to 55% Government Subsidy on Drip & Sprinkler Irrigation (up to 5 Ha)",
+            hi: "ड्रिप और स्प्रिंकलर सिंचाई पर 45% से 55% सरकारी सब्सिडी (5 हेक्टेयर तक)"
+        },
+        "pm-kusum": {
+            en: "Up to 60% Government Subsidy on 3 HP–10 HP Standalone Solar Pumps",
+            hi: "3 HP से 10 HP सोलर कृषि पंप पर 60% तक सरकारी अनुदान"
+        }
+    };
+
+    const SCHEME_FULL_NAME_HI = {
+        "pm-kisan": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+        "pmfby": "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+        "kcc": "किसान क्रेडिट कार्ड योजना (KCC)",
+        "soil-health-card": "मृदा स्वास्थ्य कार्ड योजना (Soil Health Card)",
+        "pmksy": "प्रधानमंत्री कृषि सिंचाई योजना (PMKSY)",
+        "pm-kusum": "प्रधानमंत्री किसान ऊर्जा सुरक्षा एवं उत्थान महाभियान (PM-KUSUM)"
+    };
+
+    function formatStateRowMetrics(row, isHi = false) {
+        if (!row) {
+            return isHi
+                ? { reg: "डेटा उपलब्ध नहीं", ben: "डेटा उपलब्ध नहीं", amt: "सत्यापित राज्य DBT" }
+                : { reg: "Historical data unavailable.", ben: "Historical data unavailable.", amt: "Verified State DBT" };
+        }
+        const reg = row.beneficiaries_lakh ? (isHi ? `${row.beneficiaries_lakh} लाख किसान` : `${row.beneficiaries_lakh} Lakh Farmers`)
+            : (row.applications_lakh ? (isHi ? `${row.applications_lakh} लाख आवेदन` : `${row.applications_lakh} Lakh Applications`)
+            : (row.accounts_lakh ? (isHi ? `${row.accounts_lakh} लाख KCC खाते` : `${row.accounts_lakh} Lakh KCC Accounts`)
+            : (row.cards_lakh ? (isHi ? `${row.cards_lakh} लाख मृदा कार्ड` : `${row.cards_lakh} Lakh Soil Cards`)
+            : (row.area_lakh_ha ? (isHi ? `${row.area_lakh_ha} लाख हेक्टेयर सिंचित` : `${row.area_lakh_ha} Lakh Ha Drip/Sprinkler`)
+            : (row.pumps_installed ? (isHi ? `${Number(row.pumps_installed).toLocaleString()} सोलर पंप` : `${Number(row.pumps_installed).toLocaleString()} Solar Pumps`) : (isHi ? "सत्यापित" : "Verified"))))));
+
+        const ben = row.beneficiaries_lakh ? (isHi ? `${row.beneficiaries_lakh} लाख किसान` : `${row.beneficiaries_lakh} Lakh Farmers`)
+            : (row.applications_lakh ? (isHi ? `${row.applications_lakh} लाख बीमित किसान` : `${row.applications_lakh} Lakh Insured Farmers`)
+            : (row.accounts_lakh ? (isHi ? `${row.accounts_lakh} लाख सक्रिय KCC किसान` : `${row.accounts_lakh} Lakh Active KCC Farmers`)
+            : (row.cards_lakh ? (isHi ? `${row.cards_lakh} लाख कार्ड वितरित` : `${row.cards_lakh} Lakh Cards Issued`)
+            : (row.area_lakh_ha ? (isHi ? `${row.area_lakh_ha} लाख हेक्टेयर कवर` : `${row.area_lakh_ha} Lakh Ha Covered`)
+            : (row.pumps_installed ? (isHi ? `${Number(row.pumps_installed).toLocaleString()} किसान (सोलर पंप)` : `${Number(row.pumps_installed).toLocaleString()} Farmers (Solar Pumps)`) : (isHi ? "सत्यापित" : "Verified"))))));
+
+        const amt = row.disbursed_crore ? (isHi ? `₹${Number(row.disbursed_crore).toLocaleString()} करोड़` : `₹${Number(row.disbursed_crore).toLocaleString()} Crore`)
+            : (row.claims_paid_crore ? (isHi ? `₹${Number(row.claims_paid_crore).toLocaleString()} करोड़ क्लेम भुगतान` : `₹${Number(row.claims_paid_crore).toLocaleString()} Crore Claims Paid`)
+            : (row.credit_crore ? (isHi ? `₹${Number(row.credit_crore).toLocaleString()} करोड़ ऋण स्वीकृत` : `₹${Number(row.credit_crore).toLocaleString()} Crore Credit Sanctioned`)
+            : (row.cards_lakh ? (isHi ? "100% नि:शुल्क सरकारी लैब जांच" : "100% Free Govt Lab Testing")
+            : (row.area_lakh_ha ? (isHi ? "45%–55% केंद्र+राज्य सब्सिडी" : "45%–55% Central+State Subsidy")
+            : (row.pumps_installed ? (isHi ? "60% तक सोलर पंप सब्सिडी" : "Up to 60% Solar Pump Subsidy") : (isHi ? "सत्यापित" : "Verified"))))));
+
+        return { reg, ben, amt };
+    }
+
+    async function ensureAllSchemesLoaded() {
+        if (allSchemesCache.length > 0) return allSchemesCache;
+        try {
+            const res = await fetch("/api/schemes/intelligence");
+            if (res.ok) {
+                const data = await res.json();
+                if (Array.isArray(data.schemes)) {
+                    allSchemesCache = data.schemes;
+                }
+            }
+        } catch (e) {
+            console.warn("Could not preload all schemes list:", e);
+        }
+        return allSchemesCache;
+    }
+
+    function renderAllSchemesQuickComparisonTable(activeSchemeId) {
+        const tbody = document.getElementById("intelAllSchemesQuickTableBody");
+        if (!tbody || !Array.isArray(allSchemesCache) || allSchemesCache.length === 0) return;
+
+        const isHi = state.lang === "hi";
+        tbody.innerHTML = allSchemesCache.map(sc => {
+            const nm = sc.national_metrics || {};
+            const isSel = sc.id === activeSchemeId;
+            const summaryObj = PER_FARMER_SUMMARY_MAP[sc.id];
+            const perFarmer = summaryObj ? (isHi ? summaryObj.hi : summaryObj.en) : (sc.benefits || "Direct Scheme Benefit");
+            const displayFull = isHi ? (SCHEME_FULL_NAME_HI[sc.id] || sc.full_name) : sc.full_name;
+            const portalTxt = isHi ? "आधिकारिक पोर्टल ↗" : "Official Portal ↗";
+            return `<tr data-scheme-row="${escapeHtml(sc.id)}" style="cursor:pointer; border-bottom:1px solid var(--km-border); transition:background 0.15s; ${isSel ? 'background:rgba(6,78,43,0.10); font-weight:700;' : ''}">
+                <td style="padding:10px 8px; color:var(--km-primary);">
+                    <strong>${escapeHtml(sc.short_name)}</strong>
+                    <div style="font-size:0.74rem; color:var(--km-text-muted); font-weight:400;">${escapeHtml(displayFull)}</div>
+                </td>
+                <td style="padding:10px 8px; font-weight:700; color:#064E2B;">${escapeHtml(nm.actual_beneficiaries_latest_installment || nm.approved_applications || (isHi ? "सत्यापित" : "Verified"))}</td>
+                <td style="padding:10px 8px; font-weight:700; color:#b45309;">${escapeHtml(nm.total_financial_assistance_distributed || (isHi ? "सत्यापित" : "Verified"))}</td>
+                <td style="padding:10px 8px; font-size:0.8rem;">${escapeHtml(perFarmer)}</td>
+                <td style="padding:10px 8px;"><a href="${escapeHtml(sc.official_website)}" target="_blank" rel="noopener" style="color:var(--km-primary); font-weight:700;" onclick="event.stopPropagation();">${portalTxt}</a></td>
+            </tr>`;
+        }).join("");
+
+        tbody.querySelectorAll("tr[data-scheme-row]").forEach(rowEl => {
+            rowEl.addEventListener("click", () => {
+                const sid = rowEl.getAttribute("data-scheme-row");
+                const sel = document.getElementById("intelSchemeSelect");
+                if (sel && sid) {
+                    sel.value = sid;
+                    loadKrishiSchemeIntelligence();
+                }
+            });
+        });
+    }
+
+    async function loadKrishiSchemeIntelligence() {
+        await ensureAllSchemesLoaded();
+        const isHi = state.lang === "hi";
+        const schemeId = document.getElementById("intelSchemeSelect")?.value || "pm-kisan";
+        const st = document.getElementById("intelStateSelect")?.value || state.selectedState || "Uttar Pradesh";
+
+        // Highlight active scheme pill
+        document.querySelectorAll(".intel-scheme-pill").forEach(btn => {
+            const pid = btn.getAttribute("data-scheme-id") || btn.getAttribute("data-scheme");
+            if (pid === schemeId) {
+                btn.classList.add("active");
+                btn.style.background = "var(--km-primary)";
+                btn.style.color = "#fff";
+            } else {
+                btn.classList.remove("active");
+                btn.style.background = "#fff";
+                btn.style.color = "var(--km-primary)";
+            }
+        });
+
+        try {
+            const res = await fetch(`/api/schemes/intelligence?scheme_id=${encodeURIComponent(schemeId)}&state=${encodeURIComponent(st)}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            const sc = data.scheme || (data.schemes && data.schemes[0]) || allSchemesCache.find(x => x.id === schemeId);
+            if (!sc) return;
+
+            renderAllSchemesQuickComparisonTable(sc.id);
+
+            const nm = sc.national_metrics || {};
+            const statesList = sc.top_beneficiary_states || sc.state_wise_beneficiaries || [];
+            const matchedStateRow = statesList.find(r => r.state && r.state.toLowerCase() === st.toLowerCase()) || statesList[0] || null;
+            const stateMetrics = formatStateRowMetrics(matchedStateRow, isHi);
+
+            // Populate Farmer Benefit & Amount Spotlight Card
+            const spotTitle = document.getElementById("spotlightSchemeTitle");
+            const spotNatFarmers = document.getElementById("spotlightNationalFarmers");
+            const spotNatSub = document.getElementById("spotlightNationalSub");
+            const spotNatAmt = document.getElementById("spotlightNationalAmount");
+            const spotPerFarmer = document.getElementById("spotlightPerFarmerBenefit");
+            const spotStateHdr = document.getElementById("spotlightStateHeader");
+            const spotStateFarmers = document.getElementById("spotlightStateFarmers");
+            const spotStateAmt = document.getElementById("spotlightStateAmount");
+            const spotApplyBtn = document.getElementById("spotlightApplyBtn");
+
+            const displayFull = isHi ? (SCHEME_FULL_NAME_HI[sc.id] || sc.full_name) : sc.full_name;
+            const summaryObj = PER_FARMER_SUMMARY_MAP[sc.id];
+            const perFarmerTxt = summaryObj ? (isHi ? summaryObj.hi : summaryObj.en) : sc.benefits;
+
+            if (spotTitle) {
+                spotTitle.textContent = isHi
+                    ? `${displayFull} — लाभार्थी किसान एवं कुल राशि विवरण`
+                    : `${displayFull}`;
+            }
+            if (spotNatFarmers) spotNatFarmers.textContent = nm.actual_beneficiaries_latest_installment || nm.approved_applications || (isHi ? "सत्यापित" : "Verified");
+            if (spotNatSub) {
+                spotNatSub.textContent = isHi
+                    ? `कुल पंजीकृत किसान: ${nm.registered_farmers || nm.eligible_farmers || "अखिल भारतीय"}`
+                    : `Registered / Enrolled: ${nm.registered_farmers || nm.eligible_farmers || "All-India"}`;
+            }
+            if (spotNatAmt) spotNatAmt.textContent = nm.total_financial_assistance_distributed || (isHi ? "सत्यापित DBT सहायता" : "Verified DBT Assistance");
+            if (spotPerFarmer) {
+                spotPerFarmer.textContent = isHi
+                    ? `प्रति किसान लाभ: ${perFarmerTxt}`
+                    : `Per Farmer Benefit: ${perFarmerTxt}`;
+            }
+            if (spotStateHdr) {
+                const displaySt = matchedStateRow ? matchedStateRow.state : st;
+                const displayStHi = STATE_HI[displaySt] || displaySt;
+                spotStateHdr.textContent = isHi
+                    ? `राज्य लाभार्थी (${displayStHi}):`
+                    : `State Beneficiaries (${displaySt}):`;
+            }
+            if (spotStateFarmers) spotStateFarmers.textContent = stateMetrics.ben;
+            if (spotStateAmt) {
+                spotStateAmt.textContent = isHi
+                    ? `कुल राज्य वितरित राशि: ${stateMetrics.amt}`
+                    : `Total State Benefit / Amount: ${stateMetrics.amt}`;
+            }
+            if (spotApplyBtn && sc.official_website) {
+                spotApplyBtn.href = sc.official_website;
+                spotApplyBtn.textContent = isHi
+                    ? `आधिकारिक ${sc.short_name} पोर्टल ↗`
+                    : `Official ${sc.short_name} Portal ↗`;
+            }
+
+            const titleEl = document.getElementById("intelSchemeFullTitle");
+            const sumBox = document.getElementById("intelSchemeSummaryBox");
+            if (titleEl) titleEl.textContent = `${sc.full_name} — Eligibility & State Coverage`;
+            if (sumBox) {
+                sumBox.innerHTML = `
+                    <p><strong>Objective:</strong> ${escapeHtml(sc.objective)}</p>
+                    <p style="margin-top:4px;"><strong>Benefits (किसान को लाभ):</strong> ${escapeHtml(sc.benefits)}</p>
+                    <p style="margin-top:4px;"><strong>Eligibility:</strong> ${escapeHtml(sc.eligibility_criteria || "All eligible farming households")}</p>
+                    <p style="margin-top:4px; font-size:0.78rem; color:var(--km-text-muted);"><strong>Official Source:</strong> ${escapeHtml(sc.source || sc.official_source || "Ministry of Agriculture")} | <strong>Reporting Period:</strong> ${escapeHtml(sc.reporting_period)}</p>
+                `;
+            }
+
+            const tbody = document.getElementById("intelStateTableBody");
+            if (tbody && Array.isArray(statesList)) {
+                tbody.innerHTML = statesList.map(row => {
+                    const isSel = row.state && row.state.toLowerCase() === st.toLowerCase();
+                    const fm = formatStateRowMetrics(row);
+                    return `<tr style="border-bottom:1px solid var(--km-border); ${isSel ? 'background:rgba(6,78,43,0.09); font-weight:700;' : ''}">
+                        <td style="padding:7px 8px;">${escapeHtml(row.state)} ${isSel ? '(Selected)' : ''}</td>
+                        <td style="padding:7px 8px;">${escapeHtml(fm.reg)}</td>
+                        <td style="padding:7px 8px; color:var(--km-primary); font-weight:700;">${escapeHtml(fm.ben)}</td>
+                        <td style="padding:7px 8px; color:#b45309; font-weight:600;">${escapeHtml(fm.amt)}</td>
+                        <td style="padding:7px 8px;">${row.coverage_pct ? row.coverage_pct + '%' : 'Verified DBT'}</td>
+                    </tr>`;
+                }).join("");
+            }
+
+            // Render Yearly Chart
+            const yearlyList = sc.yearly_trend || sc.yearly_trends || [];
+            const ctxY = document.getElementById("chartSchemeYearly")?.getContext("2d");
+            if (ctxY && Array.isArray(yearlyList) && yearlyList.length > 0) {
+                if (schemeYearlyChartInstance) schemeYearlyChartInstance.destroy();
+                const labels = yearlyList.map(y => y.year);
+                const vals = yearlyList.map(y =>
+                    y.beneficiaries_crore || y.applications_crore || y.operative_accounts_crore || y.cards_issued_crore || y.area_covered_lakh_ha || y.pumps_installed_cumulative || 0
+                );
+                schemeYearlyChartInstance = new Chart(ctxY, {
+                    type: "line",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: sc.short_name + " Yearly Beneficiaries / Coverage",
+                            data: vals,
+                            borderColor: "#064E2B",
+                            backgroundColor: "rgba(6, 78, 43, 0.14)",
+                            borderWidth: 2.5,
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // Render State Chart
+            const ctxS = document.getElementById("chartSchemeStates")?.getContext("2d");
+            if (ctxS && Array.isArray(statesList) && statesList.length > 0) {
+                if (schemeStatesChartInstance) schemeStatesChartInstance.destroy();
+                const sLabels = statesList.map(r => r.state);
+                const sVals = statesList.map(r =>
+                    r.beneficiaries_lakh || r.applications_lakh || r.accounts_lakh || r.cards_lakh || r.area_lakh_ha || r.pumps_installed || 0
+                );
+                schemeStatesChartInstance = new Chart(ctxS, {
+                    type: "bar",
+                    data: {
+                        labels: sLabels,
+                        datasets: [{
+                            label: sc.short_name + " State-Wise Beneficiaries / Coverage",
+                            data: sVals,
+                            backgroundColor: "#064E2B",
+                            borderRadius: 6
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+        } catch (err) {
+            console.warn("KrishiScheme Intelligence load error:", err);
+        }
+    }
+
+    // Wire clickable scheme pills
+    document.querySelectorAll(".intel-scheme-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const sid = btn.getAttribute("data-scheme-id") || btn.getAttribute("data-scheme");
+            const sel = document.getElementById("intelSchemeSelect");
+            if (sel && sid) {
+                sel.value = sid;
+                loadKrishiSchemeIntelligence();
+            }
+        });
+    });
+
+    // Wire live search input for schemes
+    const intelQuickSearchInput = document.getElementById("intelQuickSearchInput");
+    if (intelQuickSearchInput) {
+        intelQuickSearchInput.addEventListener("input", () => {
+            const q = intelQuickSearchInput.value.trim().toLowerCase();
+            if (!q) return;
+            const keywordMap = [
+                { id: "pm-kisan", keys: ["kisan", "samman", "6000", "2000", "dbt", "nidhi"] },
+                { id: "pmfby", keys: ["pmfby", "fasal", "bima", "insurance", "claim", "crop loss"] },
+                { id: "kcc", keys: ["kcc", "credit", "loan", "bank", "interest", "4%"] },
+                { id: "soil-health-card", keys: ["soil", "health", "card", "npk", "mitti", "test"] },
+                { id: "pmksy", keys: ["pmksy", "sinchayee", "drip", "sprinkler", "irrigation", "water"] },
+                { id: "pm-kusum", keys: ["kusum", "solar", "pump", "urja", "bijli"] }
+            ];
+            for (const item of keywordMap) {
+                if (item.keys.some(k => q.includes(k))) {
+                    const sel = document.getElementById("intelSchemeSelect");
+                    if (sel && sel.value !== item.id) {
+                        sel.value = item.id;
+                        loadKrishiSchemeIntelligence();
+                    }
+                    break;
+                }
+            }
+        });
+    }
+
+    const btnLoadSchemeIntel = document.getElementById("btnLoadSchemeIntel");
+    if (btnLoadSchemeIntel) btnLoadSchemeIntel.addEventListener("click", loadKrishiSchemeIntelligence);
+    const intelSchemeSelect = document.getElementById("intelSchemeSelect");
+    if (intelSchemeSelect) intelSchemeSelect.addEventListener("change", loadKrishiSchemeIntelligence);
+    const intelStateSelect = document.getElementById("intelStateSelect");
+    if (intelStateSelect) intelStateSelect.addEventListener("change", loadKrishiSchemeIntelligence);
+
+    const adminSchemeUploadForm = document.getElementById("adminSchemeUploadForm");
+    if (adminSchemeUploadForm) {
+        adminSchemeUploadForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msgEl = document.getElementById("upSchemeStatusMsg");
+            const payload = {
+                scheme_id: document.getElementById("intelSchemeSelect")?.value || "pm-kisan",
+                state: document.getElementById("upSchemeState")?.value || "Uttar Pradesh",
+                district: document.getElementById("upSchemeDistrict")?.value || "Meerut",
+                year: document.getElementById("upSchemeYear")?.value || "2024-25",
+                registered_farmers: parseInt(document.getElementById("upSchemeReg")?.value || "0", 10) || null,
+                actual_beneficiaries: parseInt(document.getElementById("upSchemeBen")?.value || "0", 10) || 0,
+                amount_disbursed_crore: parseFloat(document.getElementById("upSchemeAmt")?.value || "0") || 0,
+                source_citation: document.getElementById("upSchemeSource")?.value || "Official District Report"
+            };
+            const res = await fetch("/api/schemes/intelligence/upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (msgEl) msgEl.textContent = data.status === "success" ? "✅ Verified record saved!" : `⚠️ ${data.message}`;
+            loadKrishiSchemeIntelligence();
+        });
+    }
+
+    // --- 11C. KrishiSuraksha AI Crop Insurance (Landowner vs. Tenant & PMFBY Calculator) ---
+    const insDamageDateInput = document.getElementById("insDamageDate");
+    if (insDamageDateInput && !insDamageDateInput.value) {
+        insDamageDateInput.value = new Date().toISOString().split("T")[0];
+    }
+
+    const OWNERSHIP_GUIDANCE_UI = {
+        owner: {
+            en: {
+                badge: "Mode: Own Land",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">Yes — Direct Landowners are 100% eligible for PMFBY Crop Insurance.</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>Documents Needed:</strong> Aadhaar Card, Khatauni / 7-12 Land Record, Sowing Certificate, and Bank Passbook.<br>
+                           • <strong>Direct Payout:</strong> 100% of the approved claim payout is transferred directly to your Aadhaar-seeded bank account (DBT).
+                       </p>`
+            },
+            hi: {
+                badge: "श्रेणी: स्वयं की भूमि (Own Land)",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">हाँ! स्वयं की भूमि (Own Land / खतौनी) पर किसान को 100% सीधा PMFBY फसल बीमा लाभ मिलता है।</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>आवश्यक दस्तावेज:</strong> आधार कार्ड, खतौनी / 7-12 नकल, बुवाई प्रमाण पत्र और बैंक पासबुक।<br>
+                           • <strong>सीधा बैंक भुगतान (DBT):</strong> फसल नुकसान होने पर पूरी बीमा क्लेम राशि सीधे आपके आधार-लिंक्ड बैंक खाते में आती है।
+                       </p>`
+            }
+        },
+        tenant_with_agreement: {
+            en: {
+                badge: "Mode: Landowner's Land (+ Consent/NOC)",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">Yes — Tenant / Bataidar farmers cultivating a Landowner's land are eligible for PMFBY!</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>Required from Landowner:</strong> Copy of Landowner's Khatauni + Written Lease / Consent Letter (NOC) OR a Patwari/Sarpanch <strong>Cultivator Sowing Certificate</strong>.<br>
+                           • <strong>Who Receives the Claim Money?</strong> When enrolled in the cultivator's name at CSC or pmfby.gov.in, the claim payout goes directly to the <strong>cultivating farmer's bank account</strong> (provided the landowner has not claimed duplicate KCC insurance on the same plot).
+                       </p>`
+            },
+            hi: {
+                badge: "श्रेणी: ज़मीन मालिक की भूमि (सहमति पत्र / NOC सहित)",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">हाँ! ज़मीन मालिक (Landowner) की भूमि पर खेती करने वाले बटाईदार / किरायेदार किसान को भी PMFBY फसल बीमा मिलता है!</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>ज़मीन मालिक (Landowner) से क्या चाहिए?</strong> मालिक की खतौनी की फोटोकॉपी + लिखित किरायानामा / सहमति पत्र (NOC) या लेखपाल/पटवारी/सरपंच द्वारा जारी <strong>वास्तविक काश्तकार बुवाई प्रमाण पत्र (Sowing Certificate)</strong>।<br>
+                           • <strong>पैसा किसके खाते में आएगा?</strong> यदि बीमा आपके (बटाईदार किसान के) नाम से CSC या pmfby.gov.in पर दर्ज है, तो क्लेम की राशि सीधे <strong>आपके बैंक खाते (DBT)</strong> में आएगी (बशर्ते मालिक ने उसी खसरे पर डुप्लीकेट KCC बीमा न लिया हो)।
+                       </p>`
+            }
+        },
+        tenant_without_agreement: {
+            en: {
+                badge: "Mode: Landowner's Land (Oral Bataidar)",
+                html: `<div style="font-weight: 800; color: #b45309; font-size: 0.92rem; margin-bottom: 4px;">Important: Without Landowner Consent or a Sowing Certificate, an oral tenant cannot claim directly in their own name.</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>Why:</strong> PMFBY requires linking a Khasra/Khatauni plot number.<br>
+                           • <strong>How to Solve (2 Easy Steps):</strong> (1) Obtain a 1-season Cultivation Consent Note from the landowner or a <em>Patwari/Sarpanch Sowing Certificate</em> before enrollment, <strong>OR</strong> (2) Have the landowner enroll the plot and sign a mutual crop-compensation share note.
+                       </p>`
+            },
+            hi: {
+                badge: "श्रेणी: ज़मीन मालिक की भूमि (मौखिक बटाईदार किसान)",
+                html: `<div style="font-weight: 800; color: #b45309; font-size: 0.92rem; margin-bottom: 4px;">ध्यान दें: बिना ज़मीन मालिक की सहमति या बुवाई प्रमाण पत्र के मौखिक बटाईदार को अपने नाम से सीधा क्लेम नहीं मिल पाता।</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>कारण:</strong> पोर्टल पर खसरा/खतौनी नंबर जोड़ना अनिवार्य है।<br>
+                           • <strong>अभी क्या करें (2 आसान उपाय)?</strong> (1) ज़मीन मालिक से सादे कागज पर 1-सीजन का सहमति पत्र (NOC) लेकर पटवारी/सरपंच से <em>बुवाई प्रमाण पत्र (Sowing Certificate)</em> बनवा लें, <strong>या</strong> (2) ज़मीन मालिक के नाम से बीमा करवाते समय आपसी फसल-बटाई समझौता रखें।
+                       </p>`
+            }
+        },
+        joint_family: {
+            en: {
+                badge: "Mode: Joint Family Khatauni",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">Yes — Farmers cultivating on a Joint Family / Ancestral Khatauni are eligible for PMFBY.</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>How to Apply:</strong> Submit the joint Khatauni along with a Family Cultivation Declaration and Lekhpal Sowing Certificate for your cultivated share (in acres) at your nearest CSC.
+                       </p>`
+            },
+            hi: {
+                badge: "श्रेणी: संयुक्त परिवार की खतौनी",
+                html: `<div style="font-weight: 800; color: #064E2B; font-size: 0.92rem; margin-bottom: 4px;">हाँ! पिता / संयुक्त परिवार के नाम दर्ज खतौनी पर खेती करने वाले सदस्य को भी पूरा फसल बीमा मिलता है।</div>
+                       <p style="margin: 0; font-size: 0.82rem; color: var(--km-text-body); line-height: 1.5;">
+                           • <strong>कैसे आवेदन करें?</strong> संयुक्त खतौनी में अपने हिस्से के रकबे (एकड़) के लिए परिवार सहमति घोषणा पत्र और लेखपाल बुवाई प्रमाण पत्र के साथ नजदीकी CSC से आवेदन करें।
+                       </p>`
+            }
+        }
+    };
+
+    function refreshSurakshaLanguage() {
+        const isHi = state.lang === "hi";
+        const ownType = document.getElementById("insOwnershipType")?.value || "owner";
+        const infoGroup = OWNERSHIP_GUIDANCE_UI[ownType] || OWNERSHIP_GUIDANCE_UI.owner;
+        const info = isHi ? infoGroup.hi : infoGroup.en;
+        const badgeEl = document.getElementById("selectedOwnershipBadge");
+        const boxEl = document.getElementById("landownerExplainBox");
+        if (badgeEl) badgeEl.textContent = info.badge;
+        if (boxEl) boxEl.innerHTML = info.html;
+
+        const titleEl = document.getElementById("surakshaStatusTitle");
+        const expEl = document.getElementById("surakshaExplanationText");
+        const badge72 = document.getElementById("suraksha72HrBadge");
+        if (titleEl && (titleEl.textContent === "Potentially eligible." || titleEl.textContent === "पात्र होने की प्रबल संभावना है।")) {
+            titleEl.textContent = isHi ? "पात्र होने की प्रबल संभावना है।" : "Potentially eligible.";
+        }
+        if (expEl && (expEl.textContent.includes("Both direct Landowners") || expEl.textContent.includes("प्रत्यक्ष भूमि मालिक"))) {
+            expEl.textContent = isHi
+                ? "प्रत्यक्ष भूमि मालिक (Landowner) और सहमति पत्र/बुवाई प्रमाण पत्र वाले बटाईदार किसान दोनों PMFBY के तहत पात्र हैं।"
+                : "Both direct Landowners and Tenant/Bataidar farmers with a Landowner Consent Note or Patwari Sowing Certificate are eligible under PMFBY.";
+        }
+        if (badge72 && (badge72.textContent.includes("Within 72-Hr") || badge72.textContent.includes("72-घंटे की समय-सीमा"))) {
+            badge72.textContent = isHi ? "72-घंटे की समय-सीमा के भीतर" : "Within 72-Hr Window";
+        }
+    }
+
+    function updateSurakshaLivePremiumPreview() {
+        const acres = parseFloat(document.getElementById("insLandAcres")?.value || "2.5") || 2.5;
+        const season = document.getElementById("insSeason")?.value || "Rabi";
+        const ha = Math.max(0.1, acres * 0.404686);
+        const scaleOfFinancePerHa = 68000;
+        const sumInsured = Math.round(ha * scaleOfFinancePerHa);
+        const rate = season === "Rabi" ? 0.015 : (season === "Kharif" ? 0.02 : 0.05);
+        const farmerPrem = Math.round(sumInsured * rate);
+
+        const siEl = document.getElementById("surakshaSumInsuredVal");
+        const fpEl = document.getElementById("surakshaFarmerPremVal");
+        if (siEl) siEl.textContent = `₹${sumInsured.toLocaleString("en-IN")}`;
+        if (fpEl) fpEl.textContent = `₹${farmerPrem.toLocaleString("en-IN")} (${(rate * 100).toFixed(1)}%)`;
+    }
+
+    document.querySelectorAll(".ownership-type-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const ownType = btn.getAttribute("data-ownership") || "owner";
+            const hiddenIn = document.getElementById("insOwnershipType");
+            if (hiddenIn) hiddenIn.value = ownType;
+
+            document.querySelectorAll(".ownership-type-btn").forEach(b => {
+                if (b.getAttribute("data-ownership") === ownType) {
+                    b.classList.add("active");
+                    b.style.background = "var(--km-primary)";
+                    b.style.color = "#fff";
+                } else {
+                    b.classList.remove("active");
+                    b.style.background = "#fff";
+                    b.style.color = "var(--km-primary)";
+                }
+            });
+
+            const infoGroup = OWNERSHIP_GUIDANCE_UI[ownType] || OWNERSHIP_GUIDANCE_UI.owner;
+            const info = state.lang === "hi" ? infoGroup.hi : infoGroup.en;
+            const badgeEl = document.getElementById("selectedOwnershipBadge");
+            const boxEl = document.getElementById("landownerExplainBox");
+            if (badgeEl) badgeEl.textContent = info.badge;
+            if (boxEl) boxEl.innerHTML = info.html;
+        });
+    });
+
+    document.querySelectorAll(".peril-quick-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const peril = btn.getAttribute("data-peril") || "";
+            const dmgInput = document.getElementById("insDamageType");
+            if (dmgInput && peril) {
+                dmgInput.value = peril;
+            }
+        });
+    });
+
+    const insLandAcresInput = document.getElementById("insLandAcres");
+    const insSeasonInput = document.getElementById("insSeason");
+    if (insLandAcresInput) insLandAcresInput.addEventListener("input", updateSurakshaLivePremiumPreview);
+    if (insSeasonInput) insSeasonInput.addEventListener("change", updateSurakshaLivePremiumPreview);
+    updateSurakshaLivePremiumPreview();
+
+    const surakshaAssessForm = document.getElementById("surakshaAssessForm");
+    if (surakshaAssessForm) {
+        surakshaAssessForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            updateSurakshaLivePremiumPreview();
+            const fileIn = document.getElementById("insPhotoFile");
+            const photoName = (fileIn && fileIn.files && fileIn.files[0]) ? fileIn.files[0].name : "";
+            const payload = {
+                farmer_name: document.getElementById("insFarmerName")?.value || "Tanishka",
+                state: document.getElementById("insState")?.value || "Uttar Pradesh",
+                district: document.getElementById("insDistrict")?.value || "Meerut",
+                village: document.getElementById("insVillage")?.value || "Daurala",
+                crop: document.getElementById("insCrop")?.value || "Wheat",
+                season: document.getElementById("insSeason")?.value || "Rabi",
+                land_acres: parseFloat(document.getElementById("insLandAcres")?.value || "2.5") || 2.5,
+                sowing_date: document.getElementById("insSowingDate")?.value || "",
+                enrolled_pmfby: document.getElementById("insEnrolled")?.value || "yes",
+                policy_number: document.getElementById("insPolicyNo")?.value || "",
+                damage_date: document.getElementById("insDamageDate")?.value || "",
+                damage_type: document.getElementById("insDamageType")?.value || "",
+                ownership_type: document.getElementById("insOwnershipType")?.value || "owner",
+                landowner_kcc_claimed: document.getElementById("insLandownerKcc")?.value || "no",
+                photo_filename: photoName
+            };
+            try {
+                const res = await fetch("/api/insurance/assess", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                const titleEl = document.getElementById("surakshaStatusTitle");
+                const expEl = document.getElementById("surakshaExplanationText");
+                const badgeEl = document.getElementById("suraksha72HrBadge");
+                const rulesEl = document.getElementById("surakshaRuleChecksBox");
+                const discEl = document.getElementById("surakshaDisclaimerText");
+                const siEl = document.getElementById("surakshaSumInsuredVal");
+                const fpEl = document.getElementById("surakshaFarmerPremVal");
+
+                const isHi = state.lang === "hi";
+                const statusHiMap = {
+                    "Potentially eligible.": "पात्र होने की प्रबल संभावना है।",
+                    "More information required.": "अतिरिक्त दस्तावेजों / जानकारी की आवश्यकता है।",
+                    "Likely not eligible based on current details.": "वर्तमान विवरण के आधार पर पात्रता कम है।"
+                };
+                if (titleEl) {
+                    const rawStatus = data.eligibility_status || "More information required.";
+                    titleEl.textContent = isHi ? (statusHiMap[rawStatus] || rawStatus) : rawStatus;
+                }
+                if (expEl) {
+                    expEl.textContent = isHi
+                        ? (payload.ownership_type === "tenant_without_agreement"
+                            ? "मौखिक बटाईदार किसानों को क्लेम के लिए ज़मीन मालिक से सहमति पत्र (NOC) या पटवारी/सरपंच द्वारा जारी बुवाई प्रमाण पत्र संलग्न करना आवश्यक है।"
+                            : "प्रत्यक्ष भूमि मालिक और सहमति पत्र/बुवाई प्रमाण पत्र वाले बटाईदार किसान दोनों PMFBY के तहत 72-घंटे के भीतर सूचना देने पर पात्र हैं।")
+                        : (data.explanation || "");
+                }
+                if (siEl && data.estimated_sum_insured_inr) {
+                    siEl.textContent = `₹${Number(data.estimated_sum_insured_inr).toLocaleString("en-IN")}`;
+                }
+                if (fpEl && data.farmer_premium_inr) {
+                    fpEl.textContent = `₹${Number(data.farmer_premium_inr).toLocaleString("en-IN")}`;
+                }
+                if (badgeEl) {
+                    badgeEl.textContent = data.hours_since_damage !== null && data.hours_since_damage !== undefined
+                        ? (isHi ? `बीता समय: ${data.hours_since_damage} घंटे (सीमा: 72 घंटे)` : `Elapsed: ${data.hours_since_damage} hrs (Limit: 72 hrs)`)
+                        : (isHi ? `हेल्पलाइन: ${data.helpline_number || "14447"}` : `Helpline: ${data.helpline_number || "14447"}`);
+                }
+                if (rulesEl && data.rule_checks) {
+                    const rc = data.rule_checks;
+                    const lo = data.landowner_tenant_guidance || {};
+                    if (isHi) {
+                        rulesEl.innerHTML = `
+                            <div>• <strong>भूमि मालिक / काश्तकार स्थिति:</strong> ${payload.ownership_type === "tenant_without_agreement" ? "⚠️ बुवाई प्रमाण पत्र / मालिक सहमति आवश्यक" : "✅ सत्यापित पात्र काश्तकार"}</div>
+                            <div>• <strong>बैंक खाता भुगतान नियम:</strong> सीधा आधार-लिंक्ड बैंक खाता (DBT)</div>
+                            <div>• <strong>जिले में अधिसूचित फसल:</strong> ${rc.crop_notified_in_state_dataset ? "✅ सत्यापित (डेटासेट में दर्ज)" : "⚠️ जिला तालिका में जांचें"}</div>
+                            <div>• <strong>नुकसान कारण कवरेज:</strong> ${rc.covered_peril ? "✅ PMFBY दिशानिर्देशों के तहत कवर" : "❌ कवर से बाहर"}</div>
+                            <div>• <strong>72-घंटे सूचना नियम:</strong> ${rc.within_72h_reporting_window === true ? "✅ 72-घंटे की समय-सीमा के भीतर" : (rc.within_72h_reporting_window === false ? "⚠️ 72-घंटे की समय-सीमा समाप्त" : "ℹ️ नुकसान के 72 घंटे के भीतर रिपोर्ट करें")}</div>
+                        `;
+                    } else {
+                        rulesEl.innerHTML = `
+                            <div>• <strong>Landowner / Cultivator Status:</strong> ${escapeHtml(lo.can_farmer_get_insurance || "✅ Verified Cultivator")}</div>
+                            <div>• <strong>Payee Bank Account Rule:</strong> ${escapeHtml(lo.who_receives_claim_money || "Direct DBT to insured cultivator")}</div>
+                            <div>• <strong>Crop &amp; District Notified in Dataset:</strong> ${rc.crop_notified_in_state_dataset ? "✅ Verified (" + (rc.season_matched ? "Season Matched" : "Season Advisory") + ")" : "⚠️ Unverified in District Table"}</div>
+                            <div>• <strong>Peril / Cause Coverage:</strong> ${rc.covered_peril ? "✅ Covered under PMFBY Guidelines" : "❌ Excluded Peril"}</div>
+                            <div>• <strong>72-Hour Intimation Rule:</strong> ${rc.within_72h_reporting_window === true ? "✅ Within 72-Hour Window" : (rc.within_72h_reporting_window === false ? "⚠️ Exceeded 72-Hour Localized Window" : "ℹ️ Report within 72 hours of loss")}</div>
+                        `;
+                    }
+                }
+                if (discEl && data.mandatory_disclaimer) {
+                    discEl.textContent = isHi
+                        ? "यह PMFBY दिशानिर्देशों पर आधारित प्रारंभिक AI पात्रता मार्गदर्शन है। अंतिम क्लेम भुगतान बीमा कंपनी द्वारा सत्यापित किया जाता है।"
+                        : data.mandatory_disclaimer;
+                }
+            } catch (err) {
+                console.error("KrishiSuraksha assessment error:", err);
+            }
+        });
+    }
+
+    // --- 11D. NASA Earth & Weather Intelligence (100% Interactive Clickable Buttons) ---
+    let latestNasaSeriesCache = [];
+    let latestNasaIndicatorsCache = [];
+    let currentNasaFocusParam = "all";
+
+    function renderNasaIndicatorsList(indicators, focusParam) {
+        const indBox = document.getElementById("nasaIndicatorsList");
+        const filterBadge = document.getElementById("nasaIndicatorFilterBadge");
+        if (!indBox || !Array.isArray(indicators)) return;
+
+        const focusTitles = {
+            all: "Showing: All Parameters",
+            temp: "Showing: Thermal & Heat Stress",
+            rain: "Showing: Precipitation & Drought",
+            solar: "Showing: Solar & PM-KUSUM"
+        };
+        if (filterBadge) filterBadge.textContent = focusTitles[focusParam] || "Showing: All Parameters";
+
+        const filtered = indicators.filter(ind => {
+            if (!focusParam || focusParam === "all") return true;
+            const text = `${ind.name || ""} ${ind.agronomic_implication || ""}`.toLowerCase();
+            if (focusParam === "temp") return text.includes("heat") || text.includes("thermal") || text.includes("temp");
+            if (focusParam === "rain") return text.includes("rain") || text.includes("drought") || text.includes("moisture") || text.includes("precip") || text.includes("humid");
+            if (focusParam === "solar") return text.includes("solar") || text.includes("kusum") || text.includes("radiation") || text.includes("irradiance");
+            return true;
+        });
+
+        const listToRender = filtered.length > 0 ? filtered : indicators;
+        indBox.innerHTML = listToRender.map(ind => `
+            <div style="padding: 12px 14px; background: var(--km-bg); border-radius: 10px; border-left: 4px solid var(--km-primary);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <strong style="color:var(--km-text-heading); font-size:0.9rem;">${escapeHtml(ind.name)}</strong>
+                    <span class="chart-badge-tag">${escapeHtml(ind.status)}</span>
+                </div>
+                <div style="font-size:0.78rem; color:var(--km-text-muted); margin-bottom:4px;"><strong>Threshold:</strong> ${escapeHtml(ind.threshold_used)} | <strong>Observed:</strong> ${escapeHtml(ind.observed_value)}</div>
+                <div style="font-size:0.83rem; color:var(--km-text-body);">${escapeHtml(ind.agronomic_implication)}</div>
+            </div>
+        `).join("");
+    }
+
+    function setNasaFocusParameter(focusParam) {
+        currentNasaFocusParam = focusParam || "all";
+        document.querySelectorAll(".nasa-focus-btn").forEach(b => {
+            const bf = b.getAttribute("data-nasa-focus") || b.getAttribute("data-focus") || "all";
+            if (bf === currentNasaFocusParam) {
+                b.classList.add("active");
+                b.style.background = "var(--km-primary)";
+                b.style.color = "#fff";
+            } else {
+                b.classList.remove("active");
+                b.style.background = "#fff";
+                b.style.color = "var(--km-primary)";
+            }
+        });
+
+        // Update chart titles & badges dynamically so user sees immediate change
+        const c1Title = document.getElementById("nasaChart1Title");
+        const c1Badge = document.getElementById("nasaChart1Badge");
+        const c2Title = document.getElementById("nasaChart2Title");
+        const c2Badge = document.getElementById("nasaChart2Badge");
+
+        if (currentNasaFocusParam === "temp") {
+            if (c1Title) c1Title.textContent = "Thermal Regime & Heat Stress Profile (T2M / T2M_MAX)";
+            if (c1Badge) c1Badge.textContent = "Thermal Focus Active";
+        } else if (currentNasaFocusParam === "solar") {
+            if (c1Title) c1Title.textContent = "Solar Irradiance & PM-KUSUM Potential (ALLSKY_SFC_SW_DWN)";
+            if (c1Badge) c1Badge.textContent = "Solar Focus Active";
+        } else if (currentNasaFocusParam === "rain") {
+            if (c2Title) c2Title.textContent = "Precipitation & Drought Anomaly Profile (PRECTOTCORR)";
+            if (c2Badge) c2Badge.textContent = "Precipitation Focus Active";
+        } else {
+            if (c1Title) c1Title.textContent = "Temperature & Solar Radiation Profile";
+            if (c1Badge) c1Badge.textContent = "T2M + ALLSKY_SFC_SW_DWN";
+            if (c2Title) c2Title.textContent = "Precipitation & Relative Humidity Profile";
+            if (c2Badge) c2Badge.textContent = "PRECTOTCORR + RH2M";
+        }
+
+        renderNasaChartsFromSeries(latestNasaSeriesCache, currentNasaFocusParam);
+        renderNasaIndicatorsList(latestNasaIndicatorsCache, currentNasaFocusParam);
+    }
+
+    async function loadNasaIntelligence(showButtonFeedback = false) {
+        const st = document.getElementById("nasaStateSelect")?.value || state.selectedState || "Uttar Pradesh";
+        const dt = document.getElementById("nasaDistrictSelect")?.value || state.district || "Meerut";
+        const viewMode = document.getElementById("nasaViewMode")?.value || "monthly";
+        const fetchBtn = document.getElementById("btnFetchNasaIntel");
+        const zoneBadge = document.getElementById("nasaActiveZoneBadge");
+
+        if (showButtonFeedback && fetchBtn) {
+            fetchBtn.textContent = "Fetching NASA Data...";
+            fetchBtn.style.opacity = "0.85";
+        }
+
+        try {
+            const res = await fetch(`/api/nasa/intelligence?state=${encodeURIComponent(st)}&district=${encodeURIComponent(dt)}`);
+            if (!res.ok) return;
+            const data = await res.json();
+            const sm = data.summary_metrics || {};
+            const coords = data.coordinates || {};
+
+            if (zoneBadge) {
+                zoneBadge.textContent = `Active Zone: ${dt}, ${st} (${coords.latitude || 28.98}°N, ${coords.longitude || 77.71}°E)`;
+            }
+
+            const cTemp = document.getElementById("nasaCardTemp");
+            const cTempSub = document.getElementById("nasaCardTempSub");
+            const cRain = document.getElementById("nasaCardRain");
+            const cRainSub = document.getElementById("nasaCardRainSub");
+            const cSolar = document.getElementById("nasaCardSolar");
+            const cHumSub = document.getElementById("nasaCardHumiditySub");
+            const cCoords = document.getElementById("nasaCardCoords");
+            const cSrc = document.getElementById("nasaCardSourceBadge");
+
+            if (cTemp) cTemp.textContent = `${sm.avg_temp_c || 25.2}°C`;
+            if (cTempSub) cTempSub.textContent = `Peak Max: ${sm.max_temp_c || 38.0}°C (${sm.heat_stress_days || 0} heat days)`;
+            if (cRain) cRain.textContent = `${sm.total_rain_mm || 640} mm`;
+            if (cRainSub) cRainSub.textContent = `Heavy Rain Events: ${sm.heavy_rain_days || 0}`;
+            if (cSolar) cSolar.textContent = `${sm.avg_solar_mj_m2 || 18.2} MJ/m²`;
+            if (cHumSub) cHumSub.textContent = `Mean RH2M: ${sm.avg_humidity_pct || 58}%`;
+            if (cCoords) cCoords.textContent = `${coords.latitude || 28.98}°N, ${coords.longitude || 77.71}°E`;
+            if (cSrc) cSrc.textContent = data.nasa_live_api_connected ? "Live NASA POWER API" : "Verified Reanalysis Cache";
+
+            latestNasaIndicatorsCache = Array.isArray(data.agricultural_indicators) ? data.agricultural_indicators : [];
+            renderNasaIndicatorsList(latestNasaIndicatorsCache, currentNasaFocusParam);
+
+            const series = viewMode === "yearly" ? (data.yearly_series || []) : (data.monthly_series || []);
+            latestNasaSeriesCache = series;
+            renderNasaChartsFromSeries(series, currentNasaFocusParam);
+
+            if (showButtonFeedback && fetchBtn) {
+                fetchBtn.textContent = `Synced: ${dt}`;
+                fetchBtn.style.opacity = "1";
+                setTimeout(() => {
+                    fetchBtn.textContent = "Fetch NASA Satellite Data";
+                }, 1800);
+            }
+        } catch (err) {
+            console.warn("NASA Intelligence load error:", err);
+            if (showButtonFeedback && fetchBtn) {
+                fetchBtn.textContent = "Fetch NASA Satellite Data";
+                fetchBtn.style.opacity = "1";
+            }
+        }
+    }
+
+    function renderNasaChartsFromSeries(series, focusParam) {
+        if (!Array.isArray(series)) return;
+        const labels = series.map(s => s.period);
+        const tAvg = series.map(s => s.avg_temp_c);
+        const tMax = series.map(s => s.max_temp_c);
+        const sRad = series.map(s => s.avg_solar_mj_m2);
+        const rainVals = series.map(s => s.total_rain_mm);
+        const humVals = series.map(s => s.avg_humidity_pct);
+
+        const ctx1 = document.getElementById("chartNasaTempSolar")?.getContext("2d");
+        if (ctx1) {
+            if (nasaTempSolarChartInstance) nasaTempSolarChartInstance.destroy();
+            const ds1 = [];
+            if (focusParam === "all" || focusParam === "temp") {
+                ds1.push({ label: "Mean Temp (°C)", data: tAvg, borderColor: "#064E2B", backgroundColor: "rgba(6,78,43,0.1)", fill: focusParam === "temp", tension: 0.3 });
+                ds1.push({ label: "Max Temp (°C)", data: tMax, borderColor: "#dc2626", tension: 0.3 });
+            }
+            if (focusParam === "all" || focusParam === "solar") {
+                ds1.push({ label: "Solar Irradiance (MJ/m²)", data: sRad, borderColor: "#d97706", backgroundColor: "rgba(217,119,6,0.15)", fill: focusParam === "solar", tension: 0.3 });
+            }
+            if (ds1.length === 0) {
+                ds1.push({ label: "Mean Temp (°C)", data: tAvg, borderColor: "#064E2B", tension: 0.3 });
+            }
+            nasaTempSolarChartInstance = new Chart(ctx1, {
+                type: "line",
+                data: { labels, datasets: ds1 },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        const ctx2 = document.getElementById("chartNasaRainHumidity")?.getContext("2d");
+        if (ctx2) {
+            if (nasaRainHumidityChartInstance) nasaRainHumidityChartInstance.destroy();
+            const ds2 = [];
+            if (focusParam === "all" || focusParam === "rain") {
+                ds2.push({ label: "Precipitation (mm)", data: rainVals, backgroundColor: "#064E2B", borderRadius: 5 });
+            }
+            if (focusParam === "all" || focusParam !== "rain") {
+                ds2.push({ label: "Relative Humidity (%)", data: humVals, backgroundColor: "#FFC928", borderRadius: 5 });
+            }
+            nasaRainHumidityChartInstance = new Chart(ctx2, {
+                type: "bar",
+                data: { labels, datasets: ds2 },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+    }
+
+    // Wire clickable NASA Zone quick-jump buttons
+    document.querySelectorAll(".nasa-zone-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const zState = btn.getAttribute("data-nasa-state") || btn.getAttribute("data-state") || "Uttar Pradesh";
+            const zDist = btn.getAttribute("data-nasa-district") || btn.getAttribute("data-district") || "Meerut";
+
+            document.querySelectorAll(".nasa-zone-btn").forEach(b => {
+                if (b === btn) {
+                    b.classList.add("active");
+                    b.style.background = "var(--km-primary)";
+                    b.style.color = "#fff";
+                } else {
+                    b.classList.remove("active");
+                    b.style.background = "#fff";
+                    b.style.color = "var(--km-primary)";
+                }
+            });
+
+            const stSel = document.getElementById("nasaStateSelect");
+            const dtSel = document.getElementById("nasaDistrictSelect");
+            if (stSel) {
+                if (!Array.from(stSel.options).some(o => o.value === zState)) {
+                    const opt = document.createElement("option");
+                    opt.value = zState;
+                    opt.textContent = zState;
+                    stSel.appendChild(opt);
+                }
+                stSel.value = zState;
+                stSel.dispatchEvent(new Event("change"));
+            }
+            if (dtSel) {
+                if (!Array.from(dtSel.options).some(o => o.value === zDist)) {
+                    const opt = document.createElement("option");
+                    opt.value = zDist;
+                    opt.textContent = zDist;
+                    dtSel.appendChild(opt);
+                }
+                dtSel.value = zDist;
+            }
+            loadNasaIntelligence(true);
+        });
+    });
+
+    // Wire clickable NASA Temporal buttons
+    document.querySelectorAll(".nasa-time-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const tv = btn.getAttribute("data-nasa-time") || btn.getAttribute("data-mode") || "monthly";
+            document.querySelectorAll(".nasa-time-btn").forEach(b => {
+                if (b === btn) {
+                    b.classList.add("active");
+                    b.style.background = "var(--km-primary)";
+                    b.style.color = "#fff";
+                } else {
+                    b.classList.remove("active");
+                    b.style.background = "#fff";
+                    b.style.color = "var(--km-primary)";
+                }
+            });
+            const sel = document.getElementById("nasaViewMode");
+            if (sel) sel.value = tv;
+            loadNasaIntelligence(true);
+        });
+    });
+
+    // Wire clickable NASA Parameter Focus buttons
+    document.querySelectorAll(".nasa-focus-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const focusVal = btn.getAttribute("data-nasa-focus") || btn.getAttribute("data-focus") || "all";
+            setNasaFocusParameter(focusVal);
+        });
+    });
+
+    // Also wire the 4 NASA KPI stat cards to filter parameters on click
+    const nasaStatCardTemp = document.getElementById("nasaStatCardTemp");
+    const nasaStatCardRain = document.getElementById("nasaStatCardRain");
+    const nasaStatCardSolar = document.getElementById("nasaStatCardSolar");
+    const nasaStatCardAll = document.getElementById("nasaStatCardAll");
+    if (nasaStatCardTemp) nasaStatCardTemp.addEventListener("click", () => setNasaFocusParameter("temp"));
+    if (nasaStatCardRain) nasaStatCardRain.addEventListener("click", () => setNasaFocusParameter("rain"));
+    if (nasaStatCardSolar) nasaStatCardSolar.addEventListener("click", () => setNasaFocusParameter("solar"));
+    if (nasaStatCardAll) nasaStatCardAll.addEventListener("click", () => setNasaFocusParameter("all"));
+
+    // Wire clickable GIBS Satellite Layer buttons
+    const GIBS_LAYER_DESCRIPTIONS = {
+        "MODIS_Terra_NDVI_8Day": "MODIS Terra NDVI (8-Day Vegetation Index) — Shows crop canopy vigor and chlorophyll density across Indian districts.",
+        "SMAP_L4_Analyzed_Root_Zone_Soil_Moisture": "NASA SMAP Root Zone Soil Moisture — Measures top 100cm soil water availability for irrigation scheduling.",
+        "MODIS_Terra_Land_Surface_Temp_Day": "MODIS Land Surface Temperature (Day) — Detects canopy thermal stress and terminal heat wave hotspots.",
+        "IMERG_Precipitation_Rate": "GPM IMERG Precipitation Rate — Near-real-time satellite rainfall intensity and monsoon progression."
+    };
+
+    function updateGibsLayerSelection(layerId) {
+        const nasaGibsLayerSelect = document.getElementById("nasaGibsLayerSelect");
+        if (nasaGibsLayerSelect) nasaGibsLayerSelect.value = layerId;
+
+        document.querySelectorAll(".gibs-layer-btn").forEach(b => {
+            const bl = b.getAttribute("data-gibs-layer") || b.getAttribute("data-layer");
+            if (bl === layerId) {
+                b.classList.add("active");
+                b.style.background = "var(--km-primary)";
+                b.style.color = "#fff";
+            } else {
+                b.classList.remove("active");
+                b.style.background = "#fff";
+                b.style.color = "var(--km-primary)";
+            }
+        });
+
+        const urlCode = document.getElementById("nasaGibsUrlCode");
+        const wvLink = document.getElementById("nasaWorldviewDirectLink");
+        const descEl = document.getElementById("nasaGibsLayerDesc");
+        if (urlCode) {
+            urlCode.textContent = `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${layerId}/default/2024-02-18/GoogleMapsCompatible_Level9/5/13/22.png`;
+        }
+        if (wvLink) {
+            wvLink.href = `https://worldview.earthdata.nasa.gov/?v=66,6,99,37&l=${layerId},Reference_Labels_15m,Coastlines_15m`;
+        }
+        if (descEl && GIBS_LAYER_DESCRIPTIONS[layerId]) {
+            descEl.innerHTML = `<strong>Active Layer:</strong> ${escapeHtml(GIBS_LAYER_DESCRIPTIONS[layerId])}`;
+        }
+    }
+
+    document.querySelectorAll(".gibs-layer-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const lid = btn.getAttribute("data-gibs-layer") || btn.getAttribute("data-layer") || "MODIS_Terra_NDVI_8Day";
+            updateGibsLayerSelection(lid);
+        });
+    });
+
+    const nasaGibsLayerSelect = document.getElementById("nasaGibsLayerSelect");
+    if (nasaGibsLayerSelect) {
+        nasaGibsLayerSelect.addEventListener("change", () => {
+            updateGibsLayerSelection(nasaGibsLayerSelect.value);
+        });
+    }
+
+    const btnCopyGibsUrl = document.getElementById("btnCopyGibsUrl");
+    if (btnCopyGibsUrl) {
+        btnCopyGibsUrl.addEventListener("click", () => {
+            const urlCode = document.getElementById("nasaGibsUrlCode")?.textContent || "";
+            if (navigator.clipboard && urlCode) {
+                navigator.clipboard.writeText(urlCode).catch(() => {});
+            }
+            const orig = btnCopyGibsUrl.textContent;
+            btnCopyGibsUrl.textContent = "✅ Copied WMTS URL!";
+            setTimeout(() => { btnCopyGibsUrl.textContent = orig; }, 2000);
+        });
+    }
+
+    const btnNasaUseLiveGps = document.getElementById("btnNasaUseLiveGps");
+    if (btnNasaUseLiveGps) {
+        btnNasaUseLiveGps.addEventListener("click", () => {
+            const orig = btnNasaUseLiveGps.textContent;
+            btnNasaUseLiveGps.textContent = "📍 Locating...";
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    async (pos) => {
+                        const lat = pos.coords.latitude.toFixed(3);
+                        const lon = pos.coords.longitude.toFixed(3);
+                        const cCoords = document.getElementById("nasaCardCoords");
+                        if (cCoords) cCoords.textContent = `${lat}°N, ${lon}°E (Live GPS)`;
+                        btnNasaUseLiveGps.textContent = "✅ GPS Synced";
+                        await loadNasaIntelligence(true);
+                        setTimeout(() => { btnNasaUseLiveGps.textContent = orig; }, 2000);
+                    },
+                    () => {
+                        btnNasaUseLiveGps.textContent = "📍 District Centroid";
+                        loadNasaIntelligence(true);
+                        setTimeout(() => { btnNasaUseLiveGps.textContent = orig; }, 2000);
+                    },
+                    { timeout: 5000 }
+                );
+            } else {
+                loadNasaIntelligence(true);
+                btnNasaUseLiveGps.textContent = orig;
+            }
+        });
+    }
+
+    const btnDownloadNasaCsv = document.getElementById("btnDownloadNasaCsv");
+    if (btnDownloadNasaCsv) {
+        btnDownloadNasaCsv.addEventListener("click", () => {
+            if (!Array.isArray(latestNasaSeriesCache) || latestNasaSeriesCache.length === 0) return;
+            const header = "Period,Avg_Temp_C,Max_Temp_C,Total_Rain_mm,Avg_Humidity_Pct,Avg_Solar_MJ_m2\n";
+            const rows = latestNasaSeriesCache.map(r =>
+                `${r.period},${r.avg_temp_c},${r.max_temp_c},${r.total_rain_mm},${r.avg_humidity_pct},${r.avg_solar_mj_m2}`
+            ).join("\n");
+            const blob = new Blob([header + rows], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "nasa_power_agroclimate_series.csv";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
+
+    const btnFetchNasaIntel = document.getElementById("btnFetchNasaIntel");
+    if (btnFetchNasaIntel) {
+        btnFetchNasaIntel.addEventListener("click", (e) => {
+            e.preventDefault();
+            loadNasaIntelligence(true);
+        });
+    }
+    const nasaStateSelectEl = document.getElementById("nasaStateSelect");
+    const nasaDistrictSelectEl = document.getElementById("nasaDistrictSelect");
+    const nasaViewModeEl = document.getElementById("nasaViewMode");
+    if (nasaStateSelectEl) nasaStateSelectEl.addEventListener("change", () => loadNasaIntelligence(true));
+    if (nasaDistrictSelectEl) nasaDistrictSelectEl.addEventListener("change", () => loadNasaIntelligence(true));
+    if (nasaViewModeEl) nasaViewModeEl.addEventListener("change", () => loadNasaIntelligence(true));
+
+    // Trigger lazy loads when switching to new tabs
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener("click", () => {
+            const tab = link.getAttribute("data-tab");
+            if (tab === "tab-scheme-intel") loadKrishiSchemeIntelligence();
+            if (tab === "tab-nasa") loadNasaIntelligence(false);
+        });
+    });
+
+    initAllIndiaDynamicSelectors();
+    loadKrishiSchemeIntelligence();
+    loadNasaIntelligence(false);
 
     // Initial render & language application
     applyDashboardLanguage();

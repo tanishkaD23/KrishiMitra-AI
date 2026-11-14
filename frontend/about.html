@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+    <script src="supabase_auth.js"></script>
 </head>
 <body>
 
@@ -15,7 +18,7 @@
          1. CONSISTENT TOP NAVBAR
          ========================================================================= -->
     <nav class="landing-nav" aria-label="Main Navigation">
-        <div class="landing-nav-inner">
+        <div class="landing-nav-inner" style="padding: 12px 24px; gap: 16px;">
             <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
                 <span class="brand-logo-sprout" style="flex-shrink: 0;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
@@ -23,20 +26,25 @@
                 <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
 
-            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px; font-size: 0.9rem;">
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#suraksha" style="white-space: nowrap;">Crop Insurance</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#nasa" style="white-space: nowrap;">NASA Weather</a></li>
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" class="active" style="white-space: nowrap;">About</a></li>
             </ul>
 
             <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
-                <a href="forecast.html" class="btn-outline-login" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
-                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
-                    <span style="white-space: nowrap;">Open Dashboard</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <a href="login.html?switch=1" class="btn-outline-login" style="white-space: nowrap; flex-shrink: 0; padding: 8px 16px; font-size: 0.86rem; border: 1.5px solid #064E2B; background: rgba(255,201,40,0.16); color: #064E2B; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;">
+                    <span>Switch Role</span>
+                </a>
+                <button type="button" class="btn-outline-login" data-km-logout style="white-space: nowrap; flex-shrink: 0; padding: 8px 14px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">
+                    Logout
+                </button>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0; padding: 9px 18px; font-size: 0.86rem;">
+                    <span style="white-space: nowrap;">Dashboard</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
@@ -49,12 +57,11 @@
         <div class="page-hero-inner">
             <div>
                 <div class="page-hero-tag">
-                    <span>🌱</span>
                     <span>Our Mission, Scope &amp; Agricultural Data Integrity</span>
                 </div>
                 <h1 class="page-hero-title">About KrishiMitra AI</h1>
                 <p class="page-hero-sub">
-                    Empowering smallholder and marginal farmers across Western Uttar Pradesh with plot-level crop yield forecasting, ICAR-grounded agronomy, and verified government scheme discovery.
+                    Empowering smallholder and marginal farmers across all 35 Indian States &amp; UTs (736 districts) with plot-level crop yield forecasting, ICAR-grounded agronomy, and verified government scheme discovery.
                 </p>
             </div>
             <div>
@@ -76,26 +83,26 @@
                 <span class="scheme-tag-pill tag-income" style="display: inline-block; margin-bottom: 12px;">Why We Built KrishiMitra AI</span>
                 <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 12px;">Bridging Data Science &amp; Smallholder Farming</h2>
                 <p style="font-size: 0.96rem; color: var(--km-text-body); margin-bottom: 16px; line-height: 1.65;">
-                    Over 85% of farmers in Uttar Pradesh operate on small and marginal landholdings (under 2 hectares). Most agricultural statistics are published at the district or hectare level, making it difficult for an individual farmer with a 1.5-acre or 2-acre plot to translate regional data into practical field decisions.
+                    Over 85% of farmers in India operate on small and marginal landholdings (under 2 hectares). Most agricultural statistics are published at the district or hectare level, making it difficult for an individual farmer with a 1.5-acre or 2-acre plot to translate regional data into practical field decisions.
                 </p>
                 <p style="font-size: 0.96rem; color: var(--km-text-body); line-height: 1.65;">
-                    <strong>KrishiMitra AI</strong> translates district-level Area, Production, and Yield (APY) records, live Open-Meteo weather telemetry, and ICAR agronomic guidelines into clear, plot-level insights in both <strong>Quintals per Acre (q/acre)</strong> and <strong>Quintals per Hectare (q/ha)</strong>.
+                    <strong>KrishiMitra AI</strong> translates district-level Area, Production, and Yield (APY) records, live NASA POWER &amp; Open-Meteo weather telemetry, and ICAR agronomic guidelines into clear, plot-level insights in both <strong>Quintals per Acre (q/acre)</strong> and <strong>Quintals per Hectare (q/ha)</strong>.
                 </p>
             </div>
 
             <div class="predict-form-card" style="background: var(--km-primary); color: #FFFFFF; border-color: var(--km-primary);">
-                <span class="scheme-tag-pill" style="background: rgba(255, 201, 40, 0.2); color: var(--km-accent-gold); display: inline-block; margin-bottom: 12px;">Multi-State Geography</span>
-                <h2 style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-bottom: 12px;">6 Major Rabi Agricultural States (80 Districts)</h2>
+                <span class="scheme-tag-pill" style="background: rgba(255, 201, 40, 0.2); color: var(--km-accent-gold); display: inline-block; margin-bottom: 12px;">National Agricultural Coverage</span>
+                <h2 style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-bottom: 12px;">All-India Coverage (35 States &amp; UTs • 736 Districts)</h2>
                 <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.86); margin-bottom: 18px;">
-                    Our platform is calibrated across the Indo-Gangetic Plains and Central Indian Rabi belt covering six major states:
+                    Our platform integrates national crop, soil, and meteorological datasets covering all major agro-climatic zones:
                 </p>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Uttar Pradesh (20 Districts)</div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Madhya Pradesh (12 Districts)</div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Bihar (12 Districts)</div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Rajasthan (12 Districts)</div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Punjab (12 Districts)</div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">📍 Haryana (12 Districts)</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">35 States &amp; UTs</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">736 Agricultural Districts</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">72 Cultivated Crops</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">5 Agricultural Seasons</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">6 Central Govt Schemes</div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 8px; font-weight: 700;">NASA Satellite Telemetry</div>
                 </div>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                     <a href="forecast.html" class="btn-hero-voice" style="padding: 10px 20px; font-size: 0.9rem;">Try Yield Prediction →</a>
@@ -111,22 +118,22 @@
 
         <div class="pillars-grid" style="margin-bottom: 36px;">
             <div class="pillar-card">
-                <div class="pillar-icon-wrap">🌾</div>
+                <div class="pillar-icon-wrap" style="font-weight: 800; color: var(--km-primary);">01</div>
                 <h3 class="pillar-title">1. Plot-Level Yield Engine</h3>
-                <p class="pillar-desc">Calibrates district APY baselines with sowing window, irrigation source, NPK nutrition, and March heat-stress adjustments.</p>
+                <p class="pillar-desc">Calibrates district APY baselines with sowing window, irrigation source, NPK nutrition, and seasonal weather adjustments.</p>
             </div>
             <div class="pillar-card">
-                <div class="pillar-icon-wrap">⛅</div>
-                <h3 class="pillar-title">2. Live Open-Meteo Telemetry</h3>
-                <p class="pillar-desc">Fetches real-time district temperature (°C), humidity (%), wind speed (km/h), and rainfall (mm) without simulated placeholders.</p>
+                <div class="pillar-icon-wrap" style="font-weight: 800; color: var(--km-primary);">02</div>
+                <h3 class="pillar-title">2. Live Satellite &amp; Weather Telemetry</h3>
+                <p class="pillar-desc">Fetches real-time district temperature (°C), humidity (%), wind speed (km/h), solar radiation, and rainfall (mm).</p>
             </div>
             <div class="pillar-card">
-                <div class="pillar-icon-wrap">📋</div>
+                <div class="pillar-icon-wrap" style="font-weight: 800; color: var(--km-primary);">03</div>
                 <h3 class="pillar-title">3. ICAR Stage Advisories</h3>
-                <p class="pillar-desc">Delivers structured recommendations for Crown Root Initiation (CRI), Yellow Rust wipe-tests, and Mustard Aphid thresholds.</p>
+                <p class="pillar-desc">Delivers structured recommendations for Crown Root Initiation (CRI), Yellow Rust scouting, and crop protection thresholds.</p>
             </div>
             <div class="pillar-card">
-                <div class="pillar-icon-wrap">🎙️</div>
+                <div class="pillar-icon-wrap" style="font-weight: 800; color: var(--km-primary);">04</div>
                 <h3 class="pillar-title">4. KrishiSathi RAG + Web Search</h3>
                 <p class="pillar-desc">Searches local official scheme PDFs first, falls back to verified <code>.gov.in</code> portals, and supports English &amp; Hindi voice.</p>
             </div>
@@ -143,11 +150,11 @@
             <div style="display: flex; gap: 16px; flex-wrap: wrap;">
                 <div style="background: var(--km-bg); border: 1px solid var(--km-border); padding: 12px 18px; border-radius: var(--km-radius-sm);">
                     <div style="font-size: 0.76rem; color: var(--km-text-muted); font-weight: 700;">Kisan Call Centre (Toll-Free)</div>
-                    <div style="font-size: 1.2rem; font-weight: 900; color: var(--km-primary);">📞 1800-180-1551</div>
+                    <div style="font-size: 1.2rem; font-weight: 900; color: var(--km-primary);">1800-180-1551</div>
                 </div>
                 <div style="background: var(--km-bg); border: 1px solid var(--km-border); padding: 12px 18px; border-radius: var(--km-radius-sm);">
                     <div style="font-size: 0.76rem; color: var(--km-text-muted); font-weight: 700;">PMFBY Crop Insurance Helpline</div>
-                    <div style="font-size: 1.2rem; font-weight: 900; color: var(--km-primary);">📞 14447</div>
+                    <div style="font-size: 1.2rem; font-weight: 900; color: var(--km-primary);">14447</div>
                 </div>
             </div>
         </div>

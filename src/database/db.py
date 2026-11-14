@@ -8,22 +8,57 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, List, Optional
+import joblib
 import pandas as pd
 
-from config.settings import BASE_DIR, DATA_DIR, CONFIG
+from config.settings import BASE_DIR, DATA_DIR, MODELS_DIR, CONFIG
+from src.pipelines.all_india_engine import standardize_state, standardize_district
 
 DB_PATH = DATA_DIR / "krishimitra.db"
+_ALL_INDIA_TRENDS_CACHE: Optional[Dict[Any, Any]] = None
 
 
-def get_db_connection() -> sqlite3.Connection:
-    """Returns a SQLite connection with row factory configured as dictionary."""
+def _get_all_india_trends_lookup() -> Dict[Any, Any]:
+    global _ALL_INDIA_TRENDS_CACHE
+    if _ALL_INDIA_TRENDS_CACHE is None:
+        lookup_file = MODELS_DIR / "all_india_intelligence_lookup.joblib"
+        if lookup_file.exists():
+            try:
+                bundle = joblib.load(lookup_file)
+                _ALL_INDIA_TRENDS_CACHE = bundle.get("historical_trends_lookup", {})
+            except Exception:
+                _ALL_INDIA_TRENDS_CACHE = {}
+        else:
+            _ALL_INDIA_TRENDS_CACHE = {}
+    return _ALL_INDIA_TRENDS_CACHE
+
+
+from contextlib import contextmanager
+
+
+@contextmanager
+def get_db_connection():
+    """Returns a SQLite connection context manager with row factory configured as dictionary and automatic close."""
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
-    return conn
+    try:
+        yield conn
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+
+
+_DB_INITIALIZED = False
 
 
 def init_db(force: bool = False):
     """Initializes the SQLite database schema and seeds initial data if empty."""
+    global _DB_INITIALIZED
+    if _DB_INITIALIZED and not force:
+        return
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     with get_db_connection() as conn:
@@ -128,6 +163,14 @@ def init_db(force: bool = False):
 
         if not has_farmers or force:
             _seed_data(conn)
+        else:
+            cursor.execute("""
+                UPDATE farmers
+                SET name = 'Tanishka', district = 'Meerut', state = 'Uttar Pradesh'
+                WHERE id = 'farmer-001'
+            """)
+            conn.commit()
+    _DB_INITIALIZED = True
 
 
 def _seed_data(conn: sqlite3.Connection):
@@ -399,6 +442,30 @@ def get_historical_yields(
         rows = cursor.fetchall()
         if rows:
             return [dict(r) for r in rows]
+
+    # 0. Check All-India Intelligence Lookup (149,737 records across 35 states & 736 districts)
+    trends_map = _get_all_india_trends_lookup()
+    if trends_map:
+        resolved_st = standardize_state(state) if state else ""
+        if not resolved_st:
+            for st_name, dists in CONFIG.state_districts.items():
+                if any(d.lower() == str(district).strip().lower() for d in dists):
+                    resolved_st = st_name
+                    break
+        std_dist = standardize_district(str(district or ""), resolved_st)
+        c_raw = str(crop or "Wheat").strip()
+        c_variants = [c_raw]
+        if c_raw.lower() == "mustard":
+            c_variants.append("Rapeseed &Mustard")
+        elif c_raw.lower() == "rapeseed &mustard":
+            c_variants.append("Mustard")
+        for cv in c_variants:
+            if resolved_st and (resolved_st, std_dist, cv) in trends_map:
+                return trends_map[(resolved_st, std_dist, cv)]
+            # Also scan if state wasn't known
+            for (k_st, k_dt, k_cr), series in trends_map.items():
+                if k_dt.lower() == std_dist.lower() and k_cr.lower() == cv.lower():
+                    return series
 
     # Check empirical multi_state_rabi_data.csv (from all state crops.zip)
     multi_csv = DATA_DIR / "processed" / "multi_state_rabi_data.csv"

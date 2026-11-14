@@ -25,6 +25,21 @@ from src.advisory.agronomic_rules import AgronomicAdvisor, PersonalisedAdvisoryE
 from src.schemes.eligibility_engine import SchemeEligibilityEngine
 from src.krishisathi.voice_agent import KrishiSathiAgent
 from src.weather.live_weather import fetch_open_meteo_weather
+from src.api.platform_services import (
+    ensure_platform_tables,
+    register_user,
+    login_user,
+    get_session_user,
+    logout_user,
+    create_password_reset_token,
+    reset_user_password,
+    list_all_users,
+    get_krishischeme_intelligence,
+    add_admin_scheme_record,
+    assess_pmfby_claim_eligibility,
+    get_insurance_history,
+    fetch_nasa_power_intelligence,
+)
 
 FRONTEND_DIR = BASE_DIR / "frontend"
 
@@ -33,6 +48,7 @@ if CORS:
     CORS(app)
 
 init_db()
+ensure_platform_tables()
 predictor = YieldPredictor()
 schemes_engine = SchemeEligibilityEngine()
 voice_agent = KrishiSathiAgent()
@@ -40,7 +56,7 @@ voice_agent = KrishiSathiAgent()
 
 @app.route("/")
 def index():
-    return send_from_directory(app.static_folder, "index.html")
+    return send_from_directory(app.static_folder, "login.html")
 
 
 @app.route("/dashboard")
@@ -51,6 +67,11 @@ def dashboard_page():
 @app.route("/forecast")
 def forecast_page():
     return send_from_directory(app.static_folder, "forecast.html")
+
+
+@app.route("/login")
+def login_page():
+    return send_from_directory(app.static_folder, "login.html")
 
 
 @app.route("/schemes")
@@ -67,11 +88,6 @@ def krishisathi_page():
 @app.route("/model-summary")
 def about_page():
     return send_from_directory(app.static_folder, "about.html")
-
-
-@app.route("/<path:path>")
-def static_proxy(path):
-    return send_from_directory(app.static_folder, path)
 
 
 @app.route("/api/health")
@@ -96,6 +112,21 @@ def get_metadata():
         "states": CONFIG.supported_states,
         "districts": CONFIG.state_districts,
         "crops": CONFIG.crops,
+        "all_india_crops": CONFIG.all_india_crops,
+        "seasons": CONFIG.seasons,
+        "district_crops": CONFIG.district_crops,
+        "crop_seasons": CONFIG.crop_seasons,
+        "supabase_url": os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL") or "",
+        "supabase_anon_key": os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or "",
+    })
+
+
+@app.route("/api/auth/supabase-config")
+def get_supabase_config_flask():
+    return jsonify({
+        "status": "success",
+        "supabase_url": os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL") or os.getenv("NEXT_PUBLIC_SUPABASE_URL") or "",
+        "supabase_anon_key": os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY") or "",
     })
 
 
@@ -297,3 +328,135 @@ def api_dashboard_data():
         "advisory": adv,
         "schemes": schemes,
     })
+
+
+@app.route("/api/dataset-coverage")
+def api_dataset_coverage():
+    cov_path = BASE_DIR / "models" / "all_india_coverage_report.json"
+    eval_path = BASE_DIR / "models" / "all_india_evaluation_report.json"
+    cov_data = {}
+    eval_data = {}
+    if cov_path.exists():
+        with open(cov_path, "r", encoding="utf-8") as f:
+            cov_data = json.load(f)
+    if eval_path.exists():
+        with open(eval_path, "r", encoding="utf-8") as f:
+            eval_data = json.load(f)
+    return jsonify({
+        "status": "success",
+        "coverage": cov_data,
+        "evaluation": eval_data,
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "all_india_crops": CONFIG.all_india_crops,
+        "seasons": CONFIG.seasons,
+        "district_crops": CONFIG.district_crops,
+        "crop_seasons": CONFIG.crop_seasons,
+        "supabase_url": os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL") or "",
+        "supabase_anon_key": os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or "",
+    })
+
+
+@app.route("/api/auth/register", methods=["POST"])
+def flask_auth_register():
+    data = request.get_json(force=True) or {}
+    res = register_user(data)
+    return jsonify(res), (400 if res.get("status") == "error" else 200)
+
+
+@app.route("/api/auth/login", methods=["POST"])
+def flask_auth_login():
+    data = request.get_json(force=True) or {}
+    res = login_user(data.get("email", ""), data.get("password", ""))
+    return jsonify(res), (401 if res.get("status") == "error" else 200)
+
+
+@app.route("/api/auth/logout", methods=["POST"])
+def flask_auth_logout():
+    token = request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    if not token:
+        data = request.get_json(silent=True) or {}
+        token = data.get("token", "")
+    return jsonify(logout_user(token))
+
+
+@app.route("/api/auth/me")
+def flask_auth_me():
+    token = request.args.get("token") or request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    user = get_session_user(token)
+    if not user:
+        return jsonify({"status": "error", "message": "Not authenticated or session expired."}), 401
+    return jsonify({"status": "success", "user": user})
+
+
+@app.route("/api/auth/forgot-password", methods=["POST"])
+def flask_auth_forgot_password():
+    data = request.get_json(force=True) or {}
+    return jsonify(create_password_reset_token(data.get("email", "")))
+
+
+@app.route("/api/auth/reset-password", methods=["POST"])
+def flask_auth_reset_password():
+    data = request.get_json(force=True) or {}
+    res = reset_user_password(data.get("token", ""), data.get("new_password", ""))
+    return jsonify(res), (400 if res.get("status") == "error" else 200)
+
+
+@app.route("/api/admin/users")
+def flask_admin_users():
+    token = request.args.get("token") or request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    user = get_session_user(token)
+    if user and user.get("role") not in ("admin", "officer"):
+        return jsonify({"status": "error", "message": "Administrator or Officer role required."}), 403
+    return jsonify({"status": "success", "users": list_all_users()})
+
+
+@app.route("/api/schemes/intelligence")
+def flask_schemes_intelligence():
+    scheme_id = request.args.get("scheme_id")
+    state = request.args.get("state")
+    district = request.args.get("district")
+    return jsonify(get_krishischeme_intelligence(scheme_id=scheme_id, state=state, district=district))
+
+
+@app.route("/api/schemes/intelligence/upload", methods=["POST"])
+def flask_schemes_intelligence_upload():
+    data = request.get_json(force=True) or {}
+    res = add_admin_scheme_record(data)
+    return jsonify(res), (400 if res.get("status") == "error" else 200)
+
+
+@app.route("/api/insurance/assess", methods=["POST"])
+def flask_insurance_assess():
+    data = request.get_json(force=True) or {}
+    return jsonify(assess_pmfby_claim_eligibility(data))
+
+
+@app.route("/api/insurance/history")
+def flask_insurance_history():
+    user_id = request.args.get("user_id")
+    state = request.args.get("state")
+    return jsonify({"status": "success", "records": get_insurance_history(user_id=user_id, state=state)})
+
+
+@app.route("/api/nasa/intelligence")
+def flask_nasa_intelligence():
+    state = request.args.get("state", "Uttar Pradesh")
+    district = request.args.get("district", "Meerut")
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
+    lat = request.args.get("lat", type=float)
+    lon = request.args.get("lon", type=float)
+    return jsonify(fetch_nasa_power_intelligence(
+        state=state,
+        district=district,
+        start_date=start_date,
+        end_date=end_date,
+        lat=lat,
+        lon=lon,
+    ))
+
+
+@app.route("/<path:path>")
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)

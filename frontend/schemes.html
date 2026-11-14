@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+    <script src="supabase_auth.js"></script>
 </head>
 <body>
 
@@ -15,7 +18,7 @@
          1. CONSISTENT TOP NAVBAR
          ========================================================================= -->
     <nav class="landing-nav" aria-label="Main Navigation">
-        <div class="landing-nav-inner">
+        <div class="landing-nav-inner" style="padding: 12px 24px; gap: 16px;">
             <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
                 <span class="brand-logo-sprout" style="flex-shrink: 0;">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
@@ -23,23 +26,28 @@
                 <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
 
-            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px; font-size: 0.9rem;">
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" class="active" style="white-space: nowrap;">Government Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" class="active" style="white-space: nowrap;">Schemes</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#suraksha" style="white-space: nowrap;">Crop Insurance</a></li>
+                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#nasa" style="white-space: nowrap;">NASA Weather</a></li>
                 <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
             </ul>
 
             <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
-                <button type="button" class="btn-outline-login" id="publicLangBtn" title="Switch Language (English / Hindi)" style="padding: 8px 14px; font-weight: 700; cursor:pointer; white-space: nowrap; flex-shrink: 0;">
+                <button type="button" class="btn-outline-login" id="publicLangBtn" title="Switch Language (English / Hindi)" style="padding: 8px 13px; font-size: 0.85rem; font-weight: 700; cursor:pointer; white-space: nowrap; flex-shrink: 0;">
                     <span id="publicLangLabel" style="white-space: nowrap;">EN | हिंदी</span>
                 </button>
-                <a href="forecast.html" class="btn-outline-login" data-i18n="nav_predict" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
-                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
-                    <span data-i18n="nav_open_dash" style="white-space: nowrap;">Open Dashboard</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <a href="login.html?switch=1" class="btn-outline-login" style="white-space: nowrap; flex-shrink: 0; padding: 8px 16px; font-size: 0.86rem; border: 1.5px solid #064E2B; background: rgba(255,201,40,0.16); color: #064E2B; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;">
+                    <span data-i18n="nav_login">Switch Role</span>
+                </a>
+                <button type="button" class="btn-outline-login" data-km-logout style="white-space: nowrap; flex-shrink: 0; padding: 8px 14px; font-size: 0.85rem; font-weight: 800; cursor: pointer;">
+                    Logout
+                </button>
+                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0; padding: 9px 18px; font-size: 0.86rem;">
+                    <span data-i18n="nav_open_dash" style="white-space: nowrap;">Dashboard</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
@@ -52,12 +60,11 @@
         <div class="page-hero-inner">
             <div>
                 <div class="page-hero-tag">
-                    <span>🏛️</span>
                     <span data-i18n="schemes_hero_tag">9 Verified Central &amp; Multi-State Agricultural Schemes</span>
                 </div>
                 <h1 class="page-hero-title" data-i18n="schemes_hero_title">Government Schemes &amp; Subsidies</h1>
                 <p class="page-hero-sub" data-i18n="schemes_hero_sub">
-                    Explore 9 verified central and state agricultural schemes across UP, MP, Bihar, Rajasthan, Punjab, and Haryana. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.
+                    Explore 9 verified central and state agricultural schemes across India. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.
                 </p>
             </div>
             <div>
@@ -115,11 +122,15 @@
         </form>
 
         <!-- Dynamic Eligibility Status Banner -->
-        <div id="eligibilitySummaryBanner" style="background: var(--km-primary-subtle); border: 1px solid rgba(6, 78, 43, 0.2); border-radius: var(--km-radius-sm); padding: 14px 20px; margin-bottom: 26px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div id="eligibilitySummaryBanner" style="background: var(--km-primary-subtle); border: 1px solid rgba(6, 78, 43, 0.2); border-radius: var(--km-radius-sm); padding: 14px 20px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
             <div style="font-size: 0.92rem; color: var(--km-text-heading);">
-                <strong data-i18n="lbl_land_cat">✅ Landholding Category:</strong> <span id="landCategoryBadge">Small &amp; Marginal Farmer (2.0 Acres / 0.81 Hectares)</span>
+                <strong data-i18n="lbl_land_cat">Landholding Category:</strong> <span id="landCategoryBadge">Small &amp; Marginal Farmer (2.0 Acres / 0.81 Hectares)</span>
             </div>
-            <span id="schemeCountBadge" class="chart-badge-tag">Showing 9 Verified Schemes</span>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <a href="dashboard.html#scheme-intel" class="chart-badge-tag" style="text-decoration:none; background:#064E2B; color:#fff;">Open KrishiScheme Impact Analytics →</a>
+                <a href="dashboard.html#suraksha" class="chart-badge-tag" style="text-decoration:none; background:#B45309; color:#fff;">Open KrishiSuraksha PMFBY Insurance →</a>
+                <span id="schemeCountBadge" class="chart-badge-tag">Showing 9 Verified Schemes</span>
+            </div>
         </div>
 
         <!-- Schemes Cards Grid -->
@@ -180,31 +191,31 @@
         const PAGE_I18N = {
             en: {
                 nav_predict: "Predict Yield",
-                nav_open_dash: "Open Dashboard",
+                nav_open_dash: "Dashboard",
                 schemes_hero_tag: "9 Verified Central & Multi-State Agricultural Schemes",
                 schemes_hero_title: "Government Schemes & Subsidies",
-                schemes_hero_sub: "Explore 9 verified central and state agricultural schemes across UP, MP, Bihar, Rajasthan, Punjab, and Haryana. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.",
+                schemes_hero_sub: "Explore 9 verified central and state agricultural schemes across India. Filter by benefit category, check eligibility for your landholding size, review required documents, and access official .gov.in portals directly.",
                 schemes_ask_sathi: "Ask KrishiSathi About Schemes →",
                 lbl_search_scheme: "Search Scheme or Keyword",
                 lbl_benefit_cat: "Benefit Category",
                 lbl_target_crop: "Target Crop",
                 lbl_your_land: "Your Land (Acres)",
                 btn_filter: "Filter",
-                lbl_land_cat: "✅ Landholding Category:"
+                lbl_land_cat: "Landholding Category:"
             },
             hi: {
                 nav_predict: "उपज अनुमान",
-                nav_open_dash: "डैशबोर्ड खोलें",
+                nav_open_dash: "डैशबोर्ड",
                 schemes_hero_tag: "9 सत्यापित केंद्रीय एवं राज्य कृषि योजनाएं",
                 schemes_hero_title: "सरकारी कृषि योजनाएं और सब्सिडी",
-                schemes_hero_sub: "यूपी, एमपी, बिहार, राजस्थान, पंजाब और हरियाणा के किसानों के लिए 9 सत्यापित सरकारी योजनाएं। अपनी भूमि के अनुसार पात्रता जांचें, आवश्यक दस्तावेज देखें और सीधे आधिकारिक .gov.in पोर्टल खोलें।",
+                schemes_hero_sub: "किसानों के लिए 9 सत्यापित सरकारी योजनाएं। अपनी भूमि के अनुसार पात्रता जांचें, आवश्यक दस्तावेज देखें और सीधे आधिकारिक .gov.in पोर्टल खोलें।",
                 schemes_ask_sathi: "कृषिसाथी से योजनाओं के बारे में पूछें →",
                 lbl_search_scheme: "योजना या कीवर्ड खोजें",
                 lbl_benefit_cat: "लाभ श्रेणी (Category)",
                 lbl_target_crop: "लक्षित फसल (Crop)",
                 lbl_your_land: "आपकी भूमि (एकड़ में)",
                 btn_filter: "खोजें / फ़िल्टर",
-                lbl_land_cat: "✅ भूमि श्रेणी:"
+                lbl_land_cat: "भूमि श्रेणी:"
             }
         };
 

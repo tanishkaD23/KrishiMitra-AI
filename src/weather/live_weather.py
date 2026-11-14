@@ -116,11 +116,31 @@ DISTRICT_COORDINATES: Dict[str, Tuple[float, float]] = {
     "Yamunanagar": (30.1290, 77.2674),
 }
 
-# Load coordinates for all 241+ districts from `weather_rainfall_datasets.csv`
-_WEATHER_CSV = BASE_DIR / "weather_rainfall_datasets.csv"
+# Load coordinates for all 591+ districts from `weather/all_states_india_weather_and_rainfall_dataset(1).csv` or `models/all_india_intelligence_lookup.joblib`
+_WEATHER_CSV = BASE_DIR / "weather" / "all_states_india_weather_and_rainfall_dataset(1).csv"
+if not _WEATHER_CSV.exists():
+    _WEATHER_CSV = BASE_DIR / "weather_rainfall_datasets.csv"
 _EMPIRICAL_WEATHER_BACKUP: Dict[str, Dict[str, float]] = {}
 
-if _WEATHER_CSV.exists():
+_ALL_INDIA_LOOKUP_PATH = BASE_DIR / "models" / "all_india_intelligence_lookup.joblib"
+if _ALL_INDIA_LOOKUP_PATH.exists():
+    try:
+        import joblib
+        _bundle = joblib.load(_ALL_INDIA_LOOKUP_PATH)
+        for (_, dist_name), w_info in _bundle.get("weather_lookup", {}).items():
+            lat_v = w_info.get("latitude")
+            lon_v = w_info.get("longitude")
+            if lat_v is not None and lon_v is not None and dist_name not in DISTRICT_COORDINATES:
+                DISTRICT_COORDINATES[dist_name] = (round(float(lat_v), 4), round(float(lon_v), 4))
+            _EMPIRICAL_WEATHER_BACKUP[str(dist_name).lower()] = {
+                "temp_c": round(float(w_info.get("avg_temp_c", 25.0)), 1),
+                "humidity": int(round(float(w_info.get("humidity_pct", 58)))),
+                "wind_kmh": round(float(w_info.get("wind_speed_ms", 2.8)) * 3.6, 1),
+                "rain_7d_mm": round(float(w_info.get("seasonal_rainfall_mm", 45.0)) / 12.0, 1),
+            }
+    except Exception:
+        pass
+elif _WEATHER_CSV.exists():
     try:
         _df_w = pd.read_csv(
             _WEATHER_CSV,
@@ -158,18 +178,18 @@ DEFAULT_COORDS = (28.9845, 77.7064)  # Meerut
 
 # WMO Weather interpretation codes (WW)
 WMO_CODE_MAP: Dict[int, str] = {
-    0: "Clear Sky",
+    0: "Sunny",
     1: "Mainly Clear",
     2: "Partly Cloudy",
-    3: "Overcast",
-    45: "Morning Fog",
+    3: "Cloudy",
+    45: "Foggy",
     48: "Dense Fog",
     51: "Light Drizzle",
     53: "Moderate Drizzle",
     55: "Dense Drizzle",
     56: "Light Freezing Drizzle",
     57: "Freezing Drizzle",
-    61: "Light Rain",
+    61: "Rainy",
     63: "Moderate Rain",
     65: "Heavy Rain",
     66: "Light Rain",
@@ -365,7 +385,8 @@ def fetch_open_meteo_weather(
                 })
 
             total_rain_7d = round(total_rain_7d, 1)
-            max_rain_prob = max([d["precipitation_prob_pct"] for d in forecast_7d], default=0)
+            default_prob = 5 if precip_now_mm > 0 else 0
+            max_rain_prob = max([d["precipitation_prob_pct"] for d in forecast_7d], default=default_prob)
             risks = _compute_agronomic_risks(temp_c, humidity, total_rain_7d, max_temp_7d, wind_kmh)
 
             return {
@@ -386,40 +407,17 @@ def fetch_open_meteo_weather(
                 "icon": icon,
                 "weather_code": w_code,
                 "updated_at": updated_at,
-                "source": "Open-Meteo Live Meteorological Stream",
+                "source": "Open-Meteo Live API",
                 "daily_forecast": forecast_7d,
                 "risk_indicators": risks,
             }
     except Exception as e:
-        # Fallback to district telemetry from `weather_rainfall_datasets.csv` if offline
-        emp = _EMPIRICAL_WEATHER_BACKUP.get(str(district).strip().lower(), {
-            "temp_c": 24.5,
-            "humidity": 56,
-            "wind_kmh": 9.2,
-            "rain_7d_mm": 4.2,
-        })
-        risks = _compute_agronomic_risks(
-            emp["temp_c"], emp["humidity"], emp["rain_7d_mm"], emp["temp_c"] + 3.5, emp["wind_kmh"]
-        )
         return {
-            "available": True,
+            "available": False,
             "is_live": False,
             "district": district,
             "latitude": lat,
             "longitude": lon,
-            "temperature_c": emp["temp_c"],
-            "apparent_temperature_c": emp["temp_c"],
-            "humidity_pct": emp["humidity"],
-            "wind_speed_kmh": emp["wind_kmh"],
-            "precipitation_mm": 0.0,
-            "rain_next_7d_mm": emp["rain_7d_mm"],
-            "precipitation_prob_pct": 10 if emp["rain_7d_mm"] > 0 else 0,
-            "condition": "Clear Sky",
-            "icon": "☀️",
-            "weather_code": 0,
-            "updated_at": datetime.now().strftime("%H:%M"),
-            "source": "District Meteorological Station Telemetry",
-            "daily_forecast": [],
-            "risk_indicators": risks,
+            "message": "Weather unavailable",
             "error": str(e),
         }

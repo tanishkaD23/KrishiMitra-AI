@@ -1,0 +1,58 @@
+# Netlify Configuration for KrishiMitra-AI
+# Supports Supabase Authentication, protected routes, clean URLs, and optional backend API proxy.
+
+[build]
+  publish = "frontend"
+  # Injects Netlify environment variables (SUPABASE_URL, SUPABASE_ANON_KEY) into frontend/supabase_config.js at deploy time if set
+  command = "python -c \"import os, json; cfg={'supabaseUrl': os.getenv('SUPABASE_URL') or os.getenv('VITE_SUPABASE_URL') or os.getenv('NEXT_PUBLIC_SUPABASE_URL') or '', 'supabaseAnonKey': os.getenv('SUPABASE_ANON_KEY') or os.getenv('VITE_SUPABASE_ANON_KEY') or os.getenv('NEXT_PUBLIC_SUPABASE_ANON_KEY') or ''}; open('frontend/supabase_env.json','w').write(json.dumps(cfg))\" || true"
+
+# Show Login page first when a visitor opens the root URL on Netlify
+[[redirects]]
+  from = "/"
+  to = "/login.html"
+  status = 200
+
+# Clean URL routes for all application pages
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/forecast"
+  to = "/forecast.html"
+  status = 200
+
+[[redirects]]
+  from = "/schemes"
+  to = "/schemes.html"
+  status = 200
+
+[[redirects]]
+  from = "/krishisathi"
+  to = "/krishisathi.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+# Fallback for unknown routes to Login page (auth guard redirects authenticated users to Dashboard)
+[[redirects]]
+  from = "/*"
+  to = "/login.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "no-cache, no-store, must-revalidate"

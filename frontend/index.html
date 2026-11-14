@@ -1,72 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KrishiMitra AI | Smarter Farming, Better Harvests</title>
-    <!-- Modern Google Fonts -->
+    <title>KrishiMitra AI | All-India Agricultural Decision Support Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Unified Professional Design System -->
-    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
+    <link rel="stylesheet" href="krishimitra_pro.css?v=6.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+    <script src="supabase_auth.js"></script>
+    <style>
+        .unified-section {
+            padding: 56px 24px;
+            border-bottom: 1px solid var(--km-border);
+        }
+        .unified-section:nth-of-type(even) {
+            background: #ffffff;
+        }
+        .unified-section:nth-of-type(odd) {
+            background: var(--km-bg);
+        }
+        .unified-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .section-header-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--km-primary);
+            background: rgba(6, 78, 43, 0.08);
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 8px;
+        }
+        .section-main-title {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--km-text-heading);
+            margin: 0 0 4px;
+            letter-spacing: -0.02em;
+        }
+        .section-main-sub {
+            font-size: 0.9rem;
+            color: var(--km-text-muted);
+            margin: 0;
+        }
+        .even-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+        @media (max-width: 980px) {
+            .even-two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+        .clean-card {
+            background: #ffffff;
+            border: 1px solid var(--km-border);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 6px 20px rgba(6, 78, 43, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
 </head>
-<body>
+<body id="top">
 
     <!-- =========================================================================
-         1. TOP NAVIGATION BAR (Consistent across all public & standalone pages)
+         1. STICKY TOP NAVIGATION BAR (Smooth Scroll Links + Role Login)
          ========================================================================= -->
-    <nav class="landing-nav" aria-label="Main Navigation">
-        <div class="landing-nav-inner">
-            <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
+    <nav class="landing-nav" aria-label="Main Navigation" style="position: sticky; top: 0; z-index: 100;">
+        <div class="landing-nav-inner" style="max-width: 1320px; padding: 12px 24px; gap: 16px;">
+            <a href="#top" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
                 <span class="brand-logo-sprout" style="flex-shrink: 0;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
                 </span>
                 <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
 
-            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" class="active" style="white-space: nowrap;">Home</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" style="white-space: nowrap;">Yield Prediction</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px; font-size: 0.9rem;">
+                <li><a href="#top" class="nav-scroll-link active">Home</a></li>
+                <li><a href="#predict" class="nav-scroll-link">Yield Prediction</a></li>
+                <li><a href="#schemes" class="nav-scroll-link">Schemes</a></li>
+                <li><a href="#insurance" class="nav-scroll-link">Crop Insurance</a></li>
+                <li><a href="#nasa" class="nav-scroll-link">NASA Weather</a></li>
+                <li><a href="#krishisathi" class="nav-scroll-link">KrishiSathi AI</a></li>
             </ul>
 
             <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
-                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 8px 14px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;">EN | हिंदी</button>
-                <a href="forecast.html" class="btn-outline-login" id="navBtnPredict" style="white-space: nowrap; flex-shrink: 0;">Predict Yield</a>
-                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
-                    <span id="navBtnDash" style="white-space: nowrap;">Open Dashboard</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 7px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;">EN | हिंदी</button>
+                <a href="login.html?switch=1" id="navBtnLogin" class="btn-outline-login" style="padding: 7px 16px; font-size: 0.84rem; font-weight: 800; background: #FFF7D6; border: 1.5px solid #D97706; color: #064E2B;">
+                    Switch Role
+                </a>
+                <button type="button" class="btn-outline-login" data-km-logout style="padding: 7px 14px; font-size: 0.84rem; font-weight: 800; cursor: pointer;">
+                    Logout
+                </button>
+                <a href="dashboard.html" class="btn-solid-start" style="padding: 8px 16px; font-size: 0.84rem;">
+                    <span id="navBtnDash">Dashboard</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- =========================================================================
-         2. PANORAMIC HERO SECTION & CORE FEATURES
+         2. PANORAMIC HERO SECTION
          ========================================================================= -->
     <header class="hero-panoramic-stage">
-        <!-- Floating Leaves Decorative Elements -->
-        <div class="floating-leaf-left" aria-hidden="true">
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="#84CC16" opacity="0.85">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.75V9c6.5-1.5 10.5-2.5 12-3-2 4-5.5 8-10.5 9-1.5.3-2.5.4-3.5.4-.5 0-1-.1-1.5-.2C7.5 12.5 10 9 17 8z"/>
-            </svg>
-        </div>
-        <div class="floating-leaf-right" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="#84CC16" opacity="0.85">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.75V9c6.5-1.5 10.5-2.5 12-3-2 4-5.5 8-10.5 9-1.5.3-2.5.4-3.5.4-.5 0-1-.1-1.5-.2C7.5 12.5 10 9 17 8z"/>
-            </svg>
-        </div>
-
         <div class="hero-panoramic-content-grid">
-            <!-- Left Column: Headline, Subtitle, Functional Buttons -->
             <div class="hero-text-block">
                 <div class="hero-pill-badge">
-                    <span>🌱</span>
-                    <span>AI for a Stronger Farming Tomorrow • 6 Major Agricultural States</span>
+                    <span>ALL-INDIA AGRICULTURAL DECISION SUPPORT • 35 STATES &amp; UTs</span>
                 </div>
 
                 <h1 class="hero-heading">
@@ -75,33 +137,28 @@
                 </h1>
 
                 <p class="hero-subhead">
-                    AI-powered crop yield forecasting, personalised agronomic advisories, and verified government scheme guidance built for smallholder farmers across Uttar Pradesh, Madhya Pradesh, Bihar, Rajasthan, Punjab, and Haryana.
+                    AI crop yield prediction, verified government scheme benefits, landowner &amp; tenant crop insurance guidance, and NASA agroclimatology intelligence in one unified platform.
                 </p>
 
                 <div class="hero-cta-group">
-                    <a href="forecast.html" class="btn-hero-predict">
+                    <a href="#predict" class="btn-hero-predict">
                         <span>Predict Crop Yield</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </a>
-                    <a href="krishisathi.html" class="btn-hero-voice">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                        <span>Talk to KrishiSathi</span>
+                    <a href="login.html" class="btn-hero-voice" style="text-decoration: none;">
+                        <span>Select Role Identity (Farmer / Officer / Admin)</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Right Column: Visual Overlays Anchor Area (100% English Interface) -->
             <div class="hero-visual-overlays-anchor">
-                <!-- Overlay 1: Green Speech Bubble -->
                 <div class="hero-speech-bubble-green" style="font-family: var(--km-font);">
                     <span>Precision Crop Advisory,<br>Tailored for Every Acre</span>
                 </div>
-
-                <!-- Overlay 2: White Pill Badge -->
                 <div class="hero-pill-badge-white">
                     <div class="pill-badge-text" style="font-family: var(--km-font);">
-                        <span>Data-Driven Harvest</span>
-                        <span style="color: var(--km-primary); font-weight: 700;">Wheat &amp; Mustard (Rabi)</span>
+                        <span>All-India Coverage</span>
+                        <span style="color: var(--km-primary); font-weight: 700;">72 Crops • 736 Districts</span>
                     </div>
                     <div class="pill-badge-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -112,162 +169,218 @@
             </div>
         </div>
 
-        <!-- Docked 4 Features Cards Across Bottom of Hero -->
-        <div class="hero-docked-cards-strip" id="features">
-            <div class="hero-dock-card">
-                <div class="dock-card-icon-box icon-sprout">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/>
-                    </svg>
-                </div>
+        <!-- Docked 4 Quick Jump Cards -->
+        <div class="hero-docked-cards-strip">
+            <a href="#predict" class="hero-dock-card" style="text-decoration: none;">
+                <div class="dock-card-icon-box icon-sprout" style="font-size: 0.85rem; font-weight: 800;">01</div>
                 <div class="dock-card-text">
-                    <h3 class="dock-title">Higher Productivity</h3>
-                    <p class="dock-desc">Plot-level yield forecasts in q/acre &amp; q/ha</p>
+                    <h3 class="dock-title">Yield Prediction</h3>
+                    <p class="dock-desc">Plot harvest estimate in q/acre &amp; t/ha</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="hero-dock-card">
-                <div class="dock-card-icon-box icon-shield">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <polyline points="9 12 11 14 15 10"/>
-                    </svg>
-                </div>
+            <a href="#schemes" class="hero-dock-card" style="text-decoration: none;">
+                <div class="dock-card-icon-box icon-schemes" style="font-size: 0.85rem; font-weight: 800;">02</div>
                 <div class="dock-card-text">
-                    <h3 class="dock-title">Reduced Crop Risk</h3>
-                    <p class="dock-desc">Early warnings for heat stress &amp; yellow rust</p>
+                    <h3 class="dock-title">Scheme Benefits</h3>
+                    <p class="dock-desc">Farmers benefited &amp; ₹ amount disbursed</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="hero-dock-card">
-                <div class="dock-card-icon-box icon-schemes">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="21" x2="21" y2="21"/>
-                        <line x1="6" y1="18" x2="6" y2="11"/>
-                        <line x1="10" y1="18" x2="10" y2="11"/>
-                        <line x1="14" y1="18" x2="14" y2="11"/>
-                        <line x1="18" y1="18" x2="18" y2="11"/>
-                        <polygon points="12 2 2 7 22 7 12 2"/>
-                    </svg>
-                </div>
+            <a href="#insurance" class="hero-dock-card" style="text-decoration: none;">
+                <div class="dock-card-icon-box icon-shield" style="font-size: 0.85rem; font-weight: 800;">03</div>
                 <div class="dock-card-text">
-                    <h3 class="dock-title">Easy Access to Schemes</h3>
-                    <p class="dock-desc">Verified central &amp; state subsidies simplified</p>
+                    <h3 class="dock-title">Crop Insurance</h3>
+                    <p class="dock-desc">Landowner vs. tenant PMFBY check</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="hero-dock-card">
-                <div class="dock-card-icon-box icon-farmers">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
+            <a href="#nasa" class="hero-dock-card" style="text-decoration: none;">
+                <div class="dock-card-icon-box icon-farmers" style="font-size: 0.85rem; font-weight: 800;">04</div>
                 <div class="dock-card-text">
-                    <h3 class="dock-title">Empowered Farmers</h3>
-                    <p class="dock-desc">Voice &amp; chat support in English and Hindi</p>
+                    <h3 class="dock-title">NASA Weather</h3>
+                    <p class="dock-desc">Satellite temperature, rain &amp; solar</p>
                 </div>
-            </div>
+            </a>
         </div>
     </header>
 
     <!-- =========================================================================
-         3. HOW IT WORKS (4-Step Workflow)
+         SECTION 1: CROP YIELD PREDICTION (Balanced Symmetrical 2-Column Layout)
          ========================================================================= -->
-    <section class="impact-section" id="how-it-works" style="background: var(--km-bg);">
-        <div class="impact-inner">
-            <div class="section-tag">STEP-BY-STEP WORKFLOW</div>
-            <h2 class="section-title">How KrishiMitra AI Works</h2>
-
-            <div class="pillars-grid" style="margin-bottom: 0;">
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">📍</div>
-                    <h3 class="pillar-title">1. Enter Plot &amp; Crop Details</h3>
-                    <p class="pillar-desc">Select your district in Western Uttar Pradesh, enter plot size in acres, soil type, sowing window, and target Rabi crop (Wheat or Mustard).</p>
+    <section class="unified-section" id="predict">
+        <div class="unified-container">
+            <div class="section-header-row">
+                <div>
+                    <span class="section-eyebrow">MODULE 01 • ALL-INDIA YIELD ENGINE</span>
+                    <h2 class="section-main-title">Crop Yield Prediction &amp; Plot Analysis</h2>
+                    <p class="section-main-sub">Select your state, district, crop, and plot area for an instant harvest estimate.</p>
                 </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">🌾</div>
-                    <h3 class="pillar-title">2. Predict Crop Yield</h3>
-                    <p class="pillar-desc">Our agricultural ML engine computes expected yield per acre, total plot harvest in quintals, and compares performance against district baselines.</p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">📋</div>
-                    <h3 class="pillar-title">3. Follow Stage Advisories</h3>
-                    <p class="pillar-desc">Receive ICAR-grounded recommendations for Crown Root Initiation (CRI) irrigation, NPK split dosage, and disease protection.</p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">🏛️</div>
-                    <h3 class="pillar-title">4. Claim Eligible Schemes</h3>
-                    <p class="pillar-desc">Match your farm profile with PM-KISAN, PMFBY Crop Insurance, Soil Health Card, and Kisan Credit Card benefits with official portal links.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================================================================
-         4. CROP YIELD PREDICTION & PERSONALISED ADVISORIES SHOWCASE
-         ========================================================================= -->
-    <section class="impact-section" id="crop-prediction">
-        <div class="impact-inner" style="text-align: left;">
-            <div style="text-align: center; max-width: 720px; margin: 0 auto 48px;">
-                <div class="section-tag">CORE PLATFORM MODULES</div>
-                <h2 class="section-title" style="margin-bottom: 12px;">Precision Yield Forecasting &amp; Agronomic Advisories</h2>
-                <p style="color: var(--km-text-muted); font-size: 1rem;">Built on 10+ years of district-level Area, Production, and Yield (APY) records across Meerut, Muzaffarnagar, Bulandshahr, Saharanpur, Bijnor, and Agra.</p>
+                <span class="chart-badge-tag">35 States • 736 Districts • 72 Crops</span>
             </div>
 
-            <div class="predict-screen-grid" style="align-items: stretch; margin-bottom: 0;">
-                <!-- Module 1: Crop Yield Prediction -->
-                <div class="predict-form-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                            <span class="scheme-tag-pill tag-income">Yield Prediction Engine</span>
-                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-text-muted);">Units: q/ha &amp; q/acre</span>
-                        </div>
-                        <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Plot-Level Rabi Harvest Estimator</h3>
-                        <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 20px;">
-                            Evaluate how sowing date, irrigation source, nitrogen application, and March maximum temperatures impact your expected Wheat or Mustard harvest before the season ends.
-                        </p>
-                        <div class="eval-metrics-row" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 20px;">
-                            <div class="eval-metric-box" style="background: var(--km-bg);">
-                                <div class="eval-metric-label">Meerut Wheat Baseline</div>
-                                <div class="eval-metric-value" style="color: var(--km-primary);">41.5 q/ha <span style="font-size: 0.85rem; font-weight: 600;">(16.8 q/acre)</span></div>
+            <div class="even-two-col">
+                <!-- Left Card: Plot Configuration -->
+                <div class="clean-card" style="justify-content: flex-start;">
+                    <!-- Farm & Plot Visual Banner -->
+                    <div style="position: relative; border-radius: 12px; overflow: hidden; height: 118px; margin-bottom: 16px; border: 1px solid rgba(6, 78, 43, 0.16);">
+                        <img src="images/field_wheat.jpg" alt="Irrigated Agricultural Farm Plot" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80'" style="width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block;">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 57, 32, 0.84) 0%, rgba(6, 78, 43, 0.35) 100%); display: flex; align-items: flex-end; justify-content: space-between; padding: 12px 14px;">
+                            <div style="color: #fff;">
+                                <div style="font-size: 0.9rem; font-weight: 800;">Irrigated Agricultural Plot &amp; Canopy Health</div>
+                                <div style="font-size: 0.74rem; opacity: 0.9;">District Soil NPK • Seasonal Rainfall • Crop Growth Modelling</div>
                             </div>
-                            <div class="eval-metric-box" style="background: var(--km-bg);">
-                                <div class="eval-metric-label">Meerut Mustard Baseline</div>
-                                <div class="eval-metric-value" style="color: var(--km-primary);">15.8 q/ha <span style="font-size: 0.85rem; font-weight: 600;">(6.4 q/acre)</span></div>
+                            <span style="background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); color: #86efac; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25);">1 Ha = 2.47 Acres</span>
+                        </div>
+                    </div>
+                    <form id="homeYieldForm" onsubmit="event.preventDefault();">
+                        <div class="predict-form-row" style="grid-template-columns: 1.3fr 1fr 0.8fr; gap: 14px; margin-bottom: 16px;">
+                            <div class="form-group-pro">
+                                <label for="hmCrop">Crop Selection *</label>
+                                <select id="hmCrop" class="form-select-pro">
+                                    <option value="Wheat" selected>Wheat</option>
+                                    <option value="Rice">Rice</option>
+                                    <option value="Mustard">Mustard</option>
+                                    <option value="Maize">Maize</option>
+                                    <option value="Gram">Gram (Chana)</option>
+                                    <option value="Sugarcane">Sugarcane</option>
+                                    <option value="Potato">Potato</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmSeason">Season *</label>
+                                <select id="hmSeason" class="form-select-pro">
+                                    <option value="Rabi" selected>Rabi (Winter)</option>
+                                    <option value="Kharif">Kharif (Monsoon)</option>
+                                    <option value="Summer">Summer / Zaid</option>
+                                    <option value="Whole Year">Whole Year</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmYear">Year</label>
+                                <input type="number" id="hmYear" class="form-input-pro" value="2026" min="2015" max="2030">
                             </div>
                         </div>
-                    </div>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="forecast.html" class="btn-predict-action">Launch Yield Calculator →</a>
-                        <a href="dashboard.html#predict" class="btn-outline-login" style="border-radius: var(--km-radius-sm);">Open in Dashboard</a>
-                    </div>
-                </div>
 
-                <!-- Module 2: Personalised Advisories -->
-                <div class="predict-form-card" id="advisories-showcase" style="display: flex; flex-direction: column; justify-content: space-between;">
-                    <div>
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                            <span class="scheme-tag-pill tag-soil">ICAR &amp; IMD Grounded</span>
-                            <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-text-muted);">Live Weather Integrated</span>
+                        <div class="predict-form-row" style="grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+                            <div class="form-group-pro">
+                                <label for="hmState">State / UT *</label>
+                                <select id="hmState" class="form-select-pro">
+                                    <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmDistrict">District *</label>
+                                <select id="hmDistrict" class="form-select-pro">
+                                    <option value="Meerut" selected>Meerut</option>
+                                </select>
+                            </div>
                         </div>
-                        <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Personalised Crop Advisories</h3>
-                        <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 16px;">
-                            Actionable recommendations structured by Observation, Recommended Action, Agronomic Reason, and Urgency Priority.
-                        </p>
-                        <ul class="scheme-highlights-list" style="margin-bottom: 20px;">
-                            <li><strong>Crown Root Initiation (CRI):</strong> Critical first irrigation at 21–25 days after sowing with split urea top-dressing.</li>
-                            <li><strong>Disease &amp; Pest Diagnostics:</strong> Rapid field checks for Wheat Yellow Rust and Mustard Aphids (Lipaphis erysimi).</li>
-                            <li><strong>Terminal Heat Mitigation:</strong> Light evening irrigation guidance when March temperatures exceed 31°C.</li>
-                        </ul>
+
+                        <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                            <div style="flex: 1; min-width: 140px;">
+                                <label for="hmAcres" style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 4px;">Plot Area (in Acres) *</label>
+                                <input type="number" id="hmAcres" class="form-input-pro" value="2.0" min="0.1" max="100" step="0.1" style="background: #fff; height: 38px;">
+                            </div>
+                            <div>
+                                <div style="font-size: 0.74rem; font-weight: 700; color: var(--km-text-muted); margin-bottom: 4px;">Quick Area Presets</div>
+                                <div class="acre-chip-row" style="margin: 0;">
+                                    <button type="button" class="acre-chip hm-acre-btn" data-acres="1.0">1.0 Acre</button>
+                                    <button type="button" class="acre-chip hm-acre-btn active" data-acres="2.0">2.0 Acres</button>
+                                    <button type="button" class="acre-chip hm-acre-btn" data-acres="3.5">3.5 Acres</button>
+                                    <button type="button" class="acre-chip hm-acre-btn" data-acres="5.0">5.0 Acres</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="predict-form-row" style="grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px;">
+                            <div class="form-group-pro">
+                                <label for="hmSoil">Soil Texture</label>
+                                <select id="hmSoil" class="form-select-pro">
+                                    <option value="Alluvial (Sandy Loam)" selected>Alluvial (Loam)</option>
+                                    <option value="Clay Loam">Clay Loam</option>
+                                    <option value="Sandy Soil">Sandy Soil</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmIrrigation">Irrigation</label>
+                                <select id="hmIrrigation" class="form-select-pro">
+                                    <option value="Tube well / Borewell" selected>Tube well</option>
+                                    <option value="Canal Irrigation">Canal</option>
+                                    <option value="Rainfed / Limited">Rainfed</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmSowing">Sowing Window</label>
+                                <select id="hmSowing" class="form-select-pro">
+                                    <option value="Timely Sown (Nov 01 - Nov 20)" selected>Timely Sown</option>
+                                    <option value="Moderately Late (Nov 21 - Dec 05)">Moderately Late</option>
+                                    <option value="Very Late Sown (After Dec 05)">Very Late</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnHomePredict" class="btn-predict-action" style="width: 100%; height: 46px;">
+                            <span>Calculate Crop Yield</span>
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Card: Yield Result & District Conditions (Matches Left Card Height) -->
+                <div style="display: flex; flex-direction: column; gap: 18px; height: 100%;">
+                    <div class="yield-result-emerald-card" style="flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 0; padding: 22px 24px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+                            <div class="yield-result-text">
+                                <div class="label" id="hmResHeader" style="text-transform: uppercase; font-size: 0.76rem; opacity: 0.9;">ESTIMATED YIELD • WHEAT (MEERUT, UTTAR PRADESH)</div>
+                                <div class="val" style="margin-top: 4px;">
+                                    <span id="hmYieldAcre">18.3</span> <span style="font-size: 1.05rem;">q/acre</span>
+                                    <span id="hmYieldHa" style="font-size: 0.9rem; font-weight: 600; opacity: 0.88; margin-left: 6px;">(4.53 t/ha • 45.3 q/ha)</span>
+                                </div>
+                            </div>
+                            <span class="yield-result-badge" id="hmBenchBadge">+5.7% vs District Baseline</span>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.16);">
+                            <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.76rem; opacity: 0.9;">Yield (Tonnes/Ha)</span>
+                                <strong id="hmTonneHa" style="font-size: 1rem; color: var(--km-accent-gold);">4.53 t/ha</strong>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.76rem; opacity: 0.9;">Total Harvest</span>
+                                <strong id="hmTotalHarvest" style="font-size: 1rem; color: var(--km-accent-gold);">36.66 Quintals</strong>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.76rem; opacity: 0.9;">90% Confidence</span>
+                                <strong id="hmConfRange" style="font-size: 0.9rem;">16.6 – 20.1 q/ac</strong>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-size: 0.76rem; opacity: 0.9;">District Baseline</span>
+                                <strong id="hmBaseVal" style="font-size: 0.9rem;">17.3 q/acre</strong>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="dashboard.html#advisories" class="btn-predict-action">Explore Crop Advisories →</a>
+
+                    <div class="clean-card" style="flex: 1; padding: 20px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <strong style="font-size: 0.96rem; color: var(--km-text-heading);">District Soil, Weather &amp; Key Advisory</strong>
+                                <span class="chart-badge-tag">ICAR Aligned</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem; margin-bottom: 10px;">
+                                <div id="hmSoilText" style="padding: 10px 12px; background: var(--km-bg); border-radius: 8px; border: 1px solid var(--km-border);">
+                                    <strong style="color: var(--km-primary); display: block;">Soil Survey</strong>
+                                    Alluvial Loam • pH 7.6 • OC 0.46%
+                                </div>
+                                <div id="hmWeatherText" style="padding: 10px 12px; background: var(--km-bg); border-radius: 8px; border: 1px solid var(--km-border);">
+                                    <strong style="color: var(--km-primary); display: block;">Weather Station</strong>
+                                    Temp 28.4°C • RH 58.8% • Solar 19.2 MJ/m²
+                                </div>
+                            </div>
+                            <div id="hmAdvisorySummary" style="padding: 10px 12px; background: var(--km-bg); border-radius: 8px; border-left: 3px solid var(--km-primary); font-size: 0.81rem; color: var(--km-text-body); line-height: 1.5;">
+                                Apply first irrigation at Crown Root Initiation (21–25 DAS) and broadcast balanced Neem-coated Urea when soil has optimum moisture.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,122 +388,308 @@
     </section>
 
     <!-- =========================================================================
-         5. GOVERNMENT SCHEMES & KRISHISATHI AI SHOWCASE
+         SECTION 2: KRISHISCHEME INTELLIGENCE (Beneficiaries & Amount Finder)
          ========================================================================= -->
-    <section class="impact-section" style="background: var(--km-bg);">
-        <div class="impact-inner" style="text-align: left;">
-            <div class="predict-screen-grid" style="align-items: stretch; margin-bottom: 0;">
-                <!-- Module 3: Government Schemes -->
-                <div class="predict-form-card">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                        <span class="scheme-tag-pill tag-insurance">Verified Official Portals</span>
-                        <span style="font-size: 0.82rem; font-weight: 700; color: var(--km-primary);">5 Central &amp; UP Schemes</span>
+    <section class="unified-section" id="schemes">
+        <div class="unified-container">
+            <div class="section-header-row">
+                <div>
+                    <span class="section-eyebrow" data-i18n="hm_sch_eyebrow">MODULE 02 • GOVERNMENT SCHEME IMPACT</span>
+                    <h2 class="section-main-title" data-i18n="hm_sch_title">KrishiScheme — Beneficiaries &amp; Financial Amount Finder</h2>
+                    <p class="section-main-sub" data-i18n="hm_sch_sub">Select any scheme below to see how many existing farmers benefited and total ₹ amount distributed.</p>
+                </div>
+                <span class="scheme-tag-pill tag-income" data-i18n="hm_sch_badge">6 Central Schemes • Verified Data</span>
+            </div>
+
+            <!-- 6 Clickable Scheme Pills -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;" id="hmSchemePills">
+                <button type="button" class="acre-chip hm-scheme-pill active" data-scheme="pm-kisan" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s1">1. PM-KISAN (₹6,000/yr)</button>
+                <button type="button" class="acre-chip hm-scheme-pill" data-scheme="pmfby" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s2">2. PMFBY Crop Insurance</button>
+                <button type="button" class="acre-chip hm-scheme-pill" data-scheme="kcc" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s3">3. KCC (4% Interest Loan)</button>
+                <button type="button" class="acre-chip hm-scheme-pill" data-scheme="soil-health-card" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s4">4. Soil Health Card</button>
+                <button type="button" class="acre-chip hm-scheme-pill" data-scheme="pmksy" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s5">5. PMKSY Micro-Irrigation</button>
+                <button type="button" class="acre-chip hm-scheme-pill" data-scheme="pm-kusum" style="cursor:pointer; font-weight:800;" data-i18n="hm_pill_s6">6. PM-KUSUM Solar Pump</button>
+            </div>
+
+            <div class="even-two-col">
+                <!-- Left Card: Emerald Beneficiary & Amount Spotlight -->
+                <div class="yield-result-emerald-card" style="flex-direction: column; align-items: stretch; justify-content: space-between; gap: 16px; margin-bottom: 0; padding: 26px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+                            <div>
+                                <div class="label" style="font-size: 0.74rem; opacity: 0.9;" data-i18n="hm_sch_spot_tag">VERIFIED BENEFICIARIES &amp; DISBURSED AMOUNT</div>
+                                <div class="val" id="hmSchemeTitle" style="font-size: 1.32rem; margin-top: 4px;">PM-KISAN Samman Nidhi</div>
+                            </div>
+                            <a id="hmSchemePortalBtn" href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="btn-hero-voice" style="padding: 7px 14px; font-size: 0.8rem; text-decoration: none;" data-i18n="hm_sch_portal">
+                                Official Portal ↗
+                            </a>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.18);">
+                            <div style="background: rgba(255,255,255,0.12); padding: 14px; border-radius: 12px;">
+                                <div style="font-size: 0.75rem; opacity: 0.9;" data-i18n="hm_sch_lbl_farmers">Existing Farmers Benefited</div>
+                                <div id="hmSchemeFarmers" style="font-size: 1.3rem; font-weight: 900; color: var(--km-accent-gold); margin-top: 4px;">9.40 Crore+ Farmers</div>
+                                <div id="hmSchemeRegSub" style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;">Registered: 12.50 Crore</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.12); padding: 14px; border-radius: 12px;">
+                                <div style="font-size: 0.75rem; opacity: 0.9;" data-i18n="hm_sch_lbl_amt">Total Amount Distributed</div>
+                                <div id="hmSchemeAmount" style="font-size: 1.3rem; font-weight: 900; color: var(--km-accent-gold); margin-top: 4px;">₹3.46 Lakh Crore+</div>
+                                <div id="hmSchemePerFarmer" style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;">₹6,000 / Year Direct DBT</div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 10px;">Government Schemes &amp; Subsidies</h3>
-                    <p style="font-size: 0.94rem; color: var(--km-text-body); margin-bottom: 18px;">
-                        Search and filter verified agricultural welfare schemes with transparent eligibility criteria, required documents, and direct links to official `.gov.in` portals.
-                    </p>
-                    <ul class="scheme-highlights-list" style="margin-bottom: 22px;">
-                        <li><strong>PM-KISAN Samman Nidhi:</strong> ₹6,000/year direct income support in three equal installments.</li>
-                        <li><strong>PM Fasal Bima Yojana (PMFBY):</strong> Comprehensive Rabi crop insurance at just 1.5% farmer premium.</li>
-                        <li><strong>Kisan Credit Card (KCC) &amp; PMKSY:</strong> 4% effective crop loan interest and up to 55% micro-irrigation subsidy.</li>
-                    </ul>
-                    <a href="schemes.html" class="btn-predict-action">Browse Government Schemes →</a>
+
+                    <div style="background: rgba(255,255,255,0.14); padding: 12px 16px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <div style="font-size: 0.74rem; opacity: 0.9;" id="hmSchemeStateLbl">Uttar Pradesh Beneficiaries</div>
+                            <strong id="hmSchemeStateVal" style="font-size: 1.05rem; color: #86efac;">225.4 Lakh Farmers • ₹74,500 Crore</strong>
+                        </div>
+                        <select id="hmSchemeStateSelect" class="form-select-pro" style="width: auto; min-width: 160px; height: 36px; font-size: 0.82rem; background: #fff; color: #0f172a;">
+                            <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                        </select>
+                    </div>
                 </div>
 
-                <!-- Module 4: KrishiSathi AI -->
-                <div class="predict-form-card" style="background: linear-gradient(135deg, #064E2B 0%, #04351D 100%); color: #FFFFFF; border-color: #064E2B;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                        <span class="scheme-tag-pill" style="background: rgba(255, 201, 40, 0.2); color: var(--km-accent-gold);">RAG + Live Web Search</span>
-                        <span style="font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.8);">Voice &amp; Text Assistant</span>
+                <!-- Right Card: State-Wise Beneficiaries Bar Chart -->
+                <div class="clean-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading); margin: 0;" id="hmSchemeChartTitle">Top Beneficiary States</h3>
+                        <span class="chart-badge-tag" data-i18n="hm_sch_ch_badge">Official Ministry Series</span>
                     </div>
-                    <h3 style="font-size: 1.45rem; font-weight: 800; color: #FFFFFF; margin-bottom: 10px;">KrishiSathi AI Assistant</h3>
-                    <p style="font-size: 0.94rem; color: rgba(255,255,255,0.86); margin-bottom: 18px;">
-                        Ask farming or government scheme questions by voice or text. KrishiSathi searches indexed official scheme PDFs first, falls back to trusted `.gov.in` domains when needed, and responds in English or Hindi.
-                    </p>
-                    <ul class="scheme-highlights-list" style="color: rgba(255,255,255,0.9); margin-bottom: 22px;">
-                        <li style="color: rgba(255,255,255,0.9);"><strong>Voice Input &amp; Spoken Audio:</strong> Built-in microphone recognition and natural text-to-speech playback.</li>
-                        <li style="color: rgba(255,255,255,0.9);"><strong>Zero Hallucination Policy:</strong> Cites verified scheme guidelines and official portals with access dates.</li>
-                        <li style="color: rgba(255,255,255,0.9);"><strong>Bilingual Support:</strong> Converse effortlessly in English, Hindi (हिंदी), or Hinglish.</li>
-                    </ul>
-                    <a href="krishisathi.html" class="btn-hero-voice" style="padding: 11px 22px; font-size: 0.92rem;">Talk to KrishiSathi AI →</a>
+                    <div style="height: 230px; position: relative;">
+                        <canvas id="hmSchemeChartCanvas"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- =========================================================================
-         6. OUR IMPACT & WHY KRISHIMITRA AI
+         SECTION 3: KRISHISURAKSHA CROP INSURANCE (Landowner vs. Tenant Checker)
          ========================================================================= -->
-    <section class="impact-section" id="impact">
-        <div class="impact-inner">
-            <div class="section-tag">MEASURABLE OUTCOMES</div>
-            <h2 class="section-title">Our Impact &amp; Coverage</h2>
-
-            <div class="impact-metrics-grid">
-                <div class="impact-metric-card">
-                    <div class="impact-metric-num">6</div>
-                    <div class="impact-metric-label">Supported States</div>
-                    <div class="impact-metric-sub">UP, MP, Bihar, Rajasthan, Punjab &amp; Haryana</div>
+    <section class="unified-section" id="insurance">
+        <div class="unified-container">
+            <div class="section-header-row">
+                <div>
+                    <span class="section-eyebrow" data-i18n="hm_ins_eyebrow">MODULE 03 • PMFBY CROP INSURANCE</span>
+                    <h2 class="section-main-title" data-i18n="hm_ins_title">KrishiSuraksha — Landowner &amp; Tenant Insurance Eligibility</h2>
+                    <p class="section-main-sub" data-i18n="hm_ins_sub">Verify whether a farmer cultivating a landowner's land (Bataidar / Tenant) or own land can claim PMFBY insurance.</p>
                 </div>
-
-                <div class="impact-metric-card">
-                    <div class="impact-metric-num">80</div>
-                    <div class="impact-metric-label">Agricultural Districts</div>
-                    <div class="impact-metric-sub">Calibrated District Yield Baselines</div>
-                </div>
-
-                <div class="impact-metric-card">
-                    <div class="impact-metric-num">2,400</div>
-                    <div class="impact-metric-label">Multi-State Records</div>
-                    <div class="impact-metric-sub">Wheat &amp; Mustard Rabi Dataset</div>
-                </div>
-
-                <div class="impact-metric-card">
-                    <div class="impact-metric-num">5</div>
-                    <div class="impact-metric-label">Verified Schemes</div>
-                    <div class="impact-metric-sub">Direct Official `.gov.in` Integration</div>
-                </div>
+                <span class="scheme-tag-pill tag-income" data-i18n="hm_ins_helpline">Toll-Free Claim Helpline: 14447</span>
             </div>
 
-            <h3 class="pillars-title">Why Farmers Trust KrishiMitra AI</h3>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">📊</div>
-                    <h4 class="pillar-title">Data-Driven Decisions</h4>
-                    <p class="pillar-desc">Real district APY statistics and live Open-Meteo telemetry replace guesswork with clear agronomic evidence.</p>
+            <div class="even-two-col">
+                <!-- Left Card: Landowner vs Tenant Interactive Selector -->
+                <div class="clean-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="font-size: 1.08rem; font-weight: 800; color: var(--km-text-heading); margin: 0;" data-i18n="hm_ins_q">Can a Farmer Get Insurance on a Landowner's Land?</h3>
+                            <span class="chart-badge-tag" id="hmInsModeBadge">Own Land</span>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+                            <button type="button" class="acre-chip hm-own-btn active" data-own="owner" style="padding: 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.85rem;" data-i18n="hm_own1_t">1. Own Land (Landowner)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="hm_own1_s">Khatauni in your own name</div>
+                            </button>
+                            <button type="button" class="acre-chip hm-own-btn" data-own="tenant_with_agreement" style="padding: 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.85rem;" data-i18n="hm_own2_t">2. Landowner's Land (+ NOC)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="hm_own2_s">Tenant with NOC / Sowing Cert</div>
+                            </button>
+                            <button type="button" class="acre-chip hm-own-btn" data-own="tenant_without_agreement" style="padding: 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.85rem;" data-i18n="hm_own3_t">3. Oral Bataidar (No Proof)</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="hm_own3_s">Oral tenant without agreement</div>
+                            </button>
+                            <button type="button" class="acre-chip hm-own-btn" data-own="joint_family" style="padding: 12px; text-align: left; height: auto; cursor: pointer;">
+                                <div style="font-weight: 800; font-size: 0.85rem;" data-i18n="hm_own4_t">4. Joint Family Khatauni</div>
+                                <div style="font-size: 0.74rem; opacity: 0.85; margin-top: 2px;" data-i18n="hm_own4_s">Shared ancestral family land</div>
+                            </button>
+                        </div>
+
+                        <div id="hmInsGuidanceBox" style="background: var(--km-bg); padding: 14px 16px; border-radius: 12px; border: 1px solid var(--km-border); font-size: 0.84rem; line-height: 1.55;">
+                            <div style="font-weight: 800; color: #064E2B; margin-bottom: 4px;">Eligible: 100% Direct PMFBY Claim Payout</div>
+                            <div>Provide your Aadhaar Card, Khatauni land record, sowing declaration, and bank passbook. Claims are credited directly to your Aadhaar-linked bank account.</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--km-border); font-size: 0.78rem; color: var(--km-text-muted); display: flex; justify-content: space-between; align-items: center;">
+                        <span data-i18n="hm_ins_72h_note">Report localized hailstorm or rain damage within 72 hours.</span>
+                        <a href="https://pmfby.gov.in" target="_blank" rel="noopener" style="color: var(--km-primary); font-weight: 700;">pmfby.gov.in ↗</a>
+                    </div>
                 </div>
 
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">🗣️</div>
-                    <h4 class="pillar-title">Bilingual Voice Assistant</h4>
-                    <p class="pillar-desc">English interface across the platform with full Hindi and English voice conversation inside KrishiSathi AI.</p>
-                </div>
+                <!-- Right Card: Live Sum Insured & Premium Calculator -->
+                <div class="clean-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                            <h3 style="font-size: 1.08rem; font-weight: 800; color: var(--km-text-heading); margin: 0;" data-i18n="hm_ins_calc_title">PMFBY Sum Insured &amp; Premium Calculator</h3>
+                            <span class="chart-badge-tag" data-i18n="hm_ins_calc_badge">1.5% Rabi • 2% Kharif</span>
+                        </div>
 
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">✅</div>
-                    <h4 class="pillar-title">Verified Official Sources</h4>
-                    <p class="pillar-desc">Scheme eligibility and benefits are grounded in official central and UP government guidelines without fabrication.</p>
-                </div>
+                        <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+                            <div class="form-group-pro">
+                                <label for="hmInsAcres" data-i18n="hm_ins_lbl_acres">Land Area (Acres)</label>
+                                <input type="number" id="hmInsAcres" class="form-input-pro" value="2.5" min="0.1" max="100" step="0.1">
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmInsSeason" data-i18n="hm_ins_lbl_season">Season</label>
+                                <select id="hmInsSeason" class="form-select-pro">
+                                    <option value="Rabi" selected data-i18n="hm_opt_rabi">Rabi (1.5%)</option>
+                                    <option value="Kharif" data-i18n="hm_opt_kharif">Kharif (2.0%)</option>
+                                    <option value="Commercial" data-i18n="hm_opt_comm">Commercial (5%)</option>
+                                </select>
+                            </div>
+                            <div class="form-group-pro">
+                                <label for="hmInsPeril" data-i18n="hm_ins_lbl_peril">Damage Cause</label>
+                                <select id="hmInsPeril" class="form-select-pro">
+                                    <option value="Hailstorm" selected data-i18n="hm_peril_hail">Hailstorm</option>
+                                    <option value="Unseasonal Rain" data-i18n="hm_peril_rain">Unseasonal Rain</option>
+                                    <option value="Drought" data-i18n="hm_peril_drought">Drought</option>
+                                </select>
+                            </div>
+                        </div>
 
-                <div class="pillar-card">
-                    <div class="pillar-icon-wrap">👨‍🌾</div>
-                    <h4 class="pillar-title">Farmer-Centric Design</h4>
-                    <p class="pillar-desc">High-contrast cards, clear units (q/ha and q/acre), and instant plot-level actionable insights.</p>
+                        <div class="yield-result-emerald-card" style="margin-bottom: 0; padding: 18px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                            <div>
+                                <div style="font-size: 0.74rem; opacity: 0.9;" data-i18n="hm_ins_sum_lbl">Estimated Sum Insured (Cover)</div>
+                                <div id="hmInsSumVal" style="font-size: 1.35rem; font-weight: 900; color: var(--km-accent-gold); margin-top: 2px;">₹68,797</div>
+                                <div style="font-size: 0.72rem; opacity: 0.85;" data-i18n="hm_ins_sum_sub">Full crop loss protection</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.74rem; opacity: 0.9;" data-i18n="hm_ins_prem_lbl">Farmer Premium Share</div>
+                                <div id="hmInsPremVal" style="font-size: 1.35rem; font-weight: 900; color: #86efac; margin-top: 2px;">₹1,032 (1.5%)</div>
+                                <div style="font-size: 0.72rem; opacity: 0.85;" data-i18n="hm_ins_prem_sub">Balance subsidized by Govt</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px; font-size: 0.78rem; color: var(--km-text-muted);" data-i18n="hm_ins_cce_note">
+                        Note: Final claim settlement is determined by official Government Crop Cutting Experiments (CCE) and insurer verification.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Inspiring Mission Banner (English) -->
-    <div class="quote-banner-wrap">
-        <div class="quote-banner-card">
-            <p style="font-family: var(--km-font);">“Modern Agricultural Intelligence for Every Smallholder Farmer — Building a Resilient &amp; Prosperous Harvest.”</p>
+    <!-- =========================================================================
+         SECTION 4: NASA EARTH & WEATHER INTELLIGENCE (Interactive Controls)
+         ========================================================================= -->
+    <section class="unified-section" id="nasa">
+        <div class="unified-container">
+            <div class="section-header-row">
+                <div>
+                    <span class="section-eyebrow">MODULE 04 • SATELLITE AGROCLIMATOLOGY</span>
+                    <h2 class="section-main-title">NASA POWER Earth &amp; Weather Intelligence</h2>
+                    <p class="section-main-sub">Interactive district satellite telemetry for temperature, rainfall, humidity, and solar irradiance.</p>
+                </div>
+                <span class="chart-badge-tag" id="hmNasaZoneBadge">Active Zone: Meerut, Uttar Pradesh</span>
+            </div>
+
+            <!-- Interactive Filter & Parameter Bar -->
+            <div class="clean-card" style="padding: 16px 20px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <select id="hmNasaState" class="form-select-pro" style="width: auto; min-width: 170px; height: 38px;">
+                            <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                        </select>
+                        <select id="hmNasaDistrict" class="form-select-pro" style="width: auto; min-width: 170px; height: 38px;">
+                            <option value="Meerut" selected>Meerut</option>
+                        </select>
+                        <button type="button" id="btnHmFetchNasa" class="btn-predict-action" style="height: 38px; padding: 0 18px; font-size: 0.84rem;">
+                            Fetch NASA Satellite Data
+                        </button>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="hmNasaParamBtns">
+                        <button type="button" class="acre-chip hm-nasa-param active" data-param="all" style="cursor:pointer; font-weight:800;">All Parameters</button>
+                        <button type="button" class="acre-chip hm-nasa-param" data-param="temp" style="cursor:pointer; font-weight:800;">Thermal Stress</button>
+                        <button type="button" class="acre-chip hm-nasa-param" data-param="rain" style="cursor:pointer; font-weight:800;">Rainfall</button>
+                        <button type="button" class="acre-chip hm-nasa-param" data-param="solar" style="cursor:pointer; font-weight:800;">Solar (PM-KUSUM)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 KPI Cards + 1 Clean Chart -->
+            <div class="even-two-col">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                    <div class="clean-card" style="padding: 18px;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--km-text-muted);">Temperature (T2M)</div>
+                        <div id="hmNasaTemp" style="font-size: 1.55rem; font-weight: 900; color: var(--km-primary); margin: 6px 0;">25.2°C</div>
+                        <div id="hmNasaTempSub" style="font-size: 0.78rem; color: var(--km-text-muted);">Peak Max: 38.0°C</div>
+                    </div>
+                    <div class="clean-card" style="padding: 18px;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--km-text-muted);">Cumulative Rainfall</div>
+                        <div id="hmNasaRain" style="font-size: 1.55rem; font-weight: 900; color: var(--km-primary); margin: 6px 0;">640 mm</div>
+                        <div id="hmNasaRainSub" style="font-size: 0.78rem; color: var(--km-text-muted);">Monsoon &amp; Rabi Total</div>
+                    </div>
+                    <div class="clean-card" style="padding: 18px;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--km-text-muted);">Solar Irradiance</div>
+                        <div id="hmNasaSolar" style="font-size: 1.55rem; font-weight: 900; color: #d97706; margin: 6px 0;">18.2 MJ/m²</div>
+                        <div style="font-size: 0.78rem; color: var(--km-text-muted);">High PM-KUSUM Potential</div>
+                    </div>
+                    <div class="clean-card" style="padding: 18px;">
+                        <div style="font-size: 0.78rem; font-weight: 700; color: var(--km-text-muted);">Relative Humidity</div>
+                        <div id="hmNasaHum" style="font-size: 1.55rem; font-weight: 900; color: var(--km-primary); margin: 6px 0;">58%</div>
+                        <div id="hmNasaCoords" style="font-size: 0.78rem; color: var(--km-text-muted);">28.98°N, 77.71°E</div>
+                    </div>
+                </div>
+
+                <div class="clean-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <h3 style="font-size: 1.02rem; font-weight: 800; color: var(--km-text-heading); margin: 0;" id="hmNasaChartTitle">District Agroclimatology Profile</h3>
+                        <span class="chart-badge-tag">NASA POWER Series</span>
+                    </div>
+                    <div style="height: 210px; position: relative;">
+                        <canvas id="hmNasaChartCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- =========================================================================
-         7. CONSISTENT FOOTER
+         SECTION 5: KRISHISATHI AI ASSISTANT (Bilingual Chat & Voice)
+         ========================================================================= -->
+    <section class="unified-section" id="krishisathi">
+        <div class="unified-container">
+            <div class="section-header-row">
+                <div>
+                    <span class="section-eyebrow">MODULE 05 • BILINGUAL AI AGRONOMIST</span>
+                    <h2 class="section-main-title">KrishiSathi AI Voice &amp; Chat Assistant</h2>
+                    <p class="section-main-sub">Ask any question about crop care, fertilizers, pest control, or government schemes in English or Hindi.</p>
+                </div>
+                <span class="scheme-tag-pill tag-income">Grounded in ICAR &amp; Official Scheme PDFs</span>
+            </div>
+
+            <div class="clean-card" style="padding: 24px;">
+                <div class="chat-stream-box" id="hmChatStream" style="height: 240px; margin-bottom: 14px;">
+                    <div class="chat-bubble-ai-wrap">
+                        <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
+                        <div class="chat-bubble-ai">
+                            <strong>Welcome to KrishiSathi AI!</strong> Ask me about <strong>crop yield improvement</strong>, <strong>CRI irrigation &amp; fertilizer dosage</strong>, <strong>PM-KISAN / PMFBY eligibility</strong>, or <strong>weather precautions</strong> in English or Hindi (हिंदी).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-quick-chips-row" style="margin-bottom: 12px;">
+                    <button type="button" class="chip-btn hm-chat-chip" data-q="When should I apply first CRI irrigation and Urea in Wheat?">Wheat CRI Irrigation &amp; Urea</button>
+                    <button type="button" class="chip-btn hm-chat-chip" data-q="What are the benefits and documents required for PM-KISAN and PMFBY?">PM-KISAN &amp; PMFBY Benefits</button>
+                    <button type="button" class="chip-btn hm-chat-chip" data-q="How to get 60% subsidy on PM-KUSUM Solar Pump?">PM-KUSUM Solar Pump Subsidy</button>
+                    <button type="button" class="chip-btn hm-chat-chip" data-q="गेहूं की उन्नत किस्में और खाद की मात्रा बताएं">गेहूं की सलाह (हिंदी)</button>
+                </div>
+
+                <form id="hmChatForm" class="chat-input-bar" onsubmit="event.preventDefault();">
+                    <input type="text" id="hmChatInput" class="chat-input-text" placeholder="Type your question in English or Hindi..." required>
+                    <button type="submit" class="btn-chat-send" title="Send Question">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         6. CLEAN FOOTER
          ========================================================================= -->
     <footer class="landing-footer">
         <div class="landing-footer-inner">
@@ -399,66 +698,562 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
                 </span>
                 <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
-                <span>• Western Uttar Pradesh Agricultural Intelligence Platform</span>
+                <span>• All-India Agricultural Decision Support Platform</span>
             </div>
 
             <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
-                <a href="index.html">Home</a>
-                <a href="dashboard.html">Dashboard</a>
-                <a href="forecast.html">Yield Prediction</a>
-                <a href="dashboard.html#advisories">Advisories</a>
-                <a href="schemes.html">Government Schemes</a>
-                <a href="krishisathi.html">KrishiSathi AI</a>
-                <a href="about.html">About</a>
+                <a href="#top">Home</a>
+                <a href="#predict">Yield Prediction</a>
+                <a href="#schemes">Schemes</a>
+                <a href="#insurance">Crop Insurance</a>
+                <a href="#nasa">NASA Weather</a>
+                <a href="#krishisathi">KrishiSathi AI</a>
+                <a href="login.html">Login</a>
             </div>
 
             <div>
-                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> | PMFBY: <strong>14447</strong>
             </div>
         </div>
     </footer>
 
+    <!-- =========================================================================
+         7. UNIFIED INTERACTIVE CONTROLLER FOR ALL MAIN PAGE SECTIONS
+         ========================================================================= -->
     <script>
-        (function() {
-            let lang = localStorage.getItem("km_lang") || "en";
-            const btn = document.getElementById("publicLangBtn");
-            function applyHomeLang() {
-                const isHi = lang === "hi";
-                if (btn) btn.textContent = isHi ? "हिंदी | EN" : "EN | हिंदी";
-                const menuLinks = document.querySelectorAll(".landing-menu a");
-                const navEn = ["Home", "Yield Prediction", "Advisories", "Government Schemes", "KrishiSathi AI", "About"];
-                const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "कृषि सलाह", "सरकारी योजनाएं", "कृषिसाथी AI", "हमारे बारे में"];
-                menuLinks.forEach((a, i) => { if (navEn[i]) a.textContent = isHi ? navHi[i] : navEn[i]; });
+    document.addEventListener("DOMContentLoaded", async () => {
+        let stateDistrictsMap = { "Uttar Pradesh": ["Meerut", "Lucknow", "Varanasi", "Agra", "Kanpur Nagar"] };
+        let supportedStates = ["Uttar Pradesh", "Madhya Pradesh", "Bihar", "Rajasthan", "Punjab", "Haryana"];
+        let allCrops = ["Wheat", "Rice", "Mustard", "Maize", "Gram", "Sugarcane", "Potato"];
 
-                const btnPred = document.getElementById("navBtnPredict");
-                const btnDash = document.getElementById("navBtnDash");
-                if (btnPred) btnPred.textContent = isHi ? "उपज अनुमान" : "Predict Yield";
-                if (btnDash) btnDash.textContent = isHi ? "डैशबोर्ड खोलें" : "Open Dashboard";
-
-                const h1 = document.querySelector(".hero-heading");
-                if (h1) h1.innerHTML = isHi
-                    ? 'समझदार खेती,<br><span class="hero-heading-gold">बेहतर पैदावार।</span>'
-                    : 'Smarter Farming,<br><span class="hero-heading-gold">Better Harvests.</span>';
-
-                const sub = document.querySelector(".hero-subhead");
-                if (sub) sub.textContent = isHi
-                    ? "उत्तर प्रदेश, मध्य प्रदेश, बिहार, राजस्थान, पंजाब और हरियाणा के किसानों के लिए AI-आधारित फसल उपज पूर्वानुमान, व्यक्तिगत कृषि सलाह और 9 प्रमाणित सरकारी योजनाओं का मार्गदर्शन।"
-                    : "AI-powered crop yield forecasting, personalised agronomic advisories, and verified government scheme guidance built for smallholder farmers across Uttar Pradesh, Madhya Pradesh, Bihar, Rajasthan, Punjab, and Haryana.";
-
-                const heroPredSpan = document.querySelector(".btn-hero-predict span");
-                const heroVoiceSpan = document.querySelector(".btn-hero-voice span");
-                if (heroPredSpan) heroPredSpan.textContent = isHi ? "फसल उपज का अनुमान लगाएं" : "Predict Crop Yield";
-                if (heroVoiceSpan) heroVoiceSpan.textContent = isHi ? "कृषिसाथी से बात करें" : "Talk to KrishiSathi";
+        // 1. Load All-India Config
+        try {
+            const res = await fetch("/api/config");
+            if (res.ok) {
+                const cfg = await res.json();
+                if (cfg.state_districts) stateDistrictsMap = cfg.state_districts;
+                if (Array.isArray(cfg.supported_states) && cfg.supported_states.length) supportedStates = cfg.supported_states;
+                if (Array.isArray(cfg.all_india_crops) && cfg.all_india_crops.length) allCrops = cfg.all_india_crops;
             }
-            if (btn) {
-                btn.addEventListener("click", () => {
-                    lang = lang === "hi" ? "en" : "hi";
-                    localStorage.setItem("km_lang", lang);
-                    applyHomeLang();
+        } catch (e) {}
+
+        function populateStates(selectId, defaultState = "Uttar Pradesh") {
+            const el = document.getElementById(selectId);
+            if (!el) return;
+            el.innerHTML = supportedStates.map(s => `<option value="${s}" ${s === defaultState ? "selected" : ""}>${s}</option>`).join("");
+        }
+
+        function populateDistricts(selectId, stateName, defaultDist = "Meerut") {
+            const el = document.getElementById(selectId);
+            if (!el) return;
+            const list = stateDistrictsMap[stateName] || [defaultDist];
+            el.innerHTML = list.map(d => `<option value="${d}" ${d === defaultDist ? "selected" : ""}>${d}</option>`).join("");
+        }
+
+        populateStates("hmState", "Uttar Pradesh");
+        populateDistricts("hmDistrict", "Uttar Pradesh", "Meerut");
+        populateStates("hmSchemeStateSelect", "Uttar Pradesh");
+        populateStates("hmNasaState", "Uttar Pradesh");
+        populateDistricts("hmNasaDistrict", "Uttar Pradesh", "Meerut");
+
+        const hmCropEl = document.getElementById("hmCrop");
+        if (hmCropEl && allCrops.length) {
+            hmCropEl.innerHTML = allCrops.map(c => `<option value="${c}" ${c === "Wheat" ? "selected" : ""}>${c}</option>`).join("");
+        }
+
+        document.getElementById("hmState").addEventListener("change", (e) => {
+            populateDistricts("hmDistrict", e.target.value);
+            runHomePrediction();
+        });
+        document.getElementById("hmNasaState").addEventListener("change", (e) => {
+            populateDistricts("hmNasaDistrict", e.target.value);
+            loadHomeNasa();
+        });
+
+        // 2. Section 1: Yield Prediction
+        document.querySelectorAll(".hm-acre-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".hm-acre-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                document.getElementById("hmAcres").value = btn.getAttribute("data-acres");
+                runHomePrediction();
+            });
+        });
+
+        async function runHomePrediction() {
+            const payload = {
+                state: document.getElementById("hmState").value,
+                district: document.getElementById("hmDistrict").value,
+                crop: document.getElementById("hmCrop").value,
+                season: document.getElementById("hmSeason").value,
+                crop_year: parseInt(document.getElementById("hmYear").value, 10) || 2026,
+                plot_acres: parseFloat(document.getElementById("hmAcres").value) || 2.0,
+                soil_type: document.getElementById("hmSoil").value,
+                irrigation_source: document.getElementById("hmIrrigation").value,
+                sowing_window: document.getElementById("hmSowing").value
+            };
+            try {
+                const res = await fetch("/api/analyze", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
                 });
+                if (!res.ok) return;
+                const data = await res.json();
+                const p = data.prediction || {};
+                const yAc = Number(p.predicted_yield_per_acre || 18.3).toFixed(1);
+                const yHa = Number(p.predicted_yield_q_ha || (yAc * 2.471)).toFixed(1);
+                const yTon = Number(p.predicted_yield_ton_ha || (yHa / 10)).toFixed(2);
+                const totQ = Number(p.total_harvest_quintals || (yAc * payload.plot_acres)).toFixed(2);
+
+                document.getElementById("hmResHeader").textContent = `ESTIMATED YIELD • ${payload.crop.toUpperCase()} (${payload.district.toUpperCase()}, ${payload.state.toUpperCase()})`;
+                document.getElementById("hmYieldAcre").textContent = yAc;
+                document.getElementById("hmYieldHa").textContent = `(${yTon} t/ha • ${yHa} q/ha)`;
+                document.getElementById("hmTonneHa").textContent = `${yTon} t/ha`;
+                document.getElementById("hmTotalHarvest").textContent = `${totQ} Quintals`;
+
+                if (p.confidence_interval_90) {
+                    document.getElementById("hmConfRange").textContent = `${p.confidence_interval_90.lower} – ${p.confidence_interval_90.upper} q/ac`;
+                }
+                if (p.regional_benchmark_mean) {
+                    document.getElementById("hmBaseVal").textContent = `${p.regional_benchmark_mean} q/acre`;
+                }
+                const diff = Number(p.performance_vs_regional_mean_pct || 5.7);
+                document.getElementById("hmBenchBadge").textContent = `${diff >= 0 ? "+" : ""}${diff}% vs District Baseline`;
+
+                if (Array.isArray(data.recommendations) && data.recommendations.length > 0) {
+                    document.getElementById("hmAdvisorySummary").textContent = data.recommendations[0];
+                }
+            } catch (e) {}
+        }
+
+        document.getElementById("homeYieldForm").addEventListener("submit", runHomePrediction);
+        ["hmCrop", "hmSeason", "hmDistrict", "hmSoil", "hmIrrigation", "hmSowing"].forEach(id => {
+            document.getElementById(id).addEventListener("change", runHomePrediction);
+        });
+        runHomePrediction();
+
+        // 3. Section 2: KrishiScheme Intelligence
+        let hmSchemeChart = null;
+        let currentSchemeId = "pm-kisan";
+        let currentOwnKey = "owner";
+
+        const HM_SCHEME_NAME_HI = {
+            "pm-kisan": "प्रधानमंत्री किसान सम्मान निधि (PM-KISAN)",
+            "pmfby": "प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+            "kcc": "किसान क्रेडिट कार्ड योजना (KCC)",
+            "soil-health-card": "मृदा स्वास्थ्य कार्ड योजना (Soil Health Card)",
+            "pmksy": "प्रधानमंत्री कृषि सिंचाई योजना (PMKSY)",
+            "pm-kusum": "प्रधानमंत्री किसान ऊर्जा सुरक्षा (PM-KUSUM)"
+        };
+
+        const HM_SCHEME_BEN_HI = {
+            "pm-kisan": "₹6,000 / वर्ष सीधा बैंक भुगतान (₹2,000 × 3 किस्तें)",
+            "pmfby": "1.5% रबी प्रीमियम पर पूर्ण फसल नुकसान मुआवजा",
+            "kcc": "4% ब्याज पर ₹3.00 लाख तक किसान क्रेडिट कार्ड ऋण",
+            "soil-health-card": "नि:शुल्क 12-पैरामीटर मिट्टी जांच और उर्वरक सलाह",
+            "pmksy": "ड्रिप और स्प्रिंकलर सिंचाई पर 45%–55% सरकारी सब्सिडी",
+            "pm-kusum": "सोलर कृषि पंप पर 60% तक सरकारी अनुदान"
+        };
+
+        async function loadHomeScheme() {
+            const isHi = (localStorage.getItem("km_lang") || "en") === "hi";
+            const st = document.getElementById("hmSchemeStateSelect").value || "Uttar Pradesh";
+            try {
+                const res = await fetch(`/api/schemes/intelligence?scheme_id=${encodeURIComponent(currentSchemeId)}&state=${encodeURIComponent(st)}`);
+                if (!res.ok) return;
+                const data = await res.json();
+                const sc = data.scheme || (data.schemes && data.schemes[0]);
+                if (!sc) return;
+                const nm = sc.national_metrics || {};
+                const statesList = sc.top_beneficiary_states || [];
+                const stRow = statesList.find(r => r.state && r.state.toLowerCase() === st.toLowerCase()) || statesList[0] || {};
+
+                document.getElementById("hmSchemeTitle").textContent = isHi ? (HM_SCHEME_NAME_HI[sc.id] || sc.full_name) : sc.full_name;
+                document.getElementById("hmSchemeFarmers").textContent = nm.actual_beneficiaries_latest_installment || nm.approved_applications || (isHi ? "सत्यापित" : "Verified");
+                document.getElementById("hmSchemeRegSub").textContent = isHi
+                    ? `कुल पंजीकृत: ${nm.registered_farmers || nm.eligible_farmers || "अखिल भारतीय"}`
+                    : `Registered: ${nm.registered_farmers || nm.eligible_farmers || "All-India"}`;
+                document.getElementById("hmSchemeAmount").textContent = nm.total_financial_assistance_distributed || (isHi ? "सत्यापित सहायता" : "Verified Assistance");
+                document.getElementById("hmSchemePerFarmer").textContent = isHi ? (HM_SCHEME_BEN_HI[sc.id] || sc.benefits) : (sc.benefits || "Direct Scheme Benefit");
+                document.getElementById("hmSchemePortalBtn").href = sc.official_website || "https://pmkisan.gov.in";
+
+                const stBen = stRow.beneficiaries_lakh ? (isHi ? `${stRow.beneficiaries_lakh} लाख किसान` : `${stRow.beneficiaries_lakh} Lakh Farmers`)
+                    : (stRow.applications_lakh ? (isHi ? `${stRow.applications_lakh} लाख बीमित` : `${stRow.applications_lakh} Lakh Insured`)
+                    : (stRow.accounts_lakh ? (isHi ? `${stRow.accounts_lakh} लाख KCC खाते` : `${stRow.accounts_lakh} Lakh KCC Accounts`)
+                    : (stRow.cards_lakh ? (isHi ? `${stRow.cards_lakh} लाख कार्ड` : `${stRow.cards_lakh} Lakh Cards`)
+                    : (stRow.area_lakh_ha ? (isHi ? `${stRow.area_lakh_ha} लाख हेक्टेयर` : `${stRow.area_lakh_ha} Lakh Ha`)
+                    : (stRow.pumps_installed ? (isHi ? `${stRow.pumps_installed} सोलर पंप` : `${stRow.pumps_installed} Solar Pumps`) : (isHi ? "सत्यापित" : "Verified"))))));
+                const stAmt = stRow.disbursed_crore ? (isHi ? ` • ₹${stRow.disbursed_crore} करोड़` : ` • ₹${stRow.disbursed_crore} Crore`)
+                    : (stRow.claims_paid_crore ? (isHi ? ` • ₹${stRow.claims_paid_crore} करोड़ क्लेम` : ` • ₹${stRow.claims_paid_crore} Crore Claims`)
+                    : (stRow.credit_crore ? (isHi ? ` • ₹${stRow.credit_crore} करोड़ ऋण` : ` • ₹${stRow.credit_crore} Crore Credit`) : ""));
+
+                document.getElementById("hmSchemeStateLbl").textContent = isHi
+                    ? `${stRow.state || st} में लाभार्थी किसान`
+                    : `${stRow.state || st} Beneficiaries`;
+                document.getElementById("hmSchemeStateVal").textContent = `${stBen}${stAmt}`;
+                document.getElementById("hmSchemeChartTitle").textContent = isHi
+                    ? `${sc.short_name} — राज्य-वार लाभार्थी किसान`
+                    : `${sc.short_name} — State-Wise Beneficiaries`;
+
+                const ctx = document.getElementById("hmSchemeChartCanvas").getContext("2d");
+                if (hmSchemeChart) hmSchemeChart.destroy();
+                hmSchemeChart = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: statesList.map(r => r.state),
+                        datasets: [{
+                            label: sc.short_name,
+                            data: statesList.map(r => r.beneficiaries_lakh || r.applications_lakh || r.accounts_lakh || r.cards_lakh || r.area_lakh_ha || r.pumps_installed || 0),
+                            backgroundColor: "#064E2B",
+                            borderRadius: 6
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                });
+            } catch (e) {}
+        }
+
+        document.querySelectorAll(".hm-scheme-pill").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".hm-scheme-pill").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentSchemeId = btn.getAttribute("data-scheme");
+                loadHomeScheme();
+            });
+        });
+        document.getElementById("hmSchemeStateSelect").addEventListener("change", loadHomeScheme);
+        loadHomeScheme();
+
+        // 4. Section 3: KrishiSuraksha Crop Insurance
+        const OWN_TEXT = {
+            owner: {
+                en: {
+                    badge: "Own Land",
+                    title: "Eligible: 100% Direct PMFBY Claim Payout",
+                    color: "#064E2B",
+                    body: "Provide your Aadhaar Card, Khatauni land record, sowing declaration, and bank passbook. Claims are credited directly to your Aadhaar-linked bank account."
+                },
+                hi: {
+                    badge: "स्वयं की भूमि",
+                    title: "पात्र: 100% सीधा PMFBY फसल बीमा क्लेम भुगतान",
+                    color: "#064E2B",
+                    body: "अपना आधार कार्ड, खतौनी भूमि रिकॉर्ड, बुवाई प्रमाण पत्र और बैंक पासबुक प्रदान करें। क्लेम की राशि सीधे आपके आधार-लिंक्ड बैंक खाते (DBT) में भेजी जाती है।"
+                }
+            },
+            tenant_with_agreement: {
+                en: {
+                    badge: "Tenant (+ NOC)",
+                    title: "Eligible: Tenant / Sharecropper (Bataidar) with Landowner NOC",
+                    color: "#064E2B",
+                    body: "Yes! A farmer cultivating a landowner's land can get PMFBY insurance by submitting the Landowner's Khatauni copy + written consent/NOC or Patwari Cultivator Sowing Certificate. Claim payout goes directly to the cultivator's bank account."
+                },
+                hi: {
+                    badge: "बटाईदार (+ सहमति पत्र)",
+                    title: "पात्र: ज़मीन मालिक की सहमति (NOC) या बुवाई प्रमाण पत्र वाले बटाईदार किसान",
+                    color: "#064E2B",
+                    body: "हाँ! ज़मीन मालिक (Landowner) की भूमि पर खेती करने वाले बटाईदार किसान को मालिक की खतौनी + सहमति पत्र (NOC) या पटवारी बुवाई प्रमाण पत्र जमा करने पर पूरा PMFBY बीमा मिलता है। क्लेम राशि सीधे किसान के बैंक खाते में आती है।"
+                }
+            },
+            tenant_without_agreement: {
+                en: {
+                    badge: "Oral Bataidar",
+                    title: "Action Required: Obtain 1-Season Cultivation Consent or Sowing Certificate",
+                    color: "#b45309",
+                    body: "Without a landowner consent note or village Sarpanch/Patwari Sowing Certificate, portal registration cannot link the plot Khasra number to your name. Obtain a simple 1-season cultivation declaration to enroll."
+                },
+                hi: {
+                    badge: "मौखिक बटाईदार",
+                    title: "आवश्यक कदम: 1-सीजन सहमति पत्र या बुवाई प्रमाण पत्र प्राप्त करें",
+                    color: "#b45309",
+                    body: "बिना ज़मीन मालिक की सहमति या सरपंच/पटवारी बुवाई प्रमाण पत्र के पोर्टल पर खसरा नंबर आपके नाम से लिंक नहीं हो पाता। बीमा लाभ लेने के लिए 1-सीजन का साधारण सहमति पत्र या बुवाई प्रमाण पत्र बनवाएं।"
+                }
+            },
+            joint_family: {
+                en: {
+                    badge: "Joint Family",
+                    title: "Eligible: Cultivating Member on Joint Family Khatauni",
+                    color: "#064E2B",
+                    body: "You can insure your cultivated share (in acres) of a joint family Khatauni by attaching a simple Family Share Declaration and Sowing Certificate at your nearest CSC."
+                },
+                hi: {
+                    badge: "संयुक्त परिवार खतौनी",
+                    title: "पात्र: संयुक्त परिवार की खतौनी पर खेती करने वाले किसान सदस्य",
+                    color: "#064E2B",
+                    body: "आप अपने हिस्से के रकबे (एकड़ में) के लिए परिवार सहमति घोषणा पत्र और बुवाई प्रमाण पत्र संलग्न करके नजदीकी CSC केंद्र से अपना फसल बीमा करवा सकते हैं।"
+                }
             }
-            applyHomeLang();
-        })();
+        };
+
+        function renderHomeOwnGuidance() {
+            const isHi = (localStorage.getItem("km_lang") || "en") === "hi";
+            const group = OWN_TEXT[currentOwnKey] || OWN_TEXT.owner;
+            const info = isHi ? group.hi : group.en;
+            document.getElementById("hmInsModeBadge").textContent = info.badge;
+            document.getElementById("hmInsGuidanceBox").innerHTML = `
+                <div style="font-weight: 800; color: ${info.color}; margin-bottom: 4px;">${info.title}</div>
+                <div>${info.body}</div>
+            `;
+        }
+
+        document.querySelectorAll(".hm-own-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".hm-own-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentOwnKey = btn.getAttribute("data-own") || "owner";
+                renderHomeOwnGuidance();
+            });
+        });
+
+        function updateHomeInsuranceCalc() {
+            const acres = parseFloat(document.getElementById("hmInsAcres").value) || 2.5;
+            const season = document.getElementById("hmInsSeason").value || "Rabi";
+            const ha = Math.max(0.1, acres * 0.404686);
+            const sumInsured = Math.round(ha * 68000);
+            const rate = season === "Rabi" ? 0.015 : (season === "Kharif" ? 0.02 : 0.05);
+            const prem = Math.round(sumInsured * rate);
+            document.getElementById("hmInsSumVal").textContent = `₹${sumInsured.toLocaleString("en-IN")}`;
+            document.getElementById("hmInsPremVal").textContent = `₹${prem.toLocaleString("en-IN")} (${(rate * 100).toFixed(1)}%)`;
+        }
+        document.getElementById("hmInsAcres").addEventListener("input", updateHomeInsuranceCalc);
+        document.getElementById("hmInsSeason").addEventListener("change", updateHomeInsuranceCalc);
+        updateHomeInsuranceCalc();
+
+        // 5. Section 4: NASA Earth & Weather Intelligence
+        let hmNasaChart = null;
+        let hmNasaSeries = [];
+        let hmNasaParam = "all";
+
+        function renderHomeNasaChart() {
+            if (!hmNasaSeries.length) return;
+            const ctx = document.getElementById("hmNasaChartCanvas").getContext("2d");
+            if (hmNasaChart) hmNasaChart.destroy();
+            const labels = hmNasaSeries.map(s => s.period);
+            const datasets = [];
+            if (hmNasaParam === "all" || hmNasaParam === "temp") {
+                datasets.push({ label: "Mean Temp (°C)", data: hmNasaSeries.map(s => s.avg_temp_c), borderColor: "#064E2B", tension: 0.3 });
+                datasets.push({ label: "Max Temp (°C)", data: hmNasaSeries.map(s => s.max_temp_c), borderColor: "#dc2626", tension: 0.3 });
+            }
+            if (hmNasaParam === "rain") {
+                datasets.push({ label: "Rainfall (mm)", data: hmNasaSeries.map(s => s.total_rain_mm), borderColor: "#2563eb", backgroundColor: "rgba(37,99,235,0.15)", fill: true, tension: 0.3 });
+            }
+            if (hmNasaParam === "all" || hmNasaParam === "solar") {
+                datasets.push({ label: "Solar (MJ/m²)", data: hmNasaSeries.map(s => s.avg_solar_mj_m2), borderColor: "#d97706", tension: 0.3 });
+            }
+            hmNasaChart = new Chart(ctx, {
+                type: "line",
+                data: { labels, datasets },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        async function loadHomeNasa() {
+            const st = document.getElementById("hmNasaState").value || "Uttar Pradesh";
+            const dt = document.getElementById("hmNasaDistrict").value || "Meerut";
+            const btn = document.getElementById("btnHmFetchNasa");
+            btn.textContent = "Syncing NASA...";
+            try {
+                const res = await fetch(`/api/nasa/intelligence?state=${encodeURIComponent(st)}&district=${encodeURIComponent(dt)}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const sm = data.summary_metrics || {};
+                    const coords = data.coordinates || {};
+                    document.getElementById("hmNasaZoneBadge").textContent = `Active Zone: ${dt}, ${st}`;
+                    document.getElementById("hmNasaTemp").textContent = `${sm.avg_temp_c || 25.2}°C`;
+                    document.getElementById("hmNasaTempSub").textContent = `Peak Max: ${sm.max_temp_c || 38.0}°C`;
+                    document.getElementById("hmNasaRain").textContent = `${sm.total_rain_mm || 640} mm`;
+                    document.getElementById("hmNasaSolar").textContent = `${sm.avg_solar_mj_m2 || 18.2} MJ/m²`;
+                    document.getElementById("hmNasaHum").textContent = `${sm.avg_humidity_pct || 58}%`;
+                    document.getElementById("hmNasaCoords").textContent = `${coords.latitude || 28.98}°N, ${coords.longitude || 77.71}°E`;
+                    hmNasaSeries = data.monthly_series || [];
+                    renderHomeNasaChart();
+                }
+            } catch (e) {}
+            setTimeout(() => { btn.textContent = "Fetch NASA Satellite Data"; }, 400);
+        }
+
+        document.getElementById("btnHmFetchNasa").addEventListener("click", loadHomeNasa);
+        document.getElementById("hmNasaDistrict").addEventListener("change", loadHomeNasa);
+        document.querySelectorAll(".hm-nasa-param").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".hm-nasa-param").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                hmNasaParam = btn.getAttribute("data-param");
+                renderHomeNasaChart();
+            });
+        });
+        loadHomeNasa();
+
+        // 6. Section 5: KrishiSathi AI Chat
+        const chatStream = document.getElementById("hmChatStream");
+        const chatInput = document.getElementById("hmChatInput");
+
+        async function sendHomeChat(qText) {
+            const q = (qText || "").trim();
+            if (!q) return;
+            chatInput.value = "";
+
+            const uDiv = document.createElement("div");
+            uDiv.className = "chat-bubble-user";
+            uDiv.textContent = q;
+            chatStream.appendChild(uDiv);
+            chatStream.scrollTop = chatStream.scrollHeight;
+
+            try {
+                const res = await fetch("/api/krishisathi/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        query: q,
+                        lang: localStorage.getItem("km_lang") || "en",
+                        context: {
+                            state: document.getElementById("hmState").value,
+                            district: document.getElementById("hmDistrict").value,
+                            crop: document.getElementById("hmCrop").value
+                        }
+                    })
+                });
+                const data = await res.json();
+                const aWrap = document.createElement("div");
+                aWrap.className = "chat-bubble-ai-wrap";
+                const safeAns = String(data.answer || "Verified response unavailable.").replace(/</g, "&lt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+                aWrap.innerHTML = `
+                    <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
+                    <div class="chat-bubble-ai" style="white-space: pre-line;">${safeAns}</div>
+                `;
+                chatStream.appendChild(aWrap);
+                chatStream.scrollTop = chatStream.scrollHeight;
+            } catch (e) {}
+        }
+
+        document.getElementById("hmChatForm").addEventListener("submit", () => sendHomeChat(chatInput.value));
+        document.querySelectorAll(".hm-chat-chip").forEach(chip => {
+            chip.addEventListener("click", () => sendHomeChat(chip.getAttribute("data-q")));
+        });
+
+        // Language Toggle (Full English <-> Hindi Switch for Schemes & Insurance + Main Page)
+        const HOME_I18N = {
+            en: {
+                hm_sch_eyebrow: "MODULE 02 • GOVERNMENT SCHEME IMPACT",
+                hm_sch_title: "KrishiScheme — Beneficiaries & Financial Amount Finder",
+                hm_sch_sub: "Select any scheme below to see how many existing farmers benefited and total ₹ amount distributed.",
+                hm_sch_badge: "6 Central Schemes • Verified Data",
+                hm_pill_s1: "1. PM-KISAN (₹6,000/yr)",
+                hm_pill_s2: "2. PMFBY Crop Insurance",
+                hm_pill_s3: "3. KCC (4% Interest Loan)",
+                hm_pill_s4: "4. Soil Health Card",
+                hm_pill_s5: "5. PMKSY Micro-Irrigation",
+                hm_pill_s6: "6. PM-KUSUM Solar Pump",
+                hm_sch_spot_tag: "VERIFIED BENEFICIARIES & DISBURSED AMOUNT",
+                hm_sch_portal: "Official Portal ↗",
+                hm_sch_lbl_farmers: "Existing Farmers Benefited",
+                hm_sch_lbl_amt: "Total Amount Distributed",
+                hm_sch_ch_badge: "Official Ministry Series",
+                hm_ins_eyebrow: "MODULE 03 • PMFBY CROP INSURANCE",
+                hm_ins_title: "KrishiSuraksha — Landowner & Tenant Insurance Eligibility",
+                hm_ins_sub: "Verify whether a farmer cultivating a landowner's land (Bataidar / Tenant) or own land can claim PMFBY insurance.",
+                hm_ins_helpline: "Toll-Free Claim Helpline: 14447",
+                hm_ins_q: "Can a Farmer Get Insurance on a Landowner's Land?",
+                hm_own1_t: "1. Own Land (Landowner)",
+                hm_own1_s: "Khatauni in your own name",
+                hm_own2_t: "2. Landowner's Land (+ NOC)",
+                hm_own2_s: "Tenant with NOC / Sowing Cert",
+                hm_own3_t: "3. Oral Bataidar (No Proof)",
+                hm_own3_s: "Oral tenant without agreement",
+                hm_own4_t: "4. Joint Family Khatauni",
+                hm_own4_s: "Shared ancestral family land",
+                hm_ins_72h_note: "Report localized hailstorm or rain damage within 72 hours.",
+                hm_ins_calc_title: "PMFBY Sum Insured & Premium Calculator",
+                hm_ins_calc_badge: "1.5% Rabi • 2% Kharif",
+                hm_ins_lbl_acres: "Land Area (Acres)",
+                hm_ins_lbl_season: "Season",
+                hm_opt_rabi: "Rabi (1.5%)",
+                hm_opt_kharif: "Kharif (2.0%)",
+                hm_opt_comm: "Commercial (5%)",
+                hm_ins_lbl_peril: "Damage Cause",
+                hm_peril_hail: "Hailstorm",
+                hm_peril_rain: "Unseasonal Rain",
+                hm_peril_drought: "Drought",
+                hm_ins_sum_lbl: "Estimated Sum Insured (Cover)",
+                hm_ins_sum_sub: "Full crop loss protection",
+                hm_ins_prem_lbl: "Farmer Premium Share",
+                hm_ins_prem_sub: "Balance subsidized by Govt",
+                hm_ins_cce_note: "Note: Final claim settlement is determined by official Government Crop Cutting Experiments (CCE) and insurer verification."
+            },
+            hi: {
+                hm_sch_eyebrow: "मॉड्यूल 02 • सरकारी योजना प्रभाव विश्लेषण",
+                hm_sch_title: "कृषि-योजना — लाभार्थी किसान एवं कुल वितरित राशि विवरण",
+                hm_sch_sub: "नीचे किसी भी योजना को चुनें और जानें कि अब तक कितने किसानों को लाभ मिला और कुल कितनी राशि (₹) वितरित की गई।",
+                hm_sch_badge: "6 प्रमुख केंद्रीय योजनाएं • सत्यापित डेटा",
+                hm_pill_s1: "1. पीएम-किसान (₹6,000/वर्ष)",
+                hm_pill_s2: "2. पीएम फसल बीमा (PMFBY)",
+                hm_pill_s3: "3. किसान क्रेडिट कार्ड (4% ऋण)",
+                hm_pill_s4: "4. मृदा स्वास्थ्य कार्ड",
+                hm_pill_s5: "5. पीएम कृषि सिंचाई (PMKSY)",
+                hm_pill_s6: "6. पीएम-कुसुम सोलर पंप",
+                hm_sch_spot_tag: "सत्यापित लाभार्थी किसान एवं कुल वितरित राशि",
+                hm_sch_portal: "आधिकारिक पोर्टल ↗",
+                hm_sch_lbl_farmers: "कुल लाभान्वित किसान",
+                hm_sch_lbl_amt: "कुल वितरित वित्तीय राशि",
+                hm_sch_ch_badge: "आधिकारिक मंत्रालय श्रृंखला",
+                hm_ins_eyebrow: "मॉड्यूल 03 • प्रधानमंत्री फसल बीमा योजना (PMFBY)",
+                hm_ins_title: "कृषिसुरक्षा — भूमि मालिक (Landowner) एवं बटाईदार किसान बीमा पात्रता",
+                hm_ins_sub: "जांचें कि ज़मीन मालिक की भूमि पर खेती करने वाले बटाईदार किसान या स्वयं की भूमि वाले किसान को PMFBY बीमा क्लेम कैसे मिलेगा।",
+                hm_ins_helpline: "टोल-फ्री क्लेम हेल्पलाइन: 14447",
+                hm_ins_q: "क्या ज़मीन मालिक (Landowner) की भूमि पर किसान को बीमा मिल सकता है?",
+                hm_own1_t: "1. स्वयं की भूमि (Landowner)",
+                hm_own1_s: "आपके अपने नाम की खतौनी",
+                hm_own2_t: "2. ज़मीन मालिक की भूमि (+ सहमति पत्र)",
+                hm_own2_s: "मालिक की NOC / बुवाई प्रमाण पत्र सहित",
+                hm_own3_t: "3. मौखिक बटाईदार (बिना प्रमाण)",
+                hm_own3_s: "बिना लिखित समझौते के काश्तकार",
+                hm_own4_t: "4. संयुक्त परिवार की खतौनी",
+                hm_own4_s: "परिवार के संयुक्त नाम की भूमि",
+                hm_ins_72h_note: "ओलावृष्टि या बेमौसम बारिश से नुकसान की सूचना 72 घंटे के भीतर दें।",
+                hm_ins_calc_title: "PMFBY बीमित राशि और किसान प्रीमियम कैलकुलेटर",
+                hm_ins_calc_badge: "1.5% रबी • 2% खरीफ",
+                hm_ins_lbl_acres: "भूमि का क्षेत्रफल (एकड़)",
+                hm_ins_lbl_season: "फसल सीजन",
+                hm_opt_rabi: "रबी (1.5% प्रीमियम)",
+                hm_opt_kharif: "खरीफ (2.0% प्रीमियम)",
+                hm_opt_comm: "बागवानी / वाणिज्यिक (5%)",
+                hm_ins_lbl_peril: "नुकसान का कारण",
+                hm_peril_hail: "ओलावृष्टि (Hailstorm)",
+                hm_peril_rain: "बेमौसम बारिश",
+                hm_peril_drought: "सूखा (Drought)",
+                hm_ins_sum_lbl: "अनुमानित बीमित राशि (Sum Insured)",
+                hm_ins_sum_sub: "पूर्ण फसल नुकसान सुरक्षा कवर",
+                hm_ins_prem_lbl: "किसान प्रीमियम अंश",
+                hm_ins_prem_sub: "शेष प्रीमियम सरकार द्वारा अनुदानित",
+                hm_ins_cce_note: "नोट: अंतिम क्लेम भुगतान सरकारी क्रॉप कटिंग प्रयोग (CCE) और बीमा कंपनी के सत्यापन द्वारा निर्धारित किया जाता है।"
+            }
+        };
+
+        let lang = localStorage.getItem("km_lang") || "en";
+        const langBtn = document.getElementById("publicLangBtn");
+        function applyLang() {
+            const isHi = lang === "hi";
+            langBtn.textContent = isHi ? "हिंदी | EN" : "EN | हिंदी";
+            const navEn = ["Home", "Yield Prediction", "Schemes", "Crop Insurance", "NASA Weather", "KrishiSathi AI"];
+            const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "सरकारी योजनाएं", "फसल बीमा", "नासा मौसम", "कृषिसाथी AI"];
+            document.querySelectorAll(".landing-menu a").forEach((a, i) => {
+                if (navEn[i]) a.textContent = isHi ? navHi[i] : navEn[i];
+            });
+            const dict = HOME_I18N[isHi ? "hi" : "en"];
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const k = el.getAttribute("data-i18n");
+                if (dict[k]) el.textContent = dict[k];
+            });
+            renderHomeOwnGuidance();
+            loadHomeScheme();
+        }
+        langBtn.addEventListener("click", () => {
+            lang = lang === "hi" ? "en" : "hi";
+            localStorage.setItem("km_lang", lang);
+            applyLang();
+        });
+        applyLang();
+    });
     </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 """FastAPI application for KrishiMitra AI backend serving REST APIs and the custom HTML/CSS/JS frontend."""
 
 import json
+import os
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from fastapi import FastAPI, HTTPException, Request
@@ -29,11 +30,26 @@ from src.advisory.agronomic_rules import AgronomicAdvisor, PersonalisedAdvisoryE
 from src.schemes.eligibility_engine import SchemeEligibilityEngine
 from src.krishisathi.voice_agent import KrishiSathiAgent
 from src.weather.live_weather import fetch_open_meteo_weather
+from src.api.platform_services import (
+    ensure_platform_tables,
+    register_user,
+    login_user,
+    get_session_user,
+    logout_user,
+    create_password_reset_token,
+    reset_user_password,
+    list_all_users,
+    get_krishischeme_intelligence,
+    add_admin_scheme_record,
+    assess_pmfby_claim_eligibility,
+    get_insurance_history,
+    fetch_nasa_power_intelligence,
+)
 
 app = FastAPI(
     title="KrishiMitra AI API",
-    description="Plot-level yield forecasting, precision advisory, and scheme delivery with KrishiSathi voice assistant",
-    version="1.0.0",
+    description="All-India AI-Powered Agricultural Intelligence and Decision Support Platform",
+    version="2.0.0",
 )
 
 app.add_middleware(
@@ -44,8 +60,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.middleware("http")
+async def disable_static_cache_middleware(request: Request, call_next):
+    path = request.url.path.lower()
+    if path.endswith((".html", ".js", ".css")) or path in ("/", "/dashboard", "/forecast", "/schemes", "/krishisathi", "/about", "/login"):
+        # Remove conditional headers so StaticFiles never returns 304 stale cache
+        request.scope["headers"] = [
+            (k, v) for (k, v) in request.scope.get("headers", [])
+            if k.lower() not in (b"if-none-match", b"if-modified-since")
+        ]
+        response = await call_next(request)
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
+    return await call_next(request)
+
 # Initialize engines and database
 init_db()
+ensure_platform_tables()
 predictor = YieldPredictor()
 schemes_engine = SchemeEligibilityEngine()
 voice_agent = KrishiSathiAgent()
@@ -56,16 +90,22 @@ FRONTEND_DIR = BASE_DIR / "frontend"
 class FarmerPlotInput(BaseModel):
     crop: str = Field(default="Wheat", example="Wheat")
     district: str = Field(default="Meerut", example="Meerut")
-    plot_acres: float = Field(default=2.0, ge=0.1, le=50.0, example=2.0)
+    plot_acres: float = Field(default=2.0, ge=0.1, le=500.0, example=2.0)
     soil_type: str = Field(default="Alluvial (Sandy Loam)", example="Alluvial (Sandy Loam)")
     irrigation_source: str = Field(default="Tube well / Borewell", example="Tube well / Borewell")
     sowing_window: str = Field(default="Timely Sown (Nov 01 - Nov 20)", example="Timely Sown (Nov 01 - Nov 20)")
-    seasonal_rainfall_mm: float = Field(default=65.0, ge=0.0, le=500.0)
-    march_max_temp_c: float = Field(default=31.5, ge=15.0, le=48.0)
-    nitrogen_kg_acre: float = Field(default=48.0, ge=0.0, le=150.0)
-    phosphorus_kg_acre: float = Field(default=22.0, ge=0.0, le=100.0)
-    potassium_kg_acre: float = Field(default=15.0, ge=0.0, le=80.0)
+    seasonal_rainfall_mm: float = Field(default=65.0, ge=0.0, le=5000.0)
+    march_max_temp_c: float = Field(default=31.5, ge=5.0, le=52.0)
+    nitrogen_kg_acre: float = Field(default=48.0, ge=0.0, le=300.0)
+    phosphorus_kg_acre: float = Field(default=22.0, ge=0.0, le=200.0)
+    potassium_kg_acre: float = Field(default=15.0, ge=0.0, le=250.0)
     state: str = Field(default="Uttar Pradesh")
+    season: Optional[str] = Field(default=None, example="Rabi")
+    crop_year: Optional[int] = Field(default=None, example=2025)
+    all_india_mode: Optional[bool] = Field(default=False)
+    soil_ph: Optional[float] = Field(default=None)
+    organic_carbon_pct: Optional[float] = Field(default=None)
+    humidity_pct: Optional[float] = Field(default=None)
     growth_stage: Optional[str] = Field(default=None, example="Tillering")
     stage: Optional[str] = None
     sowing_date: Optional[str] = None
@@ -132,8 +172,10 @@ def health_check():
 
 
 @app.get("/api/config")
+@app.get("/api/metadata")
+@app.get("/api/options")
 def get_config():
-    """Returns available pilot choices and baseline defaults for the frontend."""
+    """Returns available pilot & All-India choices and baseline defaults for the frontend."""
     return {
         "state": CONFIG.state,
         "supported_states": CONFIG.supported_states,
@@ -141,8 +183,12 @@ def get_config():
         "state_yield_benchmarks": CONFIG.state_yield_benchmarks,
         "region": CONFIG.region,
         "season": CONFIG.season,
+        "seasons": CONFIG.seasons,
         "districts": CONFIG.districts,
         "crops": CONFIG.crops,
+        "all_india_crops": CONFIG.all_india_crops,
+        "district_crops": CONFIG.district_crops,
+        "crop_seasons": CONFIG.crop_seasons,
         "soil_types": CONFIG.soil_types,
         "irrigation_sources": CONFIG.irrigation_sources,
         "sowing_windows": [
@@ -152,6 +198,18 @@ def get_config():
         ],
         "yield_unit": CONFIG.yield_unit,
         "baseline_benchmarks": CONFIG.baseline_yield_benchmarks,
+        "supabase_url": os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL") or "",
+        "supabase_anon_key": os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or "",
+    }
+
+
+@app.get("/api/auth/supabase-config")
+def get_supabase_config():
+    """Returns public Supabase project URL and anon key for client-side Supabase Auth initialization."""
+    return {
+        "status": "success",
+        "supabase_url": os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL") or os.getenv("NEXT_PUBLIC_SUPABASE_URL") or "",
+        "supabase_anon_key": os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY") or "",
     }
 
 
@@ -502,6 +560,152 @@ def get_schemes():
     return []
 
 
+# =========================================================================
+# NEW ALL-INDIA PLATFORM ENDPOINTS (Auth, Coverage, Scheme Intel, Suraksha, NASA)
+# =========================================================================
+
+@app.get("/api/dataset-coverage")
+def get_dataset_coverage():
+    """Returns comprehensive All-India dataset coverage report and dynamic dropdown metadata."""
+    cov_path = BASE_DIR / "models" / "all_india_coverage_report.json"
+    eval_path = BASE_DIR / "models" / "all_india_evaluation_report.json"
+    cov_data = {}
+    eval_data = {}
+    if cov_path.exists():
+        with open(cov_path, "r", encoding="utf-8") as f:
+            cov_data = json.load(f)
+    if eval_path.exists():
+        with open(eval_path, "r", encoding="utf-8") as f:
+            eval_data = json.load(f)
+    return {
+        "status": "success",
+        "coverage": cov_data,
+        "evaluation": eval_data,
+        "supported_states": CONFIG.supported_states,
+        "state_districts": CONFIG.state_districts,
+        "all_india_crops": CONFIG.all_india_crops,
+        "seasons": CONFIG.seasons,
+        "district_crops": CONFIG.district_crops,
+        "crop_seasons": CONFIG.crop_seasons,
+    }
+
+
+@app.post("/api/auth/register")
+async def api_auth_register(request: Request):
+    data = await request.json()
+    res = register_user(data)
+    if res.get("status") == "error":
+        return JSONResponse(status_code=400, content=res)
+    return res
+
+
+@app.post("/api/auth/login")
+async def api_auth_login(request: Request):
+    data = await request.json()
+    res = login_user(data.get("email") or data.get("identifier") or "", data.get("password", ""))
+    if res.get("status") == "error":
+        return JSONResponse(status_code=401, content=res)
+    return res
+
+
+@app.post("/api/auth/logout")
+async def api_auth_logout(request: Request):
+    token = request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    if not token:
+        try:
+            body = await request.json()
+            token = body.get("token", "")
+        except Exception:
+            pass
+    return logout_user(token)
+
+
+@app.get("/api/auth/me")
+def api_auth_me(request: Request, token: Optional[str] = None):
+    auth_token = token or request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    user = get_session_user(auth_token)
+    if not user:
+        return JSONResponse(status_code=401, content={"status": "error", "message": "Not authenticated or session expired."})
+    return {"status": "success", "user": user}
+
+
+@app.post("/api/auth/forgot-password")
+async def api_auth_forgot_password(request: Request):
+    data = await request.json()
+    return create_password_reset_token(data.get("email") or data.get("identifier") or "")
+
+
+@app.post("/api/auth/reset-password")
+async def api_auth_reset_password(request: Request):
+    data = await request.json()
+    res = reset_user_password(data.get("token") or data.get("reset_token") or "", data.get("new_password", ""))
+    if res.get("status") == "error":
+        return JSONResponse(status_code=400, content=res)
+    return res
+
+
+@app.get("/api/admin/users")
+def api_admin_users(request: Request, token: Optional[str] = None):
+    auth_token = token or request.headers.get("Authorization", "").replace("Bearer ", "").strip()
+    user = get_session_user(auth_token)
+    if user and user.get("role") != "admin":
+        return JSONResponse(status_code=403, content={"status": "error", "message": "Administrator role required."})
+    return {"status": "success", "users": list_all_users()}
+
+
+@app.get("/api/schemes/intelligence")
+def api_schemes_intelligence(
+    scheme_id: Optional[str] = None,
+    state: Optional[str] = None,
+    district: Optional[str] = None
+):
+    """Returns KrishiScheme Intelligence historical beneficiary & financial impact analytics."""
+    return get_krishischeme_intelligence(scheme_id=scheme_id, state=state, district=district)
+
+
+@app.post("/api/schemes/intelligence/upload")
+async def api_schemes_intelligence_upload(request: Request):
+    """Allows administrators to upload verified government scheme impact records."""
+    data = await request.json()
+    res = add_admin_scheme_record(data)
+    if res.get("status") == "error":
+        return JSONResponse(status_code=400, content=res)
+    return res
+
+
+@app.post("/api/insurance/assess")
+async def api_insurance_assess(request: Request):
+    """KrishiSuraksha AI Crop Insurance (PMFBY) Eligibility & 72-Hour Claim Assessment."""
+    data = await request.json()
+    return assess_pmfby_claim_eligibility(data)
+
+
+@app.get("/api/insurance/history")
+def api_insurance_history(user_id: Optional[str] = None, state: Optional[str] = None):
+    """Returns recorded KrishiSuraksha crop insurance assessments."""
+    return {"status": "success", "records": get_insurance_history(user_id=user_id, state=state)}
+
+
+@app.get("/api/nasa/intelligence")
+def api_nasa_intelligence(
+    state: str = "Uttar Pradesh",
+    district: str = "Meerut",
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    lat: Optional[float] = None,
+    lon: Optional[float] = None
+):
+    """Returns NASA POWER Agroclimatology & NASA GIBS Satellite Earth Intelligence."""
+    return fetch_nasa_power_intelligence(
+        state=state,
+        district=district,
+        start_date=start_date,
+        end_date=end_date,
+        lat=lat,
+        lon=lon,
+    )
+
+
 @app.get("/forecast")
 def serve_forecast_page():
     return FileResponse(FRONTEND_DIR / "forecast.html")
@@ -525,6 +729,17 @@ def serve_about_page():
 @app.get("/dashboard")
 def serve_dashboard_page():
     return FileResponse(FRONTEND_DIR / "dashboard.html")
+
+
+@app.get("/")
+def serve_root_entry():
+    """Shows the Login page first whenever a visitor opens the website root."""
+    return FileResponse(FRONTEND_DIR / "login.html")
+
+
+@app.get("/login")
+def serve_login_page():
+    return FileResponse(FRONTEND_DIR / "login.html")
 
 
 # Mount static files for HTML, CSS, JS, images

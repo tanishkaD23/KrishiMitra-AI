@@ -7,135 +7,171 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="krishimitra_pro.css?v=2.1">
+    <link rel="stylesheet" href="krishimitra_pro.css?v=5.0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase_config.js"></script>
+    <script src="supabase_auth.js"></script>
 </head>
 <body>
 
     <!-- =========================================================================
-         1. CONSISTENT TOP NAVBAR
+         1. CONSISTENT TOP NAVBAR (Fits cleanly on all laptop & desktop screens)
          ========================================================================= -->
     <nav class="landing-nav" aria-label="Main Navigation">
-        <div class="landing-nav-inner">
+        <div class="landing-nav-inner" style="max-width: 1340px; padding: 12px 24px; gap: 16px;">
             <a href="index.html" class="brand-logo" aria-label="KrishiMitra AI Home" style="white-space: nowrap; flex-shrink: 0;">
                 <span class="brand-logo-sprout" style="flex-shrink: 0;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9zm0 15c-3 0-5.5-2.2-6-5 .5 0 2 .1 3.5-1 1.5-1.1 2.2-2.8 2.5-4 0 0 .5 2 2 3.5 1.5 1.5 3 1.5 4 1.5-.5 2.8-3 5-6 5z"/></svg>
                 </span>
                 <span style="white-space: nowrap;">KrishiMitra AI</span>
             </a>
 
-            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px;">
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="index.html" style="white-space: nowrap;">Home</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="forecast.html" class="active" style="white-space: nowrap;">Yield Prediction</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="dashboard.html#advisories" style="white-space: nowrap;">Advisories</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="schemes.html" style="white-space: nowrap;">Government Schemes</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="krishisathi.html" style="white-space: nowrap;">KrishiSathi AI</a></li>
-                <li style="white-space: nowrap; flex-shrink: 0;"><a href="about.html" style="white-space: nowrap;">About</a></li>
+            <ul class="landing-menu" style="flex-wrap: nowrap; white-space: nowrap; gap: 18px; font-size: 0.9rem;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="forecast.html" class="active">Yield Prediction</a></li>
+                <li><a href="dashboard.html#scheme-intel">Schemes</a></li>
+                <li><a href="dashboard.html#suraksha">Crop Insurance</a></li>
+                <li><a href="dashboard.html#nasa">NASA Weather</a></li>
+                <li><a href="krishisathi.html">KrishiSathi AI</a></li>
             </ul>
 
             <div class="landing-actions" style="flex-wrap: nowrap; white-space: nowrap; flex-shrink: 0; gap: 10px;">
-                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 8px 14px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0;">EN | हिंदी</button>
-                <a href="krishisathi.html" class="btn-outline-login" id="navAskSathi" style="white-space: nowrap; flex-shrink: 0;">Ask KrishiSathi</a>
-                <a href="dashboard.html" class="btn-solid-start" style="white-space: nowrap; flex-shrink: 0;">
-                    <span id="navOpenDash" style="white-space: nowrap;">Open Dashboard</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <button type="button" class="btn-outline-login" id="publicLangBtn" style="padding: 7px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;">EN | हिंदी</button>
+                <a href="login.html?switch=1" class="btn-outline-login" style="padding: 7px 16px; font-size: 0.84rem; font-weight: 800; background: #FFF7D6; border: 1.5px solid #D97706; color: #064E2B;">
+                    Switch Role
+                </a>
+                <button type="button" class="btn-outline-login" data-km-logout style="padding: 7px 14px; font-size: 0.84rem; font-weight: 800; cursor: pointer;">
+                    Logout
+                </button>
+                <a href="dashboard.html" class="btn-solid-start" style="padding: 8px 16px; font-size: 0.84rem;">
+                    <span id="navOpenDash">Dashboard</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </a>
             </div>
         </div>
     </nav>
 
     <!-- =========================================================================
-         2. PAGE HERO BANNER
+         2. COMPACT PROFESSIONAL PAGE HEADER
          ========================================================================= -->
-    <header class="page-hero-banner">
-        <div class="page-hero-inner">
+    <header class="page-hero-banner" style="padding: 28px 24px;">
+        <div class="page-hero-inner" style="max-width: 1320px;">
             <div>
-                <div class="page-hero-tag">
-                    <span>🌾</span>
-                    <span>Plot-Level Rabi Harvest Intelligence</span>
+                <div class="page-hero-tag" style="margin-bottom: 8px;">
+                    <span>ALL-INDIA PLOT HARVEST MODELLING</span>
                 </div>
-                <h1 class="page-hero-title">Crop Yield Prediction &amp; Plot Analysis</h1>
-                <p class="page-hero-sub">
-                    Configure your plot parameters, soil nutrition, irrigation source, and sowing window to generate real-time yield predictions in <strong>q/acre</strong> and <strong>q/ha</strong> alongside tailored agronomic recommendations.
+                <h1 class="page-hero-title" style="font-size: 1.95rem; margin-bottom: 6px;">Crop Yield Prediction &amp; Plot Analysis</h1>
+                <p class="page-hero-sub" style="font-size: 0.94rem; max-width: 720px;">
+                    Select your state, district, crop, and field management parameters to compute expected yield in <strong>quintals/acre</strong> and <strong>tonnes/hectare</strong> with ICAR-aligned agronomic guidance.
                 </p>
             </div>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <a href="dashboard.html#predict" class="btn-hero-voice" style="padding: 10px 20px; font-size: 0.9rem;">
-                    <span>Switch to Full Dashboard View →</span>
+            <div>
+                <a href="dashboard.html#predict" class="btn-hero-voice" style="padding: 9px 18px; font-size: 0.85rem;">
+                    <span>Open in Dashboard View →</span>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- =========================================================================
-         3. MAIN YIELD PREDICTION WORKSPACE
+         3. MAIN YIELD PREDICTION WORKSPACE (Even, Symmetrical 2-Column + Full-Width Row)
          ========================================================================= -->
-    <main class="standalone-main">
-        <div class="predict-screen-grid" style="grid-template-columns: 1.08fr 0.92fr; align-items: start;">
+    <main class="standalone-main" style="max-width: 1320px; padding: 28px 24px 60px;">
+        <div class="predict-screen-grid" style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: stretch;">
 
-            <!-- LEFT COLUMN: PLOT CONFIGURATION FORM -->
-            <div class="predict-form-card">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--km-border);">
+            <!-- LEFT COLUMN: CLEAN PLOT CONFIGURATION CARD (Stretches to match right column) -->
+            <div class="predict-form-card" style="padding: 24px; height: 100%; display: flex; flex-direction: column;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--km-border);">
                     <div>
-                        <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--km-text-heading);">Configure Plot Parameters</h2>
-                        <p style="font-size: 0.86rem; color: var(--km-text-muted);">Calibrated across UP, MP, Bihar, Rajasthan, Punjab &amp; Haryana</p>
+                        <h2 style="font-size: 1.2rem; font-weight: 800; color: var(--km-text-heading); margin: 0;">Plot Configuration</h2>
+                        <p style="font-size: 0.82rem; color: var(--km-text-muted); margin-top: 2px;">Calibrated across 35 States &amp; UTs, 736 Districts, and 72 Crops</p>
                     </div>
-                    <span class="chart-badge-tag">6 States • Rabi Season</span>
+                    <span class="chart-badge-tag" id="forecastCoverageBadge">35 States • 736 Districts</span>
+                </div>
+
+                <!-- Farm & Plot Visual Banner (Fills top of Plot Configuration with real agricultural plot imagery) -->
+                <div style="position: relative; border-radius: 14px; overflow: hidden; height: 138px; margin-bottom: 18px; border: 1px solid rgba(6, 78, 43, 0.16); box-shadow: 0 6px 18px rgba(6, 78, 43, 0.08);">
+                    <img src="images/field_wheat.jpg" alt="Irrigated Agricultural Farm Plot" onerror="this.src='https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=80'" style="width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 57, 32, 0.84) 0%, rgba(6, 78, 43, 0.45) 55%, rgba(6, 78, 43, 0.15) 100%); display: flex; align-items: flex-end; justify-content: space-between; padding: 14px 16px; gap: 12px;">
+                        <div style="color: #fff;">
+                            <span style="display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(255, 201, 40, 0.22); color: #fde047; border: 1px solid rgba(255, 201, 40, 0.45); padding: 3px 9px; border-radius: 999px; margin-bottom: 5px;">
+                                Satellite &amp; Soil Calibrated Plot View
+                            </span>
+                            <div style="font-size: 0.96rem; font-weight: 800; letter-spacing: -0.01em;">Irrigated Agricultural Plot &amp; Canopy Health</div>
+                            <div style="font-size: 0.76rem; opacity: 0.9;">District Soil NPK • Seasonal Rainfall • Crop Growth Modelling</div>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.16); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 10px; padding: 7px 11px; text-align: right; color: #fff; flex-shrink: 0;">
+                            <div style="font-size: 0.68rem; opacity: 0.85; text-transform: uppercase; font-weight: 700;">Plot Unit</div>
+                            <div style="font-size: 0.84rem; font-weight: 900; color: #86efac;">1 Ha = 2.47 Acres</div>
+                        </div>
+                    </div>
                 </div>
 
                 <form id="fullPlotForm" action="/api/analyze" method="POST" novalidate>
-                    <!-- 1. Crop Selection (Supports all major Rabi crops across 6 states) -->
-                    <fieldset style="border: none; margin-bottom: 20px;">
-                        <legend style="font-size: 0.88rem; font-weight: 700; color: var(--km-text-heading); margin-bottom: 8px;">1. Select Rabi Crop <span style="color: var(--km-danger);">*</span></legend>
-                        <div class="crop-radio-grid" style="margin-bottom: 12px;">
-                            <label class="crop-radio-card crop-radio-btn active" for="cropWheat">
-                                <input type="radio" id="cropWheat" name="crop" value="Wheat" checked>
-                                <div>
-                                    <div style="font-size: 0.98rem; font-weight: 800;">🌾 Wheat (Rabi)</div>
-                                    <div style="font-size: 0.78rem; color: var(--km-text-muted); font-weight: 500;">HD-2967 / HD-3086 / DBW-187</div>
-                                </div>
-                            </label>
-                            <label class="crop-radio-card crop-radio-btn" for="cropMustard">
-                                <input type="radio" id="cropMustard" name="crop" value="Mustard">
-                                <div>
-                                    <div style="font-size: 0.98rem; font-weight: 800;">🌼 Mustard (Rabi)</div>
-                                    <div style="font-size: 0.78rem; color: var(--km-text-muted); font-weight: 500;">Pusa Bold / Giriraj (DRMRIJ-31)</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="form-group-pro" style="margin-top: 8px;">
-                            <label for="forecastCropSelect" style="font-size: 0.82rem; color: var(--km-text-muted);">Or Choose from All Supported Rabi Crops (UP, MP, Bihar, Rajasthan, Punjab, Haryana):</label>
+                    <!-- Hidden radio inputs preserved for script compatibility -->
+                    <div style="display: none;">
+                        <input type="radio" id="cropWheat" name="crop" value="Wheat" checked>
+                        <input type="radio" id="cropMustard" name="crop" value="Mustard">
+                    </div>
+
+                    <!-- ROW 1: Crop, Season & Crop Year (Clean 3-Column Row) -->
+                    <div class="predict-form-row" style="grid-template-columns: 1.4fr 1fr 0.8fr; gap: 14px; margin-bottom: 16px;">
+                        <div class="form-group-pro">
+                            <label for="forecastCropSelect">Crop Selection <span style="color: var(--km-danger);">*</span></label>
                             <select id="forecastCropSelect" class="form-select-pro">
-                                <option value="Wheat" selected>Wheat / गेहूं (Rabi)</option>
-                                <option value="Mustard">Mustard / सरसों (Rabi)</option>
-                                <option value="Gram">Gram / चना (Rabi)</option>
-                                <option value="Barley">Barley / जौ (Rabi)</option>
-                                <option value="Masoor">Masoor / मसूर (Rabi)</option>
-                                <option value="Maize">Maize / मक्का (Rabi)</option>
-                                <option value="Peas & beans (Pulses)">Peas &amp; Beans / मटर (Rabi)</option>
-                                <option value="Potato">Potato / आलू (Rabi)</option>
-                                <option value="Onion">Onion / प्याज (Rabi)</option>
-                                <option value="Linseed">Linseed / अलसी (Rabi)</option>
+                                <option value="Wheat" selected>Wheat</option>
+                                <option value="Rice">Rice</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Gram">Gram (Chana)</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Cotton(lint)">Cotton</option>
+                                <option value="Soyabean">Soyabean</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Potato">Potato</option>
+                                <option value="Onion">Onion</option>
+                                <option value="Barley">Barley</option>
+                                <option value="Masoor">Masoor (Lentil)</option>
+                                <option value="Bajra">Bajra</option>
+                                <option value="Jowar">Jowar</option>
+                                <option value="Arhar/Tur">Arhar / Tur</option>
+                                <option value="Peas & beans (Pulses)">Peas &amp; Beans</option>
+                                <option value="Linseed">Linseed</option>
                             </select>
                         </div>
-                    </fieldset>
-
-                    <!-- 2. State, District & Plot Area -->
-                    <div class="predict-form-row" style="grid-template-columns: 1fr 1fr 1fr;">
                         <div class="form-group-pro">
-                            <label for="stateSelect">2. State <span style="color: var(--km-danger);">*</span></label>
+                            <label for="seasonSelect">Agricultural Season <span style="color: var(--km-danger);">*</span></label>
+                            <select id="seasonSelect" name="season" class="form-select-pro">
+                                <option value="Rabi" selected>Rabi (Winter)</option>
+                                <option value="Kharif">Kharif (Monsoon)</option>
+                                <option value="Summer">Summer / Zaid</option>
+                                <option value="Whole Year">Whole Year</option>
+                                <option value="Autumn">Autumn</option>
+                                <option value="Winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="cropYearSelect">Crop Year</label>
+                            <input type="number" id="cropYearSelect" name="crop_year" class="form-input-pro" value="2026" min="2013" max="2030">
+                        </div>
+                    </div>
+
+                    <!-- ROW 2: State & District (Equal 2-Column Row) -->
+                    <div class="predict-form-row" style="grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
+                        <div class="form-group-pro">
+                            <label for="stateSelect">State / UT <span style="color: var(--km-danger);">*</span></label>
                             <select id="stateSelect" name="state" class="form-select-pro" required>
-                                <option value="Uttar Pradesh" selected>Uttar Pradesh (UP)</option>
-                                <option value="Madhya Pradesh">Madhya Pradesh (MP)</option>
+                                <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
                                 <option value="Bihar">Bihar</option>
                                 <option value="Rajasthan">Rajasthan</option>
                                 <option value="Punjab">Punjab</option>
                                 <option value="Haryana">Haryana</option>
                             </select>
-                            <span class="field-hint">6 major Rabi agricultural states supported.</span>
                         </div>
 
                         <div class="form-group-pro">
-                            <label for="districtSelect">3. District <span style="color: var(--km-danger);">*</span></label>
+                            <label for="districtSelect">District <span style="color: var(--km-danger);">*</span></label>
                             <select id="districtSelect" name="district" class="form-select-pro" required>
                                 <option value="Meerut" selected>Meerut</option>
                                 <option value="Muzaffarnagar">Muzaffarnagar</option>
@@ -158,27 +194,36 @@
                                 <option value="Sitapur">Sitapur</option>
                                 <option value="Hardoi">Hardoi</option>
                             </select>
-                            <span class="field-hint">Districts update automatically by state.</span>
-                        </div>
-
-                        <div class="form-group-pro">
-                            <label for="plotAcres">4. Plot Size (in Acres) <span style="color: var(--km-danger);">*</span></label>
-                            <input type="number" id="plotAcres" name="plot_acres" class="form-input-pro" value="2.0" min="0.1" max="100" step="0.1" required aria-describedby="plotAcresHint plotAcresError">
-                            <span id="plotAcresHint" class="field-hint">0.1 to 100.0 acres (1 Ha = 2.47 Acres).</span>
-                            <span id="plotAcresError" class="field-error-msg" role="alert">Please enter a valid plot size between 0.1 and 100 acres.</span>
-                            <div class="acre-chip-row" role="group" aria-label="Quick plot size presets">
-                                <button type="button" class="acre-chip" data-acres="1.0">1.0 Acre</button>
-                                <button type="button" class="acre-chip active" data-acres="2.0">2.0 Acres</button>
-                                <button type="button" class="acre-chip" data-acres="3.5">3.5 Acres</button>
-                                <button type="button" class="acre-chip" data-acres="5.0">5.0 Acres</button>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- 3. Soil Type, Irrigation Source & Sowing Window -->
-                    <div class="predict-form-row">
+                    <!-- ROW 3: Plot Size & Horizontal Quick Presets Bar (No vertical stacking) -->
+                    <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 12px 14px; margin-bottom: 16px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                            <div style="flex: 1; min-width: 160px;">
+                                <label for="plotAcres" style="display: block; font-size: 0.84rem; font-weight: 700; color: var(--km-text-heading); margin-bottom: 4px;">
+                                    Plot Area (in Acres) <span style="color: var(--km-danger);">*</span>
+                                    <span style="font-weight: 500; font-size: 0.76rem; color: var(--km-text-muted); margin-left: 4px;">(1 Ha = 2.47 Acres)</span>
+                                </label>
+                                <input type="number" id="plotAcres" name="plot_acres" class="form-input-pro" value="2.0" min="0.1" max="100" step="0.1" required style="background: #fff; height: 38px;">
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 5px;">
+                                <span style="font-size: 0.75rem; font-weight: 700; color: var(--km-text-muted);">Quick Area Presets</span>
+                                <div class="acre-chip-row" role="group" aria-label="Quick plot size presets" style="margin-top: 0; flex-wrap: nowrap;">
+                                    <button type="button" class="acre-chip" data-acres="1.0">1.0 Acre</button>
+                                    <button type="button" class="acre-chip active" data-acres="2.0">2.0 Acres</button>
+                                    <button type="button" class="acre-chip" data-acres="3.5">3.5 Acres</button>
+                                    <button type="button" class="acre-chip" data-acres="5.0">5.0 Acres</button>
+                                </div>
+                            </div>
+                        </div>
+                        <span id="plotAcresError" class="field-error-msg" role="alert">Please enter a valid plot size between 0.1 and 100 acres.</span>
+                    </div>
+
+                    <!-- ROW 4: Soil Texture, Irrigation Source & Sowing Window -->
+                    <div class="predict-form-row" style="grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px;">
                         <div class="form-group-pro">
-                            <label for="soilSelect">5. Soil Texture</label>
+                            <label for="soilSelect">Soil Texture</label>
                             <select id="soilSelect" name="soil_type" class="form-select-pro">
                                 <option value="Alluvial (Sandy Loam)" selected>Alluvial (Sandy Loam)</option>
                                 <option value="Alluvial (Clay Loam)">Alluvial (Clay Loam)</option>
@@ -188,7 +233,7 @@
                         </div>
 
                         <div class="form-group-pro">
-                            <label for="irrigationSelect">6. Irrigation Source</label>
+                            <label for="irrigationSelect">Irrigation Source</label>
                             <select id="irrigationSelect" name="irrigation_source" class="form-select-pro">
                                 <option value="Tube well / Borewell" selected>Tube well / Borewell</option>
                                 <option value="Canal Irrigation">Canal Irrigation</option>
@@ -197,78 +242,75 @@
                         </div>
 
                         <div class="form-group-pro">
-                            <label for="sowingSelect">7. Sowing Window</label>
+                            <label for="sowingSelect">Sowing Window</label>
                             <select id="sowingSelect" name="sowing_window" class="form-select-pro">
-                                <option value="Timely Sown (Nov 01 - Nov 20)" selected>Timely Sown (Nov 01 – Nov 20)</option>
-                                <option value="Moderately Late (Nov 21 - Dec 05)">Moderately Late (Nov 21 – Dec 05)</option>
-                                <option value="Very Late Sown (After Dec 05)">Very Late Sown (After Dec 05)</option>
+                                <option value="Timely Sown (Nov 01 - Nov 20)" selected>Timely (Nov 01 – Nov 20)</option>
+                                <option value="Moderately Late (Nov 21 - Dec 05)">Late (Nov 21 – Dec 05)</option>
+                                <option value="Very Late Sown (After Dec 05)">Very Late (After Dec 05)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- 4. Soil Nutrition & Weather Sliders -->
-                    <fieldset style="border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 16px; margin-bottom: 20px; background: var(--km-bg);">
-                        <legend style="font-size: 0.86rem; font-weight: 800; color: var(--km-primary); padding: 0 8px;">8. Nutrient Dosage &amp; Seasonal Weather Factors</legend>
+                    <!-- ROW 5: Soil Nutrients & Seasonal Weather Inputs -->
+                    <div style="border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 14px 16px; margin-bottom: 18px; background: var(--km-bg);">
+                        <div style="font-size: 0.84rem; font-weight: 800; color: var(--km-primary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.03em;">
+                            Soil Nutrient Dosage &amp; Seasonal Weather Inputs
+                        </div>
 
-                        <div class="predict-form-row" style="grid-template-columns: 1fr 1fr; margin-bottom: 14px;">
+                        <div class="predict-form-row" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px;">
                             <div class="form-group-pro">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <label for="inputN">Nitrogen Applied (N):</label>
-                                    <strong id="nValText" style="font-size: 0.88rem; color: var(--km-primary);">48 kg/acre</strong>
+                                    <label for="inputN" style="font-size: 0.82rem;">Nitrogen Applied (N):</label>
+                                    <strong id="nValText" style="font-size: 0.84rem; color: var(--km-primary);">48 kg/acre</strong>
                                 </div>
                                 <input type="range" id="inputN" name="nitrogen_kg_acre" min="10" max="90" step="2" value="48" style="accent-color: var(--km-primary); width: 100%;">
-                                <span class="field-hint">Recommended: ~48–55 kg/acre for Wheat, ~32 kg/acre for Mustard</span>
                             </div>
 
                             <div class="form-group-pro">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <label for="inputMarchTemp">Expected March Max Temp:</label>
-                                    <strong id="tempValText" style="font-size: 0.88rem; color: var(--km-primary);">31.5 °C</strong>
+                                    <label for="inputMarchTemp" style="font-size: 0.82rem;">Expected Max Temp:</label>
+                                    <strong id="tempValText" style="font-size: 0.84rem; color: var(--km-primary);">31.5 °C</strong>
                                 </div>
                                 <input type="range" id="inputMarchTemp" name="march_max_temp_c" min="26" max="39" step="0.5" value="31.5" style="accent-color: var(--km-primary); width: 100%;">
-                                <span class="field-hint">Temperatures above 32°C during grain filling trigger heat-stress advisories</span>
                             </div>
                         </div>
 
-                        <div class="predict-form-row" style="margin-bottom: 0;">
+                        <div class="predict-form-row" style="grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 0;">
                             <div class="form-group-pro">
-                                <label for="inputP">Phosphorus (P₂O₅ kg/acre)</label>
-                                <input type="number" id="inputP" name="phosphorus_kg_acre" class="form-input-pro" value="22" min="0" max="60" step="1">
+                                <label for="inputP" style="font-size: 0.8rem;">Phosphorus (kg/acre)</label>
+                                <input type="number" id="inputP" name="phosphorus_kg_acre" class="form-input-pro" value="22" min="0" max="60" step="1" style="background: #fff; height: 38px;">
                             </div>
                             <div class="form-group-pro">
-                                <label for="inputK">Potassium (K₂O kg/acre)</label>
-                                <input type="number" id="inputK" name="potassium_kg_acre" class="form-input-pro" value="15" min="0" max="50" step="1">
+                                <label for="inputK" style="font-size: 0.8rem;">Potassium (kg/acre)</label>
+                                <input type="number" id="inputK" name="potassium_kg_acre" class="form-input-pro" value="15" min="0" max="50" step="1" style="background: #fff; height: 38px;">
                             </div>
                             <div class="form-group-pro">
-                                <label for="inputRain">Rabi Winter Rainfall (mm)</label>
-                                <input type="number" id="inputRain" name="seasonal_rainfall_mm" class="form-input-pro" value="65" min="0" max="300" step="5">
+                                <label for="inputRain" style="font-size: 0.8rem;">Seasonal Rainfall (mm)</label>
+                                <input type="number" id="inputRain" name="seasonal_rainfall_mm" class="form-input-pro" value="65" min="0" max="300" step="5" style="background: #fff; height: 38px;">
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
 
                     <div id="formErrorBanner" role="alert" aria-live="polite" style="display: none; background: var(--km-danger-bg); color: var(--km-danger); padding: 12px 16px; border-radius: var(--km-radius-sm); font-size: 0.88rem; font-weight: 700; margin-bottom: 16px;"></div>
 
-                    <button type="submit" id="btnSubmitForecast" class="btn-predict-action" style="width: 100%; height: 48px; font-size: 1rem;">
-                        <span>Generate Crop Yield Prediction &amp; Advisory</span>
+                    <button type="submit" id="btnSubmitForecast" class="btn-predict-action" style="width: 100%; height: 46px; font-size: 0.96rem;">
+                        <span>Calculate Crop Yield &amp; Generate Advisory</span>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
                 </form>
             </div>
 
-            <!-- RIGHT COLUMN: PREDICTION RESULTS & AGRONOMIC ADVISORY -->
-            <div style="display: flex; flex-direction: column; gap: 22px;">
+            <!-- RIGHT COLUMN: PREDICTION RESULTS & DISTRICT PROFILE (Same Height as Left Column) -->
+            <div style="display: flex; flex-direction: column; gap: 20px; height: 100%;">
 
                 <!-- Primary Emerald Yield Prediction Result Card -->
-                <div class="yield-result-emerald-card" style="flex-direction: column; align-items: stretch; gap: 18px; margin-bottom: 0;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                        <div class="yield-result-left">
-                            <div class="yield-result-icon">🌾</div>
-                            <div class="yield-result-text">
-                                <div class="label" id="resCropHeader">Estimated Yield • Wheat (Meerut)</div>
-                                <div class="val">
-                                    <span id="fYieldVal">18.4</span> <span style="font-size: 1.15rem; font-weight: 700;">q/acre</span>
-                                    <span id="fYieldHaVal" style="font-size: 1rem; font-weight: 600; opacity: 0.85; margin-left: 6px;">(45.5 q/ha)</span>
-                                </div>
+                <div class="yield-result-emerald-card" style="flex-direction: column; align-items: stretch; gap: 16px; margin-bottom: 0; padding: 24px;">
+                    <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                        <div class="yield-result-text">
+                            <div class="label" id="resCropHeader" style="text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.78rem; opacity: 0.9;">Estimated Yield • Wheat (Meerut)</div>
+                            <div class="val" style="margin-top: 4px;">
+                                <span id="fYieldVal">18.4</span> <span style="font-size: 1.1rem; font-weight: 700;">q/acre</span>
+                                <span id="fYieldHaVal" style="font-size: 0.95rem; font-weight: 600; opacity: 0.85; margin-left: 6px;">(4.55 t/ha • 45.5 q/ha)</span>
                             </div>
                         </div>
                         <div class="yield-result-badge">
@@ -276,88 +318,80 @@
                         </div>
                     </div>
 
-                    <!-- 3 Key Harvest Breakdown Boxes -->
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.16);">
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
-                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">Total Plot Harvest</div>
-                            <div id="fTotalHarvest" style="font-size: 1.25rem; font-weight: 800; color: var(--km-accent-gold);">36.8 Quintals</div>
+                    <!-- 2x2 Key Harvest Breakdown Grid (No cramped text wrapping) -->
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.16);">
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.78rem; opacity: 0.9;">Yield (Tonnes/Ha)</span>
+                            <strong id="fYieldTonneHa" style="font-size: 1.05rem; font-weight: 800; color: var(--km-accent-gold);">4.55 t/ha</strong>
                         </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
-                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">90% Confidence Range</div>
-                            <div id="fConfText" style="font-size: 1.05rem; font-weight: 800;">16.6 – 20.2 q/acre</div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.78rem; opacity: 0.9;">Total Harvest</span>
+                            <strong id="fTotalHarvest" style="font-size: 1.02rem; font-weight: 800; color: var(--km-accent-gold);">36.8 Quintals</strong>
                         </div>
-                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px;">
-                            <div style="font-size: 0.76rem; opacity: 0.85; margin-bottom: 3px;">District Baseline</div>
-                            <div id="fBaselineText" style="font-size: 1.05rem; font-weight: 800;">16.8 q/acre</div>
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.78rem; opacity: 0.9;">90% Confidence</span>
+                            <strong id="fConfText" style="font-size: 0.94rem; font-weight: 800;">16.6 – 20.2 q/ac</strong>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Critical Field Alerts & Personalised Advisories Card -->
-                <div class="predict-form-card" style="padding: 24px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                        <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-text-heading);">📋 Personalised Agronomic Advisory</h3>
-                        <span class="scheme-tag-pill tag-income">ICAR Verified</span>
-                    </div>
-
-                    <!-- Dynamic Critical Alerts -->
-                    <div id="alertsBox" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;"></div>
-
-                    <!-- Dynamic Actionable Recommendations -->
-                    <div id="advisoryBox" style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="padding: 14px; background: var(--km-bg); border-radius: 10px; color: var(--km-text-muted); font-size: 0.9rem;">
-                            Calculating plot-specific recommendations...
+                        <div style="background: rgba(255, 255, 255, 0.1); padding: 12px 14px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 0.78rem; opacity: 0.9;">District Baseline</span>
+                            <strong id="fBaselineText" style="font-size: 0.94rem; font-weight: 800;">16.8 q/acre</strong>
                         </div>
                     </div>
                 </div>
 
-                <!-- Multi-State Yield Benchmarks Overview -->
-                <div class="predict-form-card" style="padding: 20px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                        <h3 style="font-size: 1.02rem; font-weight: 800; color: var(--km-text-heading);">🗺️ Supported States &amp; Regional Yield Baselines</h3>
-                        <span class="chart-badge-tag">80 Districts • 6 States</span>
+                <!-- District Soil, Weather & Key Yield Drivers Card (Stretches to align bottom edge with Left Card) -->
+                <div class="predict-form-card" style="padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--km-border);">
+                            <h3 style="font-size: 1.08rem; font-weight: 800; color: var(--km-text-heading); margin: 0;">District Soil &amp; Weather Conditions</h3>
+                            <span class="chart-badge-tag" id="fDataAvailabilityBadge">District Verified</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 0.85rem; margin-bottom: 16px;">
+                            <div id="fSoilConditionsBox" style="padding: 14px 16px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border); line-height: 1.55;">
+                                <strong style="color: var(--km-primary); display: block; margin-bottom: 4px;">Soil Profile</strong>
+                                <span>Alluvial (Sandy Loam) • pH: 7.2 • OC: 0.58% • N: 48, P: 22, K: 15 kg/ac</span>
+                            </div>
+                            <div id="fWeatherConditionsBox" style="padding: 14px 16px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border); line-height: 1.55;">
+                                <strong style="color: var(--km-primary); display: block; margin-bottom: 4px;">Weather &amp; Rainfall Profile</strong>
+                                <span>Seasonal Rain: 65 mm • Max Temp: 31.5°C • RH: 58% • Solar: 18.2 MJ/m²</span>
+                            </div>
+                        </div>
+                        <div id="fFeatureImportanceBox" style="padding: 14px 16px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border); font-size: 0.84rem;">
+                            <strong style="color: var(--km-text-heading); display: block; margin-bottom: 8px;">Primary Factors Driving Prediction:</strong>
+                            <div id="fFeatureBarsList" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="chart-badge-tag">District Historical Crop Performance</span>
+                                <span class="chart-badge-tag">Seasonal Rainfall &amp; Thermal Balance</span>
+                                <span class="chart-badge-tag">Balanced Soil NPK &amp; Irrigation</span>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 0.82rem;">
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Uttar Pradesh (20 Dist.)</strong>
-                            <span>Wheat: 16.8 q/ac • Mustard: 7.5 q/ac</span>
-                        </div>
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Madhya Pradesh (12 Dist.)</strong>
-                            <span>Wheat: 15.4 q/ac • Mustard: 6.8 q/ac</span>
-                        </div>
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Bihar (12 Dist.)</strong>
-                            <span>Wheat: 13.6 q/ac • Mustard: 5.9 q/ac</span>
-                        </div>
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Rajasthan (12 Dist.)</strong>
-                            <span>Wheat: 16.2 q/ac • Mustard: 8.1 q/ac</span>
-                        </div>
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Punjab (12 Dist.)</strong>
-                            <span>Wheat: 20.4 q/ac • Mustard: 7.9 q/ac</span>
-                        </div>
-                        <div style="padding: 10px 12px; background: var(--km-bg); border-radius: 10px; border: 1px solid var(--km-border);">
-                            <strong style="color: var(--km-primary); display: block;">Haryana (12 Dist.)</strong>
-                            <span>Wheat: 19.6 q/ac • Mustard: 8.4 q/ac</span>
-                        </div>
+                    <div id="fLimitationNoteBox" style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--km-border); font-size: 0.78rem; color: var(--km-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                        <span><strong>Source:</strong> Matched from verified All-India district crop, soil, and weather records.</span>
+                        <a href="dashboard.html#nasa" style="color: var(--km-primary); font-weight: 700; text-decoration: none;">Open NASA Telemetry →</a>
                     </div>
                 </div>
 
-                <!-- Important Agronomic Notes -->
-                <div class="important-notes-card">
-                    <strong>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                        <span>Understanding Your Yield Prediction Units</span>
-                    </strong>
-                    <ul>
-                        <li><strong>1 Hectare = 2.471 Acres</strong>. All predictions are displayed in both <strong>Quintals per Acre (q/acre)</strong> and <strong>Quintals per Hectare (q/ha)</strong> for complete clarity.</li>
-                        <li><strong>1 Quintal = 100 Kilograms (kg)</strong>. Total Plot Harvest multiplies your per-acre yield by your entered plot size.</li>
-                        <li>Need spoken guidance in Hindi or English? <a href="krishisathi.html" style="font-weight: 800; text-decoration: underline; color: var(--km-primary);">Ask KrishiSathi AI →</a></li>
-                    </ul>
-                </div>
+            </div>
+        </div>
 
+        <!-- FULL-WIDTH BALANCED ROW: PERSONALISED AGRONOMIC ADVISORY -->
+        <div class="predict-form-card" style="padding: 24px; margin-top: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--km-border);">
+                <div>
+                    <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--km-text-heading); margin: 0;">Personalised Agronomic Advisory</h3>
+                    <p style="font-size: 0.82rem; color: var(--km-text-muted); margin-top: 2px;">Actionable stage-wise crop management recommendations aligned with ICAR guidelines</p>
+                </div>
+                <span class="scheme-tag-pill tag-income">ICAR Verified</span>
+            </div>
+
+            <!-- Dynamic Critical Alerts -->
+            <div id="alertsBox" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 12px;"></div>
+
+            <!-- Dynamic Actionable Recommendations (Even Multi-Column Grid) -->
+            <div id="advisoryBox" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px;">
+                <div style="padding: 14px; background: var(--km-bg); border-radius: 10px; color: var(--km-text-muted); font-size: 0.88rem;">
+                    Calculating plot-specific recommendations...
+                </div>
             </div>
         </div>
     </main>
@@ -372,26 +406,25 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 4 6 4 11c0 4 3 7 7 8v3h2v-3c4-1 7-4 7-8 0-5-4-9-8-9z"/></svg>
                 </span>
                 <strong style="color: var(--km-primary);">KrishiMitra AI</strong>
-                <span>• Multi-State Agricultural Intelligence Platform (UP, MP, Bihar, Rajasthan, Punjab, Haryana)</span>
+                <span>• All-India Agricultural Intelligence &amp; Decision Support Platform</span>
             </div>
 
             <div style="display: flex; gap: 22px; flex-wrap: wrap; font-weight: 600;">
                 <a href="index.html">Home</a>
                 <a href="dashboard.html">Dashboard</a>
                 <a href="forecast.html">Yield Prediction</a>
-                <a href="dashboard.html#advisories">Advisories</a>
                 <a href="schemes.html">Government Schemes</a>
                 <a href="krishisathi.html">KrishiSathi AI</a>
-                <a href="about.html">About</a>
+                <a href="login.html">Login</a>
             </div>
 
             <div>
-                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong> (Toll-Free)
+                © 2026 KrishiMitra AI • Kisan Call Centre: <strong>1800-180-1551</strong>
             </div>
         </div>
     </footer>
 
-    <script src="forecast.js"></script>
+    <script src="forecast.js?v=5.0"></script>
     <script>
         (function() {
             let lang = localStorage.getItem("km_lang") || "en";
@@ -400,25 +433,23 @@
                 const isHi = lang === "hi";
                 if (btn) btn.textContent = isHi ? "हिंदी | EN" : "EN | हिंदी";
                 const menuLinks = document.querySelectorAll(".landing-menu a");
-                const navEn = ["Home", "Yield Prediction", "Advisories", "Government Schemes", "KrishiSathi AI", "About"];
-                const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "कृषि सलाह", "सरकारी योजनाएं", "कृषिसाथी AI", "हमारे बारे में"];
+                const navEn = ["Home", "Yield Prediction", "Schemes", "Crop Insurance", "NASA Weather", "KrishiSathi AI"];
+                const navHi = ["मुख्य पृष्ठ", "उपज अनुमान", "योजनाएं", "फसल बीमा", "नासा मौसम", "कृषिसाथी AI"];
                 menuLinks.forEach((a, i) => { if (navEn[i]) a.textContent = isHi ? navHi[i] : navEn[i]; });
 
-                const askBtn = document.getElementById("navAskSathi");
                 const dashBtn = document.getElementById("navOpenDash");
-                if (askBtn) askBtn.textContent = isHi ? "कृषिसाथी से पूछें" : "Ask KrishiSathi";
-                if (dashBtn) dashBtn.textContent = isHi ? "डैशबोर्ड खोलें" : "Open Dashboard";
+                if (dashBtn) dashBtn.textContent = isHi ? "डैशबोर्ड" : "Dashboard";
 
                 const titleEl = document.querySelector(".page-hero-title");
                 const subEl = document.querySelector(".page-hero-sub");
                 if (titleEl) titleEl.textContent = isHi ? "फसल उपज पूर्वानुमान और खेत विश्लेषण" : "Crop Yield Prediction & Plot Analysis";
                 if (subEl) subEl.innerHTML = isHi
-                    ? "अपने खेत के मापदंड, मिट्टी पोषण, सिंचाई स्रोत और बुवाई समय को चुनें और <strong>क्विंटल/एकड़</strong> तथा <strong>क्विंटल/हेक्टेयर</strong> में सटीक उपज पूर्वानुमान प्राप्त करें।"
-                    : "Configure your plot parameters, soil nutrition, irrigation source, and sowing window to generate real-time yield predictions in <strong>q/acre</strong> and <strong>q/ha</strong> alongside tailored agronomic recommendations.";
+                    ? "अपने राज्य, जिले, फसल और खेत के मापदंडों का चयन करके <strong>क्विंटल/एकड़</strong> और <strong>टन/हेक्टेयर</strong> में सटीक उपज पूर्वानुमान और कृषि सलाह प्राप्त करें।"
+                    : "Select your state, district, crop, and field management parameters to compute expected yield in <strong>quintals/acre</strong> and <strong>tonnes/hectare</strong> with ICAR-aligned agronomic guidance.";
             }
             if (btn) {
                 btn.addEventListener("click", () => {
-                    lang = lang === "hi" ? "en" : "hi";
+                    lang = lang === "en" ? "hi" : "en";
                     localStorage.setItem("km_lang", lang);
                     applyForecastLang();
                 });
