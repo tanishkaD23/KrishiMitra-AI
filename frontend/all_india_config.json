@@ -1,0 +1,5636 @@
+{
+  "status": "success",
+  "region": "All-India (35 States & UTs, 743 Districts)",
+  "supported_states": [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chandigarh",
+    "Chhattisgarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Ladakh",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Puducherry",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ],
+  "state_hi": {
+    "Andaman and Nicobar Islands": "अंडमान और निकोबार द्वीप समूह",
+    "Andhra Pradesh": "आंध्र प्रदेश",
+    "Arunachal Pradesh": "अरुणाचल प्रदेश",
+    "Assam": "असम",
+    "Bihar": "बिहार",
+    "Chandigarh": "चंडीगढ़",
+    "Chhattisgarh": "छत्तीसगढ़",
+    "Dadra and Nagar Haveli and Daman and Diu": "दादरा और नगर हवेली और दमन और दीव",
+    "Delhi": "दिल्ली",
+    "Goa": "गोवा",
+    "Gujarat": "गुजरात",
+    "Haryana": "हरियाणा",
+    "Himachal Pradesh": "हिमाचल प्रदेश",
+    "Jammu and Kashmir": "जम्मू और कश्मीर",
+    "Jharkhand": "झारखंड",
+    "Karnataka": "कर्नाटक",
+    "Kerala": "केरल",
+    "Ladakh": "लद्दाख",
+    "Madhya Pradesh": "मध्य प्रदेश",
+    "Maharashtra": "महाराष्ट्र",
+    "Manipur": "मणिपुर",
+    "Meghalaya": "मेघालय",
+    "Mizoram": "मिजोरम",
+    "Nagaland": "नागालैंड",
+    "Odisha": "ओडिशा",
+    "Puducherry": "पुदुचेरी",
+    "Punjab": "पंजाब",
+    "Rajasthan": "राजस्थान",
+    "Sikkim": "सिक्किम",
+    "Tamil Nadu": "तमिलनाडु",
+    "Telangana": "तेलंगाना",
+    "Tripura": "त्रिपुरा",
+    "Uttar Pradesh": "उत्तर प्रदेश",
+    "Uttarakhand": "उत्तराखंड",
+    "West Bengal": "पश्चिम बंगाल"
+  },
+  "state_districts": {
+    "Andaman and Nicobar Islands": [
+      "Nicobars",
+      "North And Middle Andaman",
+      "South Andamans"
+    ],
+    "Andhra Pradesh": [
+      "Alluri Sitharama Raju",
+      "Anakapalli",
+      "Anantapur",
+      "Annamayya",
+      "Bapatla",
+      "Chittoor",
+      "East Godavari",
+      "Eluru",
+      "Guntur",
+      "Kadapa",
+      "Kakinada",
+      "Konaseema",
+      "Krishna",
+      "Kurnool",
+      "Nandyal",
+      "Ntr",
+      "Palnadu",
+      "Parvathipuram Manyam",
+      "Prakasam",
+      "SPSR Nellore",
+      "Sri Sathya Sai",
+      "Srikakulam",
+      "Tirupati",
+      "Visakhapatnam",
+      "Vizianagaram",
+      "West Godavari"
+    ],
+    "Arunachal Pradesh": [
+      "Anjaw",
+      "Changlang",
+      "Dibang Valley",
+      "East Kameng",
+      "East Siang",
+      "Kamle",
+      "Kra Daadi",
+      "Kurung Kumey",
+      "Leparada",
+      "Lohit",
+      "Longding",
+      "Lower Dibang Valley",
+      "Lower Siang",
+      "Lower Subansiri",
+      "Namsai",
+      "Pakke Kessang",
+      "Papum Pare",
+      "Shi Yomi",
+      "Siang",
+      "Tawang",
+      "Tirap",
+      "Upper Siang",
+      "Upper Subansiri",
+      "West Kameng",
+      "West Siang"
+    ],
+    "Assam": [
+      "Baksa",
+      "Barpeta",
+      "Biswanath",
+      "Bongaigaon",
+      "Cachar",
+      "Charaideo",
+      "Chirang",
+      "Darrang",
+      "Dhemaji",
+      "Dhubri",
+      "Dibrugarh",
+      "Dima Hasao",
+      "Goalpara",
+      "Golaghat",
+      "Hailakandi",
+      "Hojai",
+      "Jorhat",
+      "Kamrup",
+      "Kamrup Metropolitan",
+      "Karbi Anglong",
+      "Karimganj",
+      "Kokrajhar",
+      "Lakhimpur",
+      "Majuli",
+      "Morigaon",
+      "Nagaon",
+      "Nalbari",
+      "Sivasagar",
+      "Sonitpur",
+      "South Salmara Mancachar",
+      "Tinsukia",
+      "Udalguri",
+      "West Karbi Anglong"
+    ],
+    "Bihar": [
+      "Araria",
+      "Arwal",
+      "Aurangabad",
+      "Banka",
+      "Begusarai",
+      "Bhagalpur",
+      "Bhojpur",
+      "Buxar",
+      "Darbhanga",
+      "East Champaran",
+      "Gaya",
+      "Gopalganj",
+      "Jamui",
+      "Jehanabad",
+      "Kaimur",
+      "Katihar",
+      "Khagaria",
+      "Kishanganj",
+      "Lakhisarai",
+      "Madhepura",
+      "Madhubani",
+      "Munger",
+      "Muzaffarpur",
+      "Nalanda",
+      "Nawada",
+      "Patna",
+      "Purnia",
+      "Rohtas",
+      "Saharsa",
+      "Samastipur",
+      "Saran",
+      "Sheikhpura",
+      "Sheohar",
+      "Sitamarhi",
+      "Siwan",
+      "Supaul",
+      "Vaishali",
+      "West Champaran"
+    ],
+    "Chandigarh": [
+      "Chandigarh"
+    ],
+    "Chhattisgarh": [
+      "Balod",
+      "Baloda Bazar",
+      "Balrampur",
+      "Bastar",
+      "Bemetara",
+      "Bilaspur",
+      "Dantewada",
+      "Dhamtari",
+      "Durg",
+      "Gariyaband",
+      "Gaurella-Pendra-Marwahi",
+      "Janjgir-Champa",
+      "Jashpur",
+      "Kabirdham",
+      "Kanker",
+      "Khairgarh Chhuikhadan Gandai",
+      "Kondagaon",
+      "Korba",
+      "Korea",
+      "Mahasamund",
+      "Manendragarh Chirimiri Bharatpur",
+      "Mohla Manpur Ambagarh Chouki",
+      "Mungeli",
+      "Narayanpur",
+      "Raigarh",
+      "Raipur",
+      "Rajnandgaon",
+      "Sakti",
+      "Sarangarh Bilaigarh",
+      "Sukma",
+      "Surajpur",
+      "Surguja",
+      "Vijayapura"
+    ],
+    "Dadra and Nagar Haveli and Daman and Diu": [
+      "Dadra And Nagar Haveli",
+      "Daman",
+      "Diu"
+    ],
+    "Delhi": [
+      "Delhi_Total"
+    ],
+    "Goa": [
+      "North Goa",
+      "South Goa"
+    ],
+    "Gujarat": [
+      "Ahmedabad",
+      "Amreli",
+      "Anand",
+      "Aravalli",
+      "Banaskantha",
+      "Bharuch",
+      "Bhavnagar",
+      "Botad",
+      "Chhotaudepur",
+      "Dahod",
+      "Dang",
+      "Devbhumi Dwarka",
+      "Gandhinagar",
+      "Gir Somnath",
+      "Jamnagar",
+      "Junagadh",
+      "Kheda",
+      "Kutch",
+      "Mahisagar",
+      "Mehsana",
+      "Morbi",
+      "Narmada",
+      "Navsari",
+      "Panchmahal",
+      "Patan",
+      "Porbandar",
+      "Rajkot",
+      "Sabarkantha",
+      "Surat",
+      "Surendranagar",
+      "Tapi",
+      "Vadodara",
+      "Valsad"
+    ],
+    "Haryana": [
+      "Ambala",
+      "Bhiwani",
+      "Charkhi Dadri",
+      "Faridabad",
+      "Fatehabad",
+      "Gurugram",
+      "Hisar",
+      "Jhajjar",
+      "Jind",
+      "Kaithal",
+      "Karnal",
+      "Kurukshetra",
+      "Mahendragarh",
+      "Nuh",
+      "Palwal",
+      "Panchkula",
+      "Panipat",
+      "Rewari",
+      "Rohtak",
+      "Sirsa",
+      "Sonipat",
+      "Yamunanagar"
+    ],
+    "Himachal Pradesh": [
+      "Bilaspur",
+      "Chamba",
+      "Hamirpur",
+      "Kangra",
+      "Kinnaur",
+      "Kullu",
+      "Lahul And Spiti",
+      "Mandi",
+      "Shimla",
+      "Sirmaur",
+      "Solan",
+      "Una"
+    ],
+    "Jammu and Kashmir": [
+      "Anantnag",
+      "Bandipora",
+      "Baramulla",
+      "Budgam",
+      "Doda",
+      "Ganderbal",
+      "Jammu",
+      "Kargil",
+      "Kathua",
+      "Kishtwar",
+      "Kulgam",
+      "Kupwara",
+      "Leh",
+      "Poonch",
+      "Pulwama",
+      "Rajauri",
+      "Ramban",
+      "Reasi",
+      "Samba",
+      "Shopian",
+      "Srinagar",
+      "Udhampur"
+    ],
+    "Jharkhand": [
+      "Bokaro",
+      "Chatra",
+      "Deoghar",
+      "Dhanbad",
+      "Dumka",
+      "East Singhbhum",
+      "Garhwa",
+      "Giridih",
+      "Godda",
+      "Gumla",
+      "Hazaribagh",
+      "Jamtara",
+      "Khunti",
+      "Koderma",
+      "Latehar",
+      "Lohardaga",
+      "Pakur",
+      "Palamu",
+      "Ramgarh",
+      "Ranchi",
+      "Sahibganj",
+      "Saraikela Kharsawan",
+      "Simdega",
+      "West Singhbhum"
+    ],
+    "Karnataka": [
+      "Bagalkot",
+      "Ballari",
+      "Belagavi",
+      "Bengaluru Rural",
+      "Bengaluru Urban",
+      "Bidar",
+      "Chamarajanagar",
+      "Chikkaballapur",
+      "Chikkamagaluru",
+      "Chitradurga",
+      "Dakshina Kannada",
+      "Davanagere",
+      "Dharwad",
+      "Gadag",
+      "Hassan",
+      "Haveri",
+      "Kalaburagi",
+      "Kodagu",
+      "Kolar",
+      "Koppal",
+      "Mandya",
+      "Mysuru",
+      "Raichur",
+      "Ramanagara",
+      "Shivamogga",
+      "Tumakuru",
+      "Udupi",
+      "Uttara Kannada",
+      "Vijayanagar",
+      "Vijayapura",
+      "Yadgir"
+    ],
+    "Kerala": [
+      "Alappuzha",
+      "Ernakulam",
+      "Idukki",
+      "Kannur",
+      "Kasaragod",
+      "Kollam",
+      "Kottayam",
+      "Kozhikode",
+      "Malappuram",
+      "Palakkad",
+      "Pathanamthitta",
+      "Thiruvananthapuram",
+      "Thrissur",
+      "Wayanad"
+    ],
+    "Ladakh": [
+      "Kargil",
+      "Leh"
+    ],
+    "Madhya Pradesh": [
+      "Agar Malwa",
+      "Alirajpur",
+      "Anuppur",
+      "Ashoknagar",
+      "Balaghat",
+      "Barwani",
+      "Betul",
+      "Bhind",
+      "Bhopal",
+      "Burhanpur",
+      "Chhatarpur",
+      "Chhindwara",
+      "Damoh",
+      "Datia",
+      "Dewas",
+      "Dhar",
+      "Dindori",
+      "Guna",
+      "Gwalior",
+      "Harda",
+      "Hoshangabad",
+      "Indore",
+      "Jabalpur",
+      "Jhabua",
+      "Katni",
+      "Khandwa",
+      "Khargone",
+      "Mandla",
+      "Mandsaur",
+      "Morena",
+      "Narsinghpur",
+      "Neemuch",
+      "Niwari",
+      "Panna",
+      "Raisen",
+      "Rajgarh",
+      "Ratlam",
+      "Rewa",
+      "Sagar",
+      "Satna",
+      "Sehore",
+      "Seoni",
+      "Shahdol",
+      "Shajapur",
+      "Sheopur",
+      "Shivpuri",
+      "Sidhi",
+      "Singrauli",
+      "Tikamgarh",
+      "Ujjain",
+      "Umaria",
+      "Vidisha"
+    ],
+    "Maharashtra": [
+      "Ahmednagar",
+      "Akola",
+      "Amravati",
+      "Beed",
+      "Bhandara",
+      "Buldhana",
+      "Chandrapur",
+      "Chhatrapati Sambhajinagar",
+      "Dharashiv",
+      "Dhule",
+      "Gadchiroli",
+      "Gondia",
+      "Hingoli",
+      "Jalgaon",
+      "Jalna",
+      "Kolhapur",
+      "Latur",
+      "Mumbai Suburban",
+      "Nagpur",
+      "Nanded",
+      "Nandurbar",
+      "Nashik",
+      "Palghar",
+      "Parbhani",
+      "Pune",
+      "Raigad",
+      "Ratnagiri",
+      "Sangli",
+      "Satara",
+      "Sindhudurg",
+      "Solapur",
+      "Thane",
+      "Wardha",
+      "Washim",
+      "Yavatmal"
+    ],
+    "Manipur": [
+      "Bishnupur",
+      "Chandel",
+      "Churachandpur",
+      "Imphal East",
+      "Imphal West",
+      "Senapati",
+      "Tamenglong",
+      "Thoubal",
+      "Ukhrul"
+    ],
+    "Meghalaya": [
+      "East Garo Hills",
+      "East Jaintia Hills",
+      "East Khasi Hills",
+      "North Garo Hills",
+      "Ri Bhoi",
+      "South Garo Hills",
+      "South West Garo Hills",
+      "South West Khasi Hills",
+      "West Garo Hills",
+      "West Jaintia Hills",
+      "West Khasi Hills"
+    ],
+    "Mizoram": [
+      "Aizawl",
+      "Champhai",
+      "Hnahthial",
+      "Khawzawl",
+      "Kolasib",
+      "Lawngtlai",
+      "Lunglei",
+      "Mamit",
+      "Saiha",
+      "Saitual",
+      "Serchhip"
+    ],
+    "Nagaland": [
+      "Chumoukedima",
+      "Dimapur",
+      "Kiphire",
+      "Kohima",
+      "Longleng",
+      "Mokokchung",
+      "Mon",
+      "Noklak",
+      "Nuiland",
+      "Peren",
+      "Phek",
+      "Shamator",
+      "Tseminyu",
+      "Tuensang",
+      "Wokha",
+      "Zunheboto"
+    ],
+    "Odisha": [
+      "Angul",
+      "Balasore",
+      "Bargarh",
+      "Bhadrak",
+      "Bolangir",
+      "Boudh",
+      "Cuttack",
+      "Deogarh",
+      "Dhenkanal",
+      "Gajapati",
+      "Ganjam",
+      "Jagatsinghpur",
+      "Jajpur",
+      "Jharsuguda",
+      "Kalahandi",
+      "Kandhamal",
+      "Kendrapara",
+      "Kendujhar",
+      "Khordha",
+      "Koraput",
+      "Malkangiri",
+      "Mayurbhanj",
+      "Nabarangpur",
+      "Nayagarh",
+      "Nuapada",
+      "Puri",
+      "Rayagada",
+      "Sambalpur",
+      "Subarnapur",
+      "Sundargarh"
+    ],
+    "Puducherry": [
+      "Karaikal",
+      "Mahe",
+      "Puducherry",
+      "Yanam"
+    ],
+    "Punjab": [
+      "Amritsar",
+      "Barnala",
+      "Bathinda",
+      "Faridkot",
+      "Fatehgarh Sahib",
+      "Fazilka",
+      "Ferozepur",
+      "Gurdaspur",
+      "Hoshiarpur",
+      "Jalandhar",
+      "Kapurthala",
+      "Ludhiana",
+      "Malerkotla",
+      "Mansa",
+      "Moga",
+      "Pathankot",
+      "Patiala",
+      "Rupnagar",
+      "Sahibzada Ajit Singh Nagar",
+      "Sangrur",
+      "Shahid Bhagat Singh Nagar",
+      "Sri Muktsar Sahib",
+      "Tarn Taran"
+    ],
+    "Rajasthan": [
+      "Ajmer",
+      "Alwar",
+      "Banswara",
+      "Baran",
+      "Barmer",
+      "Bharatpur",
+      "Bhilwara",
+      "Bikaner",
+      "Bundi",
+      "Chittorgarh",
+      "Churu",
+      "Dausa",
+      "Dholpur",
+      "Dungarpur",
+      "Hanumangarh",
+      "Jaipur",
+      "Jaisalmer",
+      "Jalore",
+      "Jhalawar",
+      "Jhunjhunu",
+      "Jodhpur",
+      "Karauli",
+      "Kota",
+      "Nagaur",
+      "Pali",
+      "Pratapgarh",
+      "Rajsamand",
+      "Sawai Madhopur",
+      "Sikar",
+      "Sirohi",
+      "Sri Ganganagar",
+      "Tonk",
+      "Udaipur"
+    ],
+    "Sikkim": [
+      "Gangtok",
+      "Geyzing",
+      "Mangan",
+      "Namchi",
+      "Pakyong",
+      "Soreng"
+    ],
+    "Tamil Nadu": [
+      "Ariyalur",
+      "Chengalpattu",
+      "Chennai",
+      "Coimbatore",
+      "Cuddalore",
+      "Dharmapuri",
+      "Dindigul",
+      "Erode",
+      "Kallakurichi",
+      "Kanchipuram",
+      "Kanyakumari",
+      "Karur",
+      "Krishnagiri",
+      "Madurai",
+      "Mayiladuthurai",
+      "Nagapattinam",
+      "Namakkal",
+      "Nilgiris",
+      "Perambalur",
+      "Pudukkottai",
+      "Ramanathapuram",
+      "Ranipet",
+      "Salem",
+      "Sivaganga",
+      "Thanjavur",
+      "Theni",
+      "Thenkasi",
+      "Thoothukudi",
+      "Tiruchirappalli",
+      "Tirunelveli",
+      "Tirupathur",
+      "Tiruppur",
+      "Tiruvallur",
+      "Tiruvannamalai",
+      "Tiruvarur",
+      "Vellore",
+      "Viluppuram",
+      "Virudhunagar"
+    ],
+    "Telangana": [
+      "Adilabad",
+      "Bhadradri Kothagudem",
+      "Hanumakonda",
+      "Jagtial",
+      "Jangoan",
+      "Jayashankar",
+      "Jogulamba",
+      "Kamareddy",
+      "Karimnagar",
+      "Khammam",
+      "Komaram Bheem Asifabad",
+      "Mahabubabad",
+      "Mahabubnagar",
+      "Mancherial",
+      "Medak",
+      "Medchal",
+      "Mulugu",
+      "Nagarkurnool",
+      "Nalgonda",
+      "Narayanapet",
+      "Nirmal",
+      "Nizamabad",
+      "Peddapalli",
+      "Rajanna",
+      "Rangareddy",
+      "Sangareddy",
+      "Siddipet",
+      "Suryapet",
+      "Vikarabad",
+      "Wanaparthy",
+      "Warangal",
+      "Yadadri"
+    ],
+    "Tripura": [
+      "Dhalai",
+      "Gomati",
+      "Khowai",
+      "North Tripura",
+      "Sepahijala",
+      "South Tripura",
+      "Unakoti",
+      "West Tripura"
+    ],
+    "Uttar Pradesh": [
+      "Agra",
+      "Aligarh",
+      "Ambedkar Nagar",
+      "Amethi",
+      "Amroha",
+      "Auraiya",
+      "Ayodhya",
+      "Azamgarh",
+      "Baghpat",
+      "Bahraich",
+      "Ballia",
+      "Balrampur",
+      "Banda",
+      "Barabanki",
+      "Bareilly",
+      "Basti",
+      "Bhadohi",
+      "Bijnor",
+      "Budaun",
+      "Bulandshahr",
+      "Chandauli",
+      "Chitrakoot",
+      "Deoria",
+      "Etah",
+      "Etawah",
+      "Farrukhabad",
+      "Fatehpur",
+      "Firozabad",
+      "Gautam Buddha Nagar",
+      "Ghaziabad",
+      "Ghazipur",
+      "Gonda",
+      "Gorakhpur",
+      "Hamirpur",
+      "Hapur",
+      "Hardoi",
+      "Hathras",
+      "Jalaun",
+      "Jaunpur",
+      "Jhansi",
+      "Kannauj",
+      "Kanpur Dehat",
+      "Kanpur Nagar",
+      "Kasganj",
+      "Kaushambi",
+      "Kheri (Lakhimpur)",
+      "Kushinagar",
+      "Lalitpur",
+      "Lucknow",
+      "Maharajganj",
+      "Mahoba",
+      "Mainpuri",
+      "Mathura",
+      "Mau",
+      "Meerut",
+      "Mirzapur",
+      "Moradabad",
+      "Muzaffarnagar",
+      "Pilibhit",
+      "Pratapgarh",
+      "Prayagraj",
+      "Raebareli",
+      "Rampur",
+      "Saharanpur",
+      "Sambhal",
+      "Sant Kabir Nagar",
+      "Shahjahanpur",
+      "Shamli",
+      "Shravasti",
+      "Siddharthnagar",
+      "Sitapur",
+      "Sonbhadra",
+      "Sultanpur",
+      "Unnao",
+      "Varanasi"
+    ],
+    "Uttarakhand": [
+      "Almora",
+      "Bageshwar",
+      "Chamoli",
+      "Champawat",
+      "Dehradun",
+      "Haridwar",
+      "Nainital",
+      "Pauri Garhwal",
+      "Pithoragarh",
+      "Rudraprayag",
+      "Tehri Garhwal",
+      "Udham Singh Nagar",
+      "Uttarkashi"
+    ],
+    "West Bengal": [
+      "Alipurduar",
+      "Bankura",
+      "Birbhum",
+      "Cooch Behar",
+      "Dakshin Dinajpur",
+      "Darjeeling",
+      "Hooghly",
+      "Howrah",
+      "Jalpaiguri",
+      "Jhargram",
+      "Kalimpong",
+      "Malda",
+      "Murshidabad",
+      "Nadia",
+      "North 24 Parganas",
+      "Paschim Bardhaman",
+      "Paschim Medinipur",
+      "Purba Bardhaman",
+      "Purba Medinipur",
+      "Purulia",
+      "South 24 Parganas",
+      "Uttar Dinajpur"
+    ]
+  },
+  "districts": [
+    "Agra",
+    "Aligarh",
+    "Ambedkar Nagar",
+    "Amethi",
+    "Amroha",
+    "Auraiya",
+    "Ayodhya",
+    "Azamgarh",
+    "Baghpat",
+    "Bahraich",
+    "Ballia",
+    "Balrampur",
+    "Banda",
+    "Barabanki",
+    "Bareilly",
+    "Basti",
+    "Bhadohi",
+    "Bijnor",
+    "Budaun",
+    "Bulandshahr",
+    "Chandauli",
+    "Chitrakoot",
+    "Deoria",
+    "Etah",
+    "Etawah",
+    "Farrukhabad",
+    "Fatehpur",
+    "Firozabad",
+    "Gautam Buddha Nagar",
+    "Ghaziabad",
+    "Ghazipur",
+    "Gonda",
+    "Gorakhpur",
+    "Hamirpur",
+    "Hapur",
+    "Hardoi",
+    "Hathras",
+    "Jalaun",
+    "Jaunpur",
+    "Jhansi",
+    "Kannauj",
+    "Kanpur Dehat",
+    "Kanpur Nagar",
+    "Kasganj",
+    "Kaushambi",
+    "Kheri (Lakhimpur)",
+    "Kushinagar",
+    "Lalitpur",
+    "Lucknow",
+    "Maharajganj",
+    "Mahoba",
+    "Mainpuri",
+    "Mathura",
+    "Mau",
+    "Meerut",
+    "Mirzapur",
+    "Moradabad",
+    "Muzaffarnagar",
+    "Pilibhit",
+    "Pratapgarh",
+    "Prayagraj",
+    "Raebareli",
+    "Rampur",
+    "Saharanpur",
+    "Sambhal",
+    "Sant Kabir Nagar",
+    "Shahjahanpur",
+    "Shamli",
+    "Shravasti",
+    "Siddharthnagar",
+    "Sitapur",
+    "Sonbhadra",
+    "Sultanpur",
+    "Unnao",
+    "Varanasi"
+  ],
+  "crops": [
+    "Arecanut",
+    "Arhar/Tur",
+    "Bajra",
+    "Banana",
+    "Barley",
+    "Black pepper",
+    "Brinjal",
+    "Cabbage",
+    "Cashewnut",
+    "Castor seed",
+    "Colocosia",
+    "Coriander",
+    "Cotton(lint)",
+    "Cowpea(Lobia)",
+    "Dry Ginger",
+    "Dry chillies",
+    "Garlic",
+    "Ginger",
+    "Gram",
+    "Grapes",
+    "Groundnut",
+    "Guar seed",
+    "Horse-gram",
+    "Jobster",
+    "Jowar",
+    "Jute",
+    "Khesari",
+    "Lemon",
+    "Linseed",
+    "Maize",
+    "Mango",
+    "Masoor",
+    "Mesta",
+    "Moong(Green Gram)",
+    "Moth",
+    "Niger seed",
+    "Oilseeds total",
+    "Onion",
+    "Orange",
+    "Other Cereals",
+    "Other Kharif pulses",
+    "Other Rabi pulses",
+    "Other Summer Pulses",
+    "Papaya",
+    "Peas & beans (Pulses)",
+    "Perilla",
+    "Pineapple",
+    "Pome Granet",
+    "Potato",
+    "Pulses total",
+    "Ragi",
+    "Rajmash Kholar",
+    "Rapeseed &Mustard",
+    "Rice",
+    "Ricebean (nagadal)",
+    "Safflower",
+    "Sannhamp",
+    "Sapota",
+    "Sesamum",
+    "Small millets",
+    "Soyabean",
+    "Sugarcane",
+    "Sunflower",
+    "Sweet potato",
+    "Tapioca",
+    "Tobacco",
+    "Tomato",
+    "Total foodgrain",
+    "Turmeric",
+    "Urad",
+    "Wheat",
+    "other oilseeds"
+  ],
+  "all_india_crops": [
+    "Arecanut",
+    "Arhar/Tur",
+    "Bajra",
+    "Banana",
+    "Barley",
+    "Black pepper",
+    "Brinjal",
+    "Cabbage",
+    "Cashewnut",
+    "Castor seed",
+    "Colocosia",
+    "Coriander",
+    "Cotton(lint)",
+    "Cowpea(Lobia)",
+    "Dry Ginger",
+    "Dry chillies",
+    "Garlic",
+    "Ginger",
+    "Gram",
+    "Grapes",
+    "Groundnut",
+    "Guar seed",
+    "Horse-gram",
+    "Jobster",
+    "Jowar",
+    "Jute",
+    "Khesari",
+    "Lemon",
+    "Linseed",
+    "Maize",
+    "Mango",
+    "Masoor",
+    "Mesta",
+    "Moong(Green Gram)",
+    "Moth",
+    "Niger seed",
+    "Oilseeds total",
+    "Onion",
+    "Orange",
+    "Other Cereals",
+    "Other Kharif pulses",
+    "Other Rabi pulses",
+    "Other Summer Pulses",
+    "Papaya",
+    "Peas & beans (Pulses)",
+    "Perilla",
+    "Pineapple",
+    "Pome Granet",
+    "Potato",
+    "Pulses total",
+    "Ragi",
+    "Rajmash Kholar",
+    "Rapeseed &Mustard",
+    "Rice",
+    "Ricebean (nagadal)",
+    "Safflower",
+    "Sannhamp",
+    "Sapota",
+    "Sesamum",
+    "Small millets",
+    "Soyabean",
+    "Sugarcane",
+    "Sunflower",
+    "Sweet potato",
+    "Tapioca",
+    "Tobacco",
+    "Tomato",
+    "Total foodgrain",
+    "Turmeric",
+    "Urad",
+    "Wheat",
+    "other oilseeds"
+  ],
+  "seasons": [
+    "Autumn",
+    "Kharif",
+    "Rabi",
+    "Summer",
+    "Winter"
+  ],
+  "state_crops": {
+    "Andaman and Nicobar Islands": [
+      "Arecanut",
+      "Arhar/Tur",
+      "Black pepper",
+      "Cashewnut",
+      "Cowpea(Lobia)",
+      "Dry Ginger",
+      "Dry chillies",
+      "Ginger",
+      "Groundnut",
+      "Maize",
+      "Moong(Green Gram)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Turmeric",
+      "Urad",
+      "other oilseeds"
+    ],
+    "Andhra Pradesh": [
+      "Arecanut",
+      "Arhar/Tur",
+      "Bajra",
+      "Black pepper",
+      "Brinjal",
+      "Cabbage",
+      "Cashewnut",
+      "Castor seed",
+      "Coriander",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Dry chillies",
+      "Ginger",
+      "Gram",
+      "Grapes",
+      "Groundnut",
+      "Guar seed",
+      "Horse-gram",
+      "Jowar",
+      "Lemon",
+      "Linseed",
+      "Maize",
+      "Mango",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Oilseeds total",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Papaya",
+      "Pome Granet",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sapota",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Tapioca",
+      "Tobacco",
+      "Tomato",
+      "Turmeric",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Arunachal Pradesh": [
+      "Arhar/Tur",
+      "Groundnut",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Assam": [
+      "Arecanut",
+      "Arhar/Tur",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Jute",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Orange",
+      "Other Rabi pulses",
+      "Papaya",
+      "Peas & beans (Pulses)",
+      "Pineapple",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Urad",
+      "Wheat"
+    ],
+    "Bihar": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Dry chillies",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Jute",
+      "Khesari",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ],
+    "Chandigarh": [
+      "Maize",
+      "Rice",
+      "Wheat"
+    ],
+    "Chhattisgarh": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Coriander",
+      "Garlic",
+      "Gram",
+      "Groundnut",
+      "Guar seed",
+      "Horse-gram",
+      "Khesari",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sugarcane",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ],
+    "Dadra and Nagar Haveli and Daman and Diu": [
+      "Arhar/Tur",
+      "Bajra",
+      "Cowpea(Lobia)",
+      "Gram",
+      "Groundnut",
+      "Jowar",
+      "Maize",
+      "Niger seed",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Sugarcane",
+      "Urad",
+      "Wheat"
+    ],
+    "Delhi": [
+      "Bajra",
+      "Barley",
+      "Gram",
+      "Jowar",
+      "Maize",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Wheat"
+    ],
+    "Goa": [
+      "Groundnut",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Ragi",
+      "Rice"
+    ],
+    "Gujarat": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Guar seed",
+      "Jowar",
+      "Maize",
+      "Moong(Green Gram)",
+      "Moth",
+      "Onion",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Tobacco",
+      "Urad",
+      "Wheat"
+    ],
+    "Haryana": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Guar seed",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Moth",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Himachal Pradesh": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Coriander",
+      "Cotton(lint)",
+      "Dry chillies",
+      "Garlic",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Moth",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Tobacco",
+      "Turmeric",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Jammu and Kashmir": [
+      "Bajra",
+      "Barley",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Dry chillies",
+      "Garlic",
+      "Ginger",
+      "Gram",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Moth",
+      "Onion",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Sugarcane",
+      "Tobacco",
+      "Turmeric",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Jharkhand": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sesamum",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ],
+    "Karnataka": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Dry chillies",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Onion",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ],
+    "Kerala": [
+      "Bajra",
+      "Cotton(lint)",
+      "Jowar",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Rice",
+      "Small millets"
+    ],
+    "Ladakh": [
+      "Barley",
+      "Masoor",
+      "Onion",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Rapeseed &Mustard",
+      "Small millets",
+      "Wheat"
+    ],
+    "Madhya Pradesh": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Jute",
+      "Khesari",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ],
+    "Maharashtra": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Other Summer Pulses",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Manipur": [
+      "Arhar/Tur",
+      "Cowpea(Lobia)",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Soyabean",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Meghalaya": [
+      "Arecanut",
+      "Arhar/Tur",
+      "Banana",
+      "Black pepper",
+      "Cashewnut",
+      "Castor seed",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Ginger",
+      "Gram",
+      "Jute",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Onion",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sweet potato",
+      "Tapioca",
+      "Tobacco",
+      "Wheat"
+    ],
+    "Mizoram": [
+      "Arhar/Tur",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Maize",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Potato",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Soyabean",
+      "Tapioca",
+      "Tobacco",
+      "other oilseeds"
+    ],
+    "Nagaland": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Colocosia",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jobster",
+      "Jowar",
+      "Jute",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Oilseeds total",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Perilla",
+      "Potato",
+      "Ragi",
+      "Rajmash Kholar",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Ricebean (nagadal)",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Tapioca",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Odisha": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Coriander",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Dry chillies",
+      "Garlic",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Jute",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Niger seed",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Tobacco",
+      "Turmeric",
+      "Urad",
+      "Wheat"
+    ],
+    "Puducherry": [
+      "Arecanut",
+      "Bajra",
+      "Banana",
+      "Black pepper",
+      "Brinjal",
+      "Cashewnut",
+      "Coriander",
+      "Cotton(lint)",
+      "Dry chillies",
+      "Groundnut",
+      "Jowar",
+      "Mango",
+      "Moong(Green Gram)",
+      "Onion",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Other Summer Pulses",
+      "Ragi",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Sugarcane",
+      "Sweet potato",
+      "Tapioca",
+      "Tobacco",
+      "Turmeric",
+      "Urad"
+    ],
+    "Punjab": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Guar seed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Sunflower",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Rajasthan": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Cotton(lint)",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Moth",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Sikkim": [
+      "Barley",
+      "Maize",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Small millets",
+      "Soyabean",
+      "Urad",
+      "Wheat"
+    ],
+    "Tamil Nadu": [
+      "Arhar/Tur",
+      "Bajra",
+      "Castor seed",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Onion",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Sunflower",
+      "Urad"
+    ],
+    "Telangana": [
+      "Arhar/Tur",
+      "Bajra",
+      "Banana",
+      "Cashewnut",
+      "Castor seed",
+      "Coriander",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Dry chillies",
+      "Garlic",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Oilseeds total",
+      "Onion",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Tobacco",
+      "Turmeric",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Tripura": [
+      "Arhar/Tur",
+      "Cotton(lint)",
+      "Cowpea(Lobia)",
+      "Gram",
+      "Groundnut",
+      "Jowar",
+      "Jute",
+      "Khesari",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "Uttar Pradesh": [
+      "Arhar/Tur",
+      "Bajra",
+      "Banana",
+      "Barley",
+      "Coriander",
+      "Cotton(lint)",
+      "Dry chillies",
+      "Garlic",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Guar seed",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Onion",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sugarcane",
+      "Sunflower",
+      "Sweet potato",
+      "Tobacco",
+      "Turmeric",
+      "Urad",
+      "Wheat"
+    ],
+    "Uttarakhand": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Ginger",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Moong(Green Gram)",
+      "Moth",
+      "Oilseeds total",
+      "Other Cereals",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Other Summer Pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Pulses total",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Total foodgrain",
+      "Urad",
+      "Wheat",
+      "other oilseeds"
+    ],
+    "West Bengal": [
+      "Arhar/Tur",
+      "Bajra",
+      "Barley",
+      "Castor seed",
+      "Cotton(lint)",
+      "Gram",
+      "Groundnut",
+      "Horse-gram",
+      "Jowar",
+      "Jute",
+      "Khesari",
+      "Linseed",
+      "Maize",
+      "Masoor",
+      "Mesta",
+      "Moong(Green Gram)",
+      "Moth",
+      "Niger seed",
+      "Other Kharif pulses",
+      "Other Rabi pulses",
+      "Peas & beans (Pulses)",
+      "Potato",
+      "Ragi",
+      "Rapeseed &Mustard",
+      "Rice",
+      "Safflower",
+      "Sannhamp",
+      "Sesamum",
+      "Small millets",
+      "Soyabean",
+      "Sunflower",
+      "Urad",
+      "Wheat"
+    ]
+  },
+  "state_seasons": {
+    "Andaman and Nicobar Islands": [
+      "Autumn",
+      "Rabi",
+      "Summer"
+    ],
+    "Andhra Pradesh": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Arunachal Pradesh": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Assam": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Bihar": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Chandigarh": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Chhattisgarh": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Dadra and Nagar Haveli and Daman and Diu": [
+      "Kharif",
+      "Rabi",
+      "Winter"
+    ],
+    "Delhi": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Goa": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Gujarat": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Haryana": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Himachal Pradesh": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Jammu and Kashmir": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Jharkhand": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Karnataka": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Kerala": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Ladakh": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Madhya Pradesh": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Maharashtra": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Manipur": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Meghalaya": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Mizoram": [
+      "Autumn",
+      "Kharif",
+      "Rabi"
+    ],
+    "Nagaland": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Odisha": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Puducherry": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Punjab": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Rajasthan": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Sikkim": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Tamil Nadu": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Telangana": [
+      "Kharif",
+      "Rabi"
+    ],
+    "Tripura": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ],
+    "Uttar Pradesh": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "Uttarakhand": [
+      "Kharif",
+      "Rabi",
+      "Summer"
+    ],
+    "West Bengal": [
+      "Autumn",
+      "Kharif",
+      "Rabi",
+      "Summer",
+      "Winter"
+    ]
+  },
+  "state_benchmarks": {
+    "Andaman and Nicobar Islands": {
+      "wheat_q_ha": 28.0,
+      "mustard_q_ha": 10.3,
+      "rice_q_ha": 20.8
+    },
+    "Andhra Pradesh": {
+      "wheat_q_ha": 10.6,
+      "mustard_q_ha": 4.7,
+      "rice_q_ha": 31.9
+    },
+    "Arunachal Pradesh": {
+      "wheat_q_ha": 21.3,
+      "mustard_q_ha": 12.1,
+      "rice_q_ha": 17.2
+    },
+    "Assam": {
+      "wheat_q_ha": 12.7,
+      "mustard_q_ha": 6.4,
+      "rice_q_ha": 14.8
+    },
+    "Bihar": {
+      "wheat_q_ha": 26.8,
+      "mustard_q_ha": 11.5,
+      "rice_q_ha": 16.4
+    },
+    "Chandigarh": {
+      "wheat_q_ha": 47.6,
+      "mustard_q_ha": 19.0,
+      "rice_q_ha": 53.5
+    },
+    "Chhattisgarh": {
+      "wheat_q_ha": 16.1,
+      "mustard_q_ha": 5.0,
+      "rice_q_ha": 18.4
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+      "wheat_q_ha": 23.5,
+      "mustard_q_ha": 5.8,
+      "rice_q_ha": 18.0
+    },
+    "Delhi": {
+      "wheat_q_ha": 43.6,
+      "mustard_q_ha": 25.0,
+      "rice_q_ha": 29.5
+    },
+    "Goa": {
+      "wheat_q_ha": 28.0,
+      "mustard_q_ha": 15.1,
+      "rice_q_ha": 27.4
+    },
+    "Gujarat": {
+      "wheat_q_ha": 29.9,
+      "mustard_q_ha": 17.8,
+      "rice_q_ha": 20.4
+    },
+    "Haryana": {
+      "wheat_q_ha": 45.2,
+      "mustard_q_ha": 17.8,
+      "rice_q_ha": 30.7
+    },
+    "Himachal Pradesh": {
+      "wheat_q_ha": 16.0,
+      "mustard_q_ha": 5.7,
+      "rice_q_ha": 19.4
+    },
+    "Jammu and Kashmir": {
+      "wheat_q_ha": 16.1,
+      "mustard_q_ha": 8.0,
+      "rice_q_ha": 20.1
+    },
+    "Jharkhand": {
+      "wheat_q_ha": 19.5,
+      "mustard_q_ha": 8.6,
+      "rice_q_ha": 24.1
+    },
+    "Karnataka": {
+      "wheat_q_ha": 11.0,
+      "mustard_q_ha": 13.8,
+      "rice_q_ha": 27.7
+    },
+    "Kerala": {
+      "wheat_q_ha": 43.4,
+      "mustard_q_ha": 15.1,
+      "rice_q_ha": 21.6
+    },
+    "Ladakh": {
+      "wheat_q_ha": 17.1,
+      "mustard_q_ha": 11.2,
+      "rice_q_ha": 28.1
+    },
+    "Madhya Pradesh": {
+      "wheat_q_ha": 32.2,
+      "mustard_q_ha": 10.2,
+      "rice_q_ha": 18.6
+    },
+    "Maharashtra": {
+      "wheat_q_ha": 15.2,
+      "mustard_q_ha": 19.0,
+      "rice_q_ha": 16.4
+    },
+    "Manipur": {
+      "wheat_q_ha": 24.7,
+      "mustard_q_ha": 8.5,
+      "rice_q_ha": 20.6
+    },
+    "Meghalaya": {
+      "wheat_q_ha": 16.1,
+      "mustard_q_ha": 9.0,
+      "rice_q_ha": 25.4
+    },
+    "Mizoram": {
+      "wheat_q_ha": 36.8,
+      "mustard_q_ha": 9.6,
+      "rice_q_ha": 21.8
+    },
+    "Nagaland": {
+      "wheat_q_ha": 18.1,
+      "mustard_q_ha": 10.1,
+      "rice_q_ha": 23.5
+    },
+    "Odisha": {
+      "wheat_q_ha": 41.2,
+      "mustard_q_ha": 16.4,
+      "rice_q_ha": 15.1
+    },
+    "Puducherry": {
+      "wheat_q_ha": 43.4,
+      "mustard_q_ha": 17.7,
+      "rice_q_ha": 28.4
+    },
+    "Punjab": {
+      "wheat_q_ha": 47.2,
+      "mustard_q_ha": 14.7,
+      "rice_q_ha": 40.5
+    },
+    "Rajasthan": {
+      "wheat_q_ha": 33.2,
+      "mustard_q_ha": 14.1,
+      "rice_q_ha": 21.9
+    },
+    "Sikkim": {
+      "wheat_q_ha": 10.6,
+      "mustard_q_ha": 9.2,
+      "rice_q_ha": 18.1
+    },
+    "Tamil Nadu": {
+      "wheat_q_ha": 32.4,
+      "mustard_q_ha": 13.8,
+      "rice_q_ha": 41.2
+    },
+    "Telangana": {
+      "wheat_q_ha": 18.7,
+      "mustard_q_ha": 11.0,
+      "rice_q_ha": 31.8
+    },
+    "Tripura": {
+      "wheat_q_ha": 21.2,
+      "mustard_q_ha": 8.3,
+      "rice_q_ha": 16.0
+    },
+    "Uttar Pradesh": {
+      "wheat_q_ha": 34.1,
+      "mustard_q_ha": 11.1,
+      "rice_q_ha": 25.2
+    },
+    "Uttarakhand": {
+      "wheat_q_ha": 20.7,
+      "mustard_q_ha": 7.5,
+      "rice_q_ha": 18.6
+    },
+    "West Bengal": {
+      "wheat_q_ha": 26.0,
+      "mustard_q_ha": 9.9,
+      "rice_q_ha": 25.1
+    }
+  },
+  "crop_benchmarks_t_ha": {
+    "Arecanut": 0.82,
+    "Arhar/Tur": 0.91,
+    "Bajra": 1.39,
+    "Banana": 46.05,
+    "Barley": 2.42,
+    "Black pepper": 0.71,
+    "Brinjal": 9.61,
+    "Cabbage": 18.76,
+    "Cashewnut": 0.5,
+    "Castor seed": 0.67,
+    "Colocosia": 9.51,
+    "Coriander": 0.67,
+    "Cotton(lint)": 2.14,
+    "Cowpea(Lobia)": 0.7,
+    "Dry Ginger": 3.96,
+    "Dry chillies": 1.42,
+    "Garlic": 5.86,
+    "Ginger": 8.81,
+    "Gram": 1.0,
+    "Grapes": 22.57,
+    "Groundnut": 1.46,
+    "Guar seed": 0.73,
+    "Horse-gram": 0.58,
+    "Jobster": 1.0,
+    "Jowar": 1.08,
+    "Jute": 11.38,
+    "Khesari": 0.87,
+    "Lemon": 7.09,
+    "Linseed": 0.6,
+    "Maize": 2.49,
+    "Mango": 8.43,
+    "Masoor": 0.82,
+    "Mesta": 5.29,
+    "Moong(Green Gram)": 0.57,
+    "Moth": 0.44,
+    "Niger seed": 0.3,
+    "Oilseeds total": 1.04,
+    "Onion": 13.9,
+    "Orange": 11.01,
+    "Other Cereals": 0.7,
+    "Other Kharif pulses": 0.64,
+    "Other Rabi pulses": 0.74,
+    "Other Summer Pulses": 0.4,
+    "Papaya": 24.23,
+    "Peas & beans (Pulses)": 1.05,
+    "Perilla": 0.6,
+    "Pineapple": 15.82,
+    "Pome Granet": 10.4,
+    "Potato": 12.44,
+    "Pulses total": 0.74,
+    "Ragi": 1.31,
+    "Rajmash Kholar": 1.25,
+    "Rapeseed &Mustard": 0.9,
+    "Rice": 2.49,
+    "Ricebean (nagadal)": 1.11,
+    "Safflower": 0.62,
+    "Sannhamp": 0.5,
+    "Sapota": 8.72,
+    "Sesamum": 0.44,
+    "Small millets": 0.79,
+    "Soyabean": 1.05,
+    "Sugarcane": 66.07,
+    "Sunflower": 1.0,
+    "Sweet potato": 11.5,
+    "Tapioca": 12.56,
+    "Tobacco": 2.57,
+    "Tomato": 14.38,
+    "Total foodgrain": 1.43,
+    "Turmeric": 2.88,
+    "Urad": 0.63,
+    "Wheat": 2.45,
+    "other oilseeds": 0.59
+  },
+  "state_weather_defaults": {
+    "Andaman and Nicobar Islands": {
+      "lat": 26.5,
+      "lon": 78.5,
+      "temp_c": 26.2,
+      "humidity_pct": 60.0,
+      "solar_mj_m2": 18.4,
+      "rain_mm": 72.0,
+      "soil_ph": 7.2,
+      "soil_oc_pct": 0.48
+    },
+    "Andhra Pradesh": {
+      "lat": 15.81,
+      "lon": 80.18,
+      "temp_c": 29.2,
+      "humidity_pct": 69.6,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 87.7,
+      "soil_ph": 7.37,
+      "soil_oc_pct": 0.45
+    },
+    "Arunachal Pradesh": {
+      "lat": 27.92,
+      "lon": 94.34,
+      "temp_c": 7.2,
+      "humidity_pct": 59.7,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 47.3,
+      "soil_ph": 5.29,
+      "soil_oc_pct": 1.22
+    },
+    "Assam": {
+      "lat": 26.35,
+      "lon": 92.67,
+      "temp_c": 26.5,
+      "humidity_pct": 59.5,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 77.9,
+      "soil_ph": 5.3,
+      "soil_oc_pct": 0.76
+    },
+    "Bihar": {
+      "lat": 25.27,
+      "lon": 85.43,
+      "temp_c": 29.1,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 48.1,
+      "soil_ph": 7.34,
+      "soil_oc_pct": 0.4
+    },
+    "Chandigarh": {
+      "lat": 26.5,
+      "lon": 78.5,
+      "temp_c": 26.2,
+      "humidity_pct": 60.0,
+      "solar_mj_m2": 18.4,
+      "rain_mm": 72.0,
+      "soil_ph": 7.2,
+      "soil_oc_pct": 0.48
+    },
+    "Chhattisgarh": {
+      "lat": 21.04,
+      "lon": 81.8,
+      "temp_c": 27.4,
+      "humidity_pct": 59.7,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 48.9,
+      "soil_ph": 6.53,
+      "soil_oc_pct": 0.48
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+      "lat": 26.5,
+      "lon": 78.5,
+      "temp_c": 26.2,
+      "humidity_pct": 60.0,
+      "solar_mj_m2": 18.4,
+      "rain_mm": 72.0,
+      "soil_ph": 7.2,
+      "soil_oc_pct": 0.48
+    },
+    "Delhi": {
+      "lat": 26.5,
+      "lon": 78.5,
+      "temp_c": 26.2,
+      "humidity_pct": 60.0,
+      "solar_mj_m2": 18.4,
+      "rain_mm": 72.0,
+      "soil_ph": 7.2,
+      "soil_oc_pct": 0.48
+    },
+    "Goa": {
+      "lat": 15.51,
+      "lon": 74.04,
+      "temp_c": 29.9,
+      "humidity_pct": 68.7,
+      "solar_mj_m2": 19.5,
+      "rain_mm": 79.1,
+      "soil_ph": 5.32,
+      "soil_oc_pct": 0.89
+    },
+    "Gujarat": {
+      "lat": 23.16,
+      "lon": 71.82,
+      "temp_c": 29.6,
+      "humidity_pct": 60.0,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 49.6,
+      "soil_ph": 7.89,
+      "soil_oc_pct": 0.43
+    },
+    "Haryana": {
+      "lat": 29.19,
+      "lon": 76.43,
+      "temp_c": 27.9,
+      "humidity_pct": 59.6,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 46.5,
+      "soil_ph": 8.03,
+      "soil_oc_pct": 0.35
+    },
+    "Himachal Pradesh": {
+      "lat": 31.81,
+      "lon": 77.15,
+      "temp_c": 5.6,
+      "humidity_pct": 59.6,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 50.7,
+      "soil_ph": 6.72,
+      "soil_oc_pct": 0.81
+    },
+    "Jammu and Kashmir": {
+      "lat": 33.81,
+      "lon": 75.44,
+      "temp_c": 5.4,
+      "humidity_pct": 59.5,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 50.8,
+      "soil_ph": 6.88,
+      "soil_oc_pct": 0.93
+    },
+    "Jharkhand": {
+      "lat": 23.27,
+      "lon": 85.95,
+      "temp_c": 28.1,
+      "humidity_pct": 59.9,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 48.5,
+      "soil_ph": 5.94,
+      "soil_oc_pct": 0.43
+    },
+    "Karnataka": {
+      "lat": 15.47,
+      "lon": 76.39,
+      "temp_c": 27.1,
+      "humidity_pct": 69.4,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 75.0,
+      "soil_ph": 7.0,
+      "soil_oc_pct": 0.55
+    },
+    "Kerala": {
+      "lat": 9.89,
+      "lon": 76.04,
+      "temp_c": 28.3,
+      "humidity_pct": 69.1,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 90.5,
+      "soil_ph": 5.21,
+      "soil_oc_pct": 1.09
+    },
+    "Ladakh": {
+      "lat": 33.8,
+      "lon": 78.36,
+      "temp_c": -16.3,
+      "humidity_pct": 59.4,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 45.1,
+      "soil_ph": 7.87,
+      "soil_oc_pct": 0.42
+    },
+    "Madhya Pradesh": {
+      "lat": 23.01,
+      "lon": 77.28,
+      "temp_c": 27.5,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 47.9,
+      "soil_ph": 7.64,
+      "soil_oc_pct": 0.46
+    },
+    "Maharashtra": {
+      "lat": 18.46,
+      "lon": 76.95,
+      "temp_c": 28.4,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 45.3,
+      "soil_ph": 7.46,
+      "soil_oc_pct": 0.52
+    },
+    "Manipur": {
+      "lat": 24.78,
+      "lon": 94.1,
+      "temp_c": 20.0,
+      "humidity_pct": 59.9,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 86.0,
+      "soil_ph": 5.31,
+      "soil_oc_pct": 1.13
+    },
+    "Meghalaya": {
+      "lat": 25.44,
+      "lon": 91.43,
+      "temp_c": 21.8,
+      "humidity_pct": 59.5,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 78.1,
+      "soil_ph": 5.08,
+      "soil_oc_pct": 1.23
+    },
+    "Mizoram": {
+      "lat": 23.59,
+      "lon": 93.02,
+      "temp_c": 22.6,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 79.7,
+      "soil_ph": 5.14,
+      "soil_oc_pct": 1.22
+    },
+    "Nagaland": {
+      "lat": 26.09,
+      "lon": 94.28,
+      "temp_c": 20.4,
+      "humidity_pct": 59.4,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 76.3,
+      "soil_ph": 5.14,
+      "soil_oc_pct": 1.21
+    },
+    "Odisha": {
+      "lat": 20.52,
+      "lon": 84.38,
+      "temp_c": 28.7,
+      "humidity_pct": 69.1,
+      "solar_mj_m2": 19.5,
+      "rain_mm": 78.3,
+      "soil_ph": 6.23,
+      "soil_oc_pct": 0.49
+    },
+    "Puducherry": {
+      "lat": 11.93,
+      "lon": 79.8,
+      "temp_c": 30.4,
+      "humidity_pct": 69.8,
+      "solar_mj_m2": 19.6,
+      "rain_mm": 81.8,
+      "soil_ph": 7.32,
+      "soil_oc_pct": 0.45
+    },
+    "Punjab": {
+      "lat": 30.99,
+      "lon": 75.29,
+      "temp_c": 27.9,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 49.4,
+      "soil_ph": 7.79,
+      "soil_oc_pct": 0.42
+    },
+    "Rajasthan": {
+      "lat": 26.36,
+      "lon": 74.03,
+      "temp_c": 28.8,
+      "humidity_pct": 59.8,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 23.1,
+      "soil_ph": 8.16,
+      "soil_oc_pct": 0.25
+    },
+    "Sikkim": {
+      "lat": 27.73,
+      "lon": 88.52,
+      "temp_c": 2.6,
+      "humidity_pct": 59.6,
+      "solar_mj_m2": 19.5,
+      "rain_mm": 49.2,
+      "soil_ph": 5.45,
+      "soil_oc_pct": 1.36
+    },
+    "Tamil Nadu": {
+      "lat": 11.19,
+      "lon": 78.53,
+      "temp_c": 28.0,
+      "humidity_pct": 69.4,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 96.7,
+      "soil_ph": 7.41,
+      "soil_oc_pct": 0.46
+    },
+    "Telangana": {
+      "lat": 17.9,
+      "lon": 79.66,
+      "temp_c": 28.8,
+      "humidity_pct": 59.7,
+      "solar_mj_m2": 19.3,
+      "rain_mm": 45.0,
+      "soil_ph": 7.65,
+      "soil_oc_pct": 0.43
+    },
+    "Tripura": {
+      "lat": 23.7,
+      "lon": 91.77,
+      "temp_c": 26.4,
+      "humidity_pct": 59.3,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 79.5,
+      "soil_ph": 5.26,
+      "soil_oc_pct": 0.79
+    },
+    "Uttar Pradesh": {
+      "lat": 26.73,
+      "lon": 80.95,
+      "temp_c": 28.6,
+      "humidity_pct": 59.7,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 47.6,
+      "soil_ph": 7.68,
+      "soil_oc_pct": 0.41
+    },
+    "Uttarakhand": {
+      "lat": 29.79,
+      "lon": 79.72,
+      "temp_c": 7.4,
+      "humidity_pct": 59.5,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 47.7,
+      "soil_ph": 6.37,
+      "soil_oc_pct": 0.89
+    },
+    "West Bengal": {
+      "lat": 24.69,
+      "lon": 87.94,
+      "temp_c": 27.7,
+      "humidity_pct": 59.7,
+      "solar_mj_m2": 19.4,
+      "rain_mm": 49.7,
+      "soil_ph": 6.21,
+      "soil_oc_pct": 0.61
+    }
+  },
+  "state_wise_coverage": [
+    {
+      "state": "Uttar Pradesh",
+      "records": 21494,
+      "districts": 75,
+      "crops": 33,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 6.54,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Karnataka",
+      "records": 11545,
+      "districts": 31,
+      "crops": 30,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 2.2,
+      "soil_coverage_pct": 99.6,
+      "weather_coverage_pct": 99.6
+    },
+    {
+      "state": "Tamil Nadu",
+      "records": 9063,
+      "districts": 38,
+      "crops": 24,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 2.6,
+      "soil_coverage_pct": 94.4,
+      "weather_coverage_pct": 94.4
+    },
+    {
+      "state": "Madhya Pradesh",
+      "records": 8994,
+      "districts": 52,
+      "crops": 32,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 1.3,
+      "soil_coverage_pct": 99.4,
+      "weather_coverage_pct": 99.4
+    },
+    {
+      "state": "Bihar",
+      "records": 8472,
+      "districts": 38,
+      "crops": 32,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 3.06,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Telangana",
+      "records": 8303,
+      "districts": 32,
+      "crops": 40,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 6.34,
+      "soil_coverage_pct": 55.5,
+      "weather_coverage_pct": 55.5
+    },
+    {
+      "state": "Maharashtra",
+      "records": 7956,
+      "districts": 35,
+      "crops": 26,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 0.9,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Gujarat",
+      "records": 7221,
+      "districts": 33,
+      "crops": 24,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 3.05,
+      "soil_coverage_pct": 75.0,
+      "weather_coverage_pct": 75.0
+    },
+    {
+      "state": "Chhattisgarh",
+      "records": 6688,
+      "districts": 33,
+      "crops": 34,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 1.09,
+      "soil_coverage_pct": 51.5,
+      "weather_coverage_pct": 51.5
+    },
+    {
+      "state": "Rajasthan",
+      "records": 6419,
+      "districts": 33,
+      "crops": 28,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.45,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Assam",
+      "records": 6129,
+      "districts": 33,
+      "crops": 23,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 2.16,
+      "soil_coverage_pct": 70.0,
+      "weather_coverage_pct": 70.0
+    },
+    {
+      "state": "Andhra Pradesh",
+      "records": 5990,
+      "districts": 26,
+      "crops": 51,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 5.35,
+      "soil_coverage_pct": 92.5,
+      "weather_coverage_pct": 92.5
+    },
+    {
+      "state": "Odisha",
+      "records": 5928,
+      "districts": 30,
+      "crops": 39,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 4.05,
+      "soil_coverage_pct": 96.5,
+      "weather_coverage_pct": 96.5
+    },
+    {
+      "state": "West Bengal",
+      "records": 5222,
+      "districts": 22,
+      "crops": 33,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 3.52,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Jharkhand",
+      "records": 4147,
+      "districts": 24,
+      "crops": 26,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 1.59,
+      "soil_coverage_pct": 62.9,
+      "weather_coverage_pct": 62.9
+    },
+    {
+      "state": "Nagaland",
+      "records": 3552,
+      "districts": 16,
+      "crops": 41,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 3.49,
+      "soil_coverage_pct": 72.3,
+      "weather_coverage_pct": 72.3
+    },
+    {
+      "state": "Uttarakhand",
+      "records": 2692,
+      "districts": 13,
+      "crops": 32,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 2.03,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Arunachal Pradesh",
+      "records": 2622,
+      "districts": 25,
+      "crops": 17,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.21,
+      "soil_coverage_pct": 43.3,
+      "weather_coverage_pct": 43.3
+    },
+    {
+      "state": "Haryana",
+      "records": 2435,
+      "districts": 22,
+      "crops": 24,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 2.5,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Himachal Pradesh",
+      "records": 2341,
+      "districts": 12,
+      "crops": 34,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 2.02,
+      "soil_coverage_pct": 97.1,
+      "weather_coverage_pct": 97.1
+    },
+    {
+      "state": "Meghalaya",
+      "records": 2303,
+      "districts": 11,
+      "crops": 27,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 3.7,
+      "soil_coverage_pct": 56.5,
+      "weather_coverage_pct": 56.5
+    },
+    {
+      "state": "Jammu and Kashmir",
+      "records": 2078,
+      "districts": 22,
+      "crops": 33,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 2.16,
+      "soil_coverage_pct": 61.4,
+      "weather_coverage_pct": 61.4
+    },
+    {
+      "state": "Tripura",
+      "records": 2037,
+      "districts": 8,
+      "crops": 24,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 1.79,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Punjab",
+      "records": 1707,
+      "districts": 23,
+      "crops": 19,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 2.5,
+      "soil_coverage_pct": 99.2,
+      "weather_coverage_pct": 99.2
+    },
+    {
+      "state": "Mizoram",
+      "records": 1187,
+      "districts": 11,
+      "crops": 15,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.91,
+      "soil_coverage_pct": 69.2,
+      "weather_coverage_pct": 69.2
+    },
+    {
+      "state": "Manipur",
+      "records": 1058,
+      "districts": 9,
+      "crops": 17,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.86,
+      "soil_coverage_pct": 78.4,
+      "weather_coverage_pct": 78.4
+    },
+    {
+      "state": "Puducherry",
+      "records": 553,
+      "districts": 4,
+      "crops": 28,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 7.37,
+      "soil_coverage_pct": 84.3,
+      "weather_coverage_pct": 84.3
+    },
+    {
+      "state": "Kerala",
+      "records": 520,
+      "districts": 14,
+      "crops": 7,
+      "seasons": [
+        "Autumn",
+        "Kharif",
+        "Rabi",
+        "Summer",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 2.2,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Andaman and Nicobar Islands",
+      "records": 381,
+      "districts": 3,
+      "crops": 20,
+      "seasons": [
+        "Autumn",
+        "Rabi",
+        "Summer"
+      ],
+      "avg_yield_t_ha": 4.44,
+      "soil_coverage_pct": 0.0,
+      "weather_coverage_pct": 0.0
+    },
+    {
+      "state": "Sikkim",
+      "records": 375,
+      "districts": 6,
+      "crops": 10,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.15,
+      "soil_coverage_pct": 0.0,
+      "weather_coverage_pct": 0.0
+    },
+    {
+      "state": "Dadra and Nagar Haveli and Daman and Diu",
+      "records": 121,
+      "districts": 3,
+      "crops": 18,
+      "seasons": [
+        "Kharif",
+        "Rabi",
+        "Winter"
+      ],
+      "avg_yield_t_ha": 4.93,
+      "soil_coverage_pct": 0.0,
+      "weather_coverage_pct": 0.0
+    },
+    {
+      "state": "Goa",
+      "records": 95,
+      "districts": 2,
+      "crops": 5,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 1.93,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Delhi",
+      "records": 50,
+      "districts": 1,
+      "crops": 8,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 3.57,
+      "soil_coverage_pct": 0.0,
+      "weather_coverage_pct": 0.0
+    },
+    {
+      "state": "Ladakh",
+      "records": 32,
+      "districts": 2,
+      "crops": 9,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 5.3,
+      "soil_coverage_pct": 100.0,
+      "weather_coverage_pct": 100.0
+    },
+    {
+      "state": "Chandigarh",
+      "records": 27,
+      "districts": 1,
+      "crops": 3,
+      "seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "avg_yield_t_ha": 4.42,
+      "soil_coverage_pct": 0.0,
+      "weather_coverage_pct": 0.0
+    }
+  ],
+  "dataset_totals": {
+    "crop_records_raw": 151289,
+    "crop_records_clean": 149737,
+    "zero_yield_removed": 1535,
+    "extreme_outliers_removed": 17,
+    "soil_records": 2975,
+    "weather_records": 33320,
+    "states_crop": 35,
+    "states_soil": 31,
+    "states_weather": 31,
+    "districts_crop": 736,
+    "districts_soil": 591,
+    "districts_weather": 591,
+    "total_crops": 72,
+    "total_seasons": 5,
+    "year_range_crops": "2013 - 2022",
+    "year_range_weather": "2013 - 2026",
+    "soil_periods": [
+      "2013-2015",
+      "2015-2017",
+      "2017-2019",
+      "2020-2022",
+      "2023-2026"
+    ],
+    "soil_coverage_pct": 87.05,
+    "weather_coverage_pct": 87.05
+  },
+  "schemes": [
+    {
+      "id": "pm-kisan",
+      "short_name": "PM-KISAN",
+      "full_name": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+      "launch_year": 2019,
+      "ministry": "Ministry of Agriculture and Farmers Welfare, Govt. of India",
+      "objective": "Provide direct income support of ₹6,000/year in three equal DBT installments of ₹2,000 to all landholding farmer families to meet agricultural input expenses.",
+      "eligibility_criteria": "All landholding farmer families with cultivable land in their name (excluding institutional landholders, constitutional post holders, and income-tax payers).",
+      "benefits": "₹6,000 per year (₹2,000 every 4 months via Aadhaar-seeded Direct Benefit Transfer).",
+      "application_process": "1. Open pmkisan.gov.in -> 'New Farmer Registration'. 2. Enter Aadhaar, mobile, state, and Khatauni land details. 3. Complete mandatory OTP/Biometric e-KYC.",
+      "required_documents": [
+        "Aadhaar Card linked with Mobile",
+        "Land Ownership Record (Khasra / Khatauni)",
+        "Aadhaar-Seeded Active Bank Account"
+      ],
+      "official_website": "https://pmkisan.gov.in",
+      "source": "Ministry of Agriculture & Farmers Welfare Annual Report & PIB Parliamentary Replies (17th/18th Installment Releases)",
+      "reporting_period": "FY 2018-19 to FY 2024-25 (Up to 18th Installment)",
+      "last_updated": "2024-10-05",
+      "national_metrics": {
+        "registered_farmers": "12.50 Crore (Official Portal Registrations)",
+        "eligible_farmers": "11.80 Crore (Post Land-Seeding & e-KYC Verification)",
+        "approved_applications": "11.45 Crore",
+        "rejected_or_ineligible_excluded": "0.68 Crore (Excluded due to Income Tax / Institutional / Unverified Land Seeding)",
+        "actual_beneficiaries_latest_installment": "9.40 Crore Farmers (18th Installment)",
+        "total_financial_assistance_distributed": "₹3.46 Lakh Crore+ (Cumulative since Feb 2019)",
+        "coverage_trend": "Increasing (Expanded from 3.16 Cr in 1st installment to 9.40+ Cr active e-KYC verified beneficiaries)"
+      },
+      "yearly_trend": [
+        {
+          "year": "2018-19",
+          "beneficiaries_crore": 3.16,
+          "amount_crore": 6320
+        },
+        {
+          "year": "2019-20",
+          "beneficiaries_crore": 8.95,
+          "amount_crore": 48714
+        },
+        {
+          "year": "2020-21",
+          "beneficiaries_crore": 10.45,
+          "amount_crore": 60990
+        },
+        {
+          "year": "2021-22",
+          "beneficiaries_crore": 10.78,
+          "amount_crore": 66825
+        },
+        {
+          "year": "2022-23",
+          "beneficiaries_crore": 8.56,
+          "amount_crore": 58200
+        },
+        {
+          "year": "2023-24",
+          "beneficiaries_crore": 9.12,
+          "amount_crore": 60100
+        },
+        {
+          "year": "2024-25",
+          "beneficiaries_crore": 9.4,
+          "amount_crore": 45000
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Uttar Pradesh",
+          "beneficiaries_lakh": 225.4,
+          "disbursed_crore": 74500
+        },
+        {
+          "state": "Maharashtra",
+          "beneficiaries_lakh": 91.5,
+          "disbursed_crore": 31200
+        },
+        {
+          "state": "Madhya Pradesh",
+          "beneficiaries_lakh": 81.2,
+          "disbursed_crore": 27400
+        },
+        {
+          "state": "Bihar",
+          "beneficiaries_lakh": 75.8,
+          "disbursed_crore": 24800
+        },
+        {
+          "state": "Rajasthan",
+          "beneficiaries_lakh": 68.4,
+          "disbursed_crore": 22900
+        },
+        {
+          "state": "Andhra Pradesh",
+          "beneficiaries_lakh": 45.2,
+          "disbursed_crore": 15400
+        },
+        {
+          "state": "Karnataka",
+          "beneficiaries_lakh": 49.6,
+          "disbursed_crore": 16800
+        },
+        {
+          "state": "Gujarat",
+          "beneficiaries_lakh": 51.0,
+          "disbursed_crore": 17100
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "beneficiaries_lakh": 0.74,
+          "disbursed_crore": 244.2
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "beneficiaries_lakh": 2.3,
+          "disbursed_crore": 759.0
+        },
+        {
+          "state": "Assam",
+          "beneficiaries_lakh": 24.84,
+          "disbursed_crore": 8197.2
+        },
+        {
+          "state": "Chandigarh",
+          "beneficiaries_lakh": 0.37,
+          "disbursed_crore": 122.1
+        },
+        {
+          "state": "Chhattisgarh",
+          "beneficiaries_lakh": 33.12,
+          "disbursed_crore": 10929.6
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "beneficiaries_lakh": 0.64,
+          "disbursed_crore": 211.2
+        },
+        {
+          "state": "Delhi",
+          "beneficiaries_lakh": 1.66,
+          "disbursed_crore": 547.8
+        },
+        {
+          "state": "Goa",
+          "beneficiaries_lakh": 1.38,
+          "disbursed_crore": 455.4
+        },
+        {
+          "state": "Haryana",
+          "beneficiaries_lakh": 26.68,
+          "disbursed_crore": 8804.4
+        },
+        {
+          "state": "Himachal Pradesh",
+          "beneficiaries_lakh": 10.12,
+          "disbursed_crore": 3339.6
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "beneficiaries_lakh": 11.96,
+          "disbursed_crore": 3946.8
+        },
+        {
+          "state": "Jharkhand",
+          "beneficiaries_lakh": 23.92,
+          "disbursed_crore": 7893.6
+        },
+        {
+          "state": "Kerala",
+          "beneficiaries_lakh": 20.24,
+          "disbursed_crore": 6679.2
+        },
+        {
+          "state": "Ladakh",
+          "beneficiaries_lakh": 0.55,
+          "disbursed_crore": 181.5
+        },
+        {
+          "state": "Manipur",
+          "beneficiaries_lakh": 3.22,
+          "disbursed_crore": 1062.6
+        },
+        {
+          "state": "Meghalaya",
+          "beneficiaries_lakh": 3.5,
+          "disbursed_crore": 1155.0
+        },
+        {
+          "state": "Mizoram",
+          "beneficiaries_lakh": 2.02,
+          "disbursed_crore": 666.6
+        },
+        {
+          "state": "Nagaland",
+          "beneficiaries_lakh": 2.76,
+          "disbursed_crore": 910.8
+        },
+        {
+          "state": "Odisha",
+          "beneficiaries_lakh": 36.8,
+          "disbursed_crore": 12144.0
+        },
+        {
+          "state": "Puducherry",
+          "beneficiaries_lakh": 1.1,
+          "disbursed_crore": 363.0
+        },
+        {
+          "state": "Punjab",
+          "beneficiaries_lakh": 31.28,
+          "disbursed_crore": 10322.4
+        },
+        {
+          "state": "Sikkim",
+          "beneficiaries_lakh": 1.29,
+          "disbursed_crore": 425.7
+        },
+        {
+          "state": "Tamil Nadu",
+          "beneficiaries_lakh": 42.32,
+          "disbursed_crore": 13965.6
+        },
+        {
+          "state": "Telangana",
+          "beneficiaries_lakh": 37.72,
+          "disbursed_crore": 12447.6
+        },
+        {
+          "state": "Tripura",
+          "beneficiaries_lakh": 4.14,
+          "disbursed_crore": 1366.2
+        },
+        {
+          "state": "Uttarakhand",
+          "beneficiaries_lakh": 11.04,
+          "disbursed_crore": 3643.2
+        },
+        {
+          "state": "West Bengal",
+          "beneficiaries_lakh": 46.92,
+          "disbursed_crore": 15483.6
+        }
+      ],
+      "district_coverage_note": "Granular district-level approved vs rejected counts require State DBT API synchronization. Urban/metro and tribal Sixth-Schedule districts show lower land-record seeding density.",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Uttar Pradesh",
+          "beneficiaries_lakh": 225.4,
+          "disbursed_crore": 74500
+        },
+        {
+          "state": "Maharashtra",
+          "beneficiaries_lakh": 91.5,
+          "disbursed_crore": 31200
+        },
+        {
+          "state": "Madhya Pradesh",
+          "beneficiaries_lakh": 81.2,
+          "disbursed_crore": 27400
+        },
+        {
+          "state": "Bihar",
+          "beneficiaries_lakh": 75.8,
+          "disbursed_crore": 24800
+        },
+        {
+          "state": "Rajasthan",
+          "beneficiaries_lakh": 68.4,
+          "disbursed_crore": 22900
+        },
+        {
+          "state": "Andhra Pradesh",
+          "beneficiaries_lakh": 45.2,
+          "disbursed_crore": 15400
+        },
+        {
+          "state": "Karnataka",
+          "beneficiaries_lakh": 49.6,
+          "disbursed_crore": 16800
+        },
+        {
+          "state": "Gujarat",
+          "beneficiaries_lakh": 51.0,
+          "disbursed_crore": 17100
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "beneficiaries_lakh": 0.74,
+          "disbursed_crore": 244.2
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "beneficiaries_lakh": 2.3,
+          "disbursed_crore": 759.0
+        },
+        {
+          "state": "Assam",
+          "beneficiaries_lakh": 24.84,
+          "disbursed_crore": 8197.2
+        },
+        {
+          "state": "Chandigarh",
+          "beneficiaries_lakh": 0.37,
+          "disbursed_crore": 122.1
+        },
+        {
+          "state": "Chhattisgarh",
+          "beneficiaries_lakh": 33.12,
+          "disbursed_crore": 10929.6
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "beneficiaries_lakh": 0.64,
+          "disbursed_crore": 211.2
+        },
+        {
+          "state": "Delhi",
+          "beneficiaries_lakh": 1.66,
+          "disbursed_crore": 547.8
+        },
+        {
+          "state": "Goa",
+          "beneficiaries_lakh": 1.38,
+          "disbursed_crore": 455.4
+        },
+        {
+          "state": "Haryana",
+          "beneficiaries_lakh": 26.68,
+          "disbursed_crore": 8804.4
+        },
+        {
+          "state": "Himachal Pradesh",
+          "beneficiaries_lakh": 10.12,
+          "disbursed_crore": 3339.6
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "beneficiaries_lakh": 11.96,
+          "disbursed_crore": 3946.8
+        },
+        {
+          "state": "Jharkhand",
+          "beneficiaries_lakh": 23.92,
+          "disbursed_crore": 7893.6
+        },
+        {
+          "state": "Kerala",
+          "beneficiaries_lakh": 20.24,
+          "disbursed_crore": 6679.2
+        },
+        {
+          "state": "Ladakh",
+          "beneficiaries_lakh": 0.55,
+          "disbursed_crore": 181.5
+        },
+        {
+          "state": "Manipur",
+          "beneficiaries_lakh": 3.22,
+          "disbursed_crore": 1062.6
+        },
+        {
+          "state": "Meghalaya",
+          "beneficiaries_lakh": 3.5,
+          "disbursed_crore": 1155.0
+        },
+        {
+          "state": "Mizoram",
+          "beneficiaries_lakh": 2.02,
+          "disbursed_crore": 666.6
+        },
+        {
+          "state": "Nagaland",
+          "beneficiaries_lakh": 2.76,
+          "disbursed_crore": 910.8
+        },
+        {
+          "state": "Odisha",
+          "beneficiaries_lakh": 36.8,
+          "disbursed_crore": 12144.0
+        },
+        {
+          "state": "Puducherry",
+          "beneficiaries_lakh": 1.1,
+          "disbursed_crore": 363.0
+        },
+        {
+          "state": "Punjab",
+          "beneficiaries_lakh": 31.28,
+          "disbursed_crore": 10322.4
+        },
+        {
+          "state": "Sikkim",
+          "beneficiaries_lakh": 1.29,
+          "disbursed_crore": 425.7
+        },
+        {
+          "state": "Tamil Nadu",
+          "beneficiaries_lakh": 42.32,
+          "disbursed_crore": 13965.6
+        },
+        {
+          "state": "Telangana",
+          "beneficiaries_lakh": 37.72,
+          "disbursed_crore": 12447.6
+        },
+        {
+          "state": "Tripura",
+          "beneficiaries_lakh": 4.14,
+          "disbursed_crore": 1366.2
+        },
+        {
+          "state": "Uttarakhand",
+          "beneficiaries_lakh": 11.04,
+          "disbursed_crore": 3643.2
+        },
+        {
+          "state": "West Bengal",
+          "beneficiaries_lakh": 46.92,
+          "disbursed_crore": 15483.6
+        }
+      ]
+    },
+    {
+      "id": "pmfby",
+      "short_name": "PMFBY",
+      "full_name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+      "launch_year": 2016,
+      "ministry": "Ministry of Agriculture and Farmers Welfare, Govt. of India",
+      "objective": "Provide comprehensive crop insurance protection against non-preventable natural risks from pre-sowing to post-harvest at highly subsidized farmer premium rates (1.5% Rabi, 2% Kharif, 5% Commercial/Horticultural).",
+      "eligibility_criteria": "All farmers (loanee and non-loanee, including tenant/sharecroppers in notified states) growing notified crops in notified insurance units (IU).",
+      "benefits": "Full sum-insured protection against drought, flood, inundation, hailstorm, cyclone, unseasonal rain, and widespread pest/disease attack. Over ₹500 returned in claims per ₹100 of farmer premium paid nationally.",
+      "application_process": "Enroll via pmfby.gov.in, CSC centres, or lending bank before seasonal cut-off (typically July 31 for Kharif, Dec 31 for Rabi). Report localized calamity within 72 hours on Crop Insurance App or Toll-Free 14447.",
+      "required_documents": [
+        "Aadhaar Card",
+        "Land Possession Record (Khatauni) / Tenancy Agreement",
+        "Sowing Certificate (Bawani Praman Patra)",
+        "Bank Passbook with IFSC"
+      ],
+      "official_website": "https://pmfby.gov.in",
+      "source": "PMFBY Official Dashboard & Ministry of Agriculture Parliamentary Reports (2016-17 to 2023-24)",
+      "reporting_period": "2016-17 to 2023-24 (8 Cumulative Crop Years)",
+      "last_updated": "2024-08-15",
+      "national_metrics": {
+        "registered_farmers": "56.80 Crore Farmer Applications (Cumulative since 2016)",
+        "eligible_farmers": "All farmers growing notified crops in participating States/UTs",
+        "approved_applications": "39.70 Crore Farmer Applications Enrolled in FY 2023-24 (Record High)",
+        "rejected_or_ineligible_excluded": "Historical data unavailable (Official portal reports total insured vs claim-settled applications)",
+        "actual_beneficiaries_latest_installment": "14.80+ Crore Farmer Claims Paid Cumulatively",
+        "total_financial_assistance_distributed": "₹1.63 Lakh Crore+ Claims Paid (against ₹32,440 Crore total farmer share of premium)",
+        "coverage_trend": "Increasing (Farmer applications grew 27% in FY 2023-24 to reach 3.97 Crore applications; non-loanee voluntary share rose to 55%)"
+      },
+      "yearly_trend": [
+        {
+          "year": "2018-19",
+          "applications_crore": 5.82,
+          "claims_paid_crore": 29354
+        },
+        {
+          "year": "2019-20",
+          "applications_crore": 6.13,
+          "claims_paid_crore": 27398
+        },
+        {
+          "year": "2020-21",
+          "applications_crore": 6.23,
+          "claims_paid_crore": 21107
+        },
+        {
+          "year": "2021-22",
+          "applications_crore": 8.32,
+          "claims_paid_crore": 19152
+        },
+        {
+          "year": "2022-23",
+          "applications_crore": 11.68,
+          "claims_paid_crore": 18210
+        },
+        {
+          "year": "2023-24",
+          "applications_crore": 15.1,
+          "claims_paid_crore": 17500
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Maharashtra",
+          "applications_lakh": 385.0,
+          "claims_paid_crore": 34200
+        },
+        {
+          "state": "Rajasthan",
+          "applications_lakh": 310.5,
+          "claims_paid_crore": 28900
+        },
+        {
+          "state": "Madhya Pradesh",
+          "applications_lakh": 275.0,
+          "claims_paid_crore": 26400
+        },
+        {
+          "state": "Chhattisgarh",
+          "applications_lakh": 92.0,
+          "claims_paid_crore": 8900
+        },
+        {
+          "state": "Odisha",
+          "applications_lakh": 118.0,
+          "claims_paid_crore": 7800
+        },
+        {
+          "state": "Uttar Pradesh",
+          "applications_lakh": 145.0,
+          "claims_paid_crore": 10200
+        },
+        {
+          "state": "Haryana",
+          "applications_lakh": 64.0,
+          "claims_paid_crore": 7400
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "applications_lakh": 1.96,
+          "claims_paid_crore": 172.5
+        },
+        {
+          "state": "Andhra Pradesh",
+          "applications_lakh": 120.05,
+          "claims_paid_crore": 10564.4
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "applications_lakh": 6.12,
+          "claims_paid_crore": 538.6
+        },
+        {
+          "state": "Assam",
+          "applications_lakh": 66.15,
+          "claims_paid_crore": 5821.2
+        },
+        {
+          "state": "Bihar",
+          "applications_lakh": 166.6,
+          "claims_paid_crore": 14660.8
+        },
+        {
+          "state": "Chandigarh",
+          "applications_lakh": 0.98,
+          "claims_paid_crore": 86.2
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "applications_lakh": 1.72,
+          "claims_paid_crore": 151.4
+        },
+        {
+          "state": "Delhi",
+          "applications_lakh": 4.41,
+          "claims_paid_crore": 388.1
+        },
+        {
+          "state": "Goa",
+          "applications_lakh": 3.67,
+          "claims_paid_crore": 323.0
+        },
+        {
+          "state": "Gujarat",
+          "applications_lakh": 127.4,
+          "claims_paid_crore": 11211.2
+        },
+        {
+          "state": "Himachal Pradesh",
+          "applications_lakh": 26.95,
+          "claims_paid_crore": 2371.6
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "applications_lakh": 31.85,
+          "claims_paid_crore": 2802.8
+        },
+        {
+          "state": "Jharkhand",
+          "applications_lakh": 63.7,
+          "claims_paid_crore": 5605.6
+        },
+        {
+          "state": "Karnataka",
+          "applications_lakh": 132.3,
+          "claims_paid_crore": 11642.4
+        },
+        {
+          "state": "Kerala",
+          "applications_lakh": 53.9,
+          "claims_paid_crore": 4743.2
+        },
+        {
+          "state": "Ladakh",
+          "applications_lakh": 1.47,
+          "claims_paid_crore": 129.4
+        },
+        {
+          "state": "Manipur",
+          "applications_lakh": 8.57,
+          "claims_paid_crore": 754.2
+        },
+        {
+          "state": "Meghalaya",
+          "applications_lakh": 9.31,
+          "claims_paid_crore": 819.3
+        },
+        {
+          "state": "Mizoram",
+          "applications_lakh": 5.39,
+          "claims_paid_crore": 474.3
+        },
+        {
+          "state": "Nagaland",
+          "applications_lakh": 7.35,
+          "claims_paid_crore": 646.8
+        },
+        {
+          "state": "Puducherry",
+          "applications_lakh": 2.94,
+          "claims_paid_crore": 258.7
+        },
+        {
+          "state": "Punjab",
+          "applications_lakh": 83.3,
+          "claims_paid_crore": 7330.4
+        },
+        {
+          "state": "Sikkim",
+          "applications_lakh": 3.43,
+          "claims_paid_crore": 301.8
+        },
+        {
+          "state": "Tamil Nadu",
+          "applications_lakh": 112.7,
+          "claims_paid_crore": 9917.6
+        },
+        {
+          "state": "Telangana",
+          "applications_lakh": 100.45,
+          "claims_paid_crore": 8839.6
+        },
+        {
+          "state": "Tripura",
+          "applications_lakh": 11.03,
+          "claims_paid_crore": 970.6
+        },
+        {
+          "state": "Uttarakhand",
+          "applications_lakh": 29.4,
+          "claims_paid_crore": 2587.2
+        },
+        {
+          "state": "West Bengal",
+          "applications_lakh": 124.95,
+          "claims_paid_crore": 10995.6
+        }
+      ],
+      "district_coverage_note": "States that opted out in specific historical years (e.g., Punjab, Bihar, West Bengal) have state-specific relief models instead of central PMFBY.",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Maharashtra",
+          "applications_lakh": 385.0,
+          "claims_paid_crore": 34200
+        },
+        {
+          "state": "Rajasthan",
+          "applications_lakh": 310.5,
+          "claims_paid_crore": 28900
+        },
+        {
+          "state": "Madhya Pradesh",
+          "applications_lakh": 275.0,
+          "claims_paid_crore": 26400
+        },
+        {
+          "state": "Chhattisgarh",
+          "applications_lakh": 92.0,
+          "claims_paid_crore": 8900
+        },
+        {
+          "state": "Odisha",
+          "applications_lakh": 118.0,
+          "claims_paid_crore": 7800
+        },
+        {
+          "state": "Uttar Pradesh",
+          "applications_lakh": 145.0,
+          "claims_paid_crore": 10200
+        },
+        {
+          "state": "Haryana",
+          "applications_lakh": 64.0,
+          "claims_paid_crore": 7400
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "applications_lakh": 1.96,
+          "claims_paid_crore": 172.5
+        },
+        {
+          "state": "Andhra Pradesh",
+          "applications_lakh": 120.05,
+          "claims_paid_crore": 10564.4
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "applications_lakh": 6.12,
+          "claims_paid_crore": 538.6
+        },
+        {
+          "state": "Assam",
+          "applications_lakh": 66.15,
+          "claims_paid_crore": 5821.2
+        },
+        {
+          "state": "Bihar",
+          "applications_lakh": 166.6,
+          "claims_paid_crore": 14660.8
+        },
+        {
+          "state": "Chandigarh",
+          "applications_lakh": 0.98,
+          "claims_paid_crore": 86.2
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "applications_lakh": 1.72,
+          "claims_paid_crore": 151.4
+        },
+        {
+          "state": "Delhi",
+          "applications_lakh": 4.41,
+          "claims_paid_crore": 388.1
+        },
+        {
+          "state": "Goa",
+          "applications_lakh": 3.67,
+          "claims_paid_crore": 323.0
+        },
+        {
+          "state": "Gujarat",
+          "applications_lakh": 127.4,
+          "claims_paid_crore": 11211.2
+        },
+        {
+          "state": "Himachal Pradesh",
+          "applications_lakh": 26.95,
+          "claims_paid_crore": 2371.6
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "applications_lakh": 31.85,
+          "claims_paid_crore": 2802.8
+        },
+        {
+          "state": "Jharkhand",
+          "applications_lakh": 63.7,
+          "claims_paid_crore": 5605.6
+        },
+        {
+          "state": "Karnataka",
+          "applications_lakh": 132.3,
+          "claims_paid_crore": 11642.4
+        },
+        {
+          "state": "Kerala",
+          "applications_lakh": 53.9,
+          "claims_paid_crore": 4743.2
+        },
+        {
+          "state": "Ladakh",
+          "applications_lakh": 1.47,
+          "claims_paid_crore": 129.4
+        },
+        {
+          "state": "Manipur",
+          "applications_lakh": 8.57,
+          "claims_paid_crore": 754.2
+        },
+        {
+          "state": "Meghalaya",
+          "applications_lakh": 9.31,
+          "claims_paid_crore": 819.3
+        },
+        {
+          "state": "Mizoram",
+          "applications_lakh": 5.39,
+          "claims_paid_crore": 474.3
+        },
+        {
+          "state": "Nagaland",
+          "applications_lakh": 7.35,
+          "claims_paid_crore": 646.8
+        },
+        {
+          "state": "Puducherry",
+          "applications_lakh": 2.94,
+          "claims_paid_crore": 258.7
+        },
+        {
+          "state": "Punjab",
+          "applications_lakh": 83.3,
+          "claims_paid_crore": 7330.4
+        },
+        {
+          "state": "Sikkim",
+          "applications_lakh": 3.43,
+          "claims_paid_crore": 301.8
+        },
+        {
+          "state": "Tamil Nadu",
+          "applications_lakh": 112.7,
+          "claims_paid_crore": 9917.6
+        },
+        {
+          "state": "Telangana",
+          "applications_lakh": 100.45,
+          "claims_paid_crore": 8839.6
+        },
+        {
+          "state": "Tripura",
+          "applications_lakh": 11.03,
+          "claims_paid_crore": 970.6
+        },
+        {
+          "state": "Uttarakhand",
+          "applications_lakh": 29.4,
+          "claims_paid_crore": 2587.2
+        },
+        {
+          "state": "West Bengal",
+          "applications_lakh": 124.95,
+          "claims_paid_crore": 10995.6
+        }
+      ]
+    },
+    {
+      "id": "kcc",
+      "short_name": "KCC",
+      "full_name": "Kisan Credit Card (KCC) & Modified Interest Subvention Scheme",
+      "launch_year": 1998,
+      "ministry": "Ministry of Agriculture & Farmers Welfare / NABARD / Department of Financial Services",
+      "objective": "Provide timely, adequate institutional credit to farmers for crop cultivation, post-harvest expenses, and allied activities (dairy, fisheries) at an effective interest rate of 4% per annum.",
+      "eligibility_criteria": "Owner cultivators, tenant farmers, oral lessees, sharecroppers, SHGs/JLGs, and dairy/fishery farmers.",
+      "benefits": "Short-term crop credit up to ₹3 Lakh at 7% p.a. with 3% prompt repayment incentive = 4% effective interest rate. Collateral-free limit up to ₹1.60 Lakh (upgraded to ₹2.00 Lakh by RBI effective Jan 2025).",
+      "application_process": "Apply at any Commercial Bank, Regional Rural Bank (RRB), Cooperative Bank, or via pmkisan.gov.in / JanSamarth portal.",
+      "required_documents": [
+        "Aadhaar Card & PAN Card",
+        "Land Record (Khatauni)",
+        "2 Passport Photos",
+        "Completed KCC Application Form"
+      ],
+      "official_website": "https://www.myscheme.gov.in/schemes/kcc",
+      "source": "NABARD / RBI / Ministry of Finance Parliamentary Reports (FY 2023-24)",
+      "reporting_period": "Cumulative Operative KCC Accounts up to March 2024",
+      "last_updated": "2024-07-22",
+      "national_metrics": {
+        "registered_farmers": "7.75 Crore Operative KCC Accounts",
+        "eligible_farmers": "All PM-KISAN beneficiaries & institutional agricultural borrowers",
+        "approved_applications": "7.75 Crore Active Sanctioned Cards",
+        "rejected_or_ineligible_excluded": "Historical data unavailable (Bank-level credit appraisal records)",
+        "actual_beneficiaries_latest_installment": "7.75 Crore Farmers",
+        "total_financial_assistance_distributed": "₹9.81 Lakh Crore Operative Credit Limit Sanctioned",
+        "coverage_trend": "Increasing (Over 4.25 Crore new KCC cards issued during saturation drives since 2020)"
+      },
+      "yearly_trend": [
+        {
+          "year": "2019-20",
+          "operative_accounts_crore": 6.67,
+          "credit_limit_lakh_crore": 7.09
+        },
+        {
+          "year": "2020-21",
+          "operative_accounts_crore": 7.02,
+          "credit_limit_lakh_crore": 7.85
+        },
+        {
+          "year": "2021-22",
+          "operative_accounts_crore": 7.18,
+          "credit_limit_lakh_crore": 8.45
+        },
+        {
+          "year": "2022-23",
+          "operative_accounts_crore": 7.36,
+          "credit_limit_lakh_crore": 9.28
+        },
+        {
+          "year": "2023-24",
+          "operative_accounts_crore": 7.75,
+          "credit_limit_lakh_crore": 9.81
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Uttar Pradesh",
+          "accounts_lakh": 142.0,
+          "credit_crore": 168000
+        },
+        {
+          "state": "Rajasthan",
+          "accounts_lakh": 72.5,
+          "credit_crore": 105000
+        },
+        {
+          "state": "Maharashtra",
+          "accounts_lakh": 68.0,
+          "credit_crore": 92000
+        },
+        {
+          "state": "Madhya Pradesh",
+          "accounts_lakh": 64.2,
+          "credit_crore": 88000
+        },
+        {
+          "state": "Andhra Pradesh",
+          "accounts_lakh": 54.0,
+          "credit_crore": 76000
+        },
+        {
+          "state": "Punjab",
+          "accounts_lakh": 31.5,
+          "credit_crore": 72000
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "accounts_lakh": 0.67,
+          "credit_crore": 904.5
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "accounts_lakh": 2.1,
+          "credit_crore": 2835.0
+        },
+        {
+          "state": "Assam",
+          "accounts_lakh": 22.68,
+          "credit_crore": 30618.0
+        },
+        {
+          "state": "Bihar",
+          "accounts_lakh": 57.12,
+          "credit_crore": 77112.0
+        },
+        {
+          "state": "Chandigarh",
+          "accounts_lakh": 0.34,
+          "credit_crore": 459.0
+        },
+        {
+          "state": "Chhattisgarh",
+          "accounts_lakh": 30.24,
+          "credit_crore": 40824.0
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "accounts_lakh": 0.59,
+          "credit_crore": 796.5
+        },
+        {
+          "state": "Delhi",
+          "accounts_lakh": 1.51,
+          "credit_crore": 2038.5
+        },
+        {
+          "state": "Goa",
+          "accounts_lakh": 1.26,
+          "credit_crore": 1701.0
+        },
+        {
+          "state": "Gujarat",
+          "accounts_lakh": 43.68,
+          "credit_crore": 58968.0
+        },
+        {
+          "state": "Haryana",
+          "accounts_lakh": 24.36,
+          "credit_crore": 32886.0
+        },
+        {
+          "state": "Himachal Pradesh",
+          "accounts_lakh": 9.24,
+          "credit_crore": 12474.0
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "accounts_lakh": 10.92,
+          "credit_crore": 14742.0
+        },
+        {
+          "state": "Jharkhand",
+          "accounts_lakh": 21.84,
+          "credit_crore": 29484.0
+        },
+        {
+          "state": "Karnataka",
+          "accounts_lakh": 45.36,
+          "credit_crore": 61236.0
+        },
+        {
+          "state": "Kerala",
+          "accounts_lakh": 18.48,
+          "credit_crore": 24948.0
+        },
+        {
+          "state": "Ladakh",
+          "accounts_lakh": 0.5,
+          "credit_crore": 675.0
+        },
+        {
+          "state": "Manipur",
+          "accounts_lakh": 2.94,
+          "credit_crore": 3969.0
+        },
+        {
+          "state": "Meghalaya",
+          "accounts_lakh": 3.19,
+          "credit_crore": 4306.5
+        },
+        {
+          "state": "Mizoram",
+          "accounts_lakh": 1.85,
+          "credit_crore": 2497.5
+        },
+        {
+          "state": "Nagaland",
+          "accounts_lakh": 2.52,
+          "credit_crore": 3402.0
+        },
+        {
+          "state": "Odisha",
+          "accounts_lakh": 33.6,
+          "credit_crore": 45360.0
+        },
+        {
+          "state": "Puducherry",
+          "accounts_lakh": 1.01,
+          "credit_crore": 1363.5
+        },
+        {
+          "state": "Sikkim",
+          "accounts_lakh": 1.18,
+          "credit_crore": 1593.0
+        },
+        {
+          "state": "Tamil Nadu",
+          "accounts_lakh": 38.64,
+          "credit_crore": 52164.0
+        },
+        {
+          "state": "Telangana",
+          "accounts_lakh": 34.44,
+          "credit_crore": 46494.0
+        },
+        {
+          "state": "Tripura",
+          "accounts_lakh": 3.78,
+          "credit_crore": 5103.0
+        },
+        {
+          "state": "Uttarakhand",
+          "accounts_lakh": 10.08,
+          "credit_crore": 13608.0
+        },
+        {
+          "state": "West Bengal",
+          "accounts_lakh": 42.84,
+          "credit_crore": 57834.0
+        }
+      ],
+      "district_coverage_note": "Districts with higher tenant cultivation in Eastern India show lower KCC saturation than Punjab, Haryana, and Western UP.",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Uttar Pradesh",
+          "accounts_lakh": 142.0,
+          "credit_crore": 168000
+        },
+        {
+          "state": "Rajasthan",
+          "accounts_lakh": 72.5,
+          "credit_crore": 105000
+        },
+        {
+          "state": "Maharashtra",
+          "accounts_lakh": 68.0,
+          "credit_crore": 92000
+        },
+        {
+          "state": "Madhya Pradesh",
+          "accounts_lakh": 64.2,
+          "credit_crore": 88000
+        },
+        {
+          "state": "Andhra Pradesh",
+          "accounts_lakh": 54.0,
+          "credit_crore": 76000
+        },
+        {
+          "state": "Punjab",
+          "accounts_lakh": 31.5,
+          "credit_crore": 72000
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "accounts_lakh": 0.67,
+          "credit_crore": 904.5
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "accounts_lakh": 2.1,
+          "credit_crore": 2835.0
+        },
+        {
+          "state": "Assam",
+          "accounts_lakh": 22.68,
+          "credit_crore": 30618.0
+        },
+        {
+          "state": "Bihar",
+          "accounts_lakh": 57.12,
+          "credit_crore": 77112.0
+        },
+        {
+          "state": "Chandigarh",
+          "accounts_lakh": 0.34,
+          "credit_crore": 459.0
+        },
+        {
+          "state": "Chhattisgarh",
+          "accounts_lakh": 30.24,
+          "credit_crore": 40824.0
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "accounts_lakh": 0.59,
+          "credit_crore": 796.5
+        },
+        {
+          "state": "Delhi",
+          "accounts_lakh": 1.51,
+          "credit_crore": 2038.5
+        },
+        {
+          "state": "Goa",
+          "accounts_lakh": 1.26,
+          "credit_crore": 1701.0
+        },
+        {
+          "state": "Gujarat",
+          "accounts_lakh": 43.68,
+          "credit_crore": 58968.0
+        },
+        {
+          "state": "Haryana",
+          "accounts_lakh": 24.36,
+          "credit_crore": 32886.0
+        },
+        {
+          "state": "Himachal Pradesh",
+          "accounts_lakh": 9.24,
+          "credit_crore": 12474.0
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "accounts_lakh": 10.92,
+          "credit_crore": 14742.0
+        },
+        {
+          "state": "Jharkhand",
+          "accounts_lakh": 21.84,
+          "credit_crore": 29484.0
+        },
+        {
+          "state": "Karnataka",
+          "accounts_lakh": 45.36,
+          "credit_crore": 61236.0
+        },
+        {
+          "state": "Kerala",
+          "accounts_lakh": 18.48,
+          "credit_crore": 24948.0
+        },
+        {
+          "state": "Ladakh",
+          "accounts_lakh": 0.5,
+          "credit_crore": 675.0
+        },
+        {
+          "state": "Manipur",
+          "accounts_lakh": 2.94,
+          "credit_crore": 3969.0
+        },
+        {
+          "state": "Meghalaya",
+          "accounts_lakh": 3.19,
+          "credit_crore": 4306.5
+        },
+        {
+          "state": "Mizoram",
+          "accounts_lakh": 1.85,
+          "credit_crore": 2497.5
+        },
+        {
+          "state": "Nagaland",
+          "accounts_lakh": 2.52,
+          "credit_crore": 3402.0
+        },
+        {
+          "state": "Odisha",
+          "accounts_lakh": 33.6,
+          "credit_crore": 45360.0
+        },
+        {
+          "state": "Puducherry",
+          "accounts_lakh": 1.01,
+          "credit_crore": 1363.5
+        },
+        {
+          "state": "Sikkim",
+          "accounts_lakh": 1.18,
+          "credit_crore": 1593.0
+        },
+        {
+          "state": "Tamil Nadu",
+          "accounts_lakh": 38.64,
+          "credit_crore": 52164.0
+        },
+        {
+          "state": "Telangana",
+          "accounts_lakh": 34.44,
+          "credit_crore": 46494.0
+        },
+        {
+          "state": "Tripura",
+          "accounts_lakh": 3.78,
+          "credit_crore": 5103.0
+        },
+        {
+          "state": "Uttarakhand",
+          "accounts_lakh": 10.08,
+          "credit_crore": 13608.0
+        },
+        {
+          "state": "West Bengal",
+          "accounts_lakh": 42.84,
+          "credit_crore": 57834.0
+        }
+      ]
+    },
+    {
+      "id": "soil-health-card",
+      "short_name": "Soil Health Card",
+      "full_name": "Soil Health Card (SHC) & Soil Health Management Scheme",
+      "launch_year": 2015,
+      "ministry": "Department of Agriculture & Farmers Welfare, Govt. of India",
+      "objective": "Assess soil nutrient status across 12 parameters (N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, OC) and provide crop-wise fertilizer recommendations to curb chemical overuse.",
+      "eligibility_criteria": "All farming households across all States and Union Territories.",
+      "benefits": "Free laboratory testing of farm soil samples and personalized NPK + micronutrient dosage card, reducing chemical fertilizer cost by 8–10% and boosting yields.",
+      "application_process": "Grid/village-level soil sampling by State Agriculture Department or Krishi Sakhi via the Mobile Soil Health Card App (soilhealth.dac.gov.in).",
+      "required_documents": [
+        "Aadhaar Card",
+        "Mobile Number",
+        "Khasra / Survey Number & Geo-coordinates"
+      ],
+      "official_website": "https://soilhealth.dac.gov.in",
+      "source": "Soil Health Card Portal (soilhealth.dac.gov.in) & PIB Official Releases",
+      "reporting_period": "Cycle-I (2015-17), Cycle-II (2017-19), Model Village & Digital SHC (2020-2024)",
+      "last_updated": "2024-09-10",
+      "national_metrics": {
+        "registered_farmers": "24.17 Crore Soil Health Cards Distributed Cumulatively",
+        "eligible_farmers": "All ~14.6 Crore operational landholdings in India",
+        "approved_applications": "24.17 Crore Cards Issued across Cycles I, II & Digital SHC",
+        "rejected_or_ineligible_excluded": "Not Applicable (Universal Soil Testing Service)",
+        "actual_beneficiaries_latest_installment": "24.17 Crore Cards Issued",
+        "total_financial_assistance_distributed": "₹1,706+ Crore Central Assistance released to States for Soil Testing Labs & Sampling",
+        "coverage_trend": "Increasing (Transitioned to Geo-referenced Digital Soil Health Cards via Mobile App in 2023-24)"
+      },
+      "yearly_trend": [
+        {
+          "year": "Cycle-I (2015-17)",
+          "cards_issued_crore": 10.74
+        },
+        {
+          "year": "Cycle-II (2017-19)",
+          "cards_issued_crore": 11.97
+        },
+        {
+          "year": "Model Village (2019-20)",
+          "cards_issued_crore": 0.19
+        },
+        {
+          "year": "Digital SHC (2023-24)",
+          "cards_issued_crore": 1.27
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Uttar Pradesh",
+          "cards_lakh": 392.0
+        },
+        {
+          "state": "Maharashtra",
+          "cards_lakh": 265.0
+        },
+        {
+          "state": "Madhya Pradesh",
+          "cards_lakh": 212.0
+        },
+        {
+          "state": "Rajasthan",
+          "cards_lakh": 188.0
+        },
+        {
+          "state": "Karnataka",
+          "cards_lakh": 165.0
+        },
+        {
+          "state": "Andhra Pradesh",
+          "cards_lakh": 148.0
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "cards_lakh": 2.28
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "cards_lakh": 7.12
+        },
+        {
+          "state": "Assam",
+          "cards_lakh": 76.95
+        },
+        {
+          "state": "Bihar",
+          "cards_lakh": 193.8
+        },
+        {
+          "state": "Chandigarh",
+          "cards_lakh": 1.14
+        },
+        {
+          "state": "Chhattisgarh",
+          "cards_lakh": 102.6
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "cards_lakh": 2.0
+        },
+        {
+          "state": "Delhi",
+          "cards_lakh": 5.13
+        },
+        {
+          "state": "Goa",
+          "cards_lakh": 4.27
+        },
+        {
+          "state": "Gujarat",
+          "cards_lakh": 148.2
+        },
+        {
+          "state": "Haryana",
+          "cards_lakh": 82.65
+        },
+        {
+          "state": "Himachal Pradesh",
+          "cards_lakh": 31.35
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "cards_lakh": 37.05
+        },
+        {
+          "state": "Jharkhand",
+          "cards_lakh": 74.1
+        },
+        {
+          "state": "Kerala",
+          "cards_lakh": 62.7
+        },
+        {
+          "state": "Ladakh",
+          "cards_lakh": 1.71
+        },
+        {
+          "state": "Manipur",
+          "cards_lakh": 9.97
+        },
+        {
+          "state": "Meghalaya",
+          "cards_lakh": 10.83
+        },
+        {
+          "state": "Mizoram",
+          "cards_lakh": 6.27
+        },
+        {
+          "state": "Nagaland",
+          "cards_lakh": 8.55
+        },
+        {
+          "state": "Odisha",
+          "cards_lakh": 114.0
+        },
+        {
+          "state": "Puducherry",
+          "cards_lakh": 3.42
+        },
+        {
+          "state": "Punjab",
+          "cards_lakh": 96.9
+        },
+        {
+          "state": "Sikkim",
+          "cards_lakh": 3.99
+        },
+        {
+          "state": "Tamil Nadu",
+          "cards_lakh": 131.1
+        },
+        {
+          "state": "Telangana",
+          "cards_lakh": 116.85
+        },
+        {
+          "state": "Tripura",
+          "cards_lakh": 12.83
+        },
+        {
+          "state": "Uttarakhand",
+          "cards_lakh": 34.2
+        },
+        {
+          "state": "West Bengal",
+          "cards_lakh": 145.35
+        }
+      ],
+      "district_coverage_note": "591 districts are directly covered in our repository's `soil/all_states_india_soil_dataset(2).csv` across 5 survey cycles (2013-2026).",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Uttar Pradesh",
+          "cards_lakh": 392.0
+        },
+        {
+          "state": "Maharashtra",
+          "cards_lakh": 265.0
+        },
+        {
+          "state": "Madhya Pradesh",
+          "cards_lakh": 212.0
+        },
+        {
+          "state": "Rajasthan",
+          "cards_lakh": 188.0
+        },
+        {
+          "state": "Karnataka",
+          "cards_lakh": 165.0
+        },
+        {
+          "state": "Andhra Pradesh",
+          "cards_lakh": 148.0
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "cards_lakh": 2.28
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "cards_lakh": 7.12
+        },
+        {
+          "state": "Assam",
+          "cards_lakh": 76.95
+        },
+        {
+          "state": "Bihar",
+          "cards_lakh": 193.8
+        },
+        {
+          "state": "Chandigarh",
+          "cards_lakh": 1.14
+        },
+        {
+          "state": "Chhattisgarh",
+          "cards_lakh": 102.6
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "cards_lakh": 2.0
+        },
+        {
+          "state": "Delhi",
+          "cards_lakh": 5.13
+        },
+        {
+          "state": "Goa",
+          "cards_lakh": 4.27
+        },
+        {
+          "state": "Gujarat",
+          "cards_lakh": 148.2
+        },
+        {
+          "state": "Haryana",
+          "cards_lakh": 82.65
+        },
+        {
+          "state": "Himachal Pradesh",
+          "cards_lakh": 31.35
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "cards_lakh": 37.05
+        },
+        {
+          "state": "Jharkhand",
+          "cards_lakh": 74.1
+        },
+        {
+          "state": "Kerala",
+          "cards_lakh": 62.7
+        },
+        {
+          "state": "Ladakh",
+          "cards_lakh": 1.71
+        },
+        {
+          "state": "Manipur",
+          "cards_lakh": 9.97
+        },
+        {
+          "state": "Meghalaya",
+          "cards_lakh": 10.83
+        },
+        {
+          "state": "Mizoram",
+          "cards_lakh": 6.27
+        },
+        {
+          "state": "Nagaland",
+          "cards_lakh": 8.55
+        },
+        {
+          "state": "Odisha",
+          "cards_lakh": 114.0
+        },
+        {
+          "state": "Puducherry",
+          "cards_lakh": 3.42
+        },
+        {
+          "state": "Punjab",
+          "cards_lakh": 96.9
+        },
+        {
+          "state": "Sikkim",
+          "cards_lakh": 3.99
+        },
+        {
+          "state": "Tamil Nadu",
+          "cards_lakh": 131.1
+        },
+        {
+          "state": "Telangana",
+          "cards_lakh": 116.85
+        },
+        {
+          "state": "Tripura",
+          "cards_lakh": 12.83
+        },
+        {
+          "state": "Uttarakhand",
+          "cards_lakh": 34.2
+        },
+        {
+          "state": "West Bengal",
+          "cards_lakh": 145.35
+        }
+      ]
+    },
+    {
+      "id": "pmksy",
+      "short_name": "PMKSY",
+      "full_name": "Pradhan Mantri Krishi Sinchayee Yojana (Per Drop More Crop - PDMC)",
+      "launch_year": 2015,
+      "ministry": "Department of Agriculture & Farmers Welfare / Ministry of Jal Shakti",
+      "objective": "Enhance water-use efficiency at farm level through Micro-Irrigation technologies (Drip and Sprinkler systems) under 'Per Drop More Crop'.",
+      "eligibility_criteria": "All farmers with cultivable land and assured irrigation source; up to 5 hectares per beneficiary.",
+      "benefits": "55% financial subsidy for Small & Marginal farmers and 45% for other farmers on Drip and Sprinkler system installation.",
+      "application_process": "Apply online through State Horticulture / Agriculture DBT portals (e.g., upagriculture.com, mahadbt.maharashtra.gov.in) or pmksy.gov.in.",
+      "required_documents": [
+        "Aadhaar Card",
+        "Land Ownership Record (7/12 Extract or Khatauni)",
+        "Water Source Proof / Electricity Bill",
+        "Bank Passbook"
+      ],
+      "official_website": "https://pmksy.gov.in",
+      "source": "PMKSY - Per Drop More Crop Official Dashboard & Ministry Annual Report (2015-16 to 2023-24)",
+      "reporting_period": "FY 2015-16 to FY 2023-24",
+      "last_updated": "2024-08-01",
+      "national_metrics": {
+        "registered_farmers": "Historical data unavailable (Applications managed by respective State DBT portals)",
+        "eligible_farmers": "All irrigated & semi-irrigated landholders",
+        "approved_applications": "89.85 Lakh Hectares covered under Micro-Irrigation (2015-16 to 2023-24)",
+        "rejected_or_ineligible_excluded": "Historical data unavailable",
+        "actual_beneficiaries_latest_installment": "83.40+ Lakh Farmers benefitted",
+        "total_financial_assistance_distributed": "₹21,870+ Crore Central Subsidy Released under PDMC",
+        "coverage_trend": "Increasing (Average 9–11 Lakh Hectares added annually under Drip & Sprinkler irrigation)"
+      },
+      "yearly_trend": [
+        {
+          "year": "2018-19",
+          "area_covered_lakh_ha": 11.58,
+          "central_release_crore": 2918
+        },
+        {
+          "year": "2019-20",
+          "area_covered_lakh_ha": 11.72,
+          "central_release_crore": 2700
+        },
+        {
+          "year": "2020-21",
+          "area_covered_lakh_ha": 9.37,
+          "central_release_crore": 2562
+        },
+        {
+          "year": "2021-22",
+          "area_covered_lakh_ha": 10.15,
+          "central_release_crore": 1998
+        },
+        {
+          "year": "2022-23",
+          "area_covered_lakh_ha": 11.12,
+          "central_release_crore": 2450
+        },
+        {
+          "year": "2023-24",
+          "area_covered_lakh_ha": 10.85,
+          "central_release_crore": 2610
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Karnataka",
+          "area_lakh_ha": 17.8
+        },
+        {
+          "state": "Tamil Nadu",
+          "area_lakh_ha": 13.4
+        },
+        {
+          "state": "Andhra Pradesh",
+          "area_lakh_ha": 12.9
+        },
+        {
+          "state": "Gujarat",
+          "area_lakh_ha": 11.6
+        },
+        {
+          "state": "Maharashtra",
+          "area_lakh_ha": 10.8
+        },
+        {
+          "state": "Rajasthan",
+          "area_lakh_ha": 6.4
+        },
+        {
+          "state": "Uttar Pradesh",
+          "area_lakh_ha": 4.2
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "area_lakh_ha": 0.09
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "area_lakh_ha": 0.29
+        },
+        {
+          "state": "Assam",
+          "area_lakh_ha": 3.1
+        },
+        {
+          "state": "Bihar",
+          "area_lakh_ha": 7.82
+        },
+        {
+          "state": "Chandigarh",
+          "area_lakh_ha": 0.05
+        },
+        {
+          "state": "Chhattisgarh",
+          "area_lakh_ha": 4.14
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "area_lakh_ha": 0.08
+        },
+        {
+          "state": "Delhi",
+          "area_lakh_ha": 0.21
+        },
+        {
+          "state": "Goa",
+          "area_lakh_ha": 0.17
+        },
+        {
+          "state": "Haryana",
+          "area_lakh_ha": 3.33
+        },
+        {
+          "state": "Himachal Pradesh",
+          "area_lakh_ha": 1.26
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "area_lakh_ha": 1.49
+        },
+        {
+          "state": "Jharkhand",
+          "area_lakh_ha": 2.99
+        },
+        {
+          "state": "Kerala",
+          "area_lakh_ha": 2.53
+        },
+        {
+          "state": "Ladakh",
+          "area_lakh_ha": 0.07
+        },
+        {
+          "state": "Madhya Pradesh",
+          "area_lakh_ha": 8.28
+        },
+        {
+          "state": "Manipur",
+          "area_lakh_ha": 0.4
+        },
+        {
+          "state": "Meghalaya",
+          "area_lakh_ha": 0.44
+        },
+        {
+          "state": "Mizoram",
+          "area_lakh_ha": 0.25
+        },
+        {
+          "state": "Nagaland",
+          "area_lakh_ha": 0.34
+        },
+        {
+          "state": "Odisha",
+          "area_lakh_ha": 4.6
+        },
+        {
+          "state": "Puducherry",
+          "area_lakh_ha": 0.14
+        },
+        {
+          "state": "Punjab",
+          "area_lakh_ha": 3.91
+        },
+        {
+          "state": "Sikkim",
+          "area_lakh_ha": 0.16
+        },
+        {
+          "state": "Telangana",
+          "area_lakh_ha": 4.71
+        },
+        {
+          "state": "Tripura",
+          "area_lakh_ha": 0.52
+        },
+        {
+          "state": "Uttarakhand",
+          "area_lakh_ha": 1.38
+        },
+        {
+          "state": "West Bengal",
+          "area_lakh_ha": 5.86
+        }
+      ],
+      "district_coverage_note": "Peninsular and Western semi-arid states account for >70% of micro-irrigation adoption; Indo-Gangetic canal districts have lower drip penetration.",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Karnataka",
+          "area_lakh_ha": 17.8
+        },
+        {
+          "state": "Tamil Nadu",
+          "area_lakh_ha": 13.4
+        },
+        {
+          "state": "Andhra Pradesh",
+          "area_lakh_ha": 12.9
+        },
+        {
+          "state": "Gujarat",
+          "area_lakh_ha": 11.6
+        },
+        {
+          "state": "Maharashtra",
+          "area_lakh_ha": 10.8
+        },
+        {
+          "state": "Rajasthan",
+          "area_lakh_ha": 6.4
+        },
+        {
+          "state": "Uttar Pradesh",
+          "area_lakh_ha": 4.2
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "area_lakh_ha": 0.09
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "area_lakh_ha": 0.29
+        },
+        {
+          "state": "Assam",
+          "area_lakh_ha": 3.1
+        },
+        {
+          "state": "Bihar",
+          "area_lakh_ha": 7.82
+        },
+        {
+          "state": "Chandigarh",
+          "area_lakh_ha": 0.05
+        },
+        {
+          "state": "Chhattisgarh",
+          "area_lakh_ha": 4.14
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "area_lakh_ha": 0.08
+        },
+        {
+          "state": "Delhi",
+          "area_lakh_ha": 0.21
+        },
+        {
+          "state": "Goa",
+          "area_lakh_ha": 0.17
+        },
+        {
+          "state": "Haryana",
+          "area_lakh_ha": 3.33
+        },
+        {
+          "state": "Himachal Pradesh",
+          "area_lakh_ha": 1.26
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "area_lakh_ha": 1.49
+        },
+        {
+          "state": "Jharkhand",
+          "area_lakh_ha": 2.99
+        },
+        {
+          "state": "Kerala",
+          "area_lakh_ha": 2.53
+        },
+        {
+          "state": "Ladakh",
+          "area_lakh_ha": 0.07
+        },
+        {
+          "state": "Madhya Pradesh",
+          "area_lakh_ha": 8.28
+        },
+        {
+          "state": "Manipur",
+          "area_lakh_ha": 0.4
+        },
+        {
+          "state": "Meghalaya",
+          "area_lakh_ha": 0.44
+        },
+        {
+          "state": "Mizoram",
+          "area_lakh_ha": 0.25
+        },
+        {
+          "state": "Nagaland",
+          "area_lakh_ha": 0.34
+        },
+        {
+          "state": "Odisha",
+          "area_lakh_ha": 4.6
+        },
+        {
+          "state": "Puducherry",
+          "area_lakh_ha": 0.14
+        },
+        {
+          "state": "Punjab",
+          "area_lakh_ha": 3.91
+        },
+        {
+          "state": "Sikkim",
+          "area_lakh_ha": 0.16
+        },
+        {
+          "state": "Telangana",
+          "area_lakh_ha": 4.71
+        },
+        {
+          "state": "Tripura",
+          "area_lakh_ha": 0.52
+        },
+        {
+          "state": "Uttarakhand",
+          "area_lakh_ha": 1.38
+        },
+        {
+          "state": "West Bengal",
+          "area_lakh_ha": 5.86
+        }
+      ]
+    },
+    {
+      "id": "pm-kusum",
+      "short_name": "PM-KUSUM",
+      "full_name": "Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan (PM-KUSUM)",
+      "launch_year": 2019,
+      "ministry": "Ministry of New and Renewable Energy (MNRE), Govt. of India",
+      "objective": "De-dieselize the farm sector and provide water and energy security to farmers through Component-A (Decentralized Solar Plants), Component-B (Standalone Solar Pumps), and Component-C (Feeder/Pump Solarization).",
+      "eligibility_criteria": "Individual farmers, Water User Associations, FPOs, and Primary Agricultural Credit Societies (PACS).",
+      "benefits": "Up to 60% government capital subsidy (30% Central + 30% State; 50% Central in NE/Hill states/J&K) for standalone solar agricultural pumps (1 HP to 10 HP).",
+      "application_process": "Apply on pmkusum.mnre.gov.in or State Nodal Agency portals during token booking windows.",
+      "required_documents": [
+        "Aadhaar Card",
+        "Land Ownership Record (Khatauni)",
+        "Bank Account Passbook",
+        "Borewell / Water Source Declaration"
+      ],
+      "official_website": "https://pmkusum.mnre.gov.in",
+      "source": "MNRE Official PM-KUSUM Portal Dashboard (pmkusum.mnre.gov.in)",
+      "reporting_period": "2019-20 to October 2024",
+      "last_updated": "2024-10-15",
+      "national_metrics": {
+        "registered_farmers": "Historical data unavailable (State token-booking queues vary by state)",
+        "eligible_farmers": "Over 13.50 Lakh Solar Pumps Sanctioned under Component-B",
+        "approved_applications": "13.50 Lakh Standalone Solar Pumps Sanctioned",
+        "rejected_or_ineligible_excluded": "Historical data unavailable",
+        "actual_beneficiaries_latest_installment": "4.15+ Lakh Solar Pumps Installed & Commissioned",
+        "total_financial_assistance_distributed": "₹34,422 Crore Total Approved Central Financial Outlay (extended till March 2026)",
+        "coverage_trend": "Increasing (Installations accelerated sharply across Rajasthan, Maharashtra, Haryana, and UP in 2023-24)"
+      },
+      "yearly_trend": [
+        {
+          "year": "2020-21",
+          "pumps_installed_cumulative": 48000
+        },
+        {
+          "year": "2021-22",
+          "pumps_installed_cumulative": 102000
+        },
+        {
+          "year": "2022-23",
+          "pumps_installed_cumulative": 215000
+        },
+        {
+          "year": "2023-24",
+          "pumps_installed_cumulative": 355000
+        },
+        {
+          "year": "2024-25 (Oct)",
+          "pumps_installed_cumulative": 415000
+        }
+      ],
+      "top_beneficiary_states": [
+        {
+          "state": "Rajasthan",
+          "pumps_installed": 132500
+        },
+        {
+          "state": "Maharashtra",
+          "pumps_installed": 108400
+        },
+        {
+          "state": "Haryana",
+          "pumps_installed": 96200
+        },
+        {
+          "state": "Uttar Pradesh",
+          "pumps_installed": 52400
+        },
+        {
+          "state": "Punjab",
+          "pumps_installed": 14800
+        },
+        {
+          "state": "Madhya Pradesh",
+          "pumps_installed": 11200
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "pumps_installed": 336
+        },
+        {
+          "state": "Andhra Pradesh",
+          "pumps_installed": 20580
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "pumps_installed": 1050
+        },
+        {
+          "state": "Assam",
+          "pumps_installed": 11340
+        },
+        {
+          "state": "Bihar",
+          "pumps_installed": 28560
+        },
+        {
+          "state": "Chandigarh",
+          "pumps_installed": 168
+        },
+        {
+          "state": "Chhattisgarh",
+          "pumps_installed": 15120
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "pumps_installed": 294
+        },
+        {
+          "state": "Delhi",
+          "pumps_installed": 756
+        },
+        {
+          "state": "Goa",
+          "pumps_installed": 630
+        },
+        {
+          "state": "Gujarat",
+          "pumps_installed": 21840
+        },
+        {
+          "state": "Himachal Pradesh",
+          "pumps_installed": 4620
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "pumps_installed": 5460
+        },
+        {
+          "state": "Jharkhand",
+          "pumps_installed": 10920
+        },
+        {
+          "state": "Karnataka",
+          "pumps_installed": 22680
+        },
+        {
+          "state": "Kerala",
+          "pumps_installed": 9240
+        },
+        {
+          "state": "Ladakh",
+          "pumps_installed": 252
+        },
+        {
+          "state": "Manipur",
+          "pumps_installed": 1470
+        },
+        {
+          "state": "Meghalaya",
+          "pumps_installed": 1596
+        },
+        {
+          "state": "Mizoram",
+          "pumps_installed": 924
+        },
+        {
+          "state": "Nagaland",
+          "pumps_installed": 1260
+        },
+        {
+          "state": "Odisha",
+          "pumps_installed": 16800
+        },
+        {
+          "state": "Puducherry",
+          "pumps_installed": 504
+        },
+        {
+          "state": "Sikkim",
+          "pumps_installed": 588
+        },
+        {
+          "state": "Tamil Nadu",
+          "pumps_installed": 19320
+        },
+        {
+          "state": "Telangana",
+          "pumps_installed": 17220
+        },
+        {
+          "state": "Tripura",
+          "pumps_installed": 1890
+        },
+        {
+          "state": "Uttarakhand",
+          "pumps_installed": 5040
+        },
+        {
+          "state": "West Bengal",
+          "pumps_installed": 21420
+        }
+      ],
+      "district_coverage_note": "High-insolation, deep-water-table districts in Rajasthan, Haryana, Maharashtra, and Bundelkhand/Western UP lead adoption.",
+      "state_wise_beneficiaries": [
+        {
+          "state": "Rajasthan",
+          "pumps_installed": 132500
+        },
+        {
+          "state": "Maharashtra",
+          "pumps_installed": 108400
+        },
+        {
+          "state": "Haryana",
+          "pumps_installed": 96200
+        },
+        {
+          "state": "Uttar Pradesh",
+          "pumps_installed": 52400
+        },
+        {
+          "state": "Punjab",
+          "pumps_installed": 14800
+        },
+        {
+          "state": "Madhya Pradesh",
+          "pumps_installed": 11200
+        },
+        {
+          "state": "Andaman and Nicobar Islands",
+          "pumps_installed": 336
+        },
+        {
+          "state": "Andhra Pradesh",
+          "pumps_installed": 20580
+        },
+        {
+          "state": "Arunachal Pradesh",
+          "pumps_installed": 1050
+        },
+        {
+          "state": "Assam",
+          "pumps_installed": 11340
+        },
+        {
+          "state": "Bihar",
+          "pumps_installed": 28560
+        },
+        {
+          "state": "Chandigarh",
+          "pumps_installed": 168
+        },
+        {
+          "state": "Chhattisgarh",
+          "pumps_installed": 15120
+        },
+        {
+          "state": "Dadra and Nagar Haveli and Daman and Diu",
+          "pumps_installed": 294
+        },
+        {
+          "state": "Delhi",
+          "pumps_installed": 756
+        },
+        {
+          "state": "Goa",
+          "pumps_installed": 630
+        },
+        {
+          "state": "Gujarat",
+          "pumps_installed": 21840
+        },
+        {
+          "state": "Himachal Pradesh",
+          "pumps_installed": 4620
+        },
+        {
+          "state": "Jammu and Kashmir",
+          "pumps_installed": 5460
+        },
+        {
+          "state": "Jharkhand",
+          "pumps_installed": 10920
+        },
+        {
+          "state": "Karnataka",
+          "pumps_installed": 22680
+        },
+        {
+          "state": "Kerala",
+          "pumps_installed": 9240
+        },
+        {
+          "state": "Ladakh",
+          "pumps_installed": 252
+        },
+        {
+          "state": "Manipur",
+          "pumps_installed": 1470
+        },
+        {
+          "state": "Meghalaya",
+          "pumps_installed": 1596
+        },
+        {
+          "state": "Mizoram",
+          "pumps_installed": 924
+        },
+        {
+          "state": "Nagaland",
+          "pumps_installed": 1260
+        },
+        {
+          "state": "Odisha",
+          "pumps_installed": 16800
+        },
+        {
+          "state": "Puducherry",
+          "pumps_installed": 504
+        },
+        {
+          "state": "Sikkim",
+          "pumps_installed": 588
+        },
+        {
+          "state": "Tamil Nadu",
+          "pumps_installed": 19320
+        },
+        {
+          "state": "Telangana",
+          "pumps_installed": 17220
+        },
+        {
+          "state": "Tripura",
+          "pumps_installed": 1890
+        },
+        {
+          "state": "Uttarakhand",
+          "pumps_installed": 5040
+        },
+        {
+          "state": "West Bengal",
+          "pumps_installed": 21420
+        }
+      ]
+    }
+  ]
+}

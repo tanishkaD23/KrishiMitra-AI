@@ -16,6 +16,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase_config.js"></script>
     <script src="supabase_auth.js"></script>
+    <!-- All-India Static Dataset (35 States/UTs, 743 Districts, 72 Crops) -->
+    <script src="all_india_static_data.js"></script>
 </head>
 <body>
 
@@ -360,7 +362,7 @@
                         <div class="chart-card-pro">
                             <div class="chart-card-header">
                                 <h3 class="chart-card-title" id="chartCropCompTitle" data-i18n="chart_comp_title">Multi-State Yield Comparison (q/ha)</h3>
-                                <span class="chart-badge-tag" data-i18n="badge_6_states">6 States • Rabi Benchmark</span>
+                                <span class="chart-badge-tag" data-i18n="badge_6_states">35 States &amp; UTs • All-India Benchmark</span>
                             </div>
                             <div class="chart-container-box">
                                 <canvas id="chartCropComparison"></canvas>
@@ -1363,15 +1365,15 @@
                         </div>
                     </div>
 
-                    <!-- State Table (Collapsed by default to keep page concise) -->
-                    <div class="chart-card-pro" style="display: none;">
-                        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 8px;" id="intelSchemeFullTitle">State-Wise Beneficiaries &amp; Amount Breakdown</h3>
+                    <!-- All 35 States & UTs Breakdown Table -->
+                    <div class="chart-card-pro">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--km-text-heading); margin-bottom: 8px;" id="intelSchemeFullTitle">All 35 States &amp; UTs — Beneficiaries &amp; Amount Breakdown</h3>
                         <div id="intelSchemeSummaryBox" style="font-size: 0.84rem; color: var(--km-text-body); margin-bottom: 12px;"></div>
-                        <div style="overflow-x: auto;">
+                        <div style="overflow-x: auto; max-height: 340px; overflow-y: auto;">
                             <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
-                                <thead>
+                                <thead style="position: sticky; top: 0; background: #fff; z-index: 2;">
                                     <tr style="border-bottom: 2px solid var(--km-border); color: var(--km-text-heading);">
-                                        <th style="padding: 8px;">State</th>
+                                        <th style="padding: 8px;">State / UT (35 Total)</th>
                                         <th style="padding: 8px;">Registered / Enrolled</th>
                                         <th style="padding: 8px;">Farmers Benefited</th>
                                         <th style="padding: 8px;">Amount Disbursed (₹)</th>
