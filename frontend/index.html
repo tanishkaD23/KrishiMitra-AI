@@ -13,6 +13,7 @@
     <script src="supabase_config.js"></script>
     <script src="supabase_auth.js"></script>
     <script src="all_india_static_data.js"></script>
+    <script src="gnani_voice_client.js"></script>
     <style>
         .unified-section {
             padding: 56px 24px;
@@ -727,7 +728,10 @@
                 </div>
 
                 <form id="hmChatForm" class="chat-input-bar" onsubmit="event.preventDefault();">
-                    <input type="text" id="hmChatInput" class="chat-input-text" placeholder="Type your question in English or Hindi..." required>
+                    <input type="text" id="hmChatInput" class="chat-input-text" placeholder="Type or click mic to ask in English or Hindi..." required>
+                    <button type="button" class="btn-chat-mic" id="btnHmChatMic" title="Speak with Gnani Prisma v3.0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                    </button>
                     <button type="submit" class="btn-chat-send" title="Send Question">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                     </button>
@@ -1163,9 +1167,11 @@
         });
         loadHomeNasa();
 
-        // 6. Section 5: KrishiSathi AI Chat
+        // 6. Section 5: KrishiSathi AI Chat (Gnani.ai Voice Enabled)
         const chatStream = document.getElementById("hmChatStream");
         const chatInput = document.getElementById("hmChatInput");
+        const btnHmChatMic = document.getElementById("btnHmChatMic");
+        let isHmMicRecording = false;
 
         async function sendHomeChat(qText) {
             const q = (qText || "").trim();
@@ -1196,13 +1202,74 @@
                 const aWrap = document.createElement("div");
                 aWrap.className = "chat-bubble-ai-wrap";
                 const safeAns = String(data.answer || "Verified response unavailable.").replace(/</g, "&lt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+                const targetLang = (localStorage.getItem("km_lang") || "en") === "hi" ? "hi-IN" : "en-IN";
                 aWrap.innerHTML = `
                     <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
-                    <div class="chat-bubble-ai" style="white-space: pre-line;">${safeAns}</div>
+                    <div class="chat-bubble-ai" style="white-space: pre-line;">
+                        <div>${safeAns}</div>
+                        <div class="chat-bubble-actions" style="margin-top: 8px;">
+                            <button type="button" class="btn-speak-audio hm-speak-btn" style="padding: 4px 10px; font-size: 0.75rem; border-radius: 999px; border: 1px solid var(--km-border); background: #fff; cursor: pointer;">🔊 Listen (Gnani Timbre)</button>
+                        </div>
+                    </div>
                 `;
+                const btnSpeak = aWrap.querySelector(".hm-speak-btn");
+                if (btnSpeak) {
+                    btnSpeak.addEventListener("click", () => {
+                        if (window.KrishiGnaniVoice) {
+                            window.KrishiGnaniVoice.speak(data.answer || safeAns, { language: targetLang });
+                        }
+                    });
+                }
                 chatStream.appendChild(aWrap);
                 chatStream.scrollTop = chatStream.scrollHeight;
             } catch (e) {}
+        }
+
+        if (btnHmChatMic) {
+            btnHmChatMic.addEventListener("click", async () => {
+                if (isHmMicRecording) {
+                    isHmMicRecording = false;
+                    btnHmChatMic.style.background = "";
+                    btnHmChatMic.title = "Speak with Gnani Prisma v3.0";
+                    if (window.KrishiGnaniVoice) {
+                        try {
+                            const blob = await window.KrishiGnaniVoice.stopRecording();
+                            if (blob && blob.size > 64) {
+                                const targetLang = (localStorage.getItem("km_lang") || "en") === "hi" ? "hi-IN" : "en-IN";
+                                const res = await window.KrishiGnaniVoice.transcribe(blob, { language: targetLang });
+                                if (res && res.transcript) {
+                                    chatInput.value = res.transcript;
+                                    sendHomeChat(res.transcript);
+                                }
+                            }
+                        } catch (err) {
+                            console.warn("Home mic transcribe error:", err);
+                        }
+                    }
+                } else {
+                    isHmMicRecording = true;
+                    btnHmChatMic.style.background = "#fee2e2";
+                    btnHmChatMic.title = "Tap to finish speaking";
+                    if (window.KrishiGnaniVoice) {
+                        const targetLang = (localStorage.getItem("km_lang") || "en") === "hi" ? "hi-IN" : "en-IN";
+                        window.KrishiGnaniVoice.startRecording({
+                            language: targetLang,
+                            onSuccess: (res) => {
+                                isHmMicRecording = false;
+                                btnHmChatMic.style.background = "";
+                                if (res && res.transcript) {
+                                    chatInput.value = res.transcript;
+                                    sendHomeChat(res.transcript);
+                                }
+                            },
+                            onError: () => {
+                                isHmMicRecording = false;
+                                btnHmChatMic.style.background = "";
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         document.getElementById("hmChatForm").addEventListener("submit", () => sendHomeChat(chatInput.value));

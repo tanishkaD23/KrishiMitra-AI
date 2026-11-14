@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase_config.js"></script>
     <script src="supabase_auth.js"></script>
+    <script src="all_india_static_data.js"></script>
+    <script src="gnani_voice_client.js"></script>
 </head>
 <body>
 
@@ -133,26 +135,35 @@
                 </form>
             </div>
 
-            <!-- RIGHT: VOICE COMPANION & CONVERSATION CONTROLS -->
+            <!-- RIGHT: VOICE COMPANION & CONVERSATION CONTROLS (GNANI.AI POWERED) -->
             <div class="voice-mode-card" style="height: 640px;">
                 <div style="width: 100%;">
-                    <span class="scheme-tag-pill tag-income" style="display: inline-block; margin-bottom: 10px;">Hands-Free Voice Mode</span>
-                    <h2 class="voice-mode-title" style="margin-bottom: 8px;">Speak Directly to KrishiSathi</h2>
-                    <p style="font-size: 0.88rem; color: var(--km-text-muted);">
-                        Select your preferred conversation language below and tap the microphone to speak naturally.
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+                        <span class="scheme-tag-pill tag-income" style="display: inline-flex; align-items: center; gap: 6px;">
+                            <span style="width: 8px; height: 8px; border-radius: 50%; background: #16a34a; display: inline-block;"></span>
+                            Gnani.ai Voice AI • Prisma v3.0 &amp; Timbre v2.5
+                        </span>
+                    </div>
+                    <h2 class="voice-mode-title" style="margin-bottom: 6px;">Speak Directly to KrishiSathi</h2>
+                    <p style="font-size: 0.86rem; color: var(--km-text-muted);">
+                        Ask questions naturally in <strong>Hindi</strong> or <strong>English</strong>. KrishiSathi transcribes via Gnani Prisma and speaks back via Gnani Timbre.
                     </p>
                 </div>
 
                 <div>
                     <div class="pulse-mic-outer">
                         <div class="pulse-mic-wave" id="voicePulseWave" style="display: none;"></div>
-                        <button type="button" class="pulse-mic-btn" id="btnBigVoiceMic" aria-label="Start or stop voice recording">
+                        <button type="button" class="pulse-mic-btn" id="btnBigVoiceMic" aria-label="Start or stop voice recording" title="Click to start/stop speaking">
                             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                         </button>
                     </div>
                     <div class="voice-status-text" id="voiceStatusLabel">Tap the Microphone to Speak</div>
+                    <div style="display: flex; gap: 8px; justify-content: center;">
+                        <button type="button" class="btn-outline-login" id="btnStopVoiceRecord" style="display: none; padding: 5px 14px; font-size: 0.8rem; color: #dc2626; border-color: #dc2626; font-weight: 700; margin-top: 6px;">⏹ Stop Recording</button>
+                        <button type="button" class="btn-outline-login" id="btnStopVoicePlay" style="display: none; padding: 5px 14px; font-size: 0.8rem; color: #064E2B; border-color: #064E2B; font-weight: 700; margin-top: 6px;">⏹ Stop Audio</button>
+                    </div>
 
-                    <div class="waveform-container" aria-hidden="true">
+                    <div class="waveform-container" id="voiceWaveformContainer" aria-hidden="true" style="margin-top: 10px;">
                         <div class="waveform-bar" style="height: 12px;"></div>
                         <div class="waveform-bar"></div>
                         <div class="waveform-bar"></div>
@@ -163,16 +174,25 @@
                 </div>
 
                 <div style="width: 100%; text-align: left;">
-                    <div class="form-group-pro" style="margin-bottom: 14px;">
-                        <label for="voiceLangSelect">Response &amp; Voice Language</label>
-                        <select id="voiceLangSelect" class="form-select-pro">
-                            <option value="en" selected>English (en-IN)</option>
-                            <option value="hi">Hindi / हिंदी (hi-IN)</option>
-                            <option value="hinglish">Hinglish (Conversational)</option>
-                        </select>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+                        <div class="form-group-pro">
+                            <label for="voiceLangSelect">Language (भाषा)</label>
+                            <select id="voiceLangSelect" class="form-select-pro">
+                                <option value="hi" selected>Hindi / हिंदी (hi-IN)</option>
+                                <option value="en">English (en-IN)</option>
+                                <option value="indic-auto">Auto (Hindi + English)</option>
+                            </select>
+                        </div>
+                        <div class="form-group-pro">
+                            <label for="voiceGenderSelect">Voice Persona</label>
+                            <select id="voiceGenderSelect" class="form-select-pro">
+                                <option value="female" selected>Nalini (Female)</option>
+                                <option value="male">Deepak (Male)</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group-pro" style="margin-bottom: 14px;">
+                    <div class="form-group-pro" style="margin-bottom: 12px;">
                         <label for="voiceDistrictContext">Active Farm Context (State, District &amp; Crop)</label>
                         <select id="voiceDistrictContext" class="form-select-pro">
                             <option value="Uttar Pradesh|Meerut|Wheat" selected>Uttar Pradesh • Meerut • Wheat</option>
@@ -190,13 +210,13 @@
                         </select>
                     </div>
 
-                    <div class="form-group-pro" style="margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                    <div class="form-group-pro" style="margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
                         <input type="checkbox" id="autoSpeakToggle" checked style="width: 16px; height: 16px; accent-color: var(--km-primary); cursor: pointer;">
-                        <label for="autoSpeakToggle" style="margin: 0; font-size: 0.84rem; font-weight: 700; color: var(--km-primary); cursor: pointer;">Auto-Speak AI Replies Aloud</label>
+                        <label for="autoSpeakToggle" style="margin: 0; font-size: 0.84rem; font-weight: 700; color: var(--km-primary); cursor: pointer;">Auto-Speak AI Replies Aloud (Gnani Timbre)</label>
                     </div>
 
-                    <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 12px 14px; font-size: 0.8rem; color: var(--km-text-muted); line-height: 1.45;">
-                        <strong style="color: var(--km-primary);">Verified Source Guarantee:</strong> KrishiSathi searches indexed official scheme PDFs first and falls back to trusted <code>.gov.in</code> portals when needed.
+                    <div style="background: var(--km-bg); border: 1px solid var(--km-border); border-radius: var(--km-radius-sm); padding: 10px 12px; font-size: 0.78rem; color: var(--km-text-muted); line-height: 1.45;">
+                        <strong style="color: var(--km-primary);">Gnani.ai Secured Gateway:</strong> Microphone speech is transcribed via Gnani Prisma v3.0, synthesized via Timbre v2.5, and verified through our RAG pipeline.
                     </div>
                 </div>
             </div>
@@ -239,11 +259,15 @@
         const chatForm = document.getElementById("sathiChatForm");
         const chatInput = document.getElementById("sathiChatInput");
         const voiceLangSelect = document.getElementById("voiceLangSelect");
+        const voiceGenderSelect = document.getElementById("voiceGenderSelect");
         const voiceDistrictContext = document.getElementById("voiceDistrictContext");
         const btnBigVoiceMic = document.getElementById("btnBigVoiceMic");
         const btnInlineMic = document.getElementById("btnInlineMic");
+        const btnStopVoiceRecord = document.getElementById("btnStopVoiceRecord");
+        const btnStopVoicePlay = document.getElementById("btnStopVoicePlay");
         const voiceStatusLabel = document.getElementById("voiceStatusLabel");
         const voicePulseWave = document.getElementById("voicePulseWave");
+        const voiceWaveformContainer = document.getElementById("voiceWaveformContainer");
         const btnClearChat = document.getElementById("btnClearChat");
         const autoSpeakToggle = document.getElementById("autoSpeakToggle");
         const publicLangBtn = document.getElementById("publicLangBtn");
@@ -269,14 +293,68 @@
             return safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
         }
 
-        function speakText(text, langCode = "en-IN") {
-            if (!("speechSynthesis" in window)) return;
-            window.speechSynthesis.cancel();
-            const clean = String(text || "").replace(/[*#_`~•]/g, "");
-            const utter = new SpeechSynthesisUtterance(clean);
-            utter.lang = langCode;
-            utter.rate = 0.95;
-            window.speechSynthesis.speak(utter);
+        function setWaveformActive(active) {
+            if (!voiceWaveformContainer) return;
+            const bars = voiceWaveformContainer.querySelectorAll(".waveform-bar");
+            bars.forEach((bar, idx) => {
+                if (active) {
+                    bar.style.animation = `pulse-height 0.6s ease-in-out infinite alternate ${idx * 0.1}s`;
+                    bar.style.background = "#064E2B";
+                } else {
+                    bar.style.animation = "none";
+                    bar.style.background = "var(--km-border)";
+                }
+            });
+        }
+
+        function playGnaniSpeech(text, langCode = "hi-IN", callback = null) {
+            const gender = voiceGenderSelect ? voiceGenderSelect.value : "female";
+            const voiceName = gender === "male" ? "Deepak" : "Nalini";
+            if (btnStopVoicePlay) btnStopVoicePlay.style.display = "inline-block";
+            setWaveformActive(true);
+            if (voiceStatusLabel) {
+                voiceStatusLabel.textContent = `Speaking: Gnani Timbre v2.5 (${voiceName})...`;
+            }
+
+            if (window.KrishiGnaniVoice && typeof window.KrishiGnaniVoice.speak === "function") {
+                window.KrishiGnaniVoice.speak(text, {
+                    language: langCode,
+                    gender: gender,
+                    voice: voiceName,
+                    speed: 1.0,
+                    onStart: (info) => {
+                        if (voiceStatusLabel) {
+                            voiceStatusLabel.textContent = `Speaking: ${info.provider || "Gnani Timbre v2.5"} (${voiceName})`;
+                        }
+                    },
+                    onEnd: () => {
+                        setWaveformActive(false);
+                        if (btnStopVoicePlay) btnStopVoicePlay.style.display = "none";
+                        if (voiceStatusLabel) voiceStatusLabel.textContent = "Tap the Microphone to Speak";
+                        if (callback) callback();
+                    }
+                });
+            } else if ("speechSynthesis" in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(String(text).replace(/[*#_`~•]/g, ""));
+                utter.lang = langCode;
+                utter.onend = () => {
+                    setWaveformActive(false);
+                    if (btnStopVoicePlay) btnStopVoicePlay.style.display = "none";
+                    if (voiceStatusLabel) voiceStatusLabel.textContent = "Tap the Microphone to Speak";
+                    if (callback) callback();
+                };
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        if (btnStopVoicePlay) {
+            btnStopVoicePlay.addEventListener("click", () => {
+                if (window.KrishiGnaniVoice) window.KrishiGnaniVoice.stopPlayback();
+                setWaveformActive(false);
+                btnStopVoicePlay.style.display = "none";
+                if (voiceStatusLabel) voiceStatusLabel.textContent = "Tap the Microphone to Speak";
+            });
         }
 
         chatStream.addEventListener("click", (e) => {
@@ -284,7 +362,13 @@
             if (btn) {
                 const text = btn.getAttribute("data-speak");
                 const lang = btn.getAttribute("data-lang") || "en-IN";
-                speakText(text, lang);
+                playGnaniSpeech(text, lang);
+            }
+            const stopBtn = e.target.closest(".btn-stop-audio");
+            if (stopBtn) {
+                if (window.KrishiGnaniVoice) window.KrishiGnaniVoice.stopPlayback();
+                setWaveformActive(false);
+                if (btnStopVoicePlay) btnStopVoicePlay.style.display = "none";
             }
         });
 
@@ -355,11 +439,14 @@
                 aiWrap.innerHTML = `
                     <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
                     <div class="chat-bubble-ai">
-                        <div style="margin-bottom: 6px;">${modeBadge}</div>
+                        <div style="margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+                            <div>${modeBadge}</div>
+                            <span style="font-size: 0.72rem; color: var(--km-text-muted);">Gnani Timbre TTS Ready</span>
+                        </div>
                         <div style="white-space: pre-line; line-height: 1.55;">${formatMarkdown(answer)}</div>
                         ${sourcesHtml}
                         <div class="chat-bubble-actions">
-                            <button type="button" class="btn-speak-audio" data-lang="${ttsLang}">Listen Aloud</button>
+                            <button type="button" class="btn-speak-audio" data-lang="${ttsLang}">🔊 Listen (Gnani Timbre)</button>
                         </div>
                     </div>
                 `;
@@ -368,7 +455,7 @@
                 chatStream.scrollTop = chatStream.scrollHeight;
 
                 if (autoSpeakToggle && autoSpeakToggle.checked) {
-                    speakText(answer, ttsLang);
+                    playGnaniSpeech(answer, ttsLang);
                 }
             } catch (err) {
                 console.error("KrishiSathi chat error:", err);
@@ -410,54 +497,115 @@
             });
         }
 
-        // Web Speech API Voice Recognition
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        let recognition = null;
+        // =========================================================================
+        // GNANI.AI PRISMA V3.0 SPEECH-TO-TEXT VOICE CONTROLLER
+        // =========================================================================
         let isRecording = false;
 
-        function toggleVoiceInput() {
-            if (!SpeechRecognition) {
-                voiceStatusLabel.textContent = "Voice input requires Chrome or Edge browser.";
-                chatInput.focus();
-                return;
-            }
-            if (isRecording && recognition) {
-                recognition.stop();
-                return;
-            }
+        async function startVoiceRecording() {
+            if (isRecording) return;
+            const targetLang = voiceLangSelect.value || "hi";
+            const langCode = targetLang === "hi" ? "hi-IN" : (targetLang === "en" ? "en-IN" : "indic-auto");
 
-            recognition = new SpeechRecognition();
-            recognition.lang = voiceLangSelect.value === "hi" ? "hi-IN" : "en-IN";
-            recognition.interimResults = false;
-            recognition.maxAlternatives = 1;
+            if (voiceStatusLabel) voiceStatusLabel.textContent = "Connecting microphone...";
+            if (voicePulseWave) voicePulseWave.style.display = "block";
+            setWaveformActive(true);
+            if (btnStopVoiceRecord) btnStopVoiceRecord.style.display = "inline-block";
 
-            recognition.onstart = () => {
-                isRecording = true;
-                voiceStatusLabel.textContent = recognition.lang === "hi-IN" ? "Listening in Hindi (बोलिए)..." : "Listening in English... Speak now";
-                if (voicePulseWave) voicePulseWave.style.display = "block";
-            };
-
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                chatInput.value = transcript;
-                sendQuery(transcript);
-            };
-
-            recognition.onerror = () => {
-                voiceStatusLabel.textContent = "Could not capture audio. Please try again.";
-            };
-
-            recognition.onend = () => {
-                isRecording = false;
-                voiceStatusLabel.textContent = "Tap the Microphone to Speak";
-                if (voicePulseWave) voicePulseWave.style.display = "none";
-            };
-
-            recognition.start();
+            await window.KrishiGnaniVoice.startRecording({
+                language: langCode,
+                onStart: () => {
+                    isRecording = true;
+                    if (voiceStatusLabel) {
+                        const hint = langCode.includes("hi") ? "बोलिए (Recording)..." : "Speak now (Recording)...";
+                        voiceStatusLabel.textContent = `${hint} 00:00 / 00:30`;
+                    }
+                },
+                onTick: (sec, maxSec) => {
+                    if (voiceStatusLabel) {
+                        const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+                        const ss = String(sec % 60).padStart(2, "0");
+                        voiceStatusLabel.textContent = `Recording audio... ${mm}:${ss} / 00:${maxSec} • Tap Stop when done`;
+                    }
+                },
+                onSuccess: (res) => {
+                    // Browser speech recognition fallback callback
+                    isRecording = false;
+                    if (btnStopVoiceRecord) btnStopVoiceRecord.style.display = "none";
+                    if (voicePulseWave) voicePulseWave.style.display = "none";
+                    setWaveformActive(false);
+                    if (voiceStatusLabel) voiceStatusLabel.textContent = "Processing question...";
+                    if (res && res.transcript) {
+                        chatInput.value = res.transcript;
+                        sendQuery(res.transcript);
+                    }
+                },
+                onError: (err) => {
+                    isRecording = false;
+                    if (btnStopVoiceRecord) btnStopVoiceRecord.style.display = "none";
+                    if (voicePulseWave) voicePulseWave.style.display = "none";
+                    setWaveformActive(false);
+                    if (voiceStatusLabel) {
+                        voiceStatusLabel.textContent = err.message || "Microphone error. Please try typing.";
+                    }
+                }
+            });
         }
 
-        if (btnBigVoiceMic) btnBigVoiceMic.addEventListener("click", toggleVoiceInput);
-        if (btnInlineMic) btnInlineMic.addEventListener("click", toggleVoiceInput);
+        async function stopVoiceRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+            if (btnStopVoiceRecord) btnStopVoiceRecord.style.display = "none";
+            if (voicePulseWave) voicePulseWave.style.display = "none";
+            setWaveformActive(false);
+
+            if (voiceStatusLabel) {
+                voiceStatusLabel.textContent = "Transcribing with Gnani Prisma v3.0...";
+            }
+
+            try {
+                const audioBlob = await window.KrishiGnaniVoice.stopRecording();
+                if (!audioBlob || audioBlob.size < 64) {
+                    if (voiceStatusLabel) voiceStatusLabel.textContent = "Audio was too short. Tap to speak again.";
+                    return;
+                }
+
+                const targetLang = voiceLangSelect.value || "hi";
+                const langCode = targetLang === "hi" ? "hi-IN" : (targetLang === "en" ? "en-IN" : "indic-auto");
+
+                const result = await window.KrishiGnaniVoice.transcribe(audioBlob, {
+                    language: langCode,
+                    model: "prisma-v3.0"
+                });
+
+                if (result && result.transcript) {
+                    if (voiceStatusLabel) {
+                        voiceStatusLabel.textContent = `Heard: "${result.transcript.slice(0, 32)}..."`;
+                    }
+                    chatInput.value = result.transcript;
+                    sendQuery(result.transcript);
+                } else {
+                    if (voiceStatusLabel) voiceStatusLabel.textContent = "No clear speech detected. Please speak again.";
+                }
+            } catch (err) {
+                console.warn("Gnani STT error:", err);
+                if (voiceStatusLabel) {
+                    voiceStatusLabel.textContent = err.message || "Could not transcribe audio. Please type your query.";
+                }
+            }
+        }
+
+        function toggleVoiceRecording() {
+            if (isRecording) {
+                stopVoiceRecording();
+            } else {
+                startVoiceRecording();
+            }
+        }
+
+        if (btnBigVoiceMic) btnBigVoiceMic.addEventListener("click", toggleVoiceRecording);
+        if (btnInlineMic) btnInlineMic.addEventListener("click", toggleVoiceRecording);
+        if (btnStopVoiceRecord) btnStopVoiceRecord.addEventListener("click", stopVoiceRecording);
     });
     </script>
 </body>

@@ -2272,72 +2272,190 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     function speakResponseText(text) {
+        const voiceLangEl = document.getElementById("voiceLangSelect");
+        const voiceGenderEl = document.getElementById("voiceGenderSelect");
+        const langMode = state.lang === "hi" ? "hi-IN" : ((voiceLangEl && voiceLangEl.value.includes("hi")) ? "hi-IN" : "en-IN");
+        const gender = (voiceGenderEl && voiceGenderEl.value === "male") ? "male" : "female";
+        const voiceName = gender === "male" ? "Deepak" : "Nalini";
+
+        const btnStop = document.getElementById("btnDashStopVoice");
+        if (btnStop) btnStop.style.display = "inline-block";
+
+        if (window.KrishiGnaniVoice && typeof window.KrishiGnaniVoice.speak === "function") {
+            window.KrishiGnaniVoice.speak(text, {
+                language: langMode,
+                gender: gender,
+                voice: voiceName,
+                speed: 1.0,
+                onStart: () => {
+                    const voiceStatus = document.getElementById("voiceStatusBadge");
+                    if (voiceStatus) voiceStatus.textContent = `Speaking: Gnani Timbre v2.5 (${voiceName})...`;
+                },
+                onEnd: () => {
+                    if (btnStop) btnStop.style.display = "none";
+                    const voiceStatus = document.getElementById("voiceStatusBadge");
+                    if (voiceStatus) voiceStatus.textContent = DASHBOARD_I18N[state.lang].voice_tap_mic;
+                }
+            });
+            return;
+        }
+
         if (!state.synthesis) return;
         state.synthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = state.lang === "en" ? "en-IN" : "hi-IN";
+        utterance.lang = langMode;
         utterance.rate = 0.95;
         state.synthesis.speak(utterance);
     }
 
     // -------------------------------------------------------------------------
-    // 10. SPEECH RECOGNITION (VOICE MODE)
+    // 10. GNANI.AI PRISMA V3.0 SPEECH-TO-TEXT & TIMBRE V2.5 VOICE COMPANION
     // -------------------------------------------------------------------------
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
     const bigVoiceBtn = document.getElementById("btnBigVoiceMic");
     const inputMicBtn = document.getElementById("btnInputMic");
     const micRing = document.getElementById("micWaveRing");
     const voiceStatus = document.getElementById("voiceStatusBadge");
+    const btnDashStopRecord = document.getElementById("btnDashStopRecord");
+    const btnDashStopVoice = document.getElementById("btnDashStopVoice");
+    let isDashRecording = false;
 
-    if (SpeechRecognition) {
-        state.recognition = new SpeechRecognition();
-        state.recognition.continuous = false;
-        state.recognition.interimResults = false;
+    if (btnDashStopVoice) {
+        btnDashStopVoice.addEventListener("click", () => {
+            if (window.KrishiGnaniVoice) window.KrishiGnaniVoice.stopPlayback();
+            btnDashStopVoice.style.display = "none";
+            if (voiceStatus) voiceStatus.textContent = DASHBOARD_I18N[state.lang].voice_tap_mic;
+        });
+    }
 
+    async function startDashRecording() {
+        if (isDashRecording) return;
+        const voiceLangEl = document.getElementById("voiceLangSelect");
+        const selLang = (voiceLangEl ? voiceLangEl.value : state.lang) || "hi";
+        const langCode = selLang === "hi" ? "hi-IN" : (selLang === "en" ? "en-IN" : "indic-auto");
+
+        if (voiceStatus) voiceStatus.textContent = state.lang === "hi" ? "माइक कनेक्ट हो रहा है..." : "Connecting microphone...";
+        if (micRing) micRing.style.display = "block";
+        if (btnDashStopRecord) btnDashStopRecord.style.display = "inline-block";
+
+        if (window.KrishiGnaniVoice && typeof window.KrishiGnaniVoice.startRecording === "function") {
+            await window.KrishiGnaniVoice.startRecording({
+                language: langCode,
+                onStart: () => {
+                    isDashRecording = true;
+                    if (voiceStatus) {
+                        voiceStatus.textContent = state.lang === "hi"
+                            ? "सुन रहे हैं (बोलिए)... 00:00 / 00:30"
+                            : "Listening... Speak now (00:00 / 00:30)";
+                    }
+                },
+                onTick: (sec, maxSec) => {
+                    if (voiceStatus) {
+                        const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+                        const ss = String(sec % 60).padStart(2, "0");
+                        voiceStatus.textContent = state.lang === "hi"
+                            ? `रिकॉर्ड हो रहा है... ${mm}:${ss} / 00:${maxSec} (पूरा होने पर टैप करें)`
+                            : `Recording audio... ${mm}:${ss} / 00:${maxSec} (Tap stop when done)`;
+                    }
+                },
+                onSuccess: (res) => {
+                    // Browser speech fallback
+                    isDashRecording = false;
+                    if (micRing) micRing.style.display = "none";
+                    if (btnDashStopRecord) btnDashStopRecord.style.display = "none";
+                    if (res && res.transcript) {
+                        if (chatInput) chatInput.value = res.transcript;
+                        sendUserMessage(res.transcript);
+                    }
+                },
+                onError: (err) => {
+                    isDashRecording = false;
+                    if (micRing) micRing.style.display = "none";
+                    if (btnDashStopRecord) btnDashStopRecord.style.display = "none";
+                    if (voiceStatus) voiceStatus.textContent = err.message || DASHBOARD_I18N[state.lang].voice_tap_mic;
+                }
+            });
+            return;
+        }
+
+        // Native browser SpeechRecognition fallback
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+            alert(state.lang === "hi"
+                ? "इस ब्राउज़र में वॉइस उपलब्ध नहीं है। कृपया अपना सवाल टाइप करें।"
+                : "Speech recognition is not supported on this browser. Please type your question.");
+            return;
+        }
+        state.recognition = new SpeechRec();
+        state.recognition.lang = langCode;
         state.recognition.onstart = () => {
-            state.isListening = true;
+            isDashRecording = true;
             if (micRing) micRing.style.display = "block";
             if (voiceStatus) voiceStatus.textContent = state.lang === "hi" ? "सुन रहे हैं... कृपया बोलें" : "Listening / सुन रहे हैं...";
         };
-
-        state.recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
+        state.recognition.onresult = (evt) => {
+            const transcript = evt.results[0][0].transcript;
             if (chatInput) chatInput.value = transcript;
             sendUserMessage(transcript);
         };
-
-        state.recognition.onerror = () => {
-            state.isListening = false;
-            if (micRing) micRing.style.display = "none";
-            if (voiceStatus) voiceStatus.textContent = DASHBOARD_I18N[state.lang].voice_tap_mic;
-        };
-
         state.recognition.onend = () => {
-            state.isListening = false;
+            isDashRecording = false;
             if (micRing) micRing.style.display = "none";
             if (voiceStatus) voiceStatus.textContent = DASHBOARD_I18N[state.lang].voice_tap_mic;
         };
+        state.recognition.start();
     }
 
-    function toggleMic() {
-        if (!state.recognition) {
-            alert(state.lang === "hi"
-                ? "इस ब्राउज़र में वॉइस रिकग्निशन उपलब्ध नहीं है। कृपया अपना सवाल टाइप करें।"
-                : "Speech recognition is not supported on this browser. Please type your query in the box.");
+    async function stopDashRecording() {
+        if (!isDashRecording) return;
+        isDashRecording = false;
+        if (micRing) micRing.style.display = "none";
+        if (btnDashStopRecord) btnDashStopRecord.style.display = "none";
+        if (voiceStatus) voiceStatus.textContent = state.lang === "hi" ? "Gnani Prisma v3.0 से ट्रांसक्राइब हो रहा है..." : "Transcribing with Gnani Prisma v3.0...";
+
+        if (window.KrishiGnaniVoice && typeof window.KrishiGnaniVoice.stopRecording === "function") {
+            try {
+                const audioBlob = await window.KrishiGnaniVoice.stopRecording();
+                if (!audioBlob || audioBlob.size < 64) {
+                    if (voiceStatus) voiceStatus.textContent = DASHBOARD_I18N[state.lang].voice_tap_mic;
+                    return;
+                }
+                const voiceLangEl = document.getElementById("voiceLangSelect");
+                const selLang = (voiceLangEl ? voiceLangEl.value : state.lang) || "hi";
+                const langCode = selLang === "hi" ? "hi-IN" : (selLang === "en" ? "en-IN" : "indic-auto");
+
+                const result = await window.KrishiGnaniVoice.transcribe(audioBlob, {
+                    language: langCode,
+                    model: "prisma-v3.0"
+                });
+                if (result && result.transcript) {
+                    if (chatInput) chatInput.value = result.transcript;
+                    sendUserMessage(result.transcript);
+                } else {
+                    if (voiceStatus) voiceStatus.textContent = state.lang === "hi" ? "आवाज स्पष्ट नहीं मिली, कृपया दोबारा बोलें" : "No clear speech detected. Please speak again.";
+                }
+            } catch (err) {
+                console.warn("Gnani STT error:", err);
+                if (voiceStatus) voiceStatus.textContent = err.message || DASHBOARD_I18N[state.lang].voice_tap_mic;
+            }
             return;
         }
-        if (state.isListening) {
-            state.recognition.stop();
-        } else {
-            const voiceLangEl = document.getElementById("voiceLangSelect");
-            const activeLang = state.lang === "hi" ? "hi" : (voiceLangEl ? voiceLangEl.value : "en");
-            state.recognition.lang = activeLang === "hi" ? "hi-IN" : "en-IN";
-            state.recognition.start();
+
+        if (state.recognition) {
+            try { state.recognition.stop(); } catch (e) {}
         }
     }
 
-    if (bigVoiceBtn) bigVoiceBtn.addEventListener("click", toggleMic);
-    if (inputMicBtn) inputMicBtn.addEventListener("click", toggleMic);
+    function toggleDashVoice() {
+        if (isDashRecording) {
+            stopDashRecording();
+        } else {
+            startDashRecording();
+        }
+    }
+
+    if (bigVoiceBtn) bigVoiceBtn.addEventListener("click", toggleDashVoice);
+    if (inputMicBtn) inputMicBtn.addEventListener("click", toggleDashVoice);
+    if (btnDashStopRecord) btnDashStopRecord.addEventListener("click", stopDashRecording);
 
     // Helper HTML escape
     function escapeHtml(text) {

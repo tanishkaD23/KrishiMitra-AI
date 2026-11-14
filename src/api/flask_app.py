@@ -3,13 +3,16 @@
 import json
 import os
 from pathlib import Path
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, Response, request, jsonify, send_from_directory
+from dotenv import load_dotenv
 try:
     from flask_cors import CORS
 except ImportError:
     CORS = None
 
 from config.settings import CONFIG, BASE_DIR
+
+load_dotenv(BASE_DIR / ".env")
 from src.database.db import (
     init_db,
     get_farmer_profile,
@@ -24,6 +27,11 @@ from src.yield_model.predict import YieldPredictor
 from src.advisory.agronomic_rules import AgronomicAdvisor, PersonalisedAdvisoryEngine
 from src.schemes.eligibility_engine import SchemeEligibilityEngine
 from src.krishisathi.voice_agent import KrishiSathiAgent
+from src.krishisathi.gnani_voice import (
+    get_gnani_voice_status,
+    transcribe_speech_gnani,
+    synthesize_speech_gnani,
+)
 from src.weather.live_weather import fetch_open_meteo_weather
 from src.api.platform_services import (
     ensure_platform_tables,
@@ -267,15 +275,138 @@ def api_chat():
     query = data.get("query") or data.get("message") or ""
     context = data.get("context") or {}
     lang = data.get("lang") or "hi"
+    include_tts = bool(data.get("include_tts", False))
+    voice_gender = data.get("gender") or "female"
+    voice_name = data.get("voice") or None
+
     rag_res = voice_agent.ask_rag(query, context, lang=lang)
-    return jsonify({
+    resp_payload = {
         "status": "success",
         "answer": rag_res.get("answer", ""),
         "sources": rag_res.get("sources", []),
         "retrieval_mode": rag_res.get("retrieval_mode", "general"),
         "verified": rag_res.get("verified", True),
         "lang": rag_res.get("lang", lang),
-    })
+    }
+    if include_tts and resp_payload["answer"]:
+        tts_res = synthesize_speech_gnani(
+            text=resp_payload["answer"],
+            language="hi-IN" if resp_payload["lang"] == "hi" else "en-IN",
+            voice=voice_name,
+            gender=voice_gender,
+            model="timbre-v2.5",
+        )
+        if tts_res.get("status") == "success":
+            resp_payload["audio_base64"] = tts_res.get("audio_base64")
+            resp_payload["audio_content_type"] = tts_res.get("content_type", "audio/wav")
+            resp_payload["tts_model"] = tts_res.get("model", "timbre-v2.5")
+            resp_payload["tts_voice"] = tts_res.get("voice")
+    return jsonify(resp_payload)
+
+
+@app.route("/api/krishisathi/voice-status", methods=["GET"])
+@app.route("/api/voice/status", methods=["GET"])
+def api_gnani_voice_status():
+    """Returns Gnani.ai (Prisma STT + Timbre TTS) readiness without exposing API credentials."""
+    return jsonify(get_gnani_voice_status())
+
+
+@app.route("/api/krishisathi/stt", methods=["POST"])
+@app.route("/api/voice/stt", methods=["POST"])
+def api_gnani_stt():
+    """Gnani Prisma v3.0 Speech-to-Text endpoint (proxies multipart audio to https://api.vachana.ai/stt/v3)."""
+    uploaded = request.files.get("audio_file") or request.files.get("audio")
+    if not uploaded:
+        return jsonify({
+            "status": "error",
+            "error_code": "MISSING_AUDIO_FILE",
+            "message": "No audio_file provided in multipart/form-data request.",
+        }), 400
+
+    audio_bytes = uploaded.read()
+    filename = uploaded.filename or "recording.wav"
+    language_code = request.form.get("language_code") or request.form.get("lang") or "hi-IN,en-IN"
+    model = request.form.get("model") or "prisma-v3.0"
+    output_format = request.form.get("format") or "codemix"
+    run_rag = str(request.form.get("run_rag", "false")).lower() in ("true", "1", "yes")
+
+    stt_result = transcribe_speech_gnani(
+        audio_bytes=audio_bytes,
+        filename=filename,
+        language_code=language_code,
+        model=model,
+        output_format=output_format,
+    )
+    if stt_result.get("status") == "error":
+        code = stt_result.get("error_code", "")
+        http_status = 429 if code == "RATE_LIMIT_EXCEEDED" else (504 if code == "API_TIMEOUT" else 400)
+        return jsonify(stt_result), http_status
+
+    if run_rag and stt_result.get("transcript"):
+        try:
+            ctx_raw = request.form.get("context") or "{}"
+            context = json.loads(ctx_raw) if isinstance(ctx_raw, str) else {}
+        except Exception:
+            context = {}
+        detected = (stt_result.get("detected_language_code") or language_code or "hi").lower()
+        chat_lang = "hi" if "hi" in detected else "en"
+        rag_res = voice_agent.ask_rag(stt_result["transcript"], context, lang=chat_lang)
+        stt_result["chat"] = {
+            "answer": rag_res.get("answer", ""),
+            "sources": rag_res.get("sources", []),
+            "retrieval_mode": rag_res.get("retrieval_mode", "general"),
+            "verified": rag_res.get("verified", True),
+            "lang": rag_res.get("lang", chat_lang),
+        }
+
+    return jsonify(stt_result)
+
+
+@app.route("/api/krishisathi/tts", methods=["POST"])
+@app.route("/api/voice/tts", methods=["POST"])
+def api_gnani_tts():
+    """Gnani Timbre v2.5 Text-to-Speech endpoint (proxies JSON to https://api.vachana.ai/api/v1/tts/inference)."""
+    data = request.get_json(force=True, silent=True) or {}
+    text = data.get("text") or ""
+    language = data.get("language") or data.get("lang") or "hi-IN"
+    voice = data.get("voice")
+    gender = data.get("gender") or "female"
+    model = data.get("model") or "timbre-v2.5"
+    speed = float(data.get("speed") or 1.0)
+    response_format = (data.get("response_format") or "binary").lower()
+
+    tts_result = synthesize_speech_gnani(
+        text=text,
+        language=language,
+        voice=voice,
+        gender=gender,
+        model=model,
+        speed=speed,
+    )
+    if tts_result.get("status") == "error":
+        code = tts_result.get("error_code", "")
+        http_status = 429 if code == "RATE_LIMIT_EXCEEDED" else (504 if code == "API_TIMEOUT" else 400)
+        return jsonify(tts_result), http_status
+
+    if response_format == "json":
+        return jsonify({
+            "status": "success",
+            "audio_base64": tts_result["audio_base64"],
+            "content_type": tts_result["content_type"],
+            "model": tts_result["model"],
+            "voice": tts_result["voice"],
+            "language": tts_result["language"],
+        })
+
+    return Response(
+        tts_result["audio_bytes"],
+        mimetype=tts_result["content_type"],
+        headers={
+            "X-Gnani-Model": tts_result["model"],
+            "X-Gnani-Voice": tts_result["voice"],
+            "X-Gnani-Language": tts_result["language"],
+        },
+    )
 
 
 @app.route("/api/model-summary")

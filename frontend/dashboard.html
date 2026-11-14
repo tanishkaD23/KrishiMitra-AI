@@ -18,6 +18,8 @@
     <script src="supabase_auth.js"></script>
     <!-- All-India Static Dataset (35 States/UTs, 743 Districts, 72 Crops) -->
     <script src="all_india_static_data.js"></script>
+    <!-- Gnani.ai Voice AI Client (Prisma v3.0 STT & Timbre v2.5 TTS) -->
+    <script src="gnani_voice_client.js"></script>
 </head>
 <body>
 
@@ -732,21 +734,28 @@
                             </div>
                         </div>
 
-                        <!-- Right Column: Voice Mode Card -->
+                        <!-- Right Column: Voice Mode Card (Gnani.ai Voice AI Powered) -->
                         <div class="voice-mode-card">
-                            <h3 class="voice-mode-title" data-i18n="voice_mode_title">Voice Companion Mode</h3>
+                            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 6px;">
+                                <h3 class="voice-mode-title" data-i18n="voice_mode_title" style="margin: 0;">Voice Companion Mode</h3>
+                                <span class="scheme-tag-pill tag-income" style="font-size: 0.74rem;">Gnani.ai Voice AI</span>
+                            </div>
 
                             <div class="pulse-mic-outer">
                                 <div class="pulse-mic-wave" id="micWaveRing"></div>
-                                <button type="button" class="pulse-mic-btn" id="btnBigVoiceMic" title="Click to speak">
+                                <button type="button" class="pulse-mic-btn" id="btnBigVoiceMic" title="Click to speak with Gnani Prisma v3.0">
                                     <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
                                 </button>
                             </div>
 
                             <div>
                                 <div class="voice-status-text" id="voiceStatusBadge" data-i18n="voice_tap_mic">Tap Microphone to Speak (English or Hindi)</div>
+                                <div style="display: flex; gap: 8px; justify-content: center; margin-top: 6px;">
+                                    <button type="button" class="btn-outline-login" id="btnDashStopRecord" style="display: none; padding: 4px 12px; font-size: 0.78rem; color: #dc2626; border-color: #dc2626; font-weight: 700;">⏹ Stop Recording</button>
+                                    <button type="button" class="btn-outline-login" id="btnDashStopVoice" style="display: none; padding: 4px 12px; font-size: 0.78rem; color: #064E2B; border-color: #064E2B; font-weight: 700;">⏹ Stop Audio</button>
+                                </div>
                                 <!-- Animated Audio Waveform -->
-                                <div class="waveform-container">
+                                <div class="waveform-container" id="dashWaveformContainer">
                                     <div class="waveform-bar" style="height: 12px;"></div>
                                     <div class="waveform-bar" style="height: 24px;"></div>
                                     <div class="waveform-bar" style="height: 36px;"></div>
@@ -758,13 +767,13 @@
 
                             <div class="voice-controls-row">
                                 <select class="voice-select-pro" id="voiceLangSelect">
-                                    <option value="en" selected>English (en-IN)</option>
-                                    <option value="hi">Hindi / हिंदी (hi-IN)</option>
-                                    <option value="hinglish">Hinglish</option>
+                                    <option value="hi" selected>Hindi / हिंदी (hi-IN)</option>
+                                    <option value="en">English (en-IN)</option>
+                                    <option value="indic-auto">Auto (Hindi + English)</option>
                                 </select>
                                 <select class="voice-select-pro" id="voiceGenderSelect">
-                                    <option value="female" selected>Female Voice</option>
-                                    <option value="male">Male Voice</option>
+                                    <option value="female" selected>Nalini (Female)</option>
+                                    <option value="male">Deepak (Male)</option>
                                 </select>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 from typing import Dict, Any, Optional, List
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Response, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -29,6 +29,12 @@ from src.yield_model.predict import YieldPredictor
 from src.advisory.agronomic_rules import AgronomicAdvisor, PersonalisedAdvisoryEngine
 from src.schemes.eligibility_engine import SchemeEligibilityEngine
 from src.krishisathi.voice_agent import KrishiSathiAgent
+from src.krishisathi.gnani_voice import (
+    get_gnani_voice_status,
+    transcribe_speech_gnani,
+    synthesize_speech_gnani,
+    parse_raw_multipart_or_json,
+)
 from src.weather.live_weather import fetch_open_meteo_weather
 from src.api.platform_services import (
     ensure_platform_tables,
@@ -141,6 +147,9 @@ class ChatQueryInput(BaseModel):
     query: str
     context: Optional[Dict[str, Any]] = Field(default_factory=dict)
     lang: Optional[str] = "hi"
+    include_tts: Optional[bool] = False
+    voice: Optional[str] = None
+    gender: Optional[str] = "female"
 
 
 class NewPlotInput(BaseModel):
@@ -528,7 +537,7 @@ def krishisathi_chat(payload: ChatQueryInput):
     """Processes farmer query using RAG (PDF search -> Web Search fallback -> Verification)."""
     try:
         rag_res = voice_agent.ask_rag(payload.query, payload.context, lang=payload.lang or "hi")
-        return {
+        resp: Dict[str, Any] = {
             "status": "success",
             "answer": rag_res["answer"],
             "sources": rag_res.get("sources", []),
@@ -536,8 +545,129 @@ def krishisathi_chat(payload: ChatQueryInput):
             "verified": rag_res.get("verified", True),
             "lang": rag_res.get("lang", payload.lang or "hi")
         }
+        if payload.include_tts and resp["answer"]:
+            tts_res = synthesize_speech_gnani(
+                text=resp["answer"],
+                language="hi-IN" if resp["lang"] == "hi" else "en-IN",
+                voice=payload.voice,
+                gender=payload.gender or "female",
+                model="timbre-v2.5",
+            )
+            if tts_res.get("status") == "success":
+                resp["audio_base64"] = tts_res.get("audio_base64")
+                resp["audio_content_type"] = tts_res.get("content_type", "audio/wav")
+                resp["tts_model"] = tts_res.get("model", "timbre-v2.5")
+                resp["tts_voice"] = tts_res.get("voice")
+        return resp
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/krishisathi/voice-status")
+@app.get("/api/voice/status")
+def get_voice_status():
+    """Returns Gnani.ai voice readiness without exposing API credentials."""
+    return get_gnani_voice_status()
+
+
+@app.post("/api/krishisathi/stt")
+@app.post("/api/voice/stt")
+async def gnani_speech_to_text(request: Request):
+    """Proxies recorded voice to Gnani Prisma v3.0 STT API (`POST https://api.vachana.ai/stt/v3`)."""
+    content_type = request.headers.get("content-type", "")
+    body_bytes = await request.body()
+    audio_bytes, filename, fields = parse_raw_multipart_or_json(content_type, body_bytes)
+
+    if not audio_bytes:
+        return JSONResponse(status_code=400, content={
+            "status": "error",
+            "error_code": "MISSING_AUDIO_FILE",
+            "message": "No audio data received. Please record your voice and try again."
+        })
+
+    language_code = fields.get("language_code") or fields.get("lang") or "hi-IN,en-IN"
+    model = fields.get("model") or "prisma-v3.0"
+    output_format = fields.get("format") or "codemix"
+    run_rag = str(fields.get("run_rag", "false")).lower() in ("true", "1", "yes")
+
+    result = transcribe_speech_gnani(
+        audio_bytes=audio_bytes,
+        filename=filename,
+        language_code=language_code,
+        model=model,
+        output_format=output_format,
+    )
+    if result.get("status") == "error":
+        code = result.get("error_code")
+        status_code = 429 if code == "RATE_LIMIT_EXCEEDED" else (504 if code == "API_TIMEOUT" else 400)
+        return JSONResponse(status_code=status_code, content=result)
+
+    if run_rag and result.get("transcript"):
+        try:
+            ctx_raw = fields.get("context") or "{}"
+            ctx = json.loads(ctx_raw) if isinstance(ctx_raw, str) else (ctx_raw or {})
+        except Exception:
+            ctx = {}
+        detected = (result.get("detected_language_code") or language_code or "hi").lower()
+        chat_lang = "hi" if "hi" in detected else "en"
+        rag_res = voice_agent.ask_rag(result["transcript"], ctx, lang=chat_lang)
+        result["chat"] = {
+            "answer": rag_res.get("answer", ""),
+            "sources": rag_res.get("sources", []),
+            "retrieval_mode": rag_res.get("retrieval_mode", "general"),
+            "verified": rag_res.get("verified", True),
+            "lang": rag_res.get("lang", chat_lang),
+        }
+
+    return result
+
+
+class TTSRequestInput(BaseModel):
+    text: str
+    language: Optional[str] = "hi-IN"
+    voice: Optional[str] = None
+    gender: Optional[str] = "female"
+    model: Optional[str] = "timbre-v2.5"
+    speed: Optional[float] = 1.0
+    response_format: Optional[str] = "binary"
+
+
+@app.post("/api/krishisathi/tts")
+@app.post("/api/voice/tts")
+def gnani_text_to_speech(payload: TTSRequestInput):
+    """Proxies synthesis to Gnani Timbre v2.5 TTS API (`POST https://api.vachana.ai/api/v1/tts/inference`)."""
+    tts_result = synthesize_speech_gnani(
+        text=payload.text,
+        language=payload.language,
+        voice=payload.voice,
+        gender=payload.gender or "female",
+        model=payload.model or "timbre-v2.5",
+        speed=float(payload.speed or 1.0),
+    )
+    if tts_result.get("status") == "error":
+        code = tts_result.get("error_code")
+        status_code = 429 if code == "RATE_LIMIT_EXCEEDED" else (504 if code == "API_TIMEOUT" else 400)
+        return JSONResponse(status_code=status_code, content=tts_result)
+
+    if (payload.response_format or "").lower() == "json":
+        return {
+            "status": "success",
+            "audio_base64": tts_result["audio_base64"],
+            "content_type": tts_result["content_type"],
+            "model": tts_result["model"],
+            "voice": tts_result["voice"],
+            "language": tts_result["language"],
+        }
+
+    return Response(
+        content=tts_result["audio_bytes"],
+        media_type=tts_result["content_type"],
+        headers={
+            "X-Gnani-Model": tts_result["model"],
+            "X-Gnani-Voice": tts_result["voice"],
+            "X-Gnani-Language": tts_result["language"],
+        }
+    )
 
 
 @app.get("/api/model-summary")
