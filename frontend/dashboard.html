@@ -1039,16 +1039,16 @@
 
 
                 <!-- =====================================================================
-                     TAB 8: PROFILE — Farmer Profile & Edit Profile Form
+                     TAB 8: PROFILE — Role-Adaptive Profile & Edit Profile Form
                      ===================================================================== -->
                 <section class="app-tab-screen" id="tab-profile">
                     <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                         <div>
-                            <h2 data-i18n="prof_title">Farmer Profile</h2>
-                            <p data-i18n="prof_sub">Verified profile credentials, registered landholding summary, and personal settings.</p>
+                            <h2 data-i18n="prof_title" id="profTitleHeading">Farmer Profile</h2>
+                            <p data-i18n="prof_sub" id="profSubHeading">Verified profile credentials, registered landholding summary, and personal settings.</p>
                         </div>
                         <button type="button" class="btn-solid-start" id="btnToggleEditProfile" style="cursor: pointer;">
-                            <span data-i18n="btn_edit_profile">Edit Profile</span>
+                            <span data-i18n="btn_edit_profile" id="btnEditProfileText">Edit Profile</span>
                         </button>
                     </div>
 
@@ -1056,7 +1056,7 @@
                         <!-- Left Card: Profile Overview -->
                         <div class="chart-card-pro">
                             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 24px;">
-                                <img src="images/farmer_portrait.jpg" alt="Farmer Portrait" style="width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 3px solid var(--km-primary);">
+                                <img src="images/farmer_portrait.jpg" id="profileDisplayAvatar" alt="Profile Portrait" style="width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 3px solid var(--km-primary);">
                                 <div>
                                     <h3 id="profileDisplayName" style="font-size: 1.35rem; font-weight: 800; color: var(--km-text-heading);">Tanishka</h3>
                                     <p id="profileDisplayLocation" style="font-size: 0.9rem; color: var(--km-text-muted);">Village: Daurala • District: Meerut, Uttar Pradesh</p>
@@ -1065,36 +1065,36 @@
                             </div>
 
                             <div style="font-size: 0.92rem; color: var(--km-text-body); line-height: 1.9; border-top: 1px solid var(--km-border); padding-top: 16px;">
-                                <p><strong data-i18n="prof_lbl_phone">Mobile Number:</strong> <span id="profileDisplayPhone">+91 98765 43210</span></p>
-                                <p><strong data-i18n="prof_lbl_lang">Preferred Language:</strong> <span id="profileDisplayLang">English (with Bilingual Hindi Support)</span></p>
-                                <p><strong data-i18n="prof_lbl_ekyc">Aadhaar / eKYC Status:</strong> <span style="color: var(--km-primary); font-weight: 700;" data-i18n="prof_val_verified">Verified on PM-KISAN Portal</span></p>
-                                <p><strong data-i18n="prof_lbl_zone">Supported Region:</strong> <span id="profileDisplayZone">Uttar Pradesh (Multi-State Rabi Platform)</span></p>
-                                <p><strong>Farmer ID:</strong> <code>farmer-001</code></p>
+                                <p><strong data-i18n="prof_lbl_phone" id="lblDisplayPhone">Mobile Number:</strong> <span id="profileDisplayPhone">+91 98765 43210</span></p>
+                                <p><strong data-i18n="prof_lbl_lang" id="lblDisplayLang">Preferred Language:</strong> <span id="profileDisplayLang">English (with Bilingual Hindi Support)</span></p>
+                                <p><strong data-i18n="prof_lbl_ekyc" id="profileDisplayEkycLabel">Aadhaar / eKYC Status:</strong> <span style="color: var(--km-primary); font-weight: 700;" data-i18n="prof_val_verified" id="profileDisplayEkycVal">Verified on PM-KISAN Portal</span></p>
+                                <p><strong data-i18n="prof_lbl_zone" id="profileDisplayZoneLabel">Supported Region:</strong> <span id="profileDisplayZone">Uttar Pradesh (Multi-State Rabi Platform)</span></p>
+                                <p><strong id="profileDisplayIdLabel">Farmer ID:</strong> <code id="profileDisplayId">farmer-001</code></p>
                             </div>
                         </div>
 
-                        <!-- Right Card: Edit Farmer Profile Form -->
+                        <!-- Right Card: Edit Profile Form -->
                         <div class="predict-form-card" id="editProfileFormCard">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--km-border);">
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-primary);" data-i18n="edit_prof_heading">Edit Farmer Profile (प्रोफ़ाइल संपादित करें)</h3>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--km-primary);" data-i18n="edit_prof_heading" id="editProfileHeading">Edit Profile (प्रोफ़ाइल संपादित करें)</h3>
                                 <span class="chart-badge-tag" data-i18n="badge_sqlite_sync">Live Database Sync</span>
                             </div>
 
                             <form id="editProfileForm">
                                 <div class="predict-form-row" style="grid-template-columns: 1fr 1fr;">
                                     <div class="form-group-pro">
-                                        <label for="editFarmerName" data-i18n="lbl_farmer_name">Farmer Full Name *</label>
+                                        <label for="editFarmerName" data-i18n="lbl_farmer_name" id="lblEditProfileName">Farmer Full Name *</label>
                                         <input type="text" id="editFarmerName" class="form-input-pro" value="Tanishka" required>
                                     </div>
                                     <div class="form-group-pro">
-                                        <label for="editFarmerPhone" data-i18n="prof_lbl_phone">Mobile Number *</label>
+                                        <label for="editFarmerPhone" data-i18n="prof_lbl_phone" id="lblEditProfilePhone">Mobile Number *</label>
                                         <input type="text" id="editFarmerPhone" class="form-input-pro" value="+91 98765 43210" required>
                                     </div>
                                 </div>
 
                                 <div class="predict-form-row" style="grid-template-columns: 1fr 1fr;">
                                     <div class="form-group-pro">
-                                        <label for="editFarmerVillage" data-i18n="lbl_village">Village / Town</label>
+                                        <label for="editFarmerVillage" data-i18n="lbl_village" id="lblEditProfileVillage">Village / Town</label>
                                         <input type="text" id="editFarmerVillage" class="form-input-pro" value="Daurala">
                                     </div>
                                     <div class="form-group-pro">
@@ -1129,7 +1129,7 @@
                                 <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 12px;">
                                     <span id="editProfileStatusMsg" style="font-size: 0.86rem; font-weight: 700; color: var(--km-primary);"></span>
                                     <button type="submit" class="btn-predict-action" id="btnSaveProfileChanges">
-                                        <span data-i18n="btn_save_profile">Save Profile Changes</span>
+                                        <span data-i18n="btn_save_profile" id="btnSaveProfileText">Save Profile Changes</span>
                                     </button>
                                 </div>
                             </form>
@@ -1259,28 +1259,14 @@
                     <div class="tab-header-block" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                         <div>
                             <h2 data-i18n="intel_main_title">KrishiScheme Intelligence — Farmer Beneficiary &amp; Amount Finder</h2>
-                            <p data-i18n="intel_main_sub">Select or search any scheme below to see how many farmers benefited and total ₹ amount distributed.</p>
+                            <p data-i18n="intel_main_sub">Select any government scheme below to see how many farmers benefited and total ₹ amount distributed.</p>
                         </div>
                         <span class="scheme-tag-pill tag-income" data-i18n="intel_badge_6">6 Central Schemes • Verified Govt Data</span>
                     </div>
 
-                    <!-- Clickable Quick Scheme Pills -->
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;" id="intelQuickSchemePills">
-                        <button type="button" class="acre-chip intel-scheme-pill active" data-scheme="pm-kisan" data-scheme-id="pm-kisan" style="cursor:pointer; font-weight:800;" data-i18n="pill_s1">1. PM-KISAN (₹6,000/yr)</button>
-                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pmfby" data-scheme-id="pmfby" style="cursor:pointer; font-weight:800;" data-i18n="pill_s2">2. PMFBY Crop Insurance</button>
-                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="kcc" data-scheme-id="kcc" style="cursor:pointer; font-weight:800;" data-i18n="pill_s3">3. KCC (4% Interest Loan)</button>
-                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="soil-health-card" data-scheme-id="soil-health-card" style="cursor:pointer; font-weight:800;" data-i18n="pill_s4">4. Soil Health Card</button>
-                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pmksy" data-scheme-id="pmksy" style="cursor:pointer; font-weight:800;" data-i18n="pill_s5">5. PMKSY Micro-Irrigation</button>
-                        <button type="button" class="acre-chip intel-scheme-pill" data-scheme="pm-kusum" data-scheme-id="pm-kusum" style="cursor:pointer; font-weight:800;" data-i18n="pill_s6">6. PM-KUSUM Solar Pump</button>
-                    </div>
-
-                    <!-- Search Keyword + Scheme & State Selector Bar -->
-                    <div class="schemes-filter-bar" style="grid-template-columns: 1.2fr 1.2fr 1fr auto; margin-bottom: 18px;">
-                        <div class="form-group-pro">
-                            <label for="intelQuickSearchInput" data-i18n="intel_lbl_search">Search Scheme</label>
-                            <input type="text" id="intelQuickSearchInput" class="form-input-pro" placeholder="Type e.g. PM-KISAN, Bima, Solar, Loan...">
-                        </div>
-                        <div class="form-group-pro">
+                    <!-- Clean Government Scheme & State Selector Bar -->
+                    <div class="schemes-filter-bar" style="grid-template-columns: 2fr 1.3fr auto; gap: 14px; margin-bottom: 18px; align-items: flex-end;">
+                        <div class="form-group-pro" style="margin-bottom: 0;">
                             <label for="intelSchemeSelect" data-i18n="intel_lbl_select">Select Government Scheme</label>
                             <select class="form-select-pro" id="intelSchemeSelect">
                                 <option value="pm-kisan" selected data-i18n="opt_s1">1. PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)</option>
@@ -1291,13 +1277,13 @@
                                 <option value="pm-kusum" data-i18n="opt_s6">6. PM-KUSUM (Solar Agriculture Pumps)</option>
                             </select>
                         </div>
-                        <div class="form-group-pro">
+                        <div class="form-group-pro" style="margin-bottom: 0;">
                             <label for="intelStateSelect" data-i18n="intel_lbl_state">Select Your State</label>
                             <select class="form-select-pro" id="intelStateSelect">
                                 <option value="Uttar Pradesh" selected>Uttar Pradesh</option>
                             </select>
                         </div>
-                        <button type="button" class="btn-scheme-search" id="btnLoadSchemeIntel" style="margin-top:auto; cursor:pointer;" data-i18n="intel_btn_check">Check Beneficiaries &amp; ₹ Amount</button>
+                        <button type="button" class="btn-scheme-search" id="btnLoadSchemeIntel" style="margin-top:auto; cursor:pointer; height: 44px;" data-i18n="intel_btn_check">Check Beneficiaries &amp; ₹ Amount</button>
                     </div>
 
                     <!-- PROMINENT FARMER BENEFIT & AMOUNT SPOTLIGHT BANNER -->
