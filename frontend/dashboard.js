@@ -2254,25 +2254,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             });
 
-            const data = await res.json();
-            if (typingEl) typingEl.remove();
-
-            if (data.answer) {
-                appendAiBubble(data.answer, data.sources, data.retrieval_mode);
-            } else {
-                appendAiBubble(
-                    state.lang === "hi"
-                        ? "क्षमा करें, अभी उत्तर सत्यापित नहीं हो सका। कृपया पुनः प्रयास करें।"
-                        : "Sorry, I could not verify a response right now. Please try again.",
-                    []
-                );
+            if (res.ok) {
+                const data = await res.json();
+                if (typingEl) typingEl.remove();
+                if (data && data.answer) {
+                    appendAiBubble(data.answer, data.sources, data.retrieval_mode);
+                    return;
+                }
             }
-        } catch (err) {
-            if (typingEl) typingEl.remove();
+        } catch (fetchErr) {
+            console.warn("Backend /api/krishisathi/chat unreachable (Netlify static deploy); activating KrishiRAG client engine:", fetchErr);
+        }
+
+        if (typingEl) typingEl.remove();
+
+        // Grounded ICAR & Government Scheme RAG Knowledge Retrieval Engine
+        if (window.KrishiRAGEngine && typeof window.KrishiRAGEngine.answerQuery === "function") {
+            const ragResult = window.KrishiRAGEngine.answerQuery(query, {
+                state: state.selectedState || "Uttar Pradesh",
+                crop: state.crop || "Wheat",
+                district: state.district || "Meerut",
+                plot_acres: 2.5,
+                lang: activeChatLang
+            });
+            appendAiBubble(ragResult.answer, ragResult.sources, ragResult.retrieval_mode);
+        } else {
             appendAiBubble(
                 state.lang === "hi"
-                    ? "नेटवर्क कनेक्शन बाधित हुआ। गेहूं की तत्काल सलाह: बुवाई के 21–25 दिन बाद शीर्ष जड़ अवस्था (CRI) पर पहली सिंचाई अवश्य करें।"
-                    : "Network connection interrupted. For immediate Wheat advice, ensure timely Crown Root Initiation (CRI) irrigation at 21–25 days after sowing.",
+                    ? "कृषि सलाह प्राप्त करने में असमर्थ। कृपया पुनः प्रयास करें अथवा किसान कॉल सेंटर (1800-180-1551) पर संपर्क करें।"
+                    : "Unable to retrieve advice right now. Please try again or call Kisan Call Centre at 1800-180-1551.",
                 []
             );
         }

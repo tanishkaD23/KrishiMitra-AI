@@ -17,6 +17,8 @@
     <script src="supabase_auth.js"></script>
     <script src="all_india_static_data.js"></script>
     <script src="gnani_voice_client.js"></script>
+    <!-- KrishiSathi Agricultural & Scheme RAG Knowledge Engine -->
+    <script src="krishi_rag_engine.js"></script>
     <style>
         .unified-section {
             padding: 64px 24px;
@@ -1194,6 +1196,9 @@
             chatStream.appendChild(uDiv);
             chatStream.scrollTop = chatStream.scrollHeight;
 
+            let answerText = "";
+            let targetLang = (localStorage.getItem("km_lang") || "en") === "hi" ? "hi-IN" : "en-IN";
+
             try {
                 const res = await fetch("/api/krishisathi/chat", {
                     method: "POST",
@@ -1202,37 +1207,60 @@
                         query: q,
                         lang: localStorage.getItem("km_lang") || "en",
                         context: {
-                            state: document.getElementById("hmState").value,
-                            district: document.getElementById("hmDistrict").value,
-                            crop: document.getElementById("hmCrop").value
+                            state: document.getElementById("hmState") ? document.getElementById("hmState").value : "Uttar Pradesh",
+                            district: document.getElementById("hmDistrict") ? document.getElementById("hmDistrict").value : "Meerut",
+                            crop: document.getElementById("hmCrop") ? document.getElementById("hmCrop").value : "Wheat"
                         }
                     })
                 });
-                const data = await res.json();
-                const aWrap = document.createElement("div");
-                aWrap.className = "chat-bubble-ai-wrap";
-                const safeAns = String(data.answer || "Verified response unavailable.").replace(/</g, "&lt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-                const targetLang = (localStorage.getItem("km_lang") || "en") === "hi" ? "hi-IN" : "en-IN";
-                aWrap.innerHTML = `
-                    <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
-                    <div class="chat-bubble-ai" style="white-space: pre-line;">
-                        <div>${safeAns}</div>
-                        <div class="chat-bubble-actions" style="margin-top: 8px;">
-                            <button type="button" class="btn-speak-audio hm-speak-btn" style="padding: 4px 10px; font-size: 0.75rem; border-radius: 999px; border: 1px solid var(--km-border); background: #fff; cursor: pointer;">🔊 Listen (Gnani Timbre)</button>
-                        </div>
-                    </div>
-                `;
-                const btnSpeak = aWrap.querySelector(".hm-speak-btn");
-                if (btnSpeak) {
-                    btnSpeak.addEventListener("click", () => {
-                        if (window.KrishiGnaniVoice) {
-                            window.KrishiGnaniVoice.speak(data.answer || safeAns, { language: targetLang });
-                        }
-                    });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.answer) {
+                        answerText = data.answer;
+                        if (data.lang === "hi") targetLang = "hi-IN";
+                    }
                 }
-                chatStream.appendChild(aWrap);
-                chatStream.scrollTop = chatStream.scrollHeight;
-            } catch (e) {}
+            } catch (e) {
+                console.warn("Backend /api/krishisathi/chat unreachable, activating KrishiRAG client engine:", e);
+            }
+
+            if (!answerText && window.KrishiRAGEngine && typeof window.KrishiRAGEngine.answerQuery === "function") {
+                const ragRes = window.KrishiRAGEngine.answerQuery(q, {
+                    state: document.getElementById("hmState") ? document.getElementById("hmState").value : "Uttar Pradesh",
+                    district: document.getElementById("hmDistrict") ? document.getElementById("hmDistrict").value : "Meerut",
+                    crop: document.getElementById("hmCrop") ? document.getElementById("hmCrop").value : "Wheat",
+                    lang: localStorage.getItem("km_lang") || "en"
+                });
+                answerText = ragRes.answer;
+                if (ragRes.lang === "hi") targetLang = "hi-IN";
+            }
+
+            if (!answerText) {
+                answerText = "Verified agronomic response unavailable right now. Please call Kisan Call Centre at 1800-180-1551.";
+            }
+
+            const aWrap = document.createElement("div");
+            aWrap.className = "chat-bubble-ai-wrap";
+            const safeAns = String(answerText).replace(/</g, "&lt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+            aWrap.innerHTML = `
+                <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
+                <div class="chat-bubble-ai" style="white-space: pre-line;">
+                    <div>${safeAns}</div>
+                    <div class="chat-bubble-actions" style="margin-top: 8px;">
+                        <button type="button" class="btn-speak-audio hm-speak-btn" style="padding: 4px 10px; font-size: 0.75rem; border-radius: 999px; border: 1px solid var(--km-border); background: #fff; cursor: pointer;">🔊 Listen (Gnani Timbre)</button>
+                    </div>
+                </div>
+            `;
+            const btnSpeak = aWrap.querySelector(".hm-speak-btn");
+            if (btnSpeak) {
+                btnSpeak.addEventListener("click", () => {
+                    if (window.KrishiGnaniVoice) {
+                        window.KrishiGnaniVoice.speak(answerText, { language: targetLang });
+                    }
+                });
+            }
+            chatStream.appendChild(aWrap);
+            chatStream.scrollTop = chatStream.scrollHeight;
         }
 
         if (btnHmChatMic) {

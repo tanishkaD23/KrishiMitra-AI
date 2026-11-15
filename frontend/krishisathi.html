@@ -13,6 +13,8 @@
     <script src="supabase_auth.js"></script>
     <script src="all_india_static_data.js"></script>
     <script src="gnani_voice_client.js"></script>
+    <!-- KrishiSathi Agricultural & Scheme RAG Knowledge Engine -->
+    <script src="krishi_rag_engine.js"></script>
 </head>
 <body>
 
@@ -458,7 +460,57 @@
                     playGnaniSpeech(answer, ttsLang);
                 }
             } catch (err) {
-                console.error("KrishiSathi chat error:", err);
+                console.warn("KrishiSathi backend offline (Netlify static deploy); activating KrishiRAG client engine:", err);
+                if (window.KrishiRAGEngine && typeof window.KrishiRAGEngine.answerQuery === "function") {
+                    loadingWrap.remove();
+                    const ragResult = window.KrishiRAGEngine.answerQuery(trimmed, {
+                        state: stateName,
+                        district: district,
+                        crop: crop,
+                        lang: selectedLang,
+                        plot_acres: 2.5
+                    });
+                    const answer = ragResult.answer;
+                    const sources = ragResult.sources || [];
+                    const respLang = ragResult.lang || selectedLang;
+                    const ttsLang = respLang === "hi" ? "hi-IN" : "en-IN";
+                    const modeBadge = `<span class="scheme-tag-pill tag-income">Verified Scheme & Agronomy Engine</span>`;
+
+                    const sourcesHtml = sources.length > 0
+                        ? `<div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--km-border); font-size: 0.78rem; color: var(--km-text-muted);">
+                            <strong>Verified Sources:</strong>
+                            <ul style="margin: 4px 0 0 16px;">
+                                ${sources.map(s => `<li>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" style="color:var(--km-primary); font-weight:700; text-decoration:underline;">${s.title || s.source}</a>` : `<span>${s.title || s.source}</span>`} ${(s.official || s.is_official) ? '(Official)' : ''}</li>`).join("")}
+                            </ul>
+                           </div>`
+                        : "";
+
+                    const aiWrap = document.createElement("div");
+                    aiWrap.className = "chat-bubble-ai-wrap";
+                    aiWrap.innerHTML = `
+                        <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
+                        <div class="chat-bubble-ai">
+                            <div style="margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+                                <div>${modeBadge}</div>
+                                <span style="font-size: 0.72rem; color: var(--km-text-muted);">Gnani Timbre TTS Ready</span>
+                            </div>
+                            <div style="white-space: pre-line; line-height: 1.55;">${formatMarkdown(answer)}</div>
+                            ${sourcesHtml}
+                            <div class="chat-bubble-actions">
+                                <button type="button" class="btn-speak-audio" data-lang="${ttsLang}">🔊 Listen (Gnani Timbre)</button>
+                            </div>
+                        </div>
+                    `;
+                    aiWrap.querySelector(".btn-speak-audio").setAttribute("data-speak", answer);
+                    chatStream.appendChild(aiWrap);
+                    chatStream.scrollTop = chatStream.scrollHeight;
+
+                    if (autoSpeakToggle && autoSpeakToggle.checked) {
+                        playGnaniSpeech(answer, ttsLang);
+                    }
+                    return;
+                }
+
                 loadingWrap.innerHTML = `
                     <div class="chat-avatar-sathi" style="font-weight: 800; font-size: 0.78rem; color: var(--km-primary);">AI</div>
                     <div class="chat-bubble-ai" style="color: var(--km-danger);">
