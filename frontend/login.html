@@ -62,6 +62,7 @@
         .identity-card {
             width: 100%;
             max-width: 610px;
+            box-sizing: border-box;
             background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -329,22 +330,32 @@
         .credentials-drawer .form-group-pro {
             min-width: 0;
             width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         .credentials-drawer .form-input-pro,
         .credentials-drawer .form-select-pro {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            box-sizing: border-box;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
+            box-sizing: border-box !important;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            display: block;
         }
         .auth-two-col-grid {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 10px;
             width: 100%;
+            box-sizing: border-box;
+        }
+        .auth-two-col-grid > .form-group-pro {
+            min-width: 0;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         @media (max-width: 520px) {
             .auth-two-col-grid {

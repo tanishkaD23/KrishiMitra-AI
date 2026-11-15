@@ -1141,6 +1141,10 @@ button {
 
 .form-input-pro,
 .form-select-pro {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     background: var(--km-bg);
     border: 1.5px solid var(--km-border);
     border-radius: var(--km-radius-sm);
