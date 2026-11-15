@@ -127,14 +127,16 @@ button {
 }
 
 .landing-nav-inner {
-    max-width: 1360px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: nowrap;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .brand-logo {
@@ -467,21 +469,10 @@ button {
     justify-content: center;
 }
 
-/* Floating Leaves */
-.floating-leaf-left {
-    position: absolute;
-    top: 45%;
-    left: 20px;
-    z-index: 4;
-    animation: gentleFloat 5s ease-in-out infinite;
-}
-
+/* Floating Leaves (Hidden as requested) */
+.floating-leaf-left,
 .floating-leaf-right {
-    position: absolute;
-    bottom: 22%;
-    right: 20px;
-    z-index: 4;
-    animation: gentleFloat 6s ease-in-out infinite reverse;
+    display: none !important;
 }
 
 @keyframes gentleFloat {
